@@ -1,0 +1,64 @@
+{
+  "slug": "blog",
+  "title": "Blog",
+  "sections": [
+    {
+      "id": "hero",
+      "type": "blog-hero",
+      "props": {
+        "eyebrow": "Beauty intelligence",
+        "heading": "Radiant skin and <em>beauty secrets</em>",
+        "text": "<p>Where beauty meets culture, science meets ritual, and every story is an invitation to discover your most luminous self.</p><p>By blending time-tested subcontinent traditions with modern dermatological science, we decode the secrets to healthy skin while celebrating the rich diversity of South Asian skin tones through expert-backed guides and clean ingredient breakdowns.</p>",
+        "paddingTop": 40,
+        "paddingBottom": 64,
+        "cards": [
+          { "value": "2.4M", "icon": "eye", "text": "Monthly readers across all journal editions" },
+          { "value": "48K", "icon": "heart", "text": "Articles saved by readers this month" },
+          { "value": "120", "icon": "pencil", "text": "Expert-authored articles and editorials" },
+          { "value": "3x", "icon": "award", "text": "Award-nominated beauty publication" }
+        ]
+      }
+    },
+    {
+      "id": "trending",
+      "type": "blog-trending",
+      "props": {
+        "heading": "<em>Trending</em> this week",
+        "paddingTop": 40,
+        "paddingBottom": 40,
+        "video": {
+          "youtubeId": "nabwuTwtlnM",
+          "poster": "/cdn/shop/files/6514468765eb7d5b1a064a890e7e065fdac9f2c3.png",
+          "label": "Video · 12:40",
+          "title": "The OroSkin lab: building a winter skincare routine from scratch",
+          "radius": 50
+        }
+      }
+    },
+    {
+      "id": "main",
+      "type": "blog",
+      "props": {
+        "paddingTop": 24,
+        "paddingBottom": 80,
+        "perPage": 12,
+        "layout": "mixed",
+        "featuredLabel": "Featured story"
+      }
+    },
+    {
+      "id": "icon_features",
+      "type": "icon-features",
+      "props": {
+        "iconColor": "#7b0000",
+        "colorScheme": "scheme-2",
+        "features": [
+          { "icon": "truck", "title": "Free shipping", "text": "<p>Orders over $200 qualify for fast, free delivery</p>" },
+          { "icon": "shield", "title": "Secure payment", "text": "<p>Trusted payment processing with advanced security</p>" },
+          { "icon": "return", "title": "Easy 30-day returns", "text": "<p>Try it for 30 days first, decide when you're ready.</p>" },
+          { "icon": "headset", "title": "Trusted service", "text": "<p>Our dedicated support staff is always on duty</p>" }
+        ]
+      }
+    }
+  ]
+}

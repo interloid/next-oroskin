@@ -1,0 +1,226 @@
+// Generated from the Shopify theme's rendered HTML (reference/sections/about--07-values.html). Make content dynamic, keep the markup.
+export default function About07Values() {
+  return (
+    <section id="shopify-section-template--27949758644326__values" className="shopify-section">
+      {" "}
+      <style
+        dangerouslySetInnerHTML={{
+          __html:
+            '\n    @font-face {\n  font-family: Newsreader;\n  font-weight: 200;\n  font-style: normal;\n  font-display: swap;\n  src: url("/cdn/fonts/newsreader/newsreader_n2.5960e0b0697503210b916625dc75038e9a2edf1e.woff2") format("woff2"),\n       url("/cdn/fonts/newsreader/newsreader_n2.cd4250115263c9c39d6eddb8b526847dc36a8619.woff") format("woff");\n}\n\n    @font-face {\n  font-family: Newsreader;\n  font-weight: 600;\n  font-style: normal;\n  font-display: swap;\n  src: url("/cdn/fonts/newsreader/newsreader_n6.e6648a2ece97a1b03d7262a0f4551ab429abd3d9.woff2") format("woff2"),\n       url("/cdn/fonts/newsreader/newsreader_n6.af48f2b7a82e36d45d4758c9ec643079979ae827.woff") format("woff");\n}\n\n  ',
+        }}
+      />{" "}
+      <div
+        className="about-values full-width section-width--widest color-scheme-2 section--screen-scale"
+        style={
+          {
+            "--section-padding-top": "120px",
+            "--section-padding-bottom": "120px",
+            "--text-boost": "1.1",
+          } as React.CSSProperties
+        }
+      >
+        {" "}
+        <div className="about-values__inner">
+          {" "}
+          <header className="about-values__header">
+            <p className="eyebrow eyebrow--center">What we stand for</p>
+            <h2 className="about-values__heading">
+              Our core <em>Values</em>
+            </h2>
+          </header>
+          <animate-on-scroll className="about-values__list about-values__list--feature">
+            <article className="value-card value-card--media" data-animate="fade-up">
+              {" "}
+              <div className="value-card__body">
+                {" "}
+                <div className="value-card__top">
+                  <span className="value-card__icon" aria-hidden="true">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      width="29"
+                      height="26"
+                      viewBox="0 0 29 26"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {" "}
+                      <path
+                        d="M23.3606 0H5.63839C5.437 0 5.24568 0.101562 5.13492 0.274219L0.100196 7.74922C-0.0458105 7.97266 -0.0307064 8.26719 0.135439 8.47031L14.0313 25.7766C14.2729 26.0762 14.7261 26.0762 14.9677 25.7766L28.8636 8.47031C29.0297 8.26211 29.0448 7.97266 28.8988 7.74922L23.8691 0.274219C23.7533 0.101562 23.567 0 23.3606 0ZM22.3889 2.4375L25.5759 7.3125H22.1321L19.5292 2.4375H22.3889ZM12.2137 2.4375H16.7802L19.3832 7.3125H9.61582L12.2137 2.4375ZM6.61009 2.4375H9.46982L6.86686 7.3125H3.42311L6.61009 2.4375ZM4.44516 9.75H7.03301L10.4717 17.875L4.44516 9.75ZM9.62589 9.75H19.3731L14.4995 22.1051L9.62589 9.75ZM18.5273 17.875L21.961 9.75H24.5488L18.5273 17.875Z"
+                        fill="currentColor"
+                      ></path>{" "}
+                    </svg>{" "}
+                  </span>
+                  <span className="value-card__number" aria-hidden="true"></span>{" "}
+                </div>
+                <h3 className="value-card__title">Uncompromising curation</h3>
+                <div className="value-card__text">
+                  <p>
+                    We believe that less is more. Our selection process is painstaking, deliberate, and driven by a
+                    single question: does this product truly deserve a place in someone's ritual?
+                  </p>
+                  <p>
+                    Less than 8% of products submitted make it onto our platform. The rest are returned with a personal
+                    note explaining why.
+                  </p>
+                </div>
+              </div>
+              <div className="value-card__media">
+                {" "}
+                <div className="image image--cover">
+                  <img
+                    src="/cdn/shop/files/58e4d37bb17ffc9f1fe2545f8088ea02887ec090.png?v=1793621700&width=1536"
+                    alt=""
+                    srcSet="/cdn/shop/files/58e4d37bb17ffc9f1fe2545f8088ea02887ec090.png?v=1793621700&width=300 300w, /cdn/shop/files/58e4d37bb17ffc9f1fe2545f8088ea02887ec090.png?v=1793621700&width=450 450w, /cdn/shop/files/58e4d37bb17ffc9f1fe2545f8088ea02887ec090.png?v=1793621700&width=600 600w, /cdn/shop/files/58e4d37bb17ffc9f1fe2545f8088ea02887ec090.png?v=1793621700&width=800 800w, /cdn/shop/files/58e4d37bb17ffc9f1fe2545f8088ea02887ec090.png?v=1793621700&width=1100 1100w"
+                    width="1536"
+                    height="1024"
+                    loading="lazy"
+                    sizes="(min-width: 1200px) 30vw, (min-width: 750px) 42vw, 36vw"
+                    fetchPriority="auto"
+                  />{" "}
+                </div>{" "}
+              </div>
+            </article>{" "}
+            <article className="value-card" data-animate="fade-up">
+              {" "}
+              <div className="value-card__body">
+                {" "}
+                <div className="value-card__top">
+                  <span className="value-card__icon" aria-hidden="true">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      width="28"
+                      height="27"
+                      viewBox="0 0 28 27"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {" "}
+                      <path
+                        d="M12.0784 0C6.68271 0 1.36414 4.35857 1.36414 7.5C1.36414 10.0779 4.05557 11.1429 5.64986 10.7143C8.88557 9.84643 7.79271 4.28571 14.2213 4.28571C17.427 4.28571 22.1627 6.25071 27.0784 9.64286C22.7927 2.08929 18.507 0 12.0784 0ZM27.0784 12.8571C24.9356 12.8571 20.6499 15 14.2213 15C7.79271 15 3.477 14.0786 1.36414 12.8571C-0.778715 15.93 -0.243001 21.4286 1.89986 23.5714C1.89986 19.2857 4.377 17.1429 5.64986 17.1429C4.92129 19.6929 5.14414 23.6829 7.79271 25.7143C6.83486 22.4271 8.76129 19.1443 11.007 18.2143C10.677 21.4286 10.557 22.7743 13.1499 26.25C13.1499 23.3979 13.7306 20.3571 16.3641 18.2143C16.3641 20.3571 17.4356 23.5714 19.5784 25.7143C19.0427 22.2857 19.8206 19.2857 21.7213 17.1429C21.8049 19.9714 22.6084 21.735 25.4713 23.5714C24.6206 19.5343 24.9356 15.9621 27.0784 12.8571Z"
+                        fill="currentColor"
+                      ></path>{" "}
+                    </svg>{" "}
+                  </span>
+                  <span className="value-card__number" aria-hidden="true"></span>{" "}
+                </div>
+                <h3 className="value-card__title">Conscious beauty</h3>
+                <div className="value-card__text">
+                  <p>
+                    Sustainability is not a trend — it's our responsibility. Every partner brand must meet our rigorous
+                    environmental and ethical standards.
+                  </p>
+                </div>
+              </div>
+            </article>{" "}
+            <article className="value-card" data-animate="fade-up">
+              {" "}
+              <div className="value-card__body">
+                {" "}
+                <div className="value-card__top">
+                  <span className="value-card__icon" aria-hidden="true">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      width="24"
+                      height="23"
+                      viewBox="0 0 24 23"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {" "}
+                      <path
+                        d="M3.22277 11.541C2.67658 10.9948 2.24333 10.3464 1.94773 9.63279C1.65214 8.91917 1.5 8.15431 1.5 7.38189C1.5 6.60947 1.65214 5.84461 1.94773 5.13099C2.24332 4.41736 2.67658 3.76895 3.22277 3.22277C3.76895 2.67658 4.41737 2.24332 5.13099 1.94773C5.84461 1.65214 6.60947 1.5 7.38189 1.5C8.15431 1.5 8.91917 1.65214 9.63279 1.94773C10.3464 2.24333 10.9948 2.67658 11.541 3.22277L12.0023 3.68402L12.4635 3.22389C13.5666 2.12067 15.0627 1.50083 16.6228 1.50073C17.3953 1.50067 18.1602 1.65277 18.8739 1.94834C19.5876 2.2439 20.2361 2.67714 20.7823 3.22333C21.3286 3.76951 21.7619 4.41794 22.0576 5.13159C22.3532 5.84525 22.5054 6.61015 22.5055 7.38262C22.5055 8.15509 22.3534 8.92001 22.0579 9.6337C21.7623 10.3474 21.3291 10.9959 20.7829 11.5421L12.0023 20.3205L3.22277 11.541Z"
+                        strokeWidth="3"
+                        strokeLinecap="square"
+                        stroke="currentColor"
+                      ></path>{" "}
+                    </svg>{" "}
+                  </span>
+                  <span className="value-card__number" aria-hidden="true"></span>{" "}
+                </div>
+                <h3 className="value-card__title">Client above all</h3>
+                <div className="value-card__text">
+                  <p>
+                    Every decision — from packaging to pricing — is made with one person in mind: the luminary who
+                    trusts us with their ritual.
+                  </p>
+                </div>
+              </div>
+            </article>{" "}
+            <article className="value-card" data-animate="fade-up">
+              {" "}
+              <div className="value-card__body">
+                {" "}
+                <div className="value-card__top">
+                  <span className="value-card__icon" aria-hidden="true">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      width="32"
+                      height="26"
+                      viewBox="0 0 32 26"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {" "}
+                      <path
+                        d="M1.61094 6.44249C1.27876 6.59778 0.997907 6.84383 0.801186 7.15189C0.604464 7.45994 0.5 7.81729 0.5 8.18216C0.5 8.54703 0.604464 8.90438 0.801186 9.21243C0.997907 9.52049 1.27876 9.76654 1.61094 9.92183L4.37952 11.2208V18.7645C4.37952 20.1925 4.84611 21.7859 6.20717 22.7673C7.92253 23.999 11.0473 25.5 16.0037 25.5C20.96 25.5 24.0771 23.9893 25.8002 22.7673C27.1613 21.7897 27.6279 20.2078 27.6279 18.7645V11.2208L29.5639 10.3106V18.7588C29.5639 19.014 29.6659 19.2587 29.8475 19.4391C30.029 19.6196 30.2752 19.721 30.532 19.721C30.7887 19.721 31.0349 19.6196 31.2165 19.4391C31.398 19.2587 31.5 19.014 31.5 18.7588V8.17446C31.5001 7.81001 31.396 7.45303 31.2 7.14506C31.0039 6.83708 30.7239 6.59077 30.3926 6.43479L19.3182 1.23886C18.2832 0.752342 17.1525 0.5 16.0076 0.5C14.8626 0.5 13.7319 0.752342 12.6969 1.23886L1.62256 6.43479L1.61094 6.44249ZM6.31559 18.7588V12.1195L12.6853 15.1216C13.7203 15.6081 14.851 15.8605 15.9959 15.8605C17.1409 15.8605 18.2716 15.6081 19.3066 15.1216L25.6763 12.1195V18.7588C25.6763 19.8287 25.3278 20.7024 24.6502 21.1835C23.2485 22.19 20.5264 23.5698 15.9959 23.5698C11.4655 23.5698 8.73568 22.1996 7.34171 21.1835C6.66602 20.6986 6.31559 19.8191 6.31559 18.7588ZM13.5178 2.97853C14.2924 2.61381 15.1388 2.42462 15.9959 2.42462C16.8531 2.42462 17.6995 2.61381 18.4741 2.97853L29.5484 8.17446L18.4741 13.3704C17.6995 13.7351 16.8531 13.9243 15.9959 13.9243C15.1388 13.9243 14.2924 13.7351 13.5178 13.3704L2.44345 8.17446L13.5178 2.97853Z"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        fill="currentColor"
+                        stroke="currentColor"
+                      ></path>{" "}
+                    </svg>{" "}
+                  </span>
+                  <span className="value-card__number" aria-hidden="true"></span>{" "}
+                </div>
+                <h3 className="value-card__title">Beauty education</h3>
+                <div className="value-card__text">
+                  <p>
+                    We empower our community with knowledge. Because the most transformative beauty choice is always an
+                    informed one.
+                  </p>
+                </div>
+              </div>
+            </article>{" "}
+            <article className="value-card" data-animate="fade-up">
+              {" "}
+              <div className="value-card__body">
+                {" "}
+                <div className="value-card__top">
+                  <span className="value-card__icon" aria-hidden="true">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {" "}
+                      <path
+                        d="M17.95 15C18.05 14.175 18.125 13.35 18.125 12.5C18.125 11.65 18.05 10.825 17.95 10H22.175C22.375 10.8 22.5 11.6375 22.5 12.5C22.5 13.3625 22.375 14.2 22.175 15M15.7375 21.95C16.4875 20.5625 17.0625 19.0625 17.4625 17.5H21.15C19.939 19.5853 18.0176 21.165 15.7375 21.95ZM15.425 15H9.575C9.45 14.175 9.375 13.35 9.375 12.5C9.375 11.65 9.45 10.8125 9.575 10H15.425C15.5375 10.8125 15.625 11.65 15.625 12.5C15.625 13.35 15.5375 14.175 15.425 15ZM12.5 22.45C11.4625 20.95 10.625 19.2875 10.1125 17.5H14.8875C14.375 19.2875 13.5375 20.95 12.5 22.45ZM7.5 7.5H3.85C5.0483 5.40879 6.96832 3.82655 9.25 3.05C8.5 4.4375 7.9375 5.9375 7.5 7.5ZM3.85 17.5H7.5C7.9375 19.0625 8.5 20.5625 9.25 21.95C6.97283 21.1654 5.05536 19.5852 3.85 17.5ZM2.825 15C2.625 14.2 2.5 13.3625 2.5 12.5C2.5 11.6375 2.625 10.8 2.825 10H7.05C6.95 10.825 6.875 11.65 6.875 12.5C6.875 13.35 6.95 14.175 7.05 15M12.5 2.5375C13.5375 4.0375 14.375 5.7125 14.8875 7.5H10.1125C10.625 5.7125 11.4625 4.0375 12.5 2.5375ZM21.15 7.5H17.4625C17.0707 5.95201 16.4914 4.45763 15.7375 3.05C18.0375 3.8375 19.95 5.425 21.15 7.5ZM12.5 0C5.5875 0 0 5.625 0 12.5C0 15.8152 1.31696 18.9946 3.66117 21.3388C4.8219 22.4996 6.19989 23.4203 7.71646 24.0485C9.23303 24.6767 10.8585 25 12.5 25C15.8152 25 18.9946 23.683 21.3388 21.3388C23.683 18.9946 25 15.8152 25 12.5C25 10.8585 24.6767 9.23303 24.0485 7.71646C23.4203 6.19989 22.4996 4.8219 21.3388 3.66117C20.1781 2.50043 18.8001 1.57969 17.2835 0.951506C15.767 0.323322 14.1415 0 12.5 0Z"
+                        fill="currentColor"
+                      ></path>{" "}
+                    </svg>{" "}
+                  </span>
+                  <span className="value-card__number" aria-hidden="true"></span>{" "}
+                </div>
+                <h3 className="value-card__title">Global inclusivity</h3>
+                <div className="value-card__text">
+                  <p>
+                    Beauty belongs to everyone. We curate for every skin tone, every culture, every ritual — without
+                    exception.
+                  </p>
+                </div>
+              </div>
+            </article>{" "}
+          </animate-on-scroll>
+        </div>{" "}
+      </div>{" "}
+    </section>
+  );
+}

@@ -1,0 +1,21 @@
+/* Tailwind without its preflight reset: the theme's critical.css is the base layer. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Oroskin design tokens (design/figma/tokens.md) as Tailwind colours, fonts and shadows. */
+@theme {
+  --color-cream: #fffaf0;
+  --color-ink: #1f1f1f;
+  --color-oro-red: #7d0000;
+  --color-gold: #c8a24b;
+  --color-gold-dark: #8a6a1f;
+  --color-line: #eedede;
+  --color-card-line: #f6ecec;
+  --font-heading: "Canela Text", Newsreader, serif;
+  --font-body: Satoshi, "Plus Jakarta Sans", sans-serif;
+  --font-logo: "Cormorant Garamond", Cormorant, serif;
+  --shadow-nav: 0 4px 15px 0 #bababa40;
+  --shadow-card: 0 0 10px 0 #0000000d;
+  --radius-pill: 50px;
+}

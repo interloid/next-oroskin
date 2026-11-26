@@ -1,0 +1,273 @@
+// Generated from the Shopify theme's rendered HTML (reference/sections/collections--02-main.html). Make content dynamic, keep the markup.
+export default function Collections02Main() {
+  return (
+    <div id="shopify-section-template--27949758972006__main" className="shopify-section">
+      <div
+        className="collections-page full-width section-width--widest color-scheme-2"
+        style={
+          {
+            "--section-padding-top": "64px",
+            "--section-padding-bottom": "96px",
+            "--tile-ratio": "1 / 1",
+            "--columns": "3",
+            "--columns-laptop": "3",
+            "--card-radius": "24px",
+          } as React.CSSProperties
+        }
+      >
+        {" "}
+        <div className="collections-page__inner">
+          <header className="collections-page__header">
+            {" "}
+            <p className="collections-page__eyebrow">Collections</p>{" "}
+            <h1 className="collections-page__title">Shop by category</h1>
+          </header>
+          <animate-on-scroll>
+            {" "}
+            <ul
+              className="collections-grid collections-grid--tiles"
+              role="list"
+              data-columns-laptop="3"
+              data-columns-desktop="3"
+            >
+              <li className="collections-grid__item">
+                {" "}
+                <a className="collections-card" href="/collections/all">
+                  {" "}
+                  <div className="collections-card__media">
+                    <img
+                      src="/cdn/shop/files/discovery-set-1.png?v=1793074059&width=1600"
+                      alt=""
+                      srcSet="/cdn/shop/files/discovery-set-1.png?v=1793074059&width=400 400w, /cdn/shop/files/discovery-set-1.png?v=1793074059&width=600 600w, /cdn/shop/files/discovery-set-1.png?v=1793074059&width=800 800w, /cdn/shop/files/discovery-set-1.png?v=1793074059&width=1200 1200w, /cdn/shop/files/discovery-set-1.png?v=1793074059&width=1600 1600w"
+                      width="1600"
+                      height="1600"
+                      loading="eager"
+                      sizes="(min-width: 1200px) 30vw, (min-width: 990px) 30vw, (min-width: 750px) 46vw, 92vw"
+                      className="collections-card__image"
+                    />{" "}
+                  </div>{" "}
+                  <div className="collections-card__bar">
+                    {" "}
+                    <span className="collections-card__name">All</span>{" "}
+                    <span className="collections-card__count">
+                      25 products
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        width="18"
+                        height="15"
+                        viewBox="0 0 18 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16.2637 7.24164L16.7974 7.76826C17.0858 7.47599 17.0858 7.00631 16.7974 6.71437L16.2637 7.24164ZM0.751213 6.48744C0.337 6.48733 0.000923157 6.82302 0.000564575 7.23724C0.000205994 7.65145 0.335702 7.98733 0.749915 7.98744L0.750564 7.23744L0.751213 6.48744ZM9.31669 13.2142C9.02566 13.5092 9.02869 13.984 9.32344 14.2749C9.61819 14.5657 10.0931 14.5624 10.3841 14.2675L9.85038 13.7409L9.31669 13.2142ZM10.3841 0.222766C10.0931 -0.0718116 9.61819 -0.0745506 9.32344 0.216648C9.02869 0.507847 9.02566 0.982713 9.31669 1.27729L9.85038 0.750029L10.3841 0.222766ZM16.2637 7.24164L16.2643 6.49164L0.751213 6.48744L0.750564 7.23744L0.749915 7.98744L16.263 7.99164L16.2637 7.24164ZM16.2637 7.24164L15.73 6.71501L9.31669 13.2142L9.85038 13.7409L10.3841 14.2675L16.7974 7.76826L16.2637 7.24164ZM16.2637 7.24164L16.7974 6.71437L10.3841 0.222766L9.85038 0.750029L9.31669 1.27729L15.73 7.7689L16.2637 7.24164Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>{" "}
+                    </span>{" "}
+                  </div>{" "}
+                </a>{" "}
+              </li>
+              <li className="collections-grid__item">
+                {" "}
+                <a className="collections-card" href="/collections/editors-picks">
+                  {" "}
+                  <div className="collections-card__media">
+                    <img
+                      src="/cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=1600"
+                      alt=""
+                      srcSet="/cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=400 400w, /cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=600 600w, /cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=800 800w, /cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=1200 1200w, /cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=1600 1600w"
+                      width="1600"
+                      height="1600"
+                      loading="eager"
+                      sizes="(min-width: 1200px) 30vw, (min-width: 990px) 30vw, (min-width: 750px) 46vw, 92vw"
+                      className="collections-card__image"
+                    />{" "}
+                  </div>{" "}
+                  <div className="collections-card__bar">
+                    {" "}
+                    <span className="collections-card__name">Editor's Picks</span>{" "}
+                    <span className="collections-card__count">
+                      7 products
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        width="18"
+                        height="15"
+                        viewBox="0 0 18 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16.2637 7.24164L16.7974 7.76826C17.0858 7.47599 17.0858 7.00631 16.7974 6.71437L16.2637 7.24164ZM0.751213 6.48744C0.337 6.48733 0.000923157 6.82302 0.000564575 7.23724C0.000205994 7.65145 0.335702 7.98733 0.749915 7.98744L0.750564 7.23744L0.751213 6.48744ZM9.31669 13.2142C9.02566 13.5092 9.02869 13.984 9.32344 14.2749C9.61819 14.5657 10.0931 14.5624 10.3841 14.2675L9.85038 13.7409L9.31669 13.2142ZM10.3841 0.222766C10.0931 -0.0718116 9.61819 -0.0745506 9.32344 0.216648C9.02869 0.507847 9.02566 0.982713 9.31669 1.27729L9.85038 0.750029L10.3841 0.222766ZM16.2637 7.24164L16.2643 6.49164L0.751213 6.48744L0.750564 7.23744L0.749915 7.98744L16.263 7.99164L16.2637 7.24164ZM16.2637 7.24164L15.73 6.71501L9.31669 13.2142L9.85038 13.7409L10.3841 14.2675L16.7974 7.76826L16.2637 7.24164ZM16.2637 7.24164L16.7974 6.71437L10.3841 0.222766L9.85038 0.750029L9.31669 1.27729L15.73 7.7689L16.2637 7.24164Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>{" "}
+                    </span>{" "}
+                  </div>{" "}
+                </a>{" "}
+              </li>
+              <li className="collections-grid__item">
+                {" "}
+                <a className="collections-card" href="/collections/fragrance">
+                  {" "}
+                  <div className="collections-card__media">
+                    <img
+                      src="/cdn/shop/collections/Fragrance-banner.png?v=1793086432&width=1600"
+                      alt=""
+                      srcSet="/cdn/shop/collections/Fragrance-banner.png?v=1793086432&width=400 400w, /cdn/shop/collections/Fragrance-banner.png?v=1793086432&width=600 600w, /cdn/shop/collections/Fragrance-banner.png?v=1793086432&width=800 800w, /cdn/shop/collections/Fragrance-banner.png?v=1793086432&width=1200 1200w, /cdn/shop/collections/Fragrance-banner.png?v=1793086432&width=1600 1600w"
+                      width="1600"
+                      height="1066"
+                      loading="eager"
+                      sizes="(min-width: 1200px) 30vw, (min-width: 990px) 30vw, (min-width: 750px) 46vw, 92vw"
+                      className="collections-card__image"
+                    />{" "}
+                  </div>{" "}
+                  <div className="collections-card__bar">
+                    {" "}
+                    <span className="collections-card__name">Fragrance</span>{" "}
+                    <span className="collections-card__count">
+                      6 products
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        width="18"
+                        height="15"
+                        viewBox="0 0 18 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16.2637 7.24164L16.7974 7.76826C17.0858 7.47599 17.0858 7.00631 16.7974 6.71437L16.2637 7.24164ZM0.751213 6.48744C0.337 6.48733 0.000923157 6.82302 0.000564575 7.23724C0.000205994 7.65145 0.335702 7.98733 0.749915 7.98744L0.750564 7.23744L0.751213 6.48744ZM9.31669 13.2142C9.02566 13.5092 9.02869 13.984 9.32344 14.2749C9.61819 14.5657 10.0931 14.5624 10.3841 14.2675L9.85038 13.7409L9.31669 13.2142ZM10.3841 0.222766C10.0931 -0.0718116 9.61819 -0.0745506 9.32344 0.216648C9.02869 0.507847 9.02566 0.982713 9.31669 1.27729L9.85038 0.750029L10.3841 0.222766ZM16.2637 7.24164L16.2643 6.49164L0.751213 6.48744L0.750564 7.23744L0.749915 7.98744L16.263 7.99164L16.2637 7.24164ZM16.2637 7.24164L15.73 6.71501L9.31669 13.2142L9.85038 13.7409L10.3841 14.2675L16.7974 7.76826L16.2637 7.24164ZM16.2637 7.24164L16.7974 6.71437L10.3841 0.222766L9.85038 0.750029L9.31669 1.27729L15.73 7.7689L16.2637 7.24164Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>{" "}
+                    </span>{" "}
+                  </div>{" "}
+                </a>{" "}
+              </li>
+              <li className="collections-grid__item" data-animate="fade-up">
+                {" "}
+                <a className="collections-card" href="/collections/makeup">
+                  {" "}
+                  <div className="collections-card__media">
+                    <img
+                      src="/cdn/shop/collections/Makeup-banner.png?v=1793086505&width=1600"
+                      alt=""
+                      srcSet="/cdn/shop/collections/Makeup-banner.png?v=1793086505&width=400 400w, /cdn/shop/collections/Makeup-banner.png?v=1793086505&width=600 600w, /cdn/shop/collections/Makeup-banner.png?v=1793086505&width=800 800w, /cdn/shop/collections/Makeup-banner.png?v=1793086505&width=1200 1200w, /cdn/shop/collections/Makeup-banner.png?v=1793086505&width=1600 1600w"
+                      width="1600"
+                      height="1068"
+                      loading="lazy"
+                      sizes="(min-width: 1200px) 30vw, (min-width: 990px) 30vw, (min-width: 750px) 46vw, 92vw"
+                      className="collections-card__image"
+                    />{" "}
+                  </div>{" "}
+                  <div className="collections-card__bar">
+                    {" "}
+                    <span className="collections-card__name">Makeup</span>{" "}
+                    <span className="collections-card__count">
+                      6 products
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        width="18"
+                        height="15"
+                        viewBox="0 0 18 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16.2637 7.24164L16.7974 7.76826C17.0858 7.47599 17.0858 7.00631 16.7974 6.71437L16.2637 7.24164ZM0.751213 6.48744C0.337 6.48733 0.000923157 6.82302 0.000564575 7.23724C0.000205994 7.65145 0.335702 7.98733 0.749915 7.98744L0.750564 7.23744L0.751213 6.48744ZM9.31669 13.2142C9.02566 13.5092 9.02869 13.984 9.32344 14.2749C9.61819 14.5657 10.0931 14.5624 10.3841 14.2675L9.85038 13.7409L9.31669 13.2142ZM10.3841 0.222766C10.0931 -0.0718116 9.61819 -0.0745506 9.32344 0.216648C9.02869 0.507847 9.02566 0.982713 9.31669 1.27729L9.85038 0.750029L10.3841 0.222766ZM16.2637 7.24164L16.2643 6.49164L0.751213 6.48744L0.750564 7.23744L0.749915 7.98744L16.263 7.99164L16.2637 7.24164ZM16.2637 7.24164L15.73 6.71501L9.31669 13.2142L9.85038 13.7409L10.3841 14.2675L16.7974 7.76826L16.2637 7.24164ZM16.2637 7.24164L16.7974 6.71437L10.3841 0.222766L9.85038 0.750029L9.31669 1.27729L15.73 7.7689L16.2637 7.24164Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>{" "}
+                    </span>{" "}
+                  </div>{" "}
+                </a>{" "}
+              </li>
+              <li className="collections-grid__item" data-animate="fade-up">
+                {" "}
+                <a className="collections-card" href="/collections/new-arrivals">
+                  {" "}
+                  <div className="collections-card__media">
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=1600"
+                      alt=""
+                      srcSet="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=400 400w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=600 600w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=800 800w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=1200 1200w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=1600 1600w"
+                      width="1600"
+                      height="1600"
+                      loading="lazy"
+                      sizes="(min-width: 1200px) 30vw, (min-width: 990px) 30vw, (min-width: 750px) 46vw, 92vw"
+                      className="collections-card__image"
+                    />{" "}
+                  </div>{" "}
+                  <div className="collections-card__bar">
+                    {" "}
+                    <span className="collections-card__name">New Arrivals</span>{" "}
+                    <span className="collections-card__count">
+                      6 products
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        width="18"
+                        height="15"
+                        viewBox="0 0 18 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16.2637 7.24164L16.7974 7.76826C17.0858 7.47599 17.0858 7.00631 16.7974 6.71437L16.2637 7.24164ZM0.751213 6.48744C0.337 6.48733 0.000923157 6.82302 0.000564575 7.23724C0.000205994 7.65145 0.335702 7.98733 0.749915 7.98744L0.750564 7.23744L0.751213 6.48744ZM9.31669 13.2142C9.02566 13.5092 9.02869 13.984 9.32344 14.2749C9.61819 14.5657 10.0931 14.5624 10.3841 14.2675L9.85038 13.7409L9.31669 13.2142ZM10.3841 0.222766C10.0931 -0.0718116 9.61819 -0.0745506 9.32344 0.216648C9.02869 0.507847 9.02566 0.982713 9.31669 1.27729L9.85038 0.750029L10.3841 0.222766ZM16.2637 7.24164L16.2643 6.49164L0.751213 6.48744L0.750564 7.23744L0.749915 7.98744L16.263 7.99164L16.2637 7.24164ZM16.2637 7.24164L15.73 6.71501L9.31669 13.2142L9.85038 13.7409L10.3841 14.2675L16.7974 7.76826L16.2637 7.24164ZM16.2637 7.24164L16.7974 6.71437L10.3841 0.222766L9.85038 0.750029L9.31669 1.27729L15.73 7.7689L16.2637 7.24164Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>{" "}
+                    </span>{" "}
+                  </div>{" "}
+                </a>{" "}
+              </li>
+              <li className="collections-grid__item" data-animate="fade-up">
+                {" "}
+                <a className="collections-card" href="/collections/skincare">
+                  {" "}
+                  <div className="collections-card__media">
+                    <img
+                      src="/cdn/shop/collections/Skincare-banner.png?v=1793086301&width=1600"
+                      alt=""
+                      srcSet="/cdn/shop/collections/Skincare-banner.png?v=1793086301&width=400 400w, /cdn/shop/collections/Skincare-banner.png?v=1793086301&width=600 600w, /cdn/shop/collections/Skincare-banner.png?v=1793086301&width=800 800w, /cdn/shop/collections/Skincare-banner.png?v=1793086301&width=1200 1200w, /cdn/shop/collections/Skincare-banner.png?v=1793086301&width=1600 1600w"
+                      width="1600"
+                      height="1067"
+                      loading="lazy"
+                      sizes="(min-width: 1200px) 30vw, (min-width: 990px) 30vw, (min-width: 750px) 46vw, 92vw"
+                      className="collections-card__image"
+                    />{" "}
+                  </div>{" "}
+                  <div className="collections-card__bar">
+                    {" "}
+                    <span className="collections-card__name">Skincare</span>{" "}
+                    <span className="collections-card__count">
+                      8 products
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        width="18"
+                        height="15"
+                        viewBox="0 0 18 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16.2637 7.24164L16.7974 7.76826C17.0858 7.47599 17.0858 7.00631 16.7974 6.71437L16.2637 7.24164ZM0.751213 6.48744C0.337 6.48733 0.000923157 6.82302 0.000564575 7.23724C0.000205994 7.65145 0.335702 7.98733 0.749915 7.98744L0.750564 7.23744L0.751213 6.48744ZM9.31669 13.2142C9.02566 13.5092 9.02869 13.984 9.32344 14.2749C9.61819 14.5657 10.0931 14.5624 10.3841 14.2675L9.85038 13.7409L9.31669 13.2142ZM10.3841 0.222766C10.0931 -0.0718116 9.61819 -0.0745506 9.32344 0.216648C9.02869 0.507847 9.02566 0.982713 9.31669 1.27729L9.85038 0.750029L10.3841 0.222766ZM16.2637 7.24164L16.2643 6.49164L0.751213 6.48744L0.750564 7.23744L0.749915 7.98744L16.263 7.99164L16.2637 7.24164ZM16.2637 7.24164L15.73 6.71501L9.31669 13.2142L9.85038 13.7409L10.3841 14.2675L16.7974 7.76826L16.2637 7.24164ZM16.2637 7.24164L16.7974 6.71437L10.3841 0.222766L9.85038 0.750029L9.31669 1.27729L15.73 7.7689L16.2637 7.24164Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>{" "}
+                    </span>{" "}
+                  </div>{" "}
+                </a>{" "}
+              </li>
+            </ul>{" "}
+          </animate-on-scroll>
+        </div>{" "}
+      </div>{" "}
+    </div>
+  );
+}

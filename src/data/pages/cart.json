@@ -1,0 +1,50 @@
+{
+  "slug": "cart",
+  "title": "Cart",
+  "sections": [
+    {
+      "id": "cart",
+      "type": "cart",
+      "props": {
+        "eyebrow": "Your selection",
+        "heading": "Shopping bag",
+        "emptyTitle": "Your bag is empty",
+        "emptyText": "<p>Browse our skincare, fragrance and makeup to find something you love.</p>",
+        "emptyLinkLabel": "Shop new arrivals",
+        "emptyLink": "/collections/new-arrivals",
+        "emptyButtonLabel": "Continue shopping",
+        "continueLink": "/collections/all",
+        "showNote": true,
+        "showCoupons": true,
+        "freeShippingThreshold": 20000,
+        "highlightColor": "#8a6a1f",
+        "paddingTop": 40,
+        "paddingBottom": 96
+      }
+    },
+    {
+      "id": "you_might_love",
+      "type": "product-list",
+      "props": {
+        "layout": "rows",
+        "blocks": [
+          {
+            "type": "heading",
+            "html": "You might <em>love</em>",
+            "italic": "accent"
+          }
+        ],
+        "products": [
+          "signature-body-mist",
+          "rose-eau-de-parfum",
+          "hydra-glow-night-cream",
+          "radiance-vitamin-c-serum"
+        ],
+        "limit": 4,
+        "onlyWhenCartEmpty": true,
+        "paddingTop": 48,
+        "paddingBottom": 96
+      }
+    }
+  ]
+}

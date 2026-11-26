@@ -1,0 +1,17 @@
+{
+  "slug": "search",
+  "title": "Search",
+  "sections": [
+    {
+      "id": "search",
+      "type": "search",
+      "props": {
+        "suggestionsCollection": "all",
+        "suggestionsHeading": "You might <em>love</em>",
+        "colorScheme": "scheme-2",
+        "paddingTop": 64,
+        "paddingBottom": 96
+      }
+    }
+  ]
+}

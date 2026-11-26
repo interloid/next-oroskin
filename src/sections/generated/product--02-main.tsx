@@ -1,0 +1,2120 @@
+// Generated from the Shopify theme's rendered HTML (reference/sections/product--02-main.html). Make content dynamic, keep the markup.
+export default function Product02Main() {
+  return (
+    <section id="shopify-section-template--27949759168614__main" className="shopify-section product-section">
+      {" "}
+      <product-page
+        className="product full-width section-width--widest color-scheme-2 section--screen-scale"
+        style={
+          {
+            "--section-padding-top": "24px",
+            "--section-padding-bottom": "64px",
+            "--text-boost": "1.0",
+          } as React.CSSProperties
+        }
+        data-product-url="/products/signature-body-mist"
+      >
+        {" "}
+        <div className="product__inner">
+          {" "}
+          <nav className="breadcrumb product__breadcrumb" aria-label="Breadcrumb">
+            {" "}
+            <ol>
+              {" "}
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/collections/all">All</a>
+              </li>
+              <li aria-current="page">Signature Body Mist</li>{" "}
+            </ol>{" "}
+          </nav>{" "}
+          <div className="product__layout">
+            <div className="product__gallery" data-gallery="">
+              <div
+                className="product__column product__column--1"
+                data-gallery-column="1"
+                data-sizes="(min-width: 990px) 13vw, 30vw"
+              >
+                <div
+                  className="product__media product__media--image"
+                  data-media-id="46235079442534"
+                  data-media-index="1"
+                  style={{ "--media-ratio": "1.0", order: "1" } as React.CSSProperties}
+                >
+                  {" "}
+                  <div className="product-media product-media--image">
+                    {" "}
+                    <div className="image image--cover">
+                      <img
+                        src="/cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=1024"
+                        alt="Signature Body Mist, one bottle spraying"
+                        srcSet="/cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=310 310w, /cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=375 375w, /cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=550 550w, /cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=750 750w"
+                        width="1024"
+                        height="1024"
+                        loading="eager"
+                        sizes="(min-width: 990px) 13vw, 30vw"
+                        fetchPriority="auto"
+                      />{" "}
+                    </div>{" "}
+                  </div>{" "}
+                  <button
+                    type="button"
+                    className="product__open"
+                    data-lightbox-open="1"
+                    aria-haspopup="dialog"
+                    aria-label="Open item 2 of 7 in the viewer"
+                  ></button>
+                </div>
+                <div
+                  className="product__media product__media--image"
+                  data-media-id="46235081179238"
+                  data-media-index="4"
+                  style={{ "--media-ratio": "1.0", order: "4" } as React.CSSProperties}
+                >
+                  {" "}
+                  <div className="product-media product-media--image">
+                    {" "}
+                    <div className="image image--cover">
+                      <img
+                        src="/cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=1024"
+                        alt="Signature Body Mist in Amber"
+                        srcSet="/cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=310 310w, /cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=375 375w, /cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=550 550w, /cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=750 750w"
+                        width="1024"
+                        height="1024"
+                        loading="eager"
+                        sizes="(min-width: 990px) 13vw, 30vw"
+                        fetchPriority="auto"
+                      />{" "}
+                    </div>{" "}
+                  </div>{" "}
+                  <button
+                    type="button"
+                    className="product__open"
+                    data-lightbox-open="4"
+                    aria-haspopup="dialog"
+                    aria-label="Open item 5 of 7 in the viewer"
+                  ></button>
+                </div>
+              </div>
+              <div
+                className="product__column product__column--2"
+                data-gallery-column="0"
+                data-sizes="(min-width: 990px) 18vw, 40vw"
+              >
+                <div
+                  className="product__media product__media--image"
+                  data-media-id="46235081113702"
+                  data-media-index="0"
+                  style={{ "--media-ratio": "1.0", order: "0" } as React.CSSProperties}
+                >
+                  {" "}
+                  <div className="product-media product-media--image">
+                    {" "}
+                    <div className="image image--cover">
+                      <img
+                        src="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=1024"
+                        alt="Signature Body Mist, the four scents lined up"
+                        srcSet="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=310 310w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=375 375w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=550 550w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=750 750w"
+                        width="1024"
+                        height="1024"
+                        loading="eager"
+                        sizes="(min-width: 990px) 18vw, 40vw"
+                        fetchPriority="high"
+                      />{" "}
+                    </div>{" "}
+                  </div>{" "}
+                  <button
+                    type="button"
+                    className="product__open"
+                    data-lightbox-open="0"
+                    aria-haspopup="dialog"
+                    aria-label="Open item 1 of 7 in the viewer"
+                  ></button>
+                </div>
+                <div
+                  className="product__media product__media--image"
+                  data-media-id="46235080589414"
+                  data-media-index="3"
+                  style={{ "--media-ratio": "1.0", order: "3" } as React.CSSProperties}
+                >
+                  {" "}
+                  <div className="product-media product-media--image">
+                    {" "}
+                    <div className="image image--cover">
+                      <img
+                        src="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=1024"
+                        alt="Signature Body Mist in Rose"
+                        srcSet="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=310 310w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=375 375w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=550 550w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=750 750w"
+                        width="1024"
+                        height="1024"
+                        loading="eager"
+                        sizes="(min-width: 990px) 18vw, 40vw"
+                        fetchPriority="auto"
+                      />{" "}
+                    </div>{" "}
+                  </div>{" "}
+                  <button
+                    type="button"
+                    className="product__open"
+                    data-lightbox-open="3"
+                    aria-haspopup="dialog"
+                    aria-label="Open item 4 of 7 in the viewer"
+                  ></button>
+                </div>
+                <div
+                  className="product__media product__media--image"
+                  data-media-id="46235080425574"
+                  data-media-index="6"
+                  style={{ "--media-ratio": "1.0", order: "6" } as React.CSSProperties}
+                >
+                  {" "}
+                  <div className="product-media product-media--image">
+                    {" "}
+                    <div className="image image--cover">
+                      <img
+                        src="/cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=1024"
+                        alt="Signature Body Mist in Oud"
+                        srcSet="/cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=310 310w, /cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=375 375w, /cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=550 550w, /cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=750 750w"
+                        width="1024"
+                        height="1024"
+                        loading="eager"
+                        sizes="(min-width: 990px) 18vw, 40vw"
+                        fetchPriority="auto"
+                      />{" "}
+                    </div>{" "}
+                  </div>{" "}
+                  <button
+                    type="button"
+                    className="product__open"
+                    data-lightbox-open="6"
+                    aria-haspopup="dialog"
+                    aria-label="Open item 7 of 7 in the viewer"
+                  ></button>
+                </div>
+              </div>
+              <div
+                className="product__column product__column--3"
+                data-gallery-column="2"
+                data-sizes="(min-width: 990px) 11vw, 26vw"
+              >
+                <div
+                  className="product__media product__media--image"
+                  data-media-id="46235079573606"
+                  data-media-index="2"
+                  style={{ "--media-ratio": "1.0", order: "2" } as React.CSSProperties}
+                >
+                  {" "}
+                  <div className="product-media product-media--image">
+                    {" "}
+                    <div className="image image--cover">
+                      <img
+                        src="/cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=1024"
+                        alt="Signature Body Mist, close-up of the sprayer"
+                        srcSet="/cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=310 310w, /cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=375 375w, /cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=550 550w, /cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=750 750w"
+                        width="1024"
+                        height="1024"
+                        loading="eager"
+                        sizes="(min-width: 990px) 11vw, 26vw"
+                        fetchPriority="auto"
+                      />{" "}
+                    </div>{" "}
+                  </div>{" "}
+                  <button
+                    type="button"
+                    className="product__open"
+                    data-lightbox-open="2"
+                    aria-haspopup="dialog"
+                    aria-label="Open item 3 of 7 in the viewer"
+                  ></button>
+                </div>
+                <div
+                  className="product__media product__media--image"
+                  data-media-id="46235080196198"
+                  data-media-index="5"
+                  style={{ "--media-ratio": "1.0", order: "5" } as React.CSSProperties}
+                >
+                  {" "}
+                  <div className="product-media product-media--image">
+                    {" "}
+                    <div className="image image--cover">
+                      <img
+                        src="/cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=1024"
+                        alt="Signature Body Mist in Neroli"
+                        srcSet="/cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=310 310w, /cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=375 375w, /cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=550 550w, /cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=750 750w"
+                        width="1024"
+                        height="1024"
+                        loading="eager"
+                        sizes="(min-width: 990px) 11vw, 26vw"
+                        fetchPriority="auto"
+                      />{" "}
+                    </div>{" "}
+                  </div>{" "}
+                  <button
+                    type="button"
+                    className="product__open"
+                    data-lightbox-open="5"
+                    aria-haspopup="dialog"
+                    aria-label="Open item 6 of 7 in the viewer"
+                  ></button>
+                </div>
+              </div>
+            </div>
+            <div className="product__info">
+              {" "}
+              <div className="product-panel product-panel--card" style={{ "--panel-gap": "28" } as React.CSSProperties}>
+                {" "}
+                <product-eyebrow className="product-eyebrow">
+                  {" "}
+                  <div className="product-eyebrow__start">
+                    <p className="product-eyebrow__label">Fragrance</p>
+                  </div>
+                  <button
+                    type="button"
+                    className="product-eyebrow__share"
+                    data-share-url="https://oroskin-dev.myshopify.com/products/signature-body-mist"
+                    data-share-title="Signature Body Mist"
+                    data-copied="Link copied"
+                    data-label="Share"
+                  >
+                    {" "}
+                    <span className="product-eyebrow__share-icon" aria-hidden="true">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        {" "}
+                        <path
+                          d="M8.66686 4.7V2.66667C8.66686 2.48986 8.7371 2.32029 8.86213 2.19526C8.98715 2.07024 9.15672 2 9.33353 2C9.50842 2.00074 9.67602 2.07017 9.8002 2.19333L14.4669 6.86C14.5293 6.92198 14.5789 6.99571 14.6128 7.07695C14.6466 7.15819 14.6641 7.24533 14.6641 7.33333C14.6641 7.42134 14.6466 7.50848 14.6128 7.58972C14.5789 7.67096 14.5293 7.74469 14.4669 7.80667L9.8002 12.4733C9.70661 12.5651 9.58806 12.6272 9.45936 12.6519C9.33066 12.6767 9.19753 12.6629 9.0766 12.6124C8.95567 12.5619 8.85231 12.4769 8.77944 12.368C8.70656 12.259 8.66741 12.1311 8.66686 12V9.93333H8.1002C7.04692 9.91762 6.00284 10.1313 5.04042 10.5596C4.078 10.9878 3.22031 11.6204 2.52687 12.4133C2.4433 12.5246 2.32701 12.6069 2.19431 12.6487C2.0616 12.6906 1.91913 12.6899 1.78686 12.6467C1.65226 12.6012 1.53569 12.514 1.45414 12.3977C1.37259 12.2814 1.33034 12.142 1.33353 12C1.33353 5.92 6.7202 4.88 8.66686 4.7ZM8.1002 8.58667C8.54608 8.5858 8.99152 8.61475 9.43353 8.67333C9.59136 8.69728 9.73535 8.77706 9.83934 8.89818C9.94333 9.01929 10.0004 9.1737 10.0002 9.33333V10.3933L13.0535 7.33333L10.0002 4.27333V5.33333C10.0002 5.51014 9.92996 5.67971 9.80493 5.80474C9.67991 5.92976 9.51034 6 9.33353 6C8.72686 6 3.92686 6.13333 2.88686 10.2867C4.3964 9.17371 6.22475 8.5775 8.1002 8.58667Z"
+                          fill="currentColor"
+                        ></path>{" "}
+                      </svg>{" "}
+                    </span>{" "}
+                    <span data-share-label="">Share</span>{" "}
+                  </button>
+                  <span className="visually-hidden" role="status" data-share-status=""></span>
+                </product-eyebrow>{" "}
+                <h1 className="product-title product-title--product">Signature Body Mist </h1>{" "}
+                <product-price
+                  className="product-price product-price--large"
+                  data-label-plan="Subscription price"
+                  data-label-regular="Regular price"
+                >
+                  {" "}
+                  <div className="product-price__row">
+                    {" "}
+                    <div data-price-current="">
+                      {" "}
+                      <div className="price">
+                        {" "}
+                        <span className="price__current">
+                          {" "}
+                          <span className="visually-hidden">Regular price </span>
+                          <span data-price-amount="">Rs. 2,700.00</span>
+                        </span>
+                      </div>{" "}
+                    </div>
+                  </div>
+                  <template
+                    data-variant-id="67834035077222"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 2,700.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035109990"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 2,700.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035142758"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 2,700.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035175526"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 2,700.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035208294"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 4,000.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035241062"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 4,000.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035273830"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 4,000.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035306598"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 4,000.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035339366"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 5,500.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035372134"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 5,500.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035404902"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 5,500.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <template
+                    data-variant-id="67834035437670"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        '\n<div class="price price--sold-out">\n  <span class="price__current">\n    <span class="visually-hidden">Regular price\n</span><span data-price-amount>Rs. 5,500.00</span></span></div>\n\n\n',
+                    }}
+                  />
+                  <p className="product-price__note">
+                    <a href="/policies/shipping-policy">Shipping</a> calculated at checkout.{" "}
+                  </p>
+                </product-price>{" "}
+                <product-stock className="product-stock">
+                  <p className="product-stock__line" data-variant-id="67834035077222">
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035109990" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035142758" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035175526" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035208294" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035241062" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035273830" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035306598" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035339366" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035372134" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line" data-variant-id="67834035404902" hidden>
+                    {" "}
+                    <span className="product-stock__label">In stock</span>
+                  </p>
+                  <p className="product-stock__line product-stock__line--out" data-variant-id="67834035437670" hidden>
+                    {" "}
+                    <span className="product-stock__label">Sold out</span>
+                  </p>
+                </product-stock>{" "}
+                <div className="product-description product-description--large rte">
+                  <p>A light, refreshing body mist in four signature scents.</p>{" "}
+                </div>{" "}
+                <buy-buttons
+                  className="buy-buttons buy-buttons--inline"
+                  data-label-add="Add to cart"
+                  data-label-sold-out="Sold out"
+                  data-label-unavailable="Unavailable"
+                  data-label-added="Added"
+                  data-label-added-status="Signature Body Mist added to your cart"
+                  data-label-error="Couldn't add this to your cart. Please try again."
+                  data-image="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=160"
+                >
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    id="ProductForm-AbVBWclBPUklOdGM1b__buy_buttons"
+                    acceptCharset="UTF-8"
+                    className="buy-buttons__form"
+                    encType="multipart/form-data"
+                  >
+                    <input type="hidden" name="form_type" value="product" />
+                    <input type="hidden" name="utf8" value="✓" />
+                    <div className="buy-buttons__options">
+                      <fieldset className="buy-buttons__option" data-option="">
+                        {" "}
+                        <legend className="buy-buttons__label">Size</legend>{" "}
+                        <div className="buy-buttons__pills">
+                          <input
+                            className="buy-buttons__pill-input"
+                            type="radio"
+                            id="AbVBWclBPUklOdGM1b__buy_buttons-0-0"
+                            name="AbVBWclBPUklOdGM1b__buy_buttons-option-0"
+                            value="50 ml"
+                            defaultChecked
+                            data-option-input=""
+                          />
+                          <label className="buy-buttons__pill" htmlFor="AbVBWclBPUklOdGM1b__buy_buttons-0-0">
+                            50 ml<span className="visually-hidden" data-value-note=""></span>{" "}
+                          </label>
+                          <input
+                            className="buy-buttons__pill-input"
+                            type="radio"
+                            id="AbVBWclBPUklOdGM1b__buy_buttons-0-1"
+                            name="AbVBWclBPUklOdGM1b__buy_buttons-option-0"
+                            value="100 ml"
+                            data-option-input=""
+                          />
+                          <label className="buy-buttons__pill" htmlFor="AbVBWclBPUklOdGM1b__buy_buttons-0-1">
+                            100 ml<span className="buy-buttons__pill-extra">(+Rs. 1,300.00)</span>
+                            <span className="visually-hidden" data-value-note=""></span>{" "}
+                          </label>
+                          <input
+                            className="buy-buttons__pill-input"
+                            type="radio"
+                            id="AbVBWclBPUklOdGM1b__buy_buttons-0-2"
+                            name="AbVBWclBPUklOdGM1b__buy_buttons-option-0"
+                            value="200 ml"
+                            data-option-input=""
+                          />
+                          <label className="buy-buttons__pill" htmlFor="AbVBWclBPUklOdGM1b__buy_buttons-0-2">
+                            200 ml<span className="buy-buttons__pill-extra">(+Rs. 2,800.00)</span>
+                            <span className="visually-hidden" data-value-note=""></span>{" "}
+                          </label>
+                        </div>{" "}
+                      </fieldset>
+                      <fieldset className="buy-buttons__option" data-option="">
+                        {" "}
+                        <legend className="buy-buttons__label">Scent</legend>{" "}
+                        <div className="buy-buttons__pills">
+                          <input
+                            className="buy-buttons__pill-input"
+                            type="radio"
+                            id="AbVBWclBPUklOdGM1b__buy_buttons-1-0"
+                            name="AbVBWclBPUklOdGM1b__buy_buttons-option-1"
+                            value="Rose"
+                            defaultChecked
+                            data-option-input=""
+                          />
+                          <label className="buy-buttons__pill" htmlFor="AbVBWclBPUklOdGM1b__buy_buttons-1-0">
+                            Rose<span className="visually-hidden" data-value-note=""></span>{" "}
+                          </label>
+                          <input
+                            className="buy-buttons__pill-input"
+                            type="radio"
+                            id="AbVBWclBPUklOdGM1b__buy_buttons-1-1"
+                            name="AbVBWclBPUklOdGM1b__buy_buttons-option-1"
+                            value="Amber"
+                            data-option-input=""
+                          />
+                          <label className="buy-buttons__pill" htmlFor="AbVBWclBPUklOdGM1b__buy_buttons-1-1">
+                            Amber<span className="visually-hidden" data-value-note=""></span>{" "}
+                          </label>
+                          <input
+                            className="buy-buttons__pill-input"
+                            type="radio"
+                            id="AbVBWclBPUklOdGM1b__buy_buttons-1-2"
+                            name="AbVBWclBPUklOdGM1b__buy_buttons-option-1"
+                            value="Neroli"
+                            data-option-input=""
+                          />
+                          <label className="buy-buttons__pill" htmlFor="AbVBWclBPUklOdGM1b__buy_buttons-1-2">
+                            Neroli<span className="visually-hidden" data-value-note=""></span>{" "}
+                          </label>
+                          <input
+                            className="buy-buttons__pill-input"
+                            type="radio"
+                            id="AbVBWclBPUklOdGM1b__buy_buttons-1-3"
+                            name="AbVBWclBPUklOdGM1b__buy_buttons-option-1"
+                            value="Oud"
+                            data-option-input=""
+                          />
+                          <label className="buy-buttons__pill" htmlFor="AbVBWclBPUklOdGM1b__buy_buttons-1-3">
+                            Oud<span className="visually-hidden" data-value-note=""></span>{" "}
+                          </label>
+                        </div>{" "}
+                      </fieldset>
+                    </div>{" "}
+                    <div className="buy-buttons__select">
+                      {" "}
+                      <label className="buy-buttons__label" htmlFor="Variant-AbVBWclBPUklOdGM1b__buy_buttons">
+                        Variant
+                      </label>{" "}
+                      <select id="Variant-AbVBWclBPUklOdGM1b__buy_buttons" name="id">
+                        <option
+                          value="67834035077222"
+                          data-options="50 ml||Rose"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=160"
+                          data-media-id="46235080589414"
+                        >
+                          {" "}
+                          50 ml / Rose - Rs. 2,700.00{" "}
+                        </option>
+                        <option
+                          value="67834035109990"
+                          data-options="50 ml||Amber"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=160"
+                          data-media-id="46235081179238"
+                        >
+                          {" "}
+                          50 ml / Amber - Rs. 2,700.00{" "}
+                        </option>
+                        <option
+                          value="67834035142758"
+                          data-options="50 ml||Neroli"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=160"
+                          data-media-id="46235080196198"
+                        >
+                          {" "}
+                          50 ml / Neroli - Rs. 2,700.00{" "}
+                        </option>
+                        <option
+                          value="67834035175526"
+                          data-options="50 ml||Oud"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=160"
+                          data-media-id="46235080425574"
+                        >
+                          {" "}
+                          50 ml / Oud - Rs. 2,700.00{" "}
+                        </option>
+                        <option
+                          value="67834035208294"
+                          data-options="100 ml||Rose"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=160"
+                          data-media-id="46235080589414"
+                        >
+                          {" "}
+                          100 ml / Rose - Rs. 4,000.00{" "}
+                        </option>
+                        <option
+                          value="67834035241062"
+                          data-options="100 ml||Amber"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=160"
+                          data-media-id="46235081179238"
+                        >
+                          {" "}
+                          100 ml / Amber - Rs. 4,000.00{" "}
+                        </option>
+                        <option
+                          value="67834035273830"
+                          data-options="100 ml||Neroli"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=160"
+                          data-media-id="46235080196198"
+                        >
+                          {" "}
+                          100 ml / Neroli - Rs. 4,000.00{" "}
+                        </option>
+                        <option
+                          value="67834035306598"
+                          data-options="100 ml||Oud"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=160"
+                          data-media-id="46235080425574"
+                        >
+                          {" "}
+                          100 ml / Oud - Rs. 4,000.00{" "}
+                        </option>
+                        <option
+                          value="67834035339366"
+                          data-options="200 ml||Rose"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=160"
+                          data-media-id="46235080589414"
+                        >
+                          {" "}
+                          200 ml / Rose - Rs. 5,500.00{" "}
+                        </option>
+                        <option
+                          value="67834035372134"
+                          data-options="200 ml||Amber"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=160"
+                          data-media-id="46235081179238"
+                        >
+                          {" "}
+                          200 ml / Amber - Rs. 5,500.00{" "}
+                        </option>
+                        <option
+                          value="67834035404902"
+                          data-options="200 ml||Neroli"
+                          data-available="true"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=160"
+                          data-media-id="46235080196198"
+                        >
+                          {" "}
+                          200 ml / Neroli - Rs. 5,500.00{" "}
+                        </option>
+                        <option
+                          value="67834035437670"
+                          data-options="200 ml||Oud"
+                          data-available="false"
+                          data-qty-min="1"
+                          data-qty-step="1"
+                          data-qty-max=""
+                          data-image="/cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=160"
+                          data-media-id="46235080425574"
+                          disabled
+                        >
+                          {" "}
+                          200 ml / Oud - Rs. 5,500.00 (Sold out){" "}
+                        </option>
+                      </select>{" "}
+                    </div>
+                    <div className="buy-buttons__installments"></div>
+                    <div className="buy-buttons__row">
+                      {" "}
+                      <div className="buy-buttons__quantity">
+                        {" "}
+                        <label className="visually-hidden" htmlFor="Quantity-AbVBWclBPUklOdGM1b__buy_buttons">
+                          Quantity
+                        </label>{" "}
+                        <button
+                          type="button"
+                          className="buy-buttons__step"
+                          data-step="-1"
+                          aria-label="Decrease quantity"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="15"
+                            height="3"
+                            viewBox="0 0 15 3"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M14.431 0V2.48016H0.000944614V0H14.431Z" fill="currentColor"></path>
+                          </svg>{" "}
+                        </button>{" "}
+                        <input
+                          id="Quantity-AbVBWclBPUklOdGM1b__buy_buttons"
+                          className="buy-buttons__quantity-input"
+                          type="number"
+                          name="quantity"
+                          min="1"
+                          step="1"
+                          defaultValue="1"
+                          inputMode="numeric"
+                          aria-describedby="QuantityRules-AbVBWclBPUklOdGM1b__buy_buttons"
+                        />{" "}
+                        <button
+                          type="button"
+                          className="buy-buttons__step"
+                          data-step="1"
+                          aria-label="Increase quantity"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="15"
+                            height="15"
+                            viewBox="0 0 15 15"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M6.17771 14.8807V-0.00025177H8.70297V14.8807H6.17771ZM-0.000137806 8.70285V6.1776H14.8808V8.70285H-0.000137806Z"
+                              fill="currentColor"
+                            ></path>
+                          </svg>{" "}
+                        </button>{" "}
+                      </div>{" "}
+                      <button type="submit" className="button button--secondary buy-buttons__submit" data-submit="">
+                        <span className="buy-buttons__submit-icon" aria-hidden="true">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="19"
+                            height="19"
+                            viewBox="0 0 19 19"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79866 18.2501C8.73809 18.2501 9.49966 17.4886 9.49966 16.5491C9.49966 15.6097 8.73809 14.8481 7.79866 14.8481C6.85922 14.8481 6.09766 15.6097 6.09766 16.5491C6.09766 17.4886 6.85922 18.2501 7.79866 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M15.2098 18.2501C16.1492 18.2501 16.9108 17.4886 16.9108 16.5491C16.9108 15.6097 16.1492 14.8481 15.2098 14.8481C14.2704 14.8481 13.5088 15.6097 13.5088 16.5491C13.5088 17.4886 14.2704 18.2501 15.2098 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M3.856 3.055L5.866 9.419C6.175 10.397 6.329 10.886 6.626 11.248C6.886 11.568 7.225 11.815 7.608 11.968C8.043 12.141 8.555 12.141 9.581 12.141H13.436C14.462 12.141 14.974 12.141 15.408 11.968C15.792 11.815 16.13 11.568 16.391 11.248C16.687 10.886 16.841 10.397 17.151 9.419L17.56 8.123L17.8 7.357L18.131 6.307C18.2491 5.9325 18.2774 5.53544 18.2134 5.148C18.1495 4.76055 17.9952 4.39361 17.763 4.07691C17.5309 3.76021 17.2274 3.50266 16.8771 3.32511C16.5268 3.14757 16.1397 3.05503 15.747 3.055H3.856ZM3.856 3.055L3.845 3.018C3.80277 2.87656 3.75608 2.73649 3.705 2.598C3.50255 2.08554 3.15923 1.64082 2.71473 1.31523C2.27022 0.989631 1.74266 0.796448 1.193 0.758C1.09 0.75 0.977 0.75 0.75 0.75"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>{" "}
+                        </span>
+                        <span data-submit-label="">Add to cart </span>{" "}
+                      </button>
+                      <div
+                        className="buy-buttons__payment"
+                        style={
+                          {
+                            "--icon-buy":
+                              "url('/cdn/shop/t/8/assets/icon-buy-now.svg?v=164033272171297857181795502588')",
+                          } as React.CSSProperties
+                        }
+                      >
+                        {" "}
+                        <div data-shopify="payment-button" className="shopify-payment-button">
+                          {" "}
+                          <shopify-accelerated-checkout
+                            recommended="null"
+                            fallback={
+                              '{"supports_subs":true,"supports_def_opts":true,"name":"buy_it_now","wallet_params":{}}'
+                            }
+                            access-token="781a5a57d0cd06ed2c8997f5bacb1103"
+                            buyer-country="IN"
+                            buyer-locale="en"
+                            buyer-currency="INR"
+                            variant-params={
+                              '[{"id":67834035077222,"requiresShipping":true},{"id":67834035109990,"requiresShipping":true},{"id":67834035142758,"requiresShipping":true},{"id":67834035175526,"requiresShipping":true},{"id":67834035208294,"requiresShipping":true},{"id":67834035241062,"requiresShipping":true},{"id":67834035273830,"requiresShipping":true},{"id":67834035306598,"requiresShipping":true},{"id":67834035339366,"requiresShipping":true},{"id":67834035372134,"requiresShipping":true},{"id":67834035404902,"requiresShipping":true},{"id":67834035437670,"requiresShipping":true}]'
+                            }
+                            shop-id="74410852454"
+                            enabled-flags={'["88c6e2ac","7045a5ac"]'}
+                            disable-compat=""
+                          >
+                            {" "}
+                            <div
+                              className="shopify-payment-button__button"
+                              role="button"
+                              disabled
+                              aria-hidden="true"
+                              style={{ backgroundColor: "transparent", border: "none" } as React.CSSProperties}
+                            >
+                              {" "}
+                              <div className="shopify-payment-button__skeleton"> </div>{" "}
+                            </div>{" "}
+                          </shopify-accelerated-checkout>{" "}
+                        </div>{" "}
+                      </div>{" "}
+                    </div>
+                    <div className="buy-buttons__rules" id="QuantityRules-AbVBWclBPUklOdGM1b__buy_buttons"></div>
+                    <p className="buy-buttons__message" role="alert" hidden data-buy-message=""></p>{" "}
+                    <span className="visually-hidden" aria-live="polite" data-buy-status=""></span>
+                    <input type="hidden" name="product-id" value="15446395322470" />
+                    <input type="hidden" name="section-id" value="template--27949759168614__main" />
+                  </form>
+                </buy-buttons>{" "}
+              </div>{" "}
+              <div className="product-panel product-panel--card" style={{ "--panel-gap": "40" } as React.CSSProperties}>
+                {" "}
+                <div className="product-offers">
+                  {" "}
+                  <h2 className="product-block-heading">Bank offers</h2>{" "}
+                  <div className="product-offers__list" role="list">
+                    {" "}
+                    <offer-ticket className="offer" role="listitem">
+                      <div className="offer__top">
+                        <p className="offer__bank">Axis Bank</p>
+                        <p className="offer__text">10% instant discount</p>
+                        <p className="offer__detail">Up to $60 • Credit cards</p>
+                      </div>
+                      <div className="offer__bottom">
+                        {" "}
+                        <span className="offer__code">AXIS10</span>{" "}
+                        <button
+                          type="button"
+                          className="offer__copy"
+                          data-code="AXIS10"
+                          data-copied="Copied"
+                          data-label="Copy"
+                          aria-label="Copy code AXIS10"
+                        >
+                          {" "}
+                          <span data-copy-label="">Copy</span>{" "}
+                        </button>
+                        <span className="visually-hidden" role="status" data-copy-status=""></span>{" "}
+                      </div>
+                    </offer-ticket>{" "}
+                    <offer-ticket className="offer" role="listitem">
+                      <div className="offer__top">
+                        <p className="offer__bank">ICICI Bank</p>
+                        <p className="offer__text">Flat $40 instant discount</p>
+                        <p className="offer__detail">On orders above $300</p>
+                      </div>
+                      <div className="offer__bottom">
+                        {" "}
+                        <span className="offer__code">ICICI40</span>{" "}
+                        <button
+                          type="button"
+                          className="offer__copy"
+                          data-code="ICICI40"
+                          data-copied="Copied"
+                          data-label="Copy"
+                          aria-label="Copy code ICICI40"
+                        >
+                          {" "}
+                          <span data-copy-label="">Copy</span>{" "}
+                        </button>
+                        <span className="visually-hidden" role="status" data-copy-status=""></span>{" "}
+                      </div>
+                    </offer-ticket>{" "}
+                    <offer-ticket className="offer" role="listitem">
+                      <div className="offer__top">
+                        <p className="offer__bank">SBI Card</p>
+                        <p className="offer__text">3% off + 10% back</p>
+                        <p className="offer__detail">Instant gift vouchers</p>
+                      </div>
+                      <div className="offer__bottom">
+                        {" "}
+                        <span className="offer__code">SBI10</span>{" "}
+                        <button
+                          type="button"
+                          className="offer__copy"
+                          data-code="SBI10"
+                          data-copied="Copied"
+                          data-label="Copy"
+                          aria-label="Copy code SBI10"
+                        >
+                          {" "}
+                          <span data-copy-label="">Copy</span>{" "}
+                        </button>
+                        <span className="visually-hidden" role="status" data-copy-status=""></span>{" "}
+                      </div>
+                    </offer-ticket>{" "}
+                    <offer-ticket className="offer" role="listitem">
+                      <div className="offer__top">
+                        <p className="offer__bank">HDFC Bank</p>
+                        <p className="offer__text">Flat $50 discount</p>
+                        <p className="offer__detail">Using promo code HDFC6</p>
+                      </div>
+                      <div className="offer__bottom">
+                        {" "}
+                        <span className="offer__code">HDFC6</span>{" "}
+                        <button
+                          type="button"
+                          className="offer__copy"
+                          data-code="HDFC6"
+                          data-copied="Copied"
+                          data-label="Copy"
+                          aria-label="Copy code HDFC6"
+                        >
+                          {" "}
+                          <span data-copy-label="">Copy</span>{" "}
+                        </button>
+                        <span className="visually-hidden" role="status" data-copy-status=""></span>{" "}
+                      </div>
+                    </offer-ticket>{" "}
+                  </div>{" "}
+                </div>{" "}
+                <product-pickup className="product-pickup">
+                  {" "}
+                  <h2 className="product-block-heading">Delivery and pickup</h2>{" "}
+                  <ul className="product-pickup__list" role="list">
+                    <li className="product-pickup__line">
+                      {" "}
+                      <span className="product-pickup__icon" aria-hidden="true">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          width="32"
+                          height="26"
+                          viewBox="0 0 32 26"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.25 21.25C27.25 22.2446 26.8549 23.1984 26.1517 23.9017C25.4484 24.6049 24.4946 25 23.5 25C22.5054 25 21.5516 24.6049 20.8483 23.9017C20.1451 23.1984 19.75 22.2446 19.75 21.25C19.75 20.2554 20.1451 19.3016 20.8483 18.5983C21.5516 17.8951 22.5054 17.5 23.5 17.5C24.4946 17.5 25.4484 17.8951 26.1517 18.5983C26.8549 19.3016 27.25 20.2554 27.25 21.25ZM12.25 21.25C12.25 22.2446 11.8549 23.1984 11.1517 23.9017C10.4484 24.6049 9.49456 25 8.5 25C7.50544 25 6.55161 24.6049 5.84835 23.9017C5.14509 23.1984 4.75 22.2446 4.75 21.25C4.75 20.2554 5.14509 19.3016 5.84835 18.5983C6.55161 17.8951 7.50544 17.5 8.5 17.5C9.49456 17.5 10.4484 17.8951 11.1517 18.5983C11.8549 19.3016 12.25 20.2554 12.25 21.25Z"
+                            strokeWidth="2"
+                            stroke="currentColor"
+                          ></path>
+                          <path
+                            d="M19.75 21.25H12.25M27.25 21.25H28.3945H28.3946C28.7245 21.25 28.8895 21.25 29.0275 21.232C29.5241 21.1702 29.9859 20.9446 30.3398 20.5908C30.6938 20.2371 30.9198 19.7755 30.982 19.279C31 19.1395 31 18.9745 31 18.6446V18.6445V14.5C31 11.9141 29.9728 9.43419 28.1443 7.60571C26.3158 5.77723 23.8359 4.75 21.25 4.75M1 1H16C18.121 1 19.1815 1 19.84 1.66C20.5 2.317 20.5 3.3775 20.5 5.5V18.25M1 14.125V17.5C1 18.9025 1 19.603 1.3015 20.125C1.49897 20.467 1.78299 20.751 2.125 20.9485C2.647 21.25 3.3475 21.25 4.75 21.25M1 5.5H10M1 10H7"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            stroke="currentColor"
+                          ></path>
+                        </svg>{" "}
+                      </span>{" "}
+                      <span>Delivery in 2–3 business days</span>{" "}
+                    </li>{" "}
+                  </ul>
+                  <dialog
+                    id="PickupDrawer-Acll3WGFZTFYxbDZoY__pickup"
+                    className="product-pickup__drawer"
+                    aria-labelledby="PickupDrawerTitle-Acll3WGFZTFYxbDZoY__pickup"
+                    data-product-url="/products/signature-body-mist"
+                  >
+                    {" "}
+                    <div className="product-pickup__drawer-panel">
+                      {" "}
+                      <div className="product-pickup__drawer-head">
+                        {" "}
+                        <h2 id="PickupDrawerTitle-Acll3WGFZTFYxbDZoY__pickup" className="product-pickup__drawer-title">
+                          Pickup availability
+                        </h2>{" "}
+                        <button type="button" className="product-pickup__close" data-pickup-close="">
+                          {" "}
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M2 2L14 14M14 2L2 14"
+                              stroke="currentColor"
+                              strokeWidth="1.75"
+                              strokeLinecap="round"
+                            ></path>
+                          </svg>{" "}
+                          <span className="visually-hidden">Close store list</span>{" "}
+                        </button>{" "}
+                      </div>{" "}
+                      <div
+                        className="product-pickup__body"
+                        data-pickup-body=""
+                        data-loading="Loading stores…"
+                        data-error="Couldn’t load the stores. Please try again."
+                      ></div>{" "}
+                    </div>{" "}
+                  </dialog>
+                </product-pickup>{" "}
+                <div className="product-features">
+                  <div className="product-features__list" role="list">
+                    {" "}
+                    <div className="product-feature" role="listitem">
+                      {" "}
+                      <span className="product-feature__icon" aria-hidden="true">
+                        <img
+                          src="/cdn/shop/t/8/assets/icon-recyclable.svg?v=171109424328312167431794925155"
+                          alt=""
+                          width="53"
+                          height="53"
+                          loading="lazy"
+                          className="product-feature__image"
+                        />
+                      </span>
+                      <span className="product-feature__label">Recyclable</span>
+                    </div>{" "}
+                    <div className="product-feature" role="listitem">
+                      {" "}
+                      <span className="product-feature__icon" aria-hidden="true">
+                        <img
+                          src="/cdn/shop/t/8/assets/icon-vegan.svg?v=33229417595801276171794925155"
+                          alt=""
+                          width="53"
+                          height="53"
+                          loading="lazy"
+                          className="product-feature__image"
+                        />
+                      </span>
+                      <span className="product-feature__label">Vegan</span>
+                    </div>{" "}
+                    <div className="product-feature" role="listitem">
+                      {" "}
+                      <span className="product-feature__icon" aria-hidden="true">
+                        <img
+                          src="/cdn/shop/t/8/assets/icon-cruelty-free.svg?v=115971863114003587881794925155"
+                          alt=""
+                          width="53"
+                          height="53"
+                          loading="lazy"
+                          className="product-feature__image"
+                        />
+                      </span>
+                      <span className="product-feature__label">Cruelty-free</span>
+                    </div>{" "}
+                    <div className="product-feature" role="listitem">
+                      {" "}
+                      <span className="product-feature__icon" aria-hidden="true">
+                        <img
+                          src="/cdn/shop/t/8/assets/icon-paraben-free.svg?v=88296179909095143021794925155"
+                          alt=""
+                          width="53"
+                          height="53"
+                          loading="lazy"
+                          className="product-feature__image"
+                        />
+                      </span>
+                      <span className="product-feature__label">Parabens free</span>
+                    </div>{" "}
+                  </div>{" "}
+                </div>{" "}
+                <product-videos className="product-videos">
+                  {" "}
+                  <h2 className="product-block-heading">Product short videos</h2>{" "}
+                  <ul className="product-videos__list" role="list">
+                    <li>
+                      {" "}
+                      <button
+                        type="button"
+                        className="product-videos__thumb"
+                        data-video="1"
+                        data-ratio="1.775"
+                        aria-haspopup="dialog"
+                        aria-label="Play video 1 of 1"
+                      >
+                        <img
+                          src="/cdn/shop/files/preview_images/af12c49806aa4c18a1fec658072e922b.thumbnail.0000000000.jpg?v=1793352906&width=240"
+                          alt=""
+                          srcSet="/cdn/shop/files/preview_images/af12c49806aa4c18a1fec658072e922b.thumbnail.0000000000.jpg?v=1793352906&width=120 120w, /cdn/shop/files/preview_images/af12c49806aa4c18a1fec658072e922b.thumbnail.0000000000.jpg?v=1793352906&width=180 180w, /cdn/shop/files/preview_images/af12c49806aa4c18a1fec658072e922b.thumbnail.0000000000.jpg?v=1793352906&width=240 240w"
+                          width="240"
+                          height="135"
+                          loading="lazy"
+                          sizes="7.5rem"
+                          className="product-videos__image"
+                        />{" "}
+                        <span className="product-videos__play" aria-hidden="true">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M7 5.6v12.8a1 1 0 0 0 1.5.86l10.4-6.4a1 1 0 0 0 0-1.72L8.5 4.74A1 1 0 0 0 7 5.6Z"></path>
+                          </svg>{" "}
+                        </span>{" "}
+                      </button>{" "}
+                      <template
+                        data-video-template="1"
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            '<video playsinline="true" controls="controls" preload="auto" class="product-videos__video" poster="/cdn/shop/files/preview_images/af12c49806aa4c18a1fec658072e922b.thumbnail.0000000000_1280x.jpg?v=1793352906"><source src="/cdn/shop/videos/c/vp/af12c49806aa4c18a1fec658072e922b/af12c49806aa4c18a1fec658072e922b.SD-480p-1.5Mbps-99435703.mp4?v=0" type="video/mp4"><img src="/cdn/shop/files/preview_images/af12c49806aa4c18a1fec658072e922b.thumbnail.0000000000_1280x.jpg?v=1793352906"></video>\n',
+                        }}
+                      />{" "}
+                    </li>
+                  </ul>{" "}
+                  <dialog className="product-videos__dialog" aria-label="Product short videos">
+                    {" "}
+                    <button type="button" className="product-videos__close" data-video-close="">
+                      {" "}
+                      <span className="visually-hidden">Close video</span>{" "}
+                      <span aria-hidden="true">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M2 2L14 14M14 2L2 14"
+                            stroke="currentColor"
+                            strokeWidth="1.75"
+                            strokeLinecap="round"
+                          ></path>
+                        </svg>{" "}
+                      </span>{" "}
+                    </button>{" "}
+                    <div className="product-videos__player" data-video-player=""></div>{" "}
+                  </dialog>{" "}
+                </product-videos>{" "}
+                <div className="product-payment">
+                  {" "}
+                  <h2 className="product-block-heading" id="PaymentHeading-AWjlxN2llaTlVMFB2c__payment">
+                    We accept
+                  </h2>{" "}
+                  <p className="product-payment__text">Your payment information is processed securely.</p>
+                  <ul
+                    className="product-payment__list"
+                    role="list"
+                    aria-labelledby="PaymentHeading-AWjlxN2llaTlVMFB2c__payment"
+                  >
+                    <li>
+                      <svg
+                        className="product-payment__icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        viewBox="0 0 38 24"
+                        width="38"
+                        height="24"
+                        fill="none"
+                        aria-labelledby="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-visa"
+                      >
+                        <title id="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-visa">Visa</title>
+                        <rect
+                          x=".5"
+                          y=".5"
+                          width="37"
+                          height="23"
+                          rx="2.5"
+                          stroke="#000"
+                          strokeOpacity=".07"
+                          fill="none"
+                        ></rect>
+                        <path
+                          d="M35 0H3C1.3 0 0 1.3 0 3V21C0 22.7 1.4 24 3 24H35C36.7 24 38 22.7 38 21V3C38 1.3 36.6 0 35 0Z"
+                          fill="#142FBD"
+                          style={
+                            { fill: "color(display-p3 0.0784 0.1843 0.7412)", fillOpacity: "1" } as React.CSSProperties
+                          }
+                        ></path>
+                        <path
+                          d="M35 1C36.1 1 37 1.9 37 3V21C37 22.1 36.1 23 35 23H3C1.9 23 1 22.1 1 21V3C1 1.9 1.9 1 3 1H35Z"
+                          fill="#1532CB"
+                          style={
+                            { fill: "color(display-p3 0.0824 0.1961 0.7961)", fillOpacity: "1" } as React.CSSProperties
+                          }
+                        ></path>
+                        <path
+                          d="M29.5944 10.2167H29.2778C28.8556 11.2722 28.5389 11.8 28.2222 13.3833H30.2278C29.9111 11.8 29.9111 11.0611 29.5944 10.2167V10.2167ZM32.6556 16.4444H30.8611C30.7556 16.4444 30.7556 16.4444 30.65 16.3389L30.4389 15.3889L30.3333 15.1778H27.8C27.6944 15.1778 27.5889 15.1778 27.5889 15.3889L27.2722 16.3389C27.2722 16.4444 27.1667 16.4444 27.1667 16.4444H24.95L25.1611 15.9167L28.2222 8.73889C28.2222 8.21111 28.5389 8 29.0667 8H30.65C30.7556 8 30.8611 8 30.8611 8.21111L32.3389 15.0722C32.4444 15.4944 32.55 15.8111 32.55 16.2333C32.6556 16.3389 32.6556 16.3389 32.6556 16.4444V16.4444ZM18.5111 16.1278L18.9333 14.2278C19.0389 14.2278 19.1444 14.3333 19.1444 14.3333C19.8833 14.65 20.6222 14.8611 21.3611 14.7556C21.5722 14.7556 21.8889 14.65 22.1 14.5444C22.6278 14.3333 22.6278 13.8056 22.2056 13.3833C21.9944 13.1722 21.6778 13.0667 21.3611 12.8556C20.9389 12.6444 20.5167 12.4333 20.2 12.1167C18.9333 11.0611 19.3556 9.58333 20.0944 8.84444C20.7278 8.42222 21.0444 8 21.8889 8C23.1556 8 24.5278 8 25.1611 8.21111H25.2667C25.1611 8.84444 25.0556 9.37222 24.8444 10.0056C24.3167 9.79444 23.7889 9.58333 23.2611 9.58333C22.9444 9.58333 22.6278 9.58333 22.3111 9.68889C22.1 9.68889 21.9944 9.79444 21.8889 9.9C21.6778 10.1111 21.6778 10.4278 21.8889 10.6389L22.4167 11.0611C22.8389 11.2722 23.2611 11.4833 23.5778 11.6944C24.1056 12.0111 24.6333 12.5389 24.7389 13.1722C24.95 14.1222 24.6333 14.9667 23.7889 15.6C23.2611 16.0222 23.05 16.2333 22.3111 16.2333C20.8333 16.2333 19.6722 16.3389 18.7222 16.0222C18.6167 16.2333 18.6167 16.2333 18.5111 16.1278V16.1278ZM14.8167 16.4444C14.9222 15.7056 14.9222 15.7056 15.0278 15.3889C15.5556 13.0667 16.0833 10.6389 16.5056 8.31667C16.6111 8.10556 16.6111 8 16.8222 8H18.7222C18.5111 9.26667 18.3 10.2167 17.9833 11.3778C17.6667 12.9611 17.35 14.5444 16.9278 16.1278C16.9278 16.3389 16.8222 16.3389 16.6111 16.3389L14.8167 16.4444ZM5 8.21111C5 8.10556 5.21111 8 5.31667 8H8.90556C9.43333 8 9.85556 8.31667 9.96111 8.84444L10.9111 13.4889C10.9111 13.5944 10.9111 13.5944 11.0167 13.7C11.0167 13.5944 11.1222 13.5944 11.1222 13.5944L13.3389 8.21111C13.2333 8.10556 13.3389 8 13.4444 8H15.6611C15.6611 8.10556 15.6611 8.10556 15.5556 8.21111L12.2833 15.9167C12.1778 16.1278 12.1778 16.2333 12.0722 16.3389C11.9667 16.4444 11.7556 16.3389 11.5444 16.3389H9.96111C9.85556 16.3389 9.75 16.3389 9.75 16.1278L8.06111 9.58333C7.85 9.37222 7.53333 9.05556 7.11111 8.95C6.47778 8.63333 5.31667 8.42222 5.10556 8.42222L5 8.21111Z"
+                          fill="white"
+                          style={{ fill: "white", fillOpacity: "1" } as React.CSSProperties}
+                        ></path>
+                      </svg>{" "}
+                    </li>
+                    <li>
+                      <svg
+                        className="product-payment__icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        viewBox="0 0 38 24"
+                        width="38"
+                        height="24"
+                        fill="none"
+                        aria-labelledby="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-master"
+                      >
+                        <title id="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-master">Mastercard</title>
+                        <rect
+                          x=".5"
+                          y=".5"
+                          width="37"
+                          height="23"
+                          rx="2.5"
+                          stroke="#000"
+                          strokeOpacity=".07"
+                          fill="none"
+                        ></rect>
+                        <path
+                          d="M35 0H3C1.3 0 0 1.3 0 3V21C0 22.7 1.4 24 3 24H35C36.7 24 38 22.7 38 21V3C38 1.3 36.6 0 35 0Z"
+                          fill="#1C1C1C"
+                          style={
+                            { fill: "color(display-p3 0.1098 0.1098 0.1098)", fillOpacity: "1" } as React.CSSProperties
+                          }
+                        ></path>
+                        <path
+                          d="M35 1C36.1 1 37 1.9 37 3V21C37 22.1 36.1 23 35 23H3C1.9 23 1 22.1 1 21V3C1 1.9 1.9 1 3 1H35Z"
+                          fill="#232323"
+                          style={
+                            { fill: "color(display-p3 0.1373 0.1373 0.1373)", fillOpacity: "1" } as React.CSSProperties
+                          }
+                        ></path>
+                        <path
+                          d="M14.6364 19.2727C18.8538 19.2727 22.2727 15.8538 22.2727 11.6364C22.2727 7.41892 18.8538 4 14.6364 4C10.4189 4 7 7.41892 7 11.6364C7 15.8538 10.4189 19.2727 14.6364 19.2727Z"
+                          fill="#EB001B"
+                          style={
+                            { fill: "color(display-p3 0.9216 0.0000 0.1059)", fillOpacity: "1" } as React.CSSProperties
+                          }
+                        ></path>
+                        <path
+                          d="M23.3637 19.2727C27.5811 19.2727 31 15.8538 31 11.6364C31 7.41892 27.5811 4 23.3637 4C19.1462 4 15.7273 7.41892 15.7273 11.6364C15.7273 15.8538 19.1462 19.2727 23.3637 19.2727Z"
+                          fill="#F79E1B"
+                          style={
+                            { fill: "color(display-p3 0.9686 0.6196 0.1059)", fillOpacity: "1" } as React.CSSProperties
+                          }
+                        ></path>
+                        <path
+                          d="M22.2727 11.6362C22.2727 9.01797 20.9637 6.72706 19 5.41797C17.0364 6.83615 15.7273 9.12706 15.7273 11.6362C15.7273 14.1452 17.0364 16.5452 19 17.8543C20.9637 16.5452 22.2727 14.2543 22.2727 11.6362Z"
+                          fill="#FF5F00"
+                          style={
+                            { fill: "color(display-p3 1.0000 0.3725 0.0000)", fillOpacity: "1" } as React.CSSProperties
+                          }
+                        ></path>
+                      </svg>{" "}
+                    </li>
+                    <li>
+                      <svg
+                        className="product-payment__icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        viewBox="0 0 38 24"
+                        width="38"
+                        height="24"
+                        fill="none"
+                        aria-labelledby="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-american_express"
+                      >
+                        <title id="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-american_express">American Express</title>
+                        <rect
+                          x=".5"
+                          y=".5"
+                          width="37"
+                          height="23"
+                          rx="2.5"
+                          stroke="#000"
+                          strokeOpacity=".07"
+                          fill="none"
+                        ></rect>
+                        <path
+                          d="M35 0H3C1.3 0 0 1.3 0 3V21C0 22.7 1.4 24 3 24H35C36.7 24 38 22.7 38 21V3C38 1.3 36.6 0 35 0Z"
+                          fill="#0071CE"
+                          style={
+                            { fill: "color(display-p3 0.0000 0.4431 0.8078)", fillOpacity: "1" } as React.CSSProperties
+                          }
+                        ></path>
+                        <path
+                          d="M3 0.5H35C36.3348 0.5 37.5 1.58692 37.5 3V21C37.5 22.4239 36.4239 23.5 35 23.5H3C1.66524 23.5 0.5 22.4131 0.5 21V3C0.5 1.57614 1.57614 0.5 3 0.5Z"
+                          stroke="black"
+                          strokeOpacity="0.07"
+                          style={{ stroke: "black", strokeOpacity: "0.07" } as React.CSSProperties}
+                        ></path>
+                        <path
+                          d="M25.8662 6.33203V3H31L31.8662 5.5332L32.7334 3H37V14.2002H36.7998L34.8672 16.2656L36.7998 18.3594H37V21.2666H33.5996L31.9336 19.3994L30.2002 21.2666H19.4668V12.666H16L20.2666 3H24.4004L25.8662 6.33203ZM20.5996 20.2656H27V18.5322H22.666V17.3994H26.8662V15.666H22.666V14.5322H27V12.7988H20.5996V20.2656ZM30.5332 16.5322L27 20.2656H29.5996L31.8662 17.8662L34.0664 20.2656H36.7324L33.1992 16.4658L36.7324 12.7988H34.1328L31.8662 15.1992L29.7324 12.7988H27L30.5332 16.5322ZM17.666 11.7324H19.9326L20.5332 10.1992H23.999L24.666 11.7324H26.999L23.666 4.19922H20.999L17.666 11.7324ZM33.5996 4.19922L31.9326 8.86621L30.1992 4.19922H27V11.666H29.0664V6.39941L31 11.666H32.7998L34.7324 6.39941V11.666H36.7324V4.13281L33.5996 4.19922ZM23.2656 8.46582H21.2656L22.2656 5.99902L23.2656 8.46582Z"
+                          fill="white"
+                          style={{ fill: "white", fillOpacity: "1" } as React.CSSProperties}
+                        ></path>
+                      </svg>{" "}
+                    </li>
+                    <li>
+                      <svg
+                        className="product-payment__icon"
+                        viewBox="0 0 38 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="38"
+                        height="24"
+                        role="img"
+                        aria-labelledby="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-paypal"
+                      >
+                        <title id="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-paypal">PayPal</title>
+                        <path
+                          opacity=".07"
+                          d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"
+                        ></path>
+                        <path
+                          fill="#fff"
+                          d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"
+                        ></path>
+                        <path
+                          fill="#003087"
+                          d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"
+                        ></path>
+                        <path
+                          fill="#3086C8"
+                          d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"
+                        ></path>
+                        <path
+                          fill="#012169"
+                          d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"
+                        ></path>
+                      </svg>
+                    </li>
+                    <li>
+                      <svg
+                        className="product-payment__icon"
+                        viewBox="0 0 38 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        width="38"
+                        height="24"
+                        aria-labelledby="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-diners_club"
+                      >
+                        <title id="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-diners_club">Diners Club</title>
+                        <path
+                          opacity=".07"
+                          d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"
+                        ></path>
+                        <path
+                          fill="#fff"
+                          d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"
+                        ></path>
+                        <path
+                          d="M12 12v3.7c0 .3-.2.3-.5.2-1.9-.8-3-3.3-2.3-5.4.4-1.1 1.2-2 2.3-2.4.4-.2.5-.1.5.2V12zm2 0V8.3c0-.3 0-.3.3-.2 2.1.8 3.2 3.3 2.4 5.4-.4 1.1-1.2 2-2.3 2.4-.4.2-.4.1-.4-.2V12zm7.2-7H13c3.8 0 6.8 3.1 6.8 7s-3 7-6.8 7h8.2c3.8 0 6.8-3.1 6.8-7s-3-7-6.8-7z"
+                          fill="#3086C8"
+                        ></path>
+                      </svg>
+                    </li>
+                    <li>
+                      <svg
+                        className="product-payment__icon"
+                        viewBox="0 0 38 24"
+                        width="38"
+                        height="24"
+                        role="img"
+                        aria-labelledby="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-discover"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title id="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-discover">Discover</title>
+                        <path
+                          fill="#000"
+                          opacity=".07"
+                          d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"
+                        ></path>
+                        <path
+                          d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32z"
+                          fill="#fff"
+                        ></path>
+                        <path
+                          d="M3.57 7.16H2v5.5h1.57c.83 0 1.43-.2 1.96-.63.63-.52 1-1.3 1-2.11-.01-1.63-1.22-2.76-2.96-2.76zm1.26 4.14c-.34.3-.77.44-1.47.44h-.29V8.1h.29c.69 0 1.11.12 1.47.44.37.33.59.84.59 1.37 0 .53-.22 1.06-.59 1.39zm2.19-4.14h1.07v5.5H7.02v-5.5zm3.69 2.11c-.64-.24-.83-.4-.83-.69 0-.35.34-.61.8-.61.32 0 .59.13.86.45l.56-.73c-.46-.4-1.01-.61-1.62-.61-.97 0-1.72.68-1.72 1.58 0 .76.35 1.15 1.35 1.51.42.15.63.25.74.31.21.14.32.34.32.57 0 .45-.35.78-.83.78-.51 0-.92-.26-1.17-.73l-.69.67c.49.73 1.09 1.05 1.9 1.05 1.11 0 1.9-.74 1.9-1.81.02-.89-.35-1.29-1.57-1.74zm1.92.65c0 1.62 1.27 2.87 2.9 2.87.46 0 .86-.09 1.34-.32v-1.26c-.43.43-.81.6-1.29.6-1.08 0-1.85-.78-1.85-1.9 0-1.06.79-1.89 1.8-1.89.51 0 .9.18 1.34.62V7.38c-.47-.24-.86-.34-1.32-.34-1.61 0-2.92 1.28-2.92 2.88zm12.76.94l-1.47-3.7h-1.17l2.33 5.64h.58l2.37-5.64h-1.16l-1.48 3.7zm3.13 1.8h3.04v-.93h-1.97v-1.48h1.9v-.93h-1.9V8.1h1.97v-.94h-3.04v5.5zm7.29-3.87c0-1.03-.71-1.62-1.95-1.62h-1.59v5.5h1.07v-2.21h.14l1.48 2.21h1.32l-1.73-2.32c.81-.17 1.26-.72 1.26-1.56zm-2.16.91h-.31V8.03h.33c.67 0 1.03.28 1.03.82 0 .55-.36.85-1.05.85z"
+                          fill="#231F20"
+                        ></path>
+                        <path
+                          d="M20.16 12.86a2.931 2.931 0 100-5.862 2.931 2.931 0 000 5.862z"
+                          fill="url(#PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-paint0_linear)"
+                        ></path>
+                        <path
+                          opacity=".65"
+                          d="M20.16 12.86a2.931 2.931 0 100-5.862 2.931 2.931 0 000 5.862z"
+                          fill="url(#PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-paint1_linear)"
+                        ></path>
+                        <path
+                          d="M36.57 7.506c0-.1-.07-.15-.18-.15h-.16v.48h.12v-.19l.14.19h.14l-.16-.2c.06-.01.1-.06.1-.13zm-.2.07h-.02v-.13h.02c.06 0 .09.02.09.06 0 .05-.03.07-.09.07z"
+                          fill="#231F20"
+                        ></path>
+                        <path
+                          d="M36.41 7.176c-.23 0-.42.19-.42.42 0 .23.19.42.42.42.23 0 .42-.19.42-.42 0-.23-.19-.42-.42-.42zm0 .77c-.18 0-.34-.15-.34-.35 0-.19.15-.35.34-.35.18 0 .33.16.33.35 0 .19-.15.35-.33.35z"
+                          fill="#231F20"
+                        ></path>
+                        <path
+                          d="M37 12.984S27.09 19.873 8.976 23h26.023a2 2 0 002-1.984l.024-3.02L37 12.985z"
+                          fill="#F48120"
+                        ></path>
+                        <defs>
+                          <linearGradient
+                            id="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-paint0_linear"
+                            x1="21.657"
+                            y1="12.275"
+                            x2="19.632"
+                            y2="9.104"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stopColor="#F89F20"></stop>
+                            <stop offset=".25" stopColor="#F79A20"></stop>
+                            <stop offset=".533" stopColor="#F68D20"></stop>
+                            <stop offset=".62" stopColor="#F58720"></stop>
+                            <stop offset=".723" stopColor="#F48120"></stop>
+                            <stop offset="1" stopColor="#F37521"></stop>
+                          </linearGradient>
+                          <linearGradient
+                            id="PaymentIcon-AWjlxN2llaTlVMFB2c__payment-pi-paint1_linear"
+                            x1="21.338"
+                            y1="12.232"
+                            x2="18.378"
+                            y2="6.446"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stopColor="#F58720"></stop>
+                            <stop offset=".359" stopColor="#E16F27"></stop>
+                            <stop offset=".703" stopColor="#D4602C"></stop>
+                            <stop offset=".982" stopColor="#D05B2E"></stop>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </li>
+                  </ul>
+                </div>{" "}
+              </div>{" "}
+            </div>{" "}
+          </div>{" "}
+        </div>{" "}
+        <product-lightbox className="product-lightbox">
+          {" "}
+          <dialog className="product-lightbox__dialog" aria-label="Signature Body Mist: media viewer">
+            {" "}
+            <div className="product-lightbox__inner">
+              {" "}
+              <p className="product-lightbox__counter">
+                {" "}
+                <span aria-hidden="true">
+                  <span data-lightbox-current="">1</span> / 7
+                </span>
+                <span
+                  className="visually-hidden"
+                  aria-live="polite"
+                  data-lightbox-status=""
+                  data-template="Item [index] of 7"
+                ></span>{" "}
+              </p>{" "}
+              <button type="button" className="product-lightbox__close" data-lightbox-close="">
+                {" "}
+                <span className="visually-hidden">Close the viewer</span>{" "}
+                <span className="product-lightbox__icon" aria-hidden="true">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 2L14 14M14 2L2 14"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                    ></path>
+                  </svg>{" "}
+                </span>{" "}
+              </button>{" "}
+              <div className="product-lightbox__stage">
+                <div
+                  className="product-lightbox__slide"
+                  data-lightbox-slide="0"
+                  style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                >
+                  <button type="button" className="product-lightbox__zoom" aria-pressed="false" data-lightbox-zoom="">
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=2400"
+                      alt="Signature Body Mist, the four scents lined up"
+                      srcSet="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=800 800w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=1200 1200w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=1600 1600w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=2000 2000w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=2400 2400w"
+                      width="2400"
+                      height="2400"
+                      loading="lazy"
+                      sizes="100vw"
+                      className="product-lightbox__image"
+                      draggable={false}
+                    />{" "}
+                    <span className="visually-hidden">View full screen</span>{" "}
+                    <span className="product-lightbox__hint" aria-hidden="true">
+                      {" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--mouse">
+                        Click to view full screen
+                      </span>{" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--touch">
+                        Tap to view full screen
+                      </span>{" "}
+                    </span>{" "}
+                  </button>
+                </div>
+                <div
+                  className="product-lightbox__slide"
+                  data-lightbox-slide="1"
+                  style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                  hidden
+                >
+                  <button type="button" className="product-lightbox__zoom" aria-pressed="false" data-lightbox-zoom="">
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=2400"
+                      alt="Signature Body Mist, one bottle spraying"
+                      srcSet="/cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=800 800w, /cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=1200 1200w, /cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=1600 1600w, /cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=2000 2000w, /cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=2400 2400w"
+                      width="2400"
+                      height="2400"
+                      loading="lazy"
+                      sizes="100vw"
+                      className="product-lightbox__image"
+                      draggable={false}
+                    />{" "}
+                    <span className="visually-hidden">View full screen</span>{" "}
+                    <span className="product-lightbox__hint" aria-hidden="true">
+                      {" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--mouse">
+                        Click to view full screen
+                      </span>{" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--touch">
+                        Tap to view full screen
+                      </span>{" "}
+                    </span>{" "}
+                  </button>
+                </div>
+                <div
+                  className="product-lightbox__slide"
+                  data-lightbox-slide="2"
+                  style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                  hidden
+                >
+                  <button type="button" className="product-lightbox__zoom" aria-pressed="false" data-lightbox-zoom="">
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=2400"
+                      alt="Signature Body Mist, close-up of the sprayer"
+                      srcSet="/cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=800 800w, /cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=1200 1200w, /cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=1600 1600w, /cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=2000 2000w, /cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=2400 2400w"
+                      width="2400"
+                      height="2400"
+                      loading="lazy"
+                      sizes="100vw"
+                      className="product-lightbox__image"
+                      draggable={false}
+                    />{" "}
+                    <span className="visually-hidden">View full screen</span>{" "}
+                    <span className="product-lightbox__hint" aria-hidden="true">
+                      {" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--mouse">
+                        Click to view full screen
+                      </span>{" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--touch">
+                        Tap to view full screen
+                      </span>{" "}
+                    </span>{" "}
+                  </button>
+                </div>
+                <div
+                  className="product-lightbox__slide"
+                  data-lightbox-slide="3"
+                  style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                  hidden
+                >
+                  <button type="button" className="product-lightbox__zoom" aria-pressed="false" data-lightbox-zoom="">
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=2400"
+                      alt="Signature Body Mist in Rose"
+                      srcSet="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=800 800w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=1200 1200w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=1600 1600w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=2000 2000w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=2400 2400w"
+                      width="2400"
+                      height="2400"
+                      loading="lazy"
+                      sizes="100vw"
+                      className="product-lightbox__image"
+                      draggable={false}
+                    />{" "}
+                    <span className="visually-hidden">View full screen</span>{" "}
+                    <span className="product-lightbox__hint" aria-hidden="true">
+                      {" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--mouse">
+                        Click to view full screen
+                      </span>{" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--touch">
+                        Tap to view full screen
+                      </span>{" "}
+                    </span>{" "}
+                  </button>
+                </div>
+                <div
+                  className="product-lightbox__slide"
+                  data-lightbox-slide="4"
+                  style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                  hidden
+                >
+                  <button type="button" className="product-lightbox__zoom" aria-pressed="false" data-lightbox-zoom="">
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=2400"
+                      alt="Signature Body Mist in Amber"
+                      srcSet="/cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=800 800w, /cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=1200 1200w, /cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=1600 1600w, /cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=2000 2000w, /cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=2400 2400w"
+                      width="2400"
+                      height="2400"
+                      loading="lazy"
+                      sizes="100vw"
+                      className="product-lightbox__image"
+                      draggable={false}
+                    />{" "}
+                    <span className="visually-hidden">View full screen</span>{" "}
+                    <span className="product-lightbox__hint" aria-hidden="true">
+                      {" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--mouse">
+                        Click to view full screen
+                      </span>{" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--touch">
+                        Tap to view full screen
+                      </span>{" "}
+                    </span>{" "}
+                  </button>
+                </div>
+                <div
+                  className="product-lightbox__slide"
+                  data-lightbox-slide="5"
+                  style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                  hidden
+                >
+                  <button type="button" className="product-lightbox__zoom" aria-pressed="false" data-lightbox-zoom="">
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=2400"
+                      alt="Signature Body Mist in Neroli"
+                      srcSet="/cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=800 800w, /cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=1200 1200w, /cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=1600 1600w, /cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=2000 2000w, /cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=2400 2400w"
+                      width="2400"
+                      height="2400"
+                      loading="lazy"
+                      sizes="100vw"
+                      className="product-lightbox__image"
+                      draggable={false}
+                    />{" "}
+                    <span className="visually-hidden">View full screen</span>{" "}
+                    <span className="product-lightbox__hint" aria-hidden="true">
+                      {" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--mouse">
+                        Click to view full screen
+                      </span>{" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--touch">
+                        Tap to view full screen
+                      </span>{" "}
+                    </span>{" "}
+                  </button>
+                </div>
+                <div
+                  className="product-lightbox__slide"
+                  data-lightbox-slide="6"
+                  style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                  hidden
+                >
+                  <button type="button" className="product-lightbox__zoom" aria-pressed="false" data-lightbox-zoom="">
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=2400"
+                      alt="Signature Body Mist in Oud"
+                      srcSet="/cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=800 800w, /cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=1200 1200w, /cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=1600 1600w, /cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=2000 2000w, /cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=2400 2400w"
+                      width="2400"
+                      height="2400"
+                      loading="lazy"
+                      sizes="100vw"
+                      className="product-lightbox__image"
+                      draggable={false}
+                    />{" "}
+                    <span className="visually-hidden">View full screen</span>{" "}
+                    <span className="product-lightbox__hint" aria-hidden="true">
+                      {" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--mouse">
+                        Click to view full screen
+                      </span>{" "}
+                      <span className="product-lightbox__hint-text product-lightbox__hint-text--touch">
+                        Tap to view full screen
+                      </span>{" "}
+                    </span>{" "}
+                  </button>
+                </div>
+                <button
+                  type="button"
+                  className="product-lightbox__arrow product-lightbox__arrow--prev"
+                  data-lightbox-step="-1"
+                >
+                  {" "}
+                  <span className="visually-hidden">Previous item</span>{" "}
+                  <span className="product-lightbox__icon" aria-hidden="true">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      width="8"
+                      height="12"
+                      viewBox="0 0 8 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M7.41 10.59L2.83 6L7.41 1.41L6 0L0 6L6 12L7.41 10.59Z" fill="currentColor"></path>
+                    </svg>{" "}
+                  </span>{" "}
+                </button>{" "}
+                <button
+                  type="button"
+                  className="product-lightbox__arrow product-lightbox__arrow--next"
+                  data-lightbox-step="1"
+                >
+                  {" "}
+                  <span className="visually-hidden">Next item</span>{" "}
+                  <span className="product-lightbox__icon" aria-hidden="true">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      width="8"
+                      height="12"
+                      viewBox="0 0 8 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M0 10.59L4.58 6L0 1.41L1.41 0L7.41 6L1.41 12L0 10.59Z" fill="currentColor"></path>
+                    </svg>{" "}
+                  </span>{" "}
+                </button>
+              </div>
+              <div className="product-lightbox__thumbs">
+                <div className="product-lightbox__thumb-column product-lightbox__thumb-column--1">
+                  <button
+                    type="button"
+                    className="product-lightbox__thumb"
+                    style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                    data-lightbox-thumb="0"
+                    aria-label="Show item 1 of 7"
+                    aria-current="true"
+                  >
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=400"
+                      alt=""
+                      srcSet="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=200 200w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=300 300w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=400 400w"
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      sizes="(min-width: 990px) 10vw, 120px"
+                      className="product-lightbox__thumb-image"
+                    />{" "}
+                  </button>
+                  <button
+                    type="button"
+                    className="product-lightbox__thumb"
+                    style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                    data-lightbox-thumb="3"
+                    aria-label="Show item 4 of 7"
+                  >
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=400"
+                      alt=""
+                      srcSet="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=200 200w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=300 300w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=400 400w"
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      sizes="(min-width: 990px) 10vw, 120px"
+                      className="product-lightbox__thumb-image"
+                    />{" "}
+                  </button>
+                  <button
+                    type="button"
+                    className="product-lightbox__thumb"
+                    style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                    data-lightbox-thumb="6"
+                    aria-label="Show item 7 of 7"
+                  >
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=400"
+                      alt=""
+                      srcSet="/cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=200 200w, /cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=300 300w, /cdn/shop/files/signature-body-mist-oud.png?v=1793074059&width=400 400w"
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      sizes="(min-width: 990px) 10vw, 120px"
+                      className="product-lightbox__thumb-image"
+                    />{" "}
+                  </button>
+                </div>
+                <div className="product-lightbox__thumb-column product-lightbox__thumb-column--2">
+                  <button
+                    type="button"
+                    className="product-lightbox__thumb"
+                    style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                    data-lightbox-thumb="1"
+                    aria-label="Show item 2 of 7"
+                  >
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=400"
+                      alt=""
+                      srcSet="/cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=200 200w, /cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=300 300w, /cdn/shop/files/signature-body-mist-2.png?v=1793074058&width=400 400w"
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      sizes="(min-width: 990px) 10vw, 120px"
+                      className="product-lightbox__thumb-image"
+                    />{" "}
+                  </button>
+                  <button
+                    type="button"
+                    className="product-lightbox__thumb"
+                    style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                    data-lightbox-thumb="4"
+                    aria-label="Show item 5 of 7"
+                  >
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=400"
+                      alt=""
+                      srcSet="/cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=200 200w, /cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=300 300w, /cdn/shop/files/signature-body-mist-amber.png?v=1793074059&width=400 400w"
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      sizes="(min-width: 990px) 10vw, 120px"
+                      className="product-lightbox__thumb-image"
+                    />{" "}
+                  </button>
+                </div>
+                <div className="product-lightbox__thumb-column product-lightbox__thumb-column--3">
+                  <button
+                    type="button"
+                    className="product-lightbox__thumb"
+                    style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                    data-lightbox-thumb="2"
+                    aria-label="Show item 3 of 7"
+                  >
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=400"
+                      alt=""
+                      srcSet="/cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=200 200w, /cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=300 300w, /cdn/shop/files/signature-body-mist-3.png?v=1793074058&width=400 400w"
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      sizes="(min-width: 990px) 10vw, 120px"
+                      className="product-lightbox__thumb-image"
+                    />{" "}
+                  </button>
+                  <button
+                    type="button"
+                    className="product-lightbox__thumb"
+                    style={{ "--media-ratio": "1.0" } as React.CSSProperties}
+                    data-lightbox-thumb="5"
+                    aria-label="Show item 6 of 7"
+                  >
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=400"
+                      alt=""
+                      srcSet="/cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=200 200w, /cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=300 300w, /cdn/shop/files/signature-body-mist-neroli.png?v=1793074059&width=400 400w"
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      sizes="(min-width: 990px) 10vw, 120px"
+                      className="product-lightbox__thumb-image"
+                    />{" "}
+                  </button>
+                </div>
+              </div>
+            </div>{" "}
+          </dialog>{" "}
+        </product-lightbox>{" "}
+        <product-sticky-bar
+          className="product-sticky-bar"
+          role="region"
+          aria-label="Signature Body Mist: quick buy"
+          data-label-add="Add to cart"
+          data-label-sold-out="Sold out"
+          data-label-unavailable="Unavailable"
+          data-label-added="Added"
+          data-quantity-label="Qty [quantity]"
+          inert
+        >
+          <button
+            type="button"
+            className="product-sticky-bar__mini"
+            aria-label="Open the quick buy bar"
+            data-sticky-expand=""
+          >
+            {" "}
+            <span aria-hidden="true">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                width="19"
+                height="19"
+                viewBox="0 0 19 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.79866 18.2501C8.73809 18.2501 9.49966 17.4886 9.49966 16.5491C9.49966 15.6097 8.73809 14.8481 7.79866 14.8481C6.85922 14.8481 6.09766 15.6097 6.09766 16.5491C6.09766 17.4886 6.85922 18.2501 7.79866 18.2501Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M15.2098 18.2501C16.1492 18.2501 16.9108 17.4886 16.9108 16.5491C16.9108 15.6097 16.1492 14.8481 15.2098 14.8481C14.2704 14.8481 13.5088 15.6097 13.5088 16.5491C13.5088 17.4886 14.2704 18.2501 15.2098 18.2501Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M3.856 3.055L5.866 9.419C6.175 10.397 6.329 10.886 6.626 11.248C6.886 11.568 7.225 11.815 7.608 11.968C8.043 12.141 8.555 12.141 9.581 12.141H13.436C14.462 12.141 14.974 12.141 15.408 11.968C15.792 11.815 16.13 11.568 16.391 11.248C16.687 10.886 16.841 10.397 17.151 9.419L17.56 8.123L17.8 7.357L18.131 6.307C18.2491 5.9325 18.2774 5.53544 18.2134 5.148C18.1495 4.76055 17.9952 4.39361 17.763 4.07691C17.5309 3.76021 17.2274 3.50266 16.8771 3.32511C16.5268 3.14757 16.1397 3.05503 15.747 3.055H3.856ZM3.856 3.055L3.845 3.018C3.80277 2.87656 3.75608 2.73649 3.705 2.598C3.50255 2.08554 3.15923 1.64082 2.71473 1.31523C2.27022 0.989631 1.74266 0.796448 1.193 0.758C1.09 0.75 0.977 0.75 0.75 0.75"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </svg>{" "}
+            </span>{" "}
+          </button>
+          <div className="product-sticky-bar__inner">
+            {" "}
+            <div className="product-sticky-bar__product">
+              {" "}
+              <div className="product-sticky-bar__media">
+                <img
+                  src="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=180"
+                  alt=""
+                  srcSet="/cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=90 90w, /cdn/shop/files/signature-body-mist-rose.png?v=1793074059&width=180 180w"
+                  width="180"
+                  height="180"
+                  loading="lazy"
+                  sizes="5rem"
+                  className="product-sticky-bar__image"
+                />{" "}
+              </div>{" "}
+              <div className="product-sticky-bar__text">
+                <p className="product-sticky-bar__type">Fragrance</p>
+                <p className="product-sticky-bar__title">Signature Body Mist</p>{" "}
+                <p className="product-sticky-bar__meta">
+                  <span data-sticky-variant="">50 ml / Rose</span> <span aria-hidden="true"> · </span>
+                  <span data-sticky-quantity="">Qty 1</span>{" "}
+                </p>{" "}
+              </div>{" "}
+            </div>{" "}
+            <p className="product-sticky-bar__price" data-sticky-price="">
+              Rs. 2,700.00
+            </p>{" "}
+            <div className="product-sticky-bar__buttons">
+              {" "}
+              <button type="button" className="button button--secondary product-sticky-bar__add" data-sticky-add="">
+                {" "}
+                <span className="product-sticky-bar__icon" aria-hidden="true">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    width="19"
+                    height="19"
+                    viewBox="0 0 19 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.79866 18.2501C8.73809 18.2501 9.49966 17.4886 9.49966 16.5491C9.49966 15.6097 8.73809 14.8481 7.79866 14.8481C6.85922 14.8481 6.09766 15.6097 6.09766 16.5491C6.09766 17.4886 6.85922 18.2501 7.79866 18.2501Z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                    <path
+                      d="M15.2098 18.2501C16.1492 18.2501 16.9108 17.4886 16.9108 16.5491C16.9108 15.6097 16.1492 14.8481 15.2098 14.8481C14.2704 14.8481 13.5088 15.6097 13.5088 16.5491C13.5088 17.4886 14.2704 18.2501 15.2098 18.2501Z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                    <path
+                      d="M3.856 3.055L5.866 9.419C6.175 10.397 6.329 10.886 6.626 11.248C6.886 11.568 7.225 11.815 7.608 11.968C8.043 12.141 8.555 12.141 9.581 12.141H13.436C14.462 12.141 14.974 12.141 15.408 11.968C15.792 11.815 16.13 11.568 16.391 11.248C16.687 10.886 16.841 10.397 17.151 9.419L17.56 8.123L17.8 7.357L18.131 6.307C18.2491 5.9325 18.2774 5.53544 18.2134 5.148C18.1495 4.76055 17.9952 4.39361 17.763 4.07691C17.5309 3.76021 17.2274 3.50266 16.8771 3.32511C16.5268 3.14757 16.1397 3.05503 15.747 3.055H3.856ZM3.856 3.055L3.845 3.018C3.80277 2.87656 3.75608 2.73649 3.705 2.598C3.50255 2.08554 3.15923 1.64082 2.71473 1.31523C2.27022 0.989631 1.74266 0.796448 1.193 0.758C1.09 0.75 0.977 0.75 0.75 0.75"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>{" "}
+                </span>{" "}
+                <span data-sticky-add-label="">Add to cart </span>{" "}
+              </button>{" "}
+              <button type="button" className="button product-sticky-bar__buy" data-sticky-buy="">
+                {" "}
+                <span className="product-sticky-bar__icon" aria-hidden="true">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    {" "}
+                    <path
+                      d="M2.75 4.81253C2.56766 4.81253 2.3928 4.88496 2.26386 5.01389C2.13493 5.14282 2.0625 5.31769 2.0625 5.50003C2.0625 5.68237 2.13493 5.85723 2.26386 5.98616C2.3928 6.1151 2.56766 6.18753 2.75 6.18753H4.27625L6.08025 13.4063C6.23356 14.0182 6.7815 14.4375 7.41194 14.4375H15.9851C16.6059 14.4375 17.1332 14.025 17.2961 13.4269L19.0781 6.87503H17.6385L15.9844 13.0625H7.41125L5.60794 5.84378C5.53345 5.54762 5.36173 5.28503 5.12028 5.09806C4.87883 4.91108 4.58162 4.81054 4.27625 4.81253H2.75ZM15.125 14.4375C13.9941 14.4375 13.0625 15.3691 13.0625 16.5C13.0625 17.631 13.9941 18.5625 15.125 18.5625C16.2559 18.5625 17.1875 17.631 17.1875 16.5C17.1875 15.3691 16.2559 14.4375 15.125 14.4375ZM8.9375 14.4375C7.80656 14.4375 6.875 15.3691 6.875 16.5C6.875 17.631 7.80656 18.5625 8.9375 18.5625C10.0684 18.5625 11 17.631 11 16.5C11 15.3691 10.0684 14.4375 8.9375 14.4375ZM8.9375 15.8125C9.32525 15.8125 9.625 16.1123 9.625 16.5C9.625 16.8878 9.32525 17.1875 8.9375 17.1875C8.54975 17.1875 8.25 16.8878 8.25 16.5C8.25 16.1123 8.54975 15.8125 8.9375 15.8125ZM15.125 15.8125C15.5127 15.8125 15.8125 16.1123 15.8125 16.5C15.8125 16.8878 15.5127 17.1875 15.125 17.1875C14.7373 17.1875 14.4375 16.8878 14.4375 16.5C14.4375 16.1123 14.7373 15.8125 15.125 15.8125Z"
+                      fill="currentColor"
+                    ></path>{" "}
+                    <path
+                      d="M8.19922 7.85742L11.5388 10.8574L14.7992 7.85742H12.1592V4H10.8392V7.85742H8.19922Z"
+                      fill="currentColor"
+                    ></path>{" "}
+                  </svg>{" "}
+                </span>{" "}
+                <span>Buy now</span>{" "}
+              </button>
+              <button
+                type="button"
+                className="product-sticky-bar__minimize"
+                aria-label="Minimise the quick buy bar"
+                data-sticky-minimize=""
+              >
+                {" "}
+                <span aria-hidden="true">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    width="12"
+                    height="8"
+                    viewBox="0 0 12 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1.5L6 6.5L11 1.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>{" "}
+                </span>{" "}
+              </button>
+            </div>{" "}
+          </div>
+          <script
+            type="application/json"
+            dangerouslySetInnerHTML={{
+              __html:
+                '\n    {"67834035077222": {\n          "title": "50 ml \\/ Rose",\n          "price": "Rs. 2,700.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-rose.png?v=1793074059\\u0026width=180"\n        },"67834035109990": {\n          "title": "50 ml \\/ Amber",\n          "price": "Rs. 2,700.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-amber.png?v=1793074059\\u0026width=180"\n        },"67834035142758": {\n          "title": "50 ml \\/ Neroli",\n          "price": "Rs. 2,700.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-neroli.png?v=1793074059\\u0026width=180"\n        },"67834035175526": {\n          "title": "50 ml \\/ Oud",\n          "price": "Rs. 2,700.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-oud.png?v=1793074059\\u0026width=180"\n        },"67834035208294": {\n          "title": "100 ml \\/ Rose",\n          "price": "Rs. 4,000.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-rose.png?v=1793074059\\u0026width=180"\n        },"67834035241062": {\n          "title": "100 ml \\/ Amber",\n          "price": "Rs. 4,000.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-amber.png?v=1793074059\\u0026width=180"\n        },"67834035273830": {\n          "title": "100 ml \\/ Neroli",\n          "price": "Rs. 4,000.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-neroli.png?v=1793074059\\u0026width=180"\n        },"67834035306598": {\n          "title": "100 ml \\/ Oud",\n          "price": "Rs. 4,000.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-oud.png?v=1793074059\\u0026width=180"\n        },"67834035339366": {\n          "title": "200 ml \\/ Rose",\n          "price": "Rs. 5,500.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-rose.png?v=1793074059\\u0026width=180"\n        },"67834035372134": {\n          "title": "200 ml \\/ Amber",\n          "price": "Rs. 5,500.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-amber.png?v=1793074059\\u0026width=180"\n        },"67834035404902": {\n          "title": "200 ml \\/ Neroli",\n          "price": "Rs. 5,500.00",\n          "available": true,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-neroli.png?v=1793074059\\u0026width=180"\n        },"67834035437670": {\n          "title": "200 ml \\/ Oud",\n          "price": "Rs. 5,500.00",\n          "available": false,\n          "image": "\\/\\/oroskin-dev.myshopify.com\\/cdn\\/shop\\/files\\/signature-body-mist-oud.png?v=1793074059\\u0026width=180"\n        }}\n  ',
+            }}
+          />{" "}
+        </product-sticky-bar>{" "}
+      </product-page>{" "}
+    </section>
+  );
+}

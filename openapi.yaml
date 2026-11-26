@@ -1,0 +1,511 @@
+openapi: 3.1.0
+info:
+  title: Oroskin storefront API
+  version: 1.0.0
+  description: |
+    Read API-CONTRACT.md first (rules, examples, build order). Money = integers in minor units.
+    Errors = { "error": string }. A working mock runs at http://localhost:3000/api (npm run dev).
+servers:
+  - url: http://localhost:3000/api
+    description: Mock (Next.js route handlers)
+  - url: https://api.oroskin.com/api
+    description: Production (NestJS)
+
+paths:
+  /site:
+    get:
+      summary: Brand, menus, announcement bar, footer
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Site' } } } }
+
+  /pages/{slug}:
+    get:
+      summary: A page as an ordered list of sections
+      parameters: [{ name: slug, in: path, required: true, schema: { type: string, pattern: '^[a-z0-9][a-z0-9-]*$' } }]
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/PageContent' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /products:
+    get:
+      summary: Products by handles (kept in order) and/or text search
+      parameters:
+        - { name: handles, in: query, description: 'Comma list; unknown handles skipped', schema: { type: string, example: 'skin-tint,silk-foundation' } }
+        - { name: q, in: query, schema: { type: string } }
+        - { name: limit, in: query, schema: { type: integer, minimum: 0 } }
+      responses:
+        '200': { $ref: '#/components/responses/ProductList' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /products/{handle}:
+    get:
+      summary: One product
+      parameters: [{ $ref: '#/components/parameters/Handle' }]
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Product' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /products/{handle}/recommendations:
+    get:
+      summary: Related products (same type first, never itself). Never 404.
+      parameters:
+        - { $ref: '#/components/parameters/Handle' }
+        - { name: limit, in: query, schema: { type: integer, default: 4 } }
+      responses:
+        '200': { $ref: '#/components/responses/ProductList' }
+
+  /collections:
+    get:
+      summary: All collections
+      responses:
+        '200':
+          description: OK
+          content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Collection' } } } }
+
+  /collections/{handle}:
+    get:
+      summary: A collection with a filtered, sorted page of products. Query values are lenient (invalid = default).
+      parameters:
+        - { $ref: '#/components/parameters/Handle' }
+        - name: sort
+          in: query
+          description: Unknown value = collection order
+          schema: { type: string, enum: [manual, best-selling, created-descending, price-ascending, price-descending, title-ascending, title-descending] }
+        - { name: page, in: query, schema: { type: integer, minimum: 1, default: 1 } }
+        - { name: pageSize, in: query, schema: { type: integer, minimum: 1, maximum: 250, default: 24 } }
+        - { name: type, in: query, description: Comma list of product types, schema: { type: string } }
+        - { name: available, in: query, description: 'true|1 = in stock only', schema: { type: string, enum: ['true', 'false', '1', '0'] } }
+        - { name: minPrice, in: query, description: Minor units, schema: { type: number, minimum: 0 } }
+        - { name: maxPrice, in: query, description: Minor units, schema: { type: number, minimum: 0 } }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/CollectionPage' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /articles:
+    get:
+      summary: Blog articles, newest first
+      parameters:
+        - { name: tag, in: query, description: Case-insensitive, schema: { type: string } }
+        - { name: limit, in: query, schema: { type: integer, minimum: 0 } }
+      responses:
+        '200':
+          description: OK
+          content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Article' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /articles/{handle}:
+    get:
+      summary: One article
+      parameters: [{ $ref: '#/components/parameters/Handle' }]
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Article' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /cart/{id}:
+    parameters: [{ $ref: '#/components/parameters/CartId' }]
+    get:
+      summary: The cart (unknown id = an empty cart with that id)
+      responses:
+        '200': { $ref: '#/components/responses/Cart' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+    delete:
+      summary: Empty the cart
+      responses:
+        '200': { $ref: '#/components/responses/Cart' }
+
+  /cart/{id}/items:
+    parameters: [{ $ref: '#/components/parameters/CartId' }]
+    post:
+      summary: Add a variant (adds to its line when already in the cart)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [variantId]
+              properties:
+                variantId: { type: integer }
+                quantity: { type: integer, minimum: 1, maximum: 9999, default: 1 }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [cart, line]
+                properties:
+                  cart: { $ref: '#/components/schemas/Cart' }
+                  line: { $ref: '#/components/schemas/CartLine' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/Stock' }
+
+  /cart/{id}/items/{key}:
+    parameters:
+      - { $ref: '#/components/parameters/CartId' }
+      - { name: key, in: path, required: true, description: 'Line key (URL-encoded) or variant id', schema: { type: string } }
+    patch:
+      summary: Set a line's quantity (0 removes it)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, required: [quantity], properties: { quantity: { type: integer, minimum: 0, maximum: 9999 } } }
+      responses:
+        '200': { $ref: '#/components/responses/Cart' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/Stock' }
+
+  /cart/{id}/note:
+    parameters: [{ $ref: '#/components/parameters/CartId' }]
+    put:
+      summary: Set the order note ("" clears it)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, required: [note], properties: { note: { type: string, maxLength: 5000 } } }
+      responses:
+        '200': { $ref: '#/components/responses/Cart' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /cart/{id}/discounts:
+    parameters: [{ $ref: '#/components/parameters/CartId' }]
+    post:
+      summary: Add a discount code (a wrong code is added with applicable false)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, required: [code], properties: { code: { type: string, minLength: 1, maxLength: 64 } } }
+      responses:
+        '200': { $ref: '#/components/responses/Cart' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /newsletter:
+    post:
+      summary: Subscribe an email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, required: [email], properties: { email: { type: string, format: email } } }
+      responses:
+        '200': { $ref: '#/components/responses/Ok' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /contact:
+    post:
+      summary: Contact form message (extra string fields allowed)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, message]
+              properties:
+                name: { type: string, maxLength: 200 }
+                email: { type: string, format: email }
+                message: { type: string, maxLength: 5000 }
+                phone: { type: string }
+                topic: { type: string }
+                orderNumber: { type: string }
+                subject: { type: string }
+              additionalProperties: { type: string }
+      responses:
+        '200': { $ref: '#/components/responses/Ok' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /orders:
+    post:
+      summary: Create an order from a cart (mock checkout, no payment); empties the cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [cartId, customer, shippingAddress]
+              properties:
+                cartId: { type: string }
+                customer: { $ref: '#/components/schemas/Customer' }
+                shippingAddress: { $ref: '#/components/schemas/Address' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Order' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+components:
+  parameters:
+    Handle: { name: handle, in: path, required: true, schema: { type: string } }
+    CartId:
+      name: id
+      in: path
+      required: true
+      description: From the oro_cart cookie; 1–128 chars, no "/" or whitespace
+      schema: { type: string, maxLength: 128 }
+
+  responses:
+    BadRequest: { description: Bad input, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+    NotFound: { description: Not found, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+    Stock:
+      description: Sold out or above the stock
+      content:
+        application/json:
+          schema:
+            allOf:
+              - { $ref: '#/components/schemas/Error' }
+              - { type: object, properties: { available: { type: integer, description: How many more can be added } } }
+    Ok:
+      description: OK
+      content: { application/json: { schema: { type: object, required: [ok], properties: { ok: { const: true } } } } }
+    Cart: { description: The whole cart, content: { application/json: { schema: { $ref: '#/components/schemas/Cart' } } } }
+    ProductList:
+      description: OK
+      content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Product' } } } }
+
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties: { error: { type: string } }
+
+    Money: { type: integer, description: 'Minor units (12500 = Rs. 125.00)' }
+
+    Image:
+      type: object
+      required: [src, alt]
+      properties:
+        src: { type: string, description: Absolute CDN URL in production }
+        alt: { type: string }
+        width: { type: integer }
+        height: { type: integer }
+
+    ProductOption:
+      type: object
+      required: [name, values]
+      properties: { name: { type: string }, values: { type: array, items: { type: string } } }
+
+    Variant:
+      type: object
+      required: [id, sku, title, options, price, compareAtPrice, available, inventory, image]
+      properties:
+        id: { type: integer }
+        sku: { type: string }
+        title: { type: string, description: '"Fair / 30 ml"; "Default" with no options' }
+        options: { type: array, items: { type: string } }
+        price: { $ref: '#/components/schemas/Money' }
+        compareAtPrice: { oneOf: [{ $ref: '#/components/schemas/Money' }, { type: 'null' }] }
+        available: { type: boolean }
+        inventory: { type: integer }
+        image: { type: [string, 'null'] }
+
+    Product:
+      type: object
+      required: [id, handle, title, subtitle, vendor, type, tags, badges, descriptionHtml, rating, price, compareAtPrice, available, options, variants, images]
+      properties:
+        id: { type: integer }
+        handle: { type: string }
+        title: { type: string }
+        subtitle: { type: string }
+        vendor: { type: string }
+        type: { type: string }
+        tags: { type: array, items: { type: string } }
+        badges: { type: array, items: { type: string } }
+        descriptionHtml: { type: string }
+        rating: { type: object, required: [value, count], properties: { value: { type: number }, count: { type: integer } } }
+        price: { $ref: '#/components/schemas/Money' }
+        compareAtPrice: { oneOf: [{ $ref: '#/components/schemas/Money' }, { type: 'null' }] }
+        available: { type: boolean }
+        options: { type: array, items: { $ref: '#/components/schemas/ProductOption' } }
+        variants: { type: array, items: { $ref: '#/components/schemas/Variant' } }
+        images: { type: array, items: { $ref: '#/components/schemas/Image' } }
+
+    Collection:
+      type: object
+      required: [id, handle, title, description, image, productHandles]
+      properties:
+        id: { type: integer }
+        handle: { type: string }
+        title: { type: string }
+        description: { type: string }
+        image: { type: [string, 'null'] }
+        productHandles: { type: array, items: { type: string } }
+
+    Filter:
+      type: object
+      required: [id, label, type]
+      properties:
+        id: { type: string, enum: [type, price, availability] }
+        label: { type: string }
+        type: { type: string, enum: [list, price_range] }
+        values:
+          type: array
+          items:
+            type: object
+            required: [value, label, count, active]
+            properties: { value: { type: string }, label: { type: string }, count: { type: integer }, active: { type: boolean } }
+        min: { $ref: '#/components/schemas/Money' }
+        max: { $ref: '#/components/schemas/Money' }
+
+    CollectionPage:
+      allOf:
+        - { $ref: '#/components/schemas/Collection' }
+        - type: object
+          required: [products, total, page, pageSize, filters]
+          properties:
+            products: { type: array, items: { $ref: '#/components/schemas/Product' } }
+            total: { type: integer, description: Products after filters }
+            page: { type: integer }
+            pageSize: { type: integer }
+            filters: { type: array, items: { $ref: '#/components/schemas/Filter' } }
+
+    Article:
+      type: object
+      required: [id, handle, title, author, tags, publishedAt, image, imageAlt, excerpt, contentHtml, readingMinutes]
+      properties:
+        id: { type: integer }
+        handle: { type: string }
+        title: { type: string }
+        author: { type: string }
+        tags: { type: array, items: { type: string } }
+        publishedAt: { type: string, format: date-time }
+        image: { type: [string, 'null'] }
+        imageAlt: { type: string }
+        excerpt: { type: string }
+        contentHtml: { type: string }
+        readingMinutes: { type: integer }
+
+    CartLine:
+      type: object
+      required: [key, variantId, productHandle, title, variantTitle, image, quantity, price, compareAtPrice, lineTotal]
+      properties:
+        key: { type: string }
+        variantId: { type: integer }
+        productHandle: { type: string }
+        title: { type: string }
+        variantTitle: { type: [string, 'null'] }
+        image: { type: [string, 'null'] }
+        quantity: { type: integer }
+        price: { $ref: '#/components/schemas/Money' }
+        compareAtPrice: { oneOf: [{ $ref: '#/components/schemas/Money' }, { type: 'null' }] }
+        lineTotal: { $ref: '#/components/schemas/Money' }
+
+    DiscountCode:
+      type: object
+      required: [code, applicable]
+      properties: { code: { type: string }, applicable: { type: boolean } }
+
+    Cart:
+      type: object
+      required: [id, lines, itemCount, subtotal, discountCodes, note, currency]
+      properties:
+        id: { type: string }
+        lines: { type: array, items: { $ref: '#/components/schemas/CartLine' } }
+        itemCount: { type: integer }
+        subtotal: { $ref: '#/components/schemas/Money' }
+        discountCodes: { type: array, items: { $ref: '#/components/schemas/DiscountCode' } }
+        note: { type: string }
+        currency: { type: string, example: INR }
+
+    MenuItem:
+      type: object
+      required: [title, url]
+      properties:
+        title: { type: string }
+        url: { type: string }
+        children: { type: array, items: { $ref: '#/components/schemas/MenuItem' } }
+        image: { type: [string, 'null'] }
+
+    Site:
+      type: object
+      required: [name, currency, moneyFormat, logo, announcement, menu, footer]
+      properties:
+        name: { type: string }
+        currency: { type: string }
+        moneyFormat: { type: string, example: 'Rs. {{amount}}' }
+        logo:
+          type: object
+          required: [image, text, accent]
+          properties: { image: { type: [string, 'null'] }, text: { type: string }, accent: { type: string } }
+        announcement:
+          type: object
+          required: [messages]
+          properties:
+            messages:
+              type: array
+              items: { type: object, required: [text], properties: { text: { type: string }, link: { type: string } } }
+        menu: { type: array, items: { $ref: '#/components/schemas/MenuItem' } }
+        footer:
+          type: object
+          required: [tagline, menu, newsletter, social, wordmark]
+          properties:
+            tagline: { type: string }
+            menu: { type: array, items: { $ref: '#/components/schemas/MenuItem' } }
+            newsletter: { type: object, required: [heading, text], properties: { heading: { type: string }, text: { type: string } } }
+            social:
+              type: array
+              items: { type: object, required: [network, url], properties: { network: { type: string }, url: { type: string } } }
+            wordmark: { type: string }
+
+    SectionData:
+      type: object
+      required: [id, type, props]
+      properties:
+        id: { type: string }
+        type: { type: string, description: 'React component, see API-CONTRACT.md §4' }
+        props: { type: object, additionalProperties: true }
+
+    PageContent:
+      type: object
+      required: [slug, title, sections]
+      properties:
+        slug: { type: string }
+        title: { type: string }
+        seo: { type: object, properties: { title: { type: string }, description: { type: string } } }
+        sections: { type: array, items: { $ref: '#/components/schemas/SectionData' } }
+
+    Customer:
+      type: object
+      required: [email]
+      properties:
+        email: { type: string, format: email }
+        firstName: { type: string }
+        lastName: { type: string }
+        phone: { type: string }
+
+    Address:
+      type: object
+      required: [firstName, lastName, address1, city, zip, country]
+      properties:
+        firstName: { type: string }
+        lastName: { type: string }
+        address1: { type: string }
+        address2: { type: string }
+        city: { type: string }
+        province: { type: string }
+        zip: { type: string }
+        country: { type: string, description: ISO 3166-1 alpha-2 }
+        phone: { type: string }
+      additionalProperties: { type: string }
+
+    Order:
+      type: object
+      required: [id, cartId, status, createdAt, customer, shippingAddress, lines, itemCount, subtotal, discountCodes, note, currency]
+      properties:
+        id: { type: string, example: ORO-1001 }
+        cartId: { type: string }
+        status: { type: string, enum: [pending] }
+        createdAt: { type: string, format: date-time }
+        customer: { $ref: '#/components/schemas/Customer' }
+        shippingAddress: { $ref: '#/components/schemas/Address' }
+        lines: { type: array, items: { $ref: '#/components/schemas/CartLine' } }
+        itemCount: { type: integer }
+        subtotal: { $ref: '#/components/schemas/Money' }
+        discountCodes: { type: array, items: { $ref: '#/components/schemas/DiscountCode' } }
+        note: { type: string }
+        currency: { type: string }

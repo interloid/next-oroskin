@@ -1,0 +1,21 @@
+{
+  "slug": "collections",
+  "title": "Collections",
+  "sections": [
+    {
+      "id": "collections",
+      "type": "collections",
+      "props": {
+        "eyebrow": "Collections",
+        "heading": "Shop by category",
+        "layout": "tiles",
+        "columnsDesktop": 3,
+        "tileRatio": "1 / 1",
+        "cardRadius": 24,
+        "colorScheme": "scheme-2",
+        "paddingTop": 64,
+        "paddingBottom": 96
+      }
+    }
+  ]
+}

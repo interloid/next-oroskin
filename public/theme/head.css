@@ -1,0 +1,360 @@
+
+  
+  @font-face {
+  font-family: Newsreader;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/cdn/fonts/newsreader/newsreader_n4.b5d1a51abefc3e451a1095094f8cb52bc71994eb.woff2") format("woff2"),
+       url("/cdn/fonts/newsreader/newsreader_n4.faab5347776428001f201c86fe4c783d23b58a25.woff") format("woff");
+}
+
+  @font-face {
+  font-family: Newsreader;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/cdn/fonts/newsreader/newsreader_n7.23ab8134dd970213aaed7699491a8a2cb47dae45.woff2") format("woff2"),
+       url("/cdn/fonts/newsreader/newsreader_n7.d508f4855ca4dedbd83fa582e42d6513c7e89b8a.woff") format("woff");
+}
+
+  @font-face {
+  font-family: Newsreader;
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url("/cdn/fonts/newsreader/newsreader_i7.c957ba3bc7bb44bfca68314e689a88a6cb340dbe.woff2") format("woff2"),
+       url("/cdn/fonts/newsreader/newsreader_i7.600beb959cc55275297418e02b7b341685f85101.woff") format("woff");
+}
+
+  @font-face {
+  font-family: Newsreader;
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("/cdn/fonts/newsreader/newsreader_i4.b6c896efb016d5bce4e554059dfe501c6316187d.woff2") format("woff2"),
+       url("/cdn/fonts/newsreader/newsreader_i4.09e7328c6ebf6de7a11f1c4b9d76fc90424e3a85.woff") format("woff");
+}
+
+
+  @font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_n4.d80b0f185669787ac4b44bf52c1a511eaaf37245.woff2") format("woff2"),
+       url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_n4.4d079d103b5ee647346f5effc3692759629e07c9.woff") format("woff");
+}
+
+  @font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_n7.0fa457c7659036d61c299855f2665d487764b03d.woff2") format("woff2"),
+       url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_n7.aabce96b748f15f4219f7ccb58445c02f20c7ea7.woff") format("woff");
+}
+
+  @font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_i7.b76bf83e39a192fa9b337a7676a53552236df177.woff2") format("woff2"),
+       url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_i7.2c5187107fccd60382469c44f430512785075ccc.woff") format("woff");
+}
+
+  @font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_i4.c6dbba2f9689ea7d14727f19e62be404de792e1f.woff2") format("woff2"),
+       url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_i4.3525555c8861fa83992736778d5ba07d2bf40826.woff") format("woff");
+}
+
+  
+  @font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_n5.f370e6c70c85915846580a582555356fdd24edd6.woff2") format("woff2"),
+       url("/cdn/fonts/plus_jakarta_sans/plusjakartasans_n5.d048651ee7cc1e6ce70bca15e35c9e318e037f58.woff") format("woff");
+}
+
+  
+
+  
+  @font-face {
+  font-family: Cormorant;
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("/cdn/fonts/cormorant/cormorant_i4.0b95f138bb9694e184a2ebaf079dd59cf448e2d3.woff2") format("woff2"),
+       url("/cdn/fonts/cormorant/cormorant_i4.75684eb0a368d69688996f5f8e72c62747e6c249.woff") format("woff");
+}
+
+
+  
+  @font-face {
+  font-family: Cormorant;
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("/cdn/fonts/cormorant/cormorant_n6.3930e9d27a43e1a6bc5a2b0efe8fe595cfa3bda5.woff2") format("woff2"),
+       url("/cdn/fonts/cormorant/cormorant_n6.f8314ab02a47b4a38ed5c78b31e8d1963c1cbe87.woff") format("woff");
+}
+
+  @font-face {
+  font-family: Cormorant;
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+  src: url("/cdn/fonts/cormorant/cormorant_i6.d9cec4523bc4837b1c96b94ecf1a29351fbd8199.woff2") format("woff2"),
+       url("/cdn/fonts/cormorant/cormorant_i6.d18564a4f17d4e508a5eefe333645fbb7817d176.woff") format("woff");
+}
+
+
+  :root {
+    /* heading font */
+    --font-heading--family: Newsreader, serif;
+    --font-heading--style: normal;
+    --font-heading--weight: 400;
+
+    /* accent font (Heading block: Font = Accent, and the brush word) */
+    --font-accent--family: Cormorant, serif;
+    --font-accent--style: italic;
+    --font-accent--weight: 400;
+
+    /* The Figma's red brush behind a word (Heading block italic style "Brush"), used as a CSS mask */
+    --brush-glow: url('/cdn/shop/t/8/assets/brush-glow.svg?v=171814201586200305091794925156');
+
+    /* logo font (text logo in the header) */
+    --font-logo--family: Cormorant, serif;
+    --font-logo--weight: 600;
+
+    /* body font */
+    --font-body--family: "Plus Jakarta Sans", sans-serif;
+    --font-body--style: normal;
+    --font-body--weight: 400;
+
+    /*
+      Type scale: fixed design tokens from the Figma (not merchant settings).
+      Each size grows smoothly from a phone (390px wide) to the 1920px Figma frame:
+      clamp(smallest, fluid value, Figma size). The rem part keeps browser zoom working.
+    */
+    --font-size-display-xl: clamp(3.5rem, 2.672rem + 3.399vw, 6.75rem); /* 56px → 108px, homepage display headline */
+    --font-size-display: clamp(3rem, 2.235rem + 3.14vw, 6rem); /* 48px → 96px, big faded letters */
+    --font-size-h1: clamp(2.25rem, 1.868rem + 1.57vw, 3.75rem); /* 36px → 60px */
+    --font-size-h2: clamp(1.75rem, 1.559rem + 0.784vw, 2.5rem); /* 28px → 40px */
+    --font-size-h3: clamp(1.375rem, 1.311rem + 0.261vw, 1.625rem); /* 22px → 26px */
+    --font-size-body-lg: clamp(1.125rem, 1.061rem + 0.261vw, 1.375rem); /* 18px → 22px */
+    --font-size-body: clamp(1rem, 0.9363rem + 0.261vw, 1.25rem); /* 16px → 20px */
+    --font-size-body-sm: clamp(0.9375rem, 0.8897rem + 0.196vw, 1.125rem); /* 15px → 18px */
+    --font-size-caption: clamp(0.875rem, 0.8431rem + 0.131vw, 1rem); /* 14px → 16px */
+    --font-size-small: clamp(0.8125rem, 0.7966rem + 0.0654vw, 0.875rem); /* 13px → 14px, breadcrumbs */
+    --font-size-label: clamp(0.875rem, 0.8113rem + 0.261vw, 1.125rem); /* 14px → 18px, uppercase eyebrows */
+
+    --line-height-heading: 1.15;
+    --line-height-body: 1.65; /* Figma: 35px lines on 20–22px text */
+
+    --letter-spacing-body: 0.01em;
+    --letter-spacing-nav: 0.12em; /* nav links and buttons */
+    --letter-spacing-label: 0.21em; /* uppercase eyebrows */
+
+    --font-weight-medium: 500; /* labels, nav, buttons, subheadings */
+
+    /* Spacing scale (4px steps at the small end). Section spacing is fluid like the type scale. */
+    --space-2xs: 0.25rem; /* 4px */
+    --space-xs: 0.5rem; /* 8px */
+    --space-sm: 0.75rem; /* 12px */
+    --space-md: 1rem; /* 16px */
+    --space-lg: 1.5rem; /* 24px */
+    --space-xl: 2rem; /* 32px */
+    --space-2xl: 3rem; /* 48px */
+    --space-3xl: 4rem; /* 64px */
+    --space-section: clamp(3rem, 2.235rem + 3.14vw, 6rem); /* 48px → 96px between sections */
+
+    /* Corner radius (Figma) */
+    --radius-xs: 10px; /* filter chips and tiles */
+    --radius-sm: 19px; /* small cards */
+    --radius-md: 25px; /* info boxes */
+    --radius-lg: 50px; /* footer panel */
+    --radius-pill: 999px; /* buttons, header bar, round icon buttons */
+    --radius-focus: 0.5rem; /* focus ring on links and other elements with no corners of their own */
+
+    /* Shadows (Figma), colours as 8-digit hex (the last 2 digits are the opacity) */
+    --shadow-card: 0 0 10px 0 #0000000d;
+    --shadow-card-soft: 0 2px 10px 0 #7d00000f;
+    --shadow-card-rose: 0 4px 25px 0 #e6bcbc42;
+    --shadow-collection: 0 5px 25px 0 #0000000d;
+    --shadow-button: 0 4px 20px 0 #00000033;
+    /*
+      Figma "Liquid Glass Button" (hero Explore): two soft drop shadows + a soft white inner glow
+      top-left. Refraction / Depth / Dispersion need a Chrome-only SVG filter, and Frost has nothing
+      to blur behind a solid fill, so they are left out.
+    */
+    --shadow-button-glass: 0 4px 15px #00000040, 0 3px 15px #00000014, inset 1px 1px 4px #ffffff;
+    /*
+      Glass (Figma "Glass" effect: Fill 25%, Frost 100, Light 80% at -7deg, drop shadow). Used by every
+      glass element: header bar and icon buttons, pause button, footer panel and its controls,
+      highlight cards, product panels card, quick add, story pill.
+      - frost: Figma Frost 100 = a 35px background blur
+      - rim: Figma Light: a 1px highlight on the edge facing the light (top, light at -7deg, 80%) and a
+        weaker one on the opposite edge (68%). The angle is worked out already (sin/cos of -7deg), so
+        no CSS trigonometry is needed.
+      The Figma Refraction / Dispersion (an SVG filter, Chrome only, needs a script per element) is
+      left out on purpose: costly for a small, Chrome-only gain.
+    */
+    --glass-frost: 35px;
+    --glass-rim: inset 0.12px 1px 0 #ffffffcc, inset -0.12px -1px 0 #ffffffad;
+    --glass-shadow: 0 4px 15px 0 #b9b9b940;
+    --shadow-header: var(--glass-shadow), var(--glass-rim); /* also the round glass buttons (Figma "Liquid Glass Button") */
+    --shadow-panel: 0 2px 30px 0 #00000026; /* mega menu */
+    --shadow-glass-edge: var(--glass-rim);
+
+    /* Rating stars (Figma filter panel #eaad45; decorative, the star count is also in text) */
+    --color-rating: #eaad45;
+
+    /* Form messages (fixed, 6:1 contrast on cream and white) */
+    --color-error: #b42318;
+    --color-success: #1e6b3a;
+
+    /* Glass surfaces sit on photos, so they stay white whatever the colour scheme */
+    --color-glass: #ffffff40; /* header bar, round icon buttons, footer panel */
+    --color-glass-strong: #ffffff80; /* newsletter input */
+    --color-card: #f7f3ee33;
+    --color-card-border: #f0cbcb4f;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration-fast: 150ms; /* hovers */
+    --duration-base: 300ms; /* menus, drawers */
+    --duration-normal: 500ms; /* menus, drawers */
+    --duration-slow: 700ms; /* scroll reveals */
+
+    --page-width: 105.625rem;
+    --page-margin: 20px;
+    --style-border-radius-inputs: 4px;
+  }
+
+  /* Phones: at most 16px at the sides (a desktop margin like 45px leaves too little room on a 390px screen) */
+  @media (max-width: 749px) {
+    :root {
+      --page-margin: min(20px, 1rem);
+    }
+  }
+
+  
+
+    :root,
+    .color-scheme-1 {
+      --color-background: #fffaf0;
+      --color-text: #1f1f1f;
+      --color-accent: #7d0000;
+      --color-border: #eedede;
+      --color-button: #7d0000;
+      --color-button-text: #ffffff;
+      --color-button-border: #7d0000;
+      --color-secondary-button: #fffaf0;
+      --color-secondary-button-text: #7d0000;
+      --color-secondary-button-border: #7d0000;
+
+      /* Accent tints: computed here, inside each scheme, so they follow the scheme's accent */
+      --color-tint-subtle: color-mix(in srgb, var(--color-accent) 5%, transparent); /* info box fill */
+      --color-tint: color-mix(in srgb, var(--color-accent) 10%, transparent); /* big faded letters */
+      --color-tint-border: color-mix(in srgb, var(--color-accent) 25%, transparent); /* info box border */
+      --color-surface-raised: #ffffff;
+
+      background-color: var(--color-background);
+      color: var(--color-text);
+    }
+    
+    .color-scheme-2 {
+      --color-background: #ffffff;
+      --color-text: #1f1f1f;
+      --color-accent: #7d0000;
+      --color-border: #f6ecec;
+      --color-button: #7d0000;
+      --color-button-text: #ffffff;
+      --color-button-border: #7d0000;
+      --color-secondary-button: #ffffff;
+      --color-secondary-button-text: #7d0000;
+      --color-secondary-button-border: #7d0000;
+
+      /* Accent tints: computed here, inside each scheme, so they follow the scheme's accent */
+      --color-tint-subtle: color-mix(in srgb, var(--color-accent) 5%, transparent); /* info box fill */
+      --color-tint: color-mix(in srgb, var(--color-accent) 10%, transparent); /* big faded letters */
+      --color-tint-border: color-mix(in srgb, var(--color-accent) 25%, transparent); /* info box border */
+      --color-surface-raised: #ffffff;
+
+      background-color: var(--color-background);
+      color: var(--color-text);
+    }
+    
+    .color-scheme-3 {
+      --color-background: #7d0000;
+      --color-text: #ffffff;
+      --color-accent: #ffffff;
+      --color-border: #ffffff;
+      --color-button: #ffffff;
+      --color-button-text: #7d0000;
+      --color-button-border: #ffffff;
+      --color-secondary-button: #7d0000;
+      --color-secondary-button-text: #ffffff;
+      --color-secondary-button-border: #ffffff;
+
+      /* Accent tints: computed here, inside each scheme, so they follow the scheme's accent */
+      --color-tint-subtle: color-mix(in srgb, var(--color-accent) 5%, transparent); /* info box fill */
+      --color-tint: color-mix(in srgb, var(--color-accent) 10%, transparent); /* big faded letters */
+      --color-tint-border: color-mix(in srgb, var(--color-accent) 25%, transparent); /* info box border */
+      --color-surface-raised: color-mix(in srgb, var(--color-text) 12%, var(--color-background));
+
+      background-color: var(--color-background);
+      color: var(--color-text);
+    }
+    
+    .color-scheme-4 {
+      --color-background: #c8a24b;
+      --color-text: #1f1f1f;
+      --color-accent: #7d0000;
+      --color-border: #1f1f1f;
+      --color-button: #7d0000;
+      --color-button-text: #ffffff;
+      --color-button-border: #7d0000;
+      --color-secondary-button: #c8a24b;
+      --color-secondary-button-text: #1f1f1f;
+      --color-secondary-button-border: #1f1f1f;
+
+      /* Accent tints: computed here, inside each scheme, so they follow the scheme's accent */
+      --color-tint-subtle: color-mix(in srgb, var(--color-accent) 5%, transparent); /* info box fill */
+      --color-tint: color-mix(in srgb, var(--color-accent) 10%, transparent); /* big faded letters */
+      --color-tint-border: color-mix(in srgb, var(--color-accent) 25%, transparent); /* info box border */
+      --color-surface-raised: #ffffff;
+
+      background-color: var(--color-background);
+      color: var(--color-text);
+    }
+    
+    .color-scheme-5 {
+      --color-background: #1f1f1f;
+      --color-text: #fffaf0;
+      --color-accent: #c8a24b;
+      --color-border: #fffaf0;
+      --color-button: #c8a24b;
+      --color-button-text: #1f1f1f;
+      --color-button-border: #c8a24b;
+      --color-secondary-button: #1f1f1f;
+      --color-secondary-button-text: #fffaf0;
+      --color-secondary-button-border: #fffaf0;
+
+      /* Accent tints: computed here, inside each scheme, so they follow the scheme's accent */
+      --color-tint-subtle: color-mix(in srgb, var(--color-accent) 5%, transparent); /* info box fill */
+      --color-tint: color-mix(in srgb, var(--color-accent) 10%, transparent); /* big faded letters */
+      --color-tint-border: color-mix(in srgb, var(--color-accent) 25%, transparent); /* info box border */
+      --color-surface-raised: color-mix(in srgb, var(--color-text) 12%, var(--color-background));
+
+      background-color: var(--color-background);
+      color: var(--color-text);
+    }

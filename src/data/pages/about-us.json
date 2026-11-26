@@ -1,0 +1,254 @@
+{
+  "slug": "about-us",
+  "title": "About us",
+  "sections": [
+    {
+      "id": "hero",
+      "type": "about-hero",
+      "props": {
+        "pageTitle": "About us",
+        "paddingTop": 24,
+        "paddingBottom": 48,
+        "headingScale": 85,
+        "scriptText": "Our story",
+        "headingLine1": "Made <em>Slowly,</em>",
+        "headingLine2": ["worn <strong>daily</strong>", "read <strong>openly</strong>", "refilled <strong>always</strong>"],
+        "rotateInterval": 3,
+        "text": "<p>OroSkin is a fragrance, skincare and makeup house built on three unfashionable ideas: name your growers, dose your actives honestly, and make packaging you refill instead of replace.</p>",
+        "buttonLabel": "Shop all products",
+        "buttonLink": "/collections/all",
+        "linkLabel": "Book consultation",
+        "linkUrl": "/pages/contact",
+        "cardLabel": "The Oroskin, in three disciplines",
+        "disciplines": [
+          {
+            "title": "Fragrance",
+            "count": "6 formulas",
+            "image": { "src": "/cdn/shop/collections/Fragrance-banner.png", "width": 960, "height": 640 },
+            "text": "<p>Naturals-led, 22% concentration, six-hour verified wear.</p>",
+            "link": "/collections/fragrance",
+            "open": true
+          },
+          {
+            "title": "Skincare",
+            "count": "8 formulas",
+            "image": { "src": "/cdn/shop/collections/Skincare-banner.png", "width": 960, "height": 640 },
+            "text": "<p>Actives at their clinical dose, printed on every carton.</p>",
+            "link": "/collections/skincare"
+          },
+          {
+            "title": "Makeup",
+            "count": "6 formulas",
+            "image": { "src": "/cdn/shop/collections/Makeup-banner.png", "width": 960, "height": 641 },
+            "text": "<p>Forty-two shades mapped by undertone, in refillable cases.</p>",
+            "link": "/collections/makeup"
+          }
+        ]
+      }
+    },
+    {
+      "id": "chapters",
+      "type": "about-chapters",
+      "props": {
+        "textColor": "#ffffff",
+        "labelColor": "#7d0000",
+        "overlayOpacity": 100,
+        "chapters": [
+          {
+            "id": "AS1lFK0pjRG40OWlrd__fragrance",
+            "label": "Chapter I · Fragrance",
+            "heading": "Rose picked before the heat can take its oil.",
+            "text": "<p>Damask rose loses its most volatile molecules the moment the sun warms the petal, so our growers in Isparta harvest between 4 and 8am and the flowers reach the still the same morning. It takes roughly 3,600 blossoms to yield the rose absolute in one 30ml eau de parfum, dosed at 22% concentration, naturals-led, and verified for six hours of wear on skin rather than on blotter paper.</p>",
+            "statValue": "3,600",
+            "statLabel": "Blossoms per 30ml flacon",
+            "image": { "src": "/cdn/shop/files/54156b3ad7fe4887714e7aa75fef6d9c10aedbeb.png", "width": 2000, "height": 1333 }
+          },
+          {
+            "id": "AOWU4czRqbWQva3NSQ__skincare",
+            "label": "Chapter II · Skincare",
+            "heading": "Actives kept at their clinical dose, not their marketing dose.",
+            "text": "<p>Every serum starts from the concentration the studies used, not the one that looks good on a label. We print each active's percentage on the carton, test every batch for stability at three temperatures, and keep reformulating until the texture is as good as the dose: often more than forty rounds before a formula is signed off.</p>",
+            "statValue": "40+",
+            "statLabel": "Formulation rounds per serum",
+            "image": { "src": "/cdn/shop/files/8518c87a1311e5cae1d14986425bce4831a70c0c.png", "width": 1200, "height": 1504 }
+          },
+          {
+            "id": "ANlV0UFNROWcramZVM__makeup",
+            "label": "Chapter III · Makeup",
+            "heading": "Forty-two shades mapped by undertone, not lightness.",
+            "text": "<p>Our colour lab matched the complexion range across warm, neutral, olive and cool undertone families, then re-tested every shade under daylight, tungsten and evening LED so it reads true in all three. Lip and cheek pigments are pressed with camellia and squalane so colour wears like skincare, and every powder pan and lipstick bullet drops into a refillable case.</p>",
+            "statValue": "42",
+            "statLabel": "Shades, four undertone families",
+            "image": { "src": "/cdn/shop/files/4a7e016d40502af4862f8a18ec9ac14fcac1c8b4.png", "width": 1200, "height": 1504 }
+          },
+          {
+            "id": "AejZxdHpSWlZ5OXphW__ritual",
+            "label": "Chapter IV · The ritual",
+            "heading": "Finally, it becomes three quiet minutes.",
+            "text": "<p>The last brief we write is emotional: how the flacon should sound when opened, how the cream should feel at the third use, what the scent should leave behind on a linen sleeve. Fragrance, skincare and colour arrive in glass and aluminium made to be refilled: 71% less carbon per use, and no virgin plastic anywhere in the line.</p>",
+            "statValue": "71%",
+            "statLabel": "Lower carbon per refill",
+            "video": {
+              "src": "/cdn/shop/videos/c/vp/af12c49806aa4c18a1fec658072e922b/af12c49806aa4c18a1fec658072e922b.SD-480p-1.5Mbps-99435703.mp4",
+              "poster": "/cdn/shop/files/preview_images/af12c49806aa4c18a1fec658072e922b.thumbnail.0000000000_1920x.jpg"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "pillars",
+      "type": "about-pillars",
+      "props": {
+        "drift": true,
+        "photos": [
+          { "src": "/cdn/shop/files/ffe0001888aefda5ffecde40985020524cd495d1.png", "width": 1024, "height": 1024 },
+          { "src": "/cdn/shop/files/31038e5e4d8264fe6801fb289237a5b14d361dfb_1.png", "width": 1024, "height": 1536 },
+          { "src": "/cdn/shop/files/8230345724c2d31168a6d12bec49570352621800.png", "width": 1024, "height": 1536 },
+          { "src": "/cdn/shop/files/af5a6edf2970737d17087b5c61e700cd933bff18.png", "width": 1536, "height": 1024 },
+          { "src": "/cdn/shop/files/e004a88cd03ccbd2deab848a14d4b1544886a1ab.png", "width": 1536, "height": 1024 },
+          { "src": "/cdn/shop/files/4a7e016d40502af4862f8a18ec9ac14fcac1c8b4.png", "width": 1200, "height": 1504 },
+          { "src": "/cdn/shop/files/23c90ac8336726b908b03a80a204a5d9a04444f0.png", "width": 1024, "height": 1024 }
+        ],
+        "pillars": [
+          {
+            "label": "Mission",
+            "heading": "Make beauty you can read as easily as you can wear.",
+            "text": "<p>We formulate fragrance, skincare and colour at clinical doses, print every percentage on the carton, and name the grower behind each botanical. No proprietary blends, no silent dilutions.</p>",
+            "checklist": ["Full dose disclosure on all 68 formulas", "Nine named growers, long-term contracts", "Refillable glass and aluminium only"]
+          },
+          {
+            "label": "Vision",
+            "heading": "A beauty house measured in decades, not launches.",
+            "text": "<p>By 2030 we want every OroSkin object to be refilled more often than it is bought: a shelf that ages with you, with formulas revised only when the evidence asks for it.</p>",
+            "checklist": ["Zero virgin plastic across the line", "Every claim backed by in-vivo panels", "Formulas revised, not replaced"]
+          },
+          {
+            "label": "Promise",
+            "heading": "Three quiet minutes that actually do something.",
+            "text": "<p>Texture is not decoration. A serum should absorb in eleven seconds, a fragrance should still read at hour six, and a compact should close with a sound you trust. We test all three.</p>",
+            "checklist": ["11-second absorption standard", "6-hour wear verification on skin", "Vegan, cruelty-free, dermatologist-reviewed"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "timeline",
+      "type": "about-timeline",
+      "props": {
+        "paddingTop": 120,
+        "paddingBottom": 80,
+        "eyebrow": "Our journey",
+        "heading": "<em>Seven years</em>, slowly.",
+        "milestones": [
+          { "year": "2019", "pill": "The beginning", "title": "A lab above a perfumery", "text": "<p>Two chemists rent a Grasse attic and begin suspending gold leaf in jasmine water.</p>", "statValue": "6m²", "statLabel": "The entire first lab" },
+          { "year": "2021", "pill": "The breakthrough", "title": "Ferment No. 47", "text": "<p>Forty-six batches collapse. The forty-seventh holds past ninety days, and ninety days becomes the house rule.</p>", "statValue": "47", "statLabel": "Batches before one held" },
+          { "year": "2023", "pill": "The expansion", "title": "Three cities, one atelier", "text": "<p>Paris keeps the formulas; New York and Seoul keep only the couriers. Shipping local halves the freight.</p>", "statValue": "−54%", "statLabel": "Freight emissions" },
+          { "year": "2024", "pill": "The commitment", "title": "The refill programme", "text": "<p>Every vessel redrawn in glass or aluminium, engineered for a hundred cycles.</p>", "statValue": "100", "statLabel": "Refills per vessel" },
+          { "year": "2026", "pill": "Now", "title": "Small, on purpose", "text": "<p>The collection is capped. When a new piece enters, an older one retires.</p>", "statValue": "11", "statLabel": "Pieces, and no more" }
+        ]
+      }
+    },
+    {
+      "id": "team",
+      "type": "about-team",
+      "props": {
+        "paddingTop": 120,
+        "paddingBottom": 120,
+        "sideWord": "Our experts",
+        "showArrows": true,
+        "eyebrow": "The visionaries",
+        "heading": "Meet the minds <em>behind </em><em><strong>OroSkin</strong></em>",
+        "text": "<p>Three individuals from three different worlds — fashion, science, and technology — united by the belief that luxury beauty deserves a platform as extraordinary as the products themselves.</p>",
+        "members": [
+          {
+            "id": "AUXRrNXQxN3orbG5US__elise",
+            "name": "Elise Beaumont",
+            "role": "Founder & creative director",
+            "roleWord": "Founder",
+            "image": { "src": "/cdn/shop/files/ce8bb538f323b313e46531003d391857fe649be7.jpg", "width": 800, "height": 800 },
+            "quote": "Luxury is not a price. It is the feeling that someone cared about every detail before you ever opened the box.",
+            "instagram": "https://www.instagram.com/",
+            "facebook": "https://www.facebook.com/",
+            "linkedin": "https://www.linkedin.com/"
+          },
+          {
+            "id": "AYmFNUkM4SGR6c0pnU__ananya",
+            "name": "Ananya Sharma",
+            "role": "Co-founder & formulator",
+            "roleWord": "Co-founder",
+            "image": { "src": "/cdn/shop/files/223b7d018c4157ed5f356b5a797c771a86fa7387.jpg", "width": 800, "height": 800 },
+            "quote": "Technology should disappear into the experience. At OroSkin, every interaction should feel like magic, not mechanics.",
+            "instagram": "https://www.instagram.com/",
+            "facebook": "https://www.facebook.com/",
+            "linkedin": "https://www.linkedin.com/"
+          },
+          {
+            "id": "AQXZPZHh3SDhBZ0xIc__sophia",
+            "name": "Sophia Marie",
+            "role": "Co-founder & chemist",
+            "roleWord": "Co-founder",
+            "image": { "src": "/cdn/shop/files/5b302b90de9fc2836947ed91b166fdf253ce82ec.jpg", "width": 800, "height": 800 },
+            "quote": "A formula earns its place on the shelf when the evidence asks for it, never when the calendar does.",
+            "instagram": "https://www.instagram.com/",
+            "facebook": "https://www.facebook.com/",
+            "linkedin": "https://www.linkedin.com/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "values",
+      "type": "about-values",
+      "props": {
+        "paddingTop": 120,
+        "paddingBottom": 120,
+        "eyebrow": "What we stand for",
+        "heading": "Our core <em>Values</em>",
+        "featureFirst": true,
+        "values": [
+          {
+            "icon": "diamond",
+            "title": "Uncompromising curation",
+            "text": "<p>We believe that less is more. Our selection process is painstaking, deliberate, and driven by a single question: does this product truly deserve a place in someone's ritual?</p><p>Less than 8% of products submitted make it onto our platform. The rest are returned with a personal note explaining why.</p>",
+            "image": { "src": "/cdn/shop/files/58e4d37bb17ffc9f1fe2545f8088ea02887ec090.png", "width": 1536, "height": 1024 }
+          },
+          { "icon": "lashes", "title": "Conscious beauty", "text": "<p>Sustainability is not a trend — it's our responsibility. Every partner brand must meet our rigorous environmental and ethical standards.</p>" },
+          { "icon": "heart-bold", "title": "Client above all", "text": "<p>Every decision — from packaging to pricing — is made with one person in mind: the luminary who trusts us with their ritual.</p>" },
+          { "icon": "graduation", "title": "Beauty education", "text": "<p>We empower our community with knowledge. Because the most transformative beauty choice is always an informed one.</p>" },
+          { "icon": "globe", "title": "Global inclusivity", "text": "<p>Beauty belongs to everyone. We curate for every skin tone, every culture, every ritual — without exception.</p>" }
+        ]
+      }
+    },
+    {
+      "id": "numbers",
+      "type": "about-numbers",
+      "props": {
+        "paddingTop": 120,
+        "paddingBottom": 80,
+        "eyebrow": "By the numbers",
+        "heading": "<em>Proof,</em> not promises.",
+        "stagger": true,
+        "stats": [
+          { "value": "98", "suffix": "%", "title": "Would buy again", "text": "Of 31,400 verified clients" },
+          { "value": "4.9", "title": "Average rating", "text": "Across every piece we make" },
+          { "value": "25", "suffix": "+", "group": true, "title": "Global products", "text": "Luxury products curated globally" },
+          { "value": "15", "title": "Total awards", "text": "Industry awards since 2018" }
+        ]
+      }
+    },
+    {
+      "id": "marquee",
+      "type": "marquee",
+      "props": {
+        "text": "Beauty heals nature, nature feeds beauty.",
+        "outline": true,
+        "direction": "left",
+        "textSize": 110,
+        "speed": 40,
+        "paddingTop": 24,
+        "paddingBottom": 80
+      }
+    }
+  ]
+}

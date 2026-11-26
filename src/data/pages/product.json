@@ -1,0 +1,536 @@
+{
+  "slug": "product",
+  "title": "Product",
+  "sections": [
+    {
+      "id": "product",
+      "type": "product",
+      "props": {
+        "colorScheme": "scheme-2",
+        "width": "widest",
+        "paddingTop": 24,
+        "paddingBottom": 64,
+        "breadcrumbParent": {
+          "title": "All",
+          "url": "/collections/all"
+        },
+        "cards": [
+          {
+            "style": "card",
+            "gap": 28,
+            "parts": [
+              {
+                "type": "eyebrow",
+                "label": "type",
+                "showBadge": true,
+                "showShare": true
+              },
+              {
+                "type": "title",
+                "size": "product-title--product"
+              },
+              {
+                "type": "price",
+                "size": "large"
+              },
+              {
+                "type": "stock"
+              },
+              {
+                "type": "description",
+                "textSize": "large"
+              },
+              {
+                "type": "buy-buttons",
+                "layout": "inline",
+                "addToCartStyle": "outline"
+              }
+            ]
+          },
+          {
+            "style": "card",
+            "gap": 40,
+            "parts": [
+              {
+                "type": "offers",
+                "heading": "Bank offers",
+                "offers": [
+                  {
+                    "bank": "Axis Bank",
+                    "offer": "10% instant discount",
+                    "detail": "Up to $60 • Credit cards",
+                    "code": "AXIS10"
+                  },
+                  {
+                    "bank": "ICICI Bank",
+                    "offer": "Flat $40 instant discount",
+                    "detail": "On orders above $300",
+                    "code": "ICICI40"
+                  },
+                  {
+                    "bank": "SBI Card",
+                    "offer": "3% off + 10% back",
+                    "detail": "Instant gift vouchers",
+                    "code": "SBI10"
+                  },
+                  {
+                    "bank": "HDFC Bank",
+                    "offer": "Flat $50 discount",
+                    "detail": "Using promo code HDFC6",
+                    "code": "HDFC6"
+                  }
+                ]
+              },
+              {
+                "type": "pickup",
+                "heading": "Delivery and pickup",
+                "deliveryNote": "Delivery in 2–3 business days"
+              },
+              {
+                "type": "features",
+                "features": [
+                  {
+                    "icon": "recyclable",
+                    "label": "Recyclable"
+                  },
+                  {
+                    "icon": "vegan",
+                    "label": "Vegan"
+                  },
+                  {
+                    "icon": "cruelty-free",
+                    "label": "Cruelty-free"
+                  },
+                  {
+                    "icon": "paraben-free",
+                    "label": "Parabens free"
+                  }
+                ]
+              },
+              {
+                "type": "videos",
+                "heading": "Product short videos",
+                "videos": []
+              },
+              {
+                "type": "payment",
+                "heading": "We accept",
+                "text": "Your payment information is processed securely.",
+                "types": [
+                  "visa",
+                  "master",
+                  "american_express",
+                  "paypal",
+                  "diners_club",
+                  "discover"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "product_pairs",
+      "type": "product-pairs",
+      "props": {
+        "eyebrow": "Bought together",
+        "heading": "Pairs <em>well with</em>",
+        "products": [
+          "radiance-vitamin-c-serum",
+          "magnolia-bloom-body-oil",
+          "rose-eau-de-parfum"
+        ],
+        "limit": 3
+      }
+    },
+    {
+      "id": "product_tabs",
+      "type": "product-tabs",
+      "props": {
+        "tabs": [
+          {
+            "label": "Overview",
+            "target": "overview"
+          },
+          {
+            "label": "Highlights",
+            "target": "highlights"
+          },
+          {
+            "label": "How to use",
+            "target": "how-to-use"
+          },
+          {
+            "label": "Clinical results",
+            "target": "clinical-results"
+          },
+          {
+            "label": "Reviews",
+            "target": "reviews"
+          },
+          {
+            "label": "FAQ",
+            "target": "faq"
+          }
+        ],
+        "layout": "tabbed",
+        "transition": "up",
+        "panelScroll": 50
+      }
+    },
+    {
+      "id": "product_overview",
+      "type": "product-overview",
+      "props": {
+        "anchor": "overview",
+        "eyebrow": "The object",
+        "heading": "Written for <em>the senses,</em> not the spec sheet.",
+        "text": "<p>The formula was built backwards — from the finish. We wanted the look of skin caught in late afternoon light, then reverse-engineered a lipid system that could hold it through a full day of wear.</p>",
+        "specs": [
+          {
+            "label": "Texture",
+            "value": "Weightless oil-serum"
+          },
+          {
+            "label": "Finish",
+            "value": "Satin, non-shifting"
+          },
+          {
+            "label": "Format",
+            "value": "Apothecary glass, refillable"
+          },
+          {
+            "label": "Origin",
+            "value": "Compounded in Grasse"
+          }
+        ],
+        "image": {
+          "src": "/cdn/shop/files/d25e9d3b6caacff864387637efd0c84e17cf417b.png",
+          "alt": "",
+          "width": 1800,
+          "height": 1289
+        },
+        "hotspots": [
+          {
+            "x": 66,
+            "y": 28,
+            "title": "Dew, not shine",
+            "text": "A satin glow that settles in seconds."
+          },
+          {
+            "x": 55,
+            "y": 40,
+            "title": "Lipid veil",
+            "text": "Ceramides hold water in through the day."
+          },
+          {
+            "x": 45,
+            "y": 72,
+            "title": "Refillable glass",
+            "text": "Keep the bottle; refill the serum."
+          }
+        ],
+        "quote": "It behaves less like a treatment and more like <em>a change of light</em>",
+        "figures": [
+          {
+            "label": "Felt skin softer",
+            "value": "98%"
+          },
+          {
+            "label": "Visible barrier repair",
+            "value": "14 Days"
+          },
+          {
+            "label": "Silicones",
+            "value": "0"
+          },
+          {
+            "label": "Recyclable glass",
+            "value": "100%"
+          }
+        ]
+      }
+    },
+    {
+      "id": "product_highlights",
+      "type": "product-highlights",
+      "props": {
+        "anchor": "highlights",
+        "eyebrow": "Highlights",
+        "heading": "<em>Six reasons</em> it earns its shelf.",
+        "text": "<p>Ritual Serum No. 01 was formulated backwards — from how skin feels at the end of the day, to the molecules that get it there.</p>",
+        "benefits": [
+          {
+            "icon": "drop",
+            "title": "72-hour hydration",
+            "text": "A lipid-mimicking veil of ceramide NP, squalane and glacial water holds moisture through three full days."
+          },
+          {
+            "icon": "flask",
+            "title": "Small-batch craft",
+            "text": "Blended in Grasse in batches of 400, cold-filled into recyclable glass and numbered by hand."
+          },
+          {
+            "icon": "sparkles",
+            "title": "Soft-focus finish",
+            "text": "Micronised pigment diffuses light across the skin — luminous in daylight, never glittering under flash."
+          },
+          {
+            "icon": "hours",
+            "title": "12-hour wear",
+            "text": "Transfer-resistant through coffee, calls and closing hours. Removes cleanly with a single cleanse."
+          },
+          {
+            "icon": "leaf",
+            "title": "Clean by omission",
+            "text": "No silicones, sulphates, parabens or mineral oil. Vegan, cruelty-free, Leaping Bunny certified."
+          },
+          {
+            "icon": "shield-check",
+            "title": "Barrier-first formula",
+            "text": "Dermatologist tested on sensitive skin. Non-comedogenic, fragrance-optional, pH balanced at 5.5."
+          }
+        ],
+        "specs": [
+          {
+            "label": "Skin type",
+            "value": "All types, including reactive"
+          },
+          {
+            "label": "Texture",
+            "value": "Weightless fluid-to-silk"
+          },
+          {
+            "label": "Free from",
+            "value": "Silicones • Sulphates • Parabens"
+          },
+          {
+            "label": "Key actives",
+            "value": "Niacinamide 5%, Ceramide NP, Squalane"
+          },
+          {
+            "label": "Finish",
+            "value": "Satin, buildable"
+          },
+          {
+            "label": "Certification",
+            "value": "Vegan • Leaping Bunny • Dermatologist tested"
+          }
+        ],
+        "animation": "fade-up"
+      }
+    },
+    {
+      "id": "product_how_to",
+      "type": "product-how-to",
+      "props": {
+        "anchor": "how-to-use",
+        "eyebrow": "How to use",
+        "heading": "Four minutes, performed the same way, <em>every evening.</em>",
+        "autoplay": true,
+        "seconds": 5,
+        "steps": [
+          {
+            "title": "Cleanse & press dry",
+            "text": "Begin on skin still faintly damp — the serum travels further on moisture.",
+            "image": {
+              "src": "/cdn/shop/files/image_667.jpg",
+              "alt": "",
+              "width": 1400,
+              "height": 1148
+            },
+            "caption": "Blot with linen — never wipe."
+          },
+          {
+            "title": "Four drops, warmed",
+            "text": "Warm four drops between your palms for a few seconds.",
+            "image": {
+              "src": "/cdn/shop/files/image_670.jpg",
+              "alt": "",
+              "width": 1400,
+              "height": 1148
+            },
+            "caption": "Body heat opens the oils."
+          },
+          {
+            "title": "Press, never rub",
+            "text": "Press your palms to the cheeks, forehead and neck, holding each for a breath.",
+            "image": {
+              "src": "/cdn/shop/files/image_669.jpg",
+              "alt": "",
+              "width": 1400,
+              "height": 1148
+            },
+            "caption": "Pressure, not friction."
+          },
+          {
+            "title": "Seal & rest",
+            "text": "Finish with your moisturiser and let it settle before bed.",
+            "image": {
+              "src": "/cdn/shop/files/Component_1639.jpg",
+              "alt": "",
+              "width": 1400,
+              "height": 1148
+            },
+            "caption": "Let the night do the rest."
+          }
+        ]
+      }
+    },
+    {
+      "id": "product_clinical",
+      "type": "product-clinical",
+      "props": {
+        "anchor": "clinical-results",
+        "eyebrow": "Clinical results",
+        "heading": "Twelve weeks, 142 participants, <em>no retouching.</em>",
+        "before": {
+          "src": "/cdn/shop/files/1894ec2e516c8ad0a7fc78817f607230629fa0c2.png",
+          "alt": "",
+          "width": 1600,
+          "height": 1216
+        },
+        "after": {
+          "src": "/cdn/shop/files/81ac94d9974a1d94cc98afcdf48e6c63991272a9.png",
+          "alt": "",
+          "width": 1600,
+          "height": 1216
+        },
+        "beforeLabel": "Week 0",
+        "afterLabel": "Week 12",
+        "start": 50,
+        "ringLabel": "Radiance",
+        "results": [
+          {
+            "label": "reported visibly brighter skin",
+            "value": 94
+          },
+          {
+            "label": "measured improved elasticity",
+            "value": 88
+          },
+          {
+            "label": "saw reduced pigmentation",
+            "value": 79
+          },
+          {
+            "label": "found it comfortable daily",
+            "value": 97
+          }
+        ]
+      }
+    },
+    {
+      "id": "product_reviews",
+      "type": "product-reviews",
+      "props": {
+        "anchor": "reviews",
+        "eyebrow": "Voices",
+        "heading": "What our <em>customers</em> say",
+        "floatImage": "/cdn/shop/files/18b4d5aff561df49910306885f5046f82ca42d99.png",
+        "floatSize": 330,
+        "floatMotion": "repeat",
+        "word": "Reviews",
+        "visible": 3,
+        "motion": "scroll",
+        "reviews": [
+          {
+            "name": "Prince",
+            "place": "Canada",
+            "rating": 4.8,
+            "avatar": "/cdn/shop/files/39aab73a45c612abf014cd8387797410e717c3ab.jpg",
+            "text": "I bought this to fade old acne marks. It feels gentle on my sensitive skin and has visibly lightened my dark spots in about three weeks."
+          },
+          {
+            "name": "Sara",
+            "place": "U.K",
+            "rating": 4.9,
+            "avatar": "/cdn/shop/files/f5a8bcc390d41cf5cdcbc8e12d63402eabc96110.jpg",
+            "text": "The texture is nice and hydrating, but I did not notice a huge difference in my dark spots even after finishing the whole bottle."
+          },
+          {
+            "name": "Aadhaya",
+            "place": "Dubai",
+            "rating": 4.6,
+            "avatar": "/cdn/shop/files/c9dc32848619b2f7395a3d971c83962cd484f4e3.jpg",
+            "text": "Highly hydrating! It plumps up my dry patches instantly while giving that targeted radiance look."
+          },
+          {
+            "name": "Zara",
+            "place": "USA",
+            "rating": 4.9,
+            "avatar": "/cdn/shop/files/4a2044d2febfca6537972cdb1ac62ed509ed8ed3.jpg",
+            "text": "Very lightweight and watery. It layers perfectly under my heavy moisturizer and doesn't pill when I apply sunscreen over it."
+          },
+          {
+            "name": "Sam",
+            "place": "USA",
+            "rating": 4.7,
+            "avatar": "/cdn/shop/files/389d48c3df5ee8b67ef377543c9b31f0e430e2a6.jpg",
+            "text": "Great for sun spots. It smoothed out my skin texture and blurred my dark patches over a few weeks."
+          },
+          {
+            "name": "Jasmine",
+            "place": "U.K",
+            "rating": 4.9,
+            "avatar": "/cdn/shop/files/faa1c8058a578c2a8a62f56f20fc78f3dad2eb3e.png",
+            "text": "This serum is a game-changer! It is super lightweight, non-sticky, and absorbs in seconds. After two weeks of use, my dull skin has a fresh, natural glow."
+          }
+        ]
+      }
+    },
+    {
+      "id": "product_faq",
+      "type": "product-faq",
+      "props": {
+        "anchor": "faq",
+        "eyebrow": "FAQ",
+        "heading": "A short <em>conversation.</em>",
+        "questions": [
+          {
+            "question": "Can I use this with retinol?",
+            "answer": "<p>Yes — alternate nights to begin. After a month most skins tolerate both in one routine, serum first.</p>"
+          },
+          {
+            "question": "Will it break me out?",
+            "answer": "<p>It's non-comedogenic and fragrance-free. Patch test first; if your skin feels tight, use it every other day for the first week.</p>"
+          },
+          {
+            "question": "Is it pregnancy safe?",
+            "answer": "<p>It contains no retinoids or salicylic acid, but please check with your doctor before starting new skincare.</p>"
+          },
+          {
+            "question": "How long does one bottle last?",
+            "answer": "<p>About two months, using two or three drops morning and night.</p>"
+          },
+          {
+            "question": "Is it suitable for sensitive skin?",
+            "answer": "<p>Yes. It's dermatologist tested on sensitive skin, with no alcohol or added fragrance.</p>"
+          }
+        ],
+        "showForm": true,
+        "formLabel": "Ask us anything",
+        "formHeading": "Didn't find your answer?",
+        "tint": true,
+        "decorations": true
+      }
+    },
+    {
+      "id": "product_related",
+      "type": "product-related",
+      "props": {
+        "eyebrow": "You may also love",
+        "linkLabel": "View all",
+        "linkUrl": "/collections/all",
+        "limit": 2,
+        "columns": 2,
+        "cardStyle": "full",
+        "cardShape": "890 / 398",
+        "colorScheme": "scheme-2",
+        "paddingTop": 64,
+        "paddingBottom": 96
+      }
+    }
+  ]
+}

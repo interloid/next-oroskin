@@ -1,0 +1,180 @@
+// Generated from the Shopify theme's rendered HTML (reference/sections/product--08-clinical.html). Make content dynamic, keep the markup.
+export default function Product08Clinical() {
+  return (
+    <section id="shopify-section-template--27949759168614__clinical" className="shopify-section">
+      <product-clinical
+        id="clinical-results"
+        className="product-clinical full-width section-width--widest color-scheme-2"
+        style={{ "--section-padding-top": "64px", "--section-padding-bottom": "64px" } as React.CSSProperties}
+      >
+        {" "}
+        <div className="product-clinical__inner">
+          <div className="product-clinical__intro" data-tab-item="">
+            <p className="eyebrow product-clinical__eyebrow">Clinical results</p>
+            <h2 className="product-clinical__heading">
+              Twelve weeks, 142 participants, <em>no retouching.</em>
+            </h2>
+          </div>
+          <div className="product-clinical__layout">
+            <div
+              className="product-clinical__compare"
+              style={{ "--pos": "50%" } as React.CSSProperties}
+              data-compare=""
+              data-tab-item=""
+            >
+              {" "}
+              <div className="product-clinical__frame">
+                <img
+                  src="/cdn/shop/files/1894ec2e516c8ad0a7fc78817f607230629fa0c2.png?v=1793709399&width=1600"
+                  alt="Week 0"
+                  srcSet="/cdn/shop/files/1894ec2e516c8ad0a7fc78817f607230629fa0c2.png?v=1793709399&width=400 400w, /cdn/shop/files/1894ec2e516c8ad0a7fc78817f607230629fa0c2.png?v=1793709399&width=600 600w, /cdn/shop/files/1894ec2e516c8ad0a7fc78817f607230629fa0c2.png?v=1793709399&width=800 800w, /cdn/shop/files/1894ec2e516c8ad0a7fc78817f607230629fa0c2.png?v=1793709399&width=1100 1100w, /cdn/shop/files/1894ec2e516c8ad0a7fc78817f607230629fa0c2.png?v=1793709399&width=1400 1400w, /cdn/shop/files/1894ec2e516c8ad0a7fc78817f607230629fa0c2.png?v=1793709399&width=1600 1600w"
+                  width="1600"
+                  height="1216"
+                  loading="lazy"
+                  sizes="(min-width: 1200px) 43vw, 94vw"
+                  className="product-clinical__image"
+                />{" "}
+              </div>{" "}
+              <div className="product-clinical__frame product-clinical__frame--after">
+                <img
+                  src="/cdn/shop/files/81ac94d9974a1d94cc98afcdf48e6c63991272a9.png?v=1793709419&width=1600"
+                  alt="Week 12"
+                  srcSet="/cdn/shop/files/81ac94d9974a1d94cc98afcdf48e6c63991272a9.png?v=1793709419&width=400 400w, /cdn/shop/files/81ac94d9974a1d94cc98afcdf48e6c63991272a9.png?v=1793709419&width=600 600w, /cdn/shop/files/81ac94d9974a1d94cc98afcdf48e6c63991272a9.png?v=1793709419&width=800 800w, /cdn/shop/files/81ac94d9974a1d94cc98afcdf48e6c63991272a9.png?v=1793709419&width=1100 1100w, /cdn/shop/files/81ac94d9974a1d94cc98afcdf48e6c63991272a9.png?v=1793709419&width=1400 1400w, /cdn/shop/files/81ac94d9974a1d94cc98afcdf48e6c63991272a9.png?v=1793709419&width=1600 1600w"
+                  width="1600"
+                  height="1216"
+                  loading="lazy"
+                  sizes="(min-width: 1200px) 43vw, 94vw"
+                  className="product-clinical__image"
+                />{" "}
+              </div>
+              <span className="product-clinical__tag product-clinical__tag--before" aria-hidden="true">
+                Week 0
+              </span>
+              <span className="product-clinical__tag product-clinical__tag--after" aria-hidden="true">
+                Week 12
+              </span>
+              <span className="product-clinical__line" aria-hidden="true">
+                {" "}
+                <span className="product-clinical__handle">
+                  {" "}
+                  <span className="product-clinical__handle-icon">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      width="18"
+                      height="15"
+                      viewBox="0 0 18 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16.2637 7.24164L16.7974 7.76826C17.0858 7.47599 17.0858 7.00631 16.7974 6.71437L16.2637 7.24164ZM0.751213 6.48744C0.337 6.48733 0.000923157 6.82302 0.000564575 7.23724C0.000205994 7.65145 0.335702 7.98733 0.749915 7.98744L0.750564 7.23744L0.751213 6.48744ZM9.31669 13.2142C9.02566 13.5092 9.02869 13.984 9.32344 14.2749C9.61819 14.5657 10.0931 14.5624 10.3841 14.2675L9.85038 13.7409L9.31669 13.2142ZM10.3841 0.222766C10.0931 -0.0718116 9.61819 -0.0745506 9.32344 0.216648C9.02869 0.507847 9.02566 0.982713 9.31669 1.27729L9.85038 0.750029L10.3841 0.222766ZM16.2637 7.24164L16.2643 6.49164L0.751213 6.48744L0.750564 7.23744L0.749915 7.98744L16.263 7.99164L16.2637 7.24164ZM16.2637 7.24164L15.73 6.71501L9.31669 13.2142L9.85038 13.7409L10.3841 14.2675L16.7974 7.76826L16.2637 7.24164ZM16.2637 7.24164L16.7974 6.71437L10.3841 0.222766L9.85038 0.750029L9.31669 1.27729L15.73 7.7689L16.2637 7.24164Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>{" "}
+                  </span>{" "}
+                  <span className="product-clinical__handle-icon product-clinical__handle-icon--right">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      width="18"
+                      height="15"
+                      viewBox="0 0 18 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16.2637 7.24164L16.7974 7.76826C17.0858 7.47599 17.0858 7.00631 16.7974 6.71437L16.2637 7.24164ZM0.751213 6.48744C0.337 6.48733 0.000923157 6.82302 0.000564575 7.23724C0.000205994 7.65145 0.335702 7.98733 0.749915 7.98744L0.750564 7.23744L0.751213 6.48744ZM9.31669 13.2142C9.02566 13.5092 9.02869 13.984 9.32344 14.2749C9.61819 14.5657 10.0931 14.5624 10.3841 14.2675L9.85038 13.7409L9.31669 13.2142ZM10.3841 0.222766C10.0931 -0.0718116 9.61819 -0.0745506 9.32344 0.216648C9.02869 0.507847 9.02566 0.982713 9.31669 1.27729L9.85038 0.750029L10.3841 0.222766ZM16.2637 7.24164L16.2643 6.49164L0.751213 6.48744L0.750564 7.23744L0.749915 7.98744L16.263 7.99164L16.2637 7.24164ZM16.2637 7.24164L15.73 6.71501L9.31669 13.2142L9.85038 13.7409L10.3841 14.2675L16.7974 7.76826L16.2637 7.24164ZM16.2637 7.24164L16.7974 6.71437L10.3841 0.222766L9.85038 0.750029L9.31669 1.27729L15.73 7.7689L16.2637 7.24164Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>{" "}
+                  </span>{" "}
+                </span>{" "}
+              </span>{" "}
+              <input
+                id="CompareRange-template--27949759168614__clinical"
+                className="product-clinical__range"
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                defaultValue="50"
+                aria-label="Compare Week 0 and Week 12"
+                aria-valuetext="50% of the before image shows"
+                data-valuetext="[percent]% of the before image shows"
+                data-compare-range=""
+              />{" "}
+            </div>
+            <div className="product-clinical__rings" data-tab-item="" aria-hidden="true">
+              {" "}
+              <svg className="product-clinical__svg" viewBox="0 0 100 100" focusable="false">
+                <circle className="product-clinical__track" cx="50" cy="50" r="47.0" pathLength="100"></circle>{" "}
+                <circle
+                  className="product-clinical__arc product-clinical__arc--lead"
+                  cx="50"
+                  cy="50"
+                  r="47.0"
+                  pathLength="100"
+                  style={{ "--value": "94", "--ring": "0" } as React.CSSProperties}
+                ></circle>
+                <circle className="product-clinical__track" cx="50" cy="50" r="39.5" pathLength="100"></circle>{" "}
+                <circle
+                  className="product-clinical__arc"
+                  cx="50"
+                  cy="50"
+                  r="39.5"
+                  pathLength="100"
+                  style={{ "--value": "88", "--ring": "1" } as React.CSSProperties}
+                ></circle>
+                <circle className="product-clinical__track" cx="50" cy="50" r="32.0" pathLength="100"></circle>{" "}
+                <circle
+                  className="product-clinical__arc"
+                  cx="50"
+                  cy="50"
+                  r="32.0"
+                  pathLength="100"
+                  style={{ "--value": "79", "--ring": "2" } as React.CSSProperties}
+                ></circle>
+                <circle className="product-clinical__track" cx="50" cy="50" r="24.5" pathLength="100"></circle>{" "}
+                <circle
+                  className="product-clinical__arc"
+                  cx="50"
+                  cy="50"
+                  r="24.5"
+                  pathLength="100"
+                  style={{ "--value": "97", "--ring": "3" } as React.CSSProperties}
+                ></circle>
+              </svg>{" "}
+              <p className="product-clinical__centre">
+                {" "}
+                <span className="product-clinical__centre-value">94%</span>
+                <span className="product-clinical__centre-label">Radiance</span>
+              </p>{" "}
+            </div>
+            <dl className="product-clinical__results" data-tab-item="">
+              <div className="product-clinical__result product-clinical__result--lead">
+                {" "}
+                <dt>
+                  reported visibly brighter skin<span className="visually-hidden"> (Radiance)</span>
+                </dt>{" "}
+                <dd>94%</dd>{" "}
+              </div>
+              <div className="product-clinical__result">
+                {" "}
+                <dt>measured improved elasticity</dt> <dd>88%</dd>{" "}
+              </div>
+              <div className="product-clinical__result">
+                {" "}
+                <dt>saw reduced pigmentation</dt> <dd>79%</dd>{" "}
+              </div>
+              <div className="product-clinical__result">
+                {" "}
+                <dt>found it comfortable daily</dt> <dd>97%</dd>{" "}
+              </div>
+            </dl>
+          </div>
+        </div>{" "}
+      </product-clinical>{" "}
+    </section>
+  );
+}

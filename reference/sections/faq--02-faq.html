@@ -1,0 +1,854 @@
+<section id="shopify-section-template--27949758775398__faq" class="shopify-section">
+
+
+
+
+<faq-page
+  class="faq full-width section-width--widest color-scheme-2 section--screen-scale section--fill-screen"
+  style="--section-padding-top: 24px; --section-padding-bottom: 80px; --text-boost: 1.1; --faq-row-radius: 19px;"
+  data-view="overview"
+  data-label-count-one="[count] answer"
+  data-label-count-other="[count] answers"
+  data-label-results="Results for “[query]”"
+  data-label-all="All subjects"
+  data-label-thanks="Thank you, we’re glad it helped."
+  data-label-no-results="No answers found. Try another word, or write to us below."
+  
+    itemscope
+    itemtype="https://schema.org/FAQPage"
+  
+>
+  <div class="faq__inner">
+
+<nav class="breadcrumb faq__breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li><li aria-current="page">faq</li>
+  </ol>
+</nav>
+
+
+
+<nav class="faq__pills" aria-label="FAQ topics" hidden>
+      <span class="faq__pill-arrow" hidden><svg aria-hidden="true" focusable="false" width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.2637 7.24164L16.7974 7.76826C17.0858 7.47599 17.0858 7.00631 16.7974 6.71437L16.2637 7.24164ZM0.751213 6.48744C0.337 6.48733 0.000923157 6.82302 0.000564575 7.23724C0.000205994 7.65145 0.335702 7.98733 0.749915 7.98744L0.750564 7.23744L0.751213 6.48744ZM9.31669 13.2142C9.02566 13.5092 9.02869 13.984 9.32344 14.2749C9.61819 14.5657 10.0931 14.5624 10.3841 14.2675L9.85038 13.7409L9.31669 13.2142ZM10.3841 0.222766C10.0931 -0.0718116 9.61819 -0.0745506 9.32344 0.216648C9.02869 0.507847 9.02566 0.982713 9.31669 1.27729L9.85038 0.750029L10.3841 0.222766ZM16.2637 7.24164L16.2643 6.49164L0.751213 6.48744L0.750564 7.23744L0.749915 7.98744L16.263 7.99164L16.2637 7.24164ZM16.2637 7.24164L15.73 6.71501L9.31669 13.2142L9.85038 13.7409L10.3841 14.2675L16.7974 7.76826L16.2637 7.24164ZM16.2637 7.24164L16.7974 6.71437L10.3841 0.222766L9.85038 0.750029L9.31669 1.27729L15.73 7.7689L16.2637 7.24164Z" fill="currentColor"/></svg>
+</span>
+      <ul class="faq__pills-list" role="list" data-faq-pills></ul>
+    </nav>
+
+    <div class="faq__intro"><p class="eyebrow eyebrow--center faq__eyebrow">How can we help?</p><h1 class="faq__heading">Ask us <em>anything.</em>
+</h1><div class="faq__text"><p>Find quick answers to your questions about our services, billing, or account setup. If you cannot find what you need, our team is always ready to assist you.</p></div><form class="faq__search" role="search" data-faq-search>
+        <label class="visually-hidden" for="FaqSearch-template--27949758775398__faq">Search the questions</label>
+        <input
+          class="faq__search-input"
+          id="FaqSearch-template--27949758775398__faq"
+          type="search"
+          name="q"
+          autocomplete="off"
+          placeholder="What are you looking for?"
+        >
+        <span class="faq__search-icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.49928 1.91687e-08C7.14387 0.000115492 5.80814 0.324364 4.60353 0.945694C3.39893 1.56702 2.36037 2.46742 1.57451 3.57175C0.788656 4.67609 0.278287 5.95235 0.0859852 7.29404C-0.106316 8.63574 0.0250263 10.004 0.469055 11.2846C0.913084 12.5652 1.65692 13.7211 2.63851 14.6557C3.6201 15.5904 4.81098 16.2768 6.11179 16.6576C7.4126 17.0384 8.78562 17.1026 10.1163 16.8449C11.447 16.5872 12.6967 16.015 13.7613 15.176L17.4133 18.828C17.6019 19.0102 17.8545 19.111 18.1167 19.1087C18.3789 19.1064 18.6297 19.0012 18.8151 18.8158C19.0005 18.6304 19.1057 18.3796 19.108 18.1174C19.1102 17.8552 19.0094 17.6026 18.8273 17.414L15.1753 13.762C16.1633 12.5086 16.7784 11.0024 16.9504 9.41573C17.1223 7.82905 16.8441 6.22602 16.1475 4.79009C15.4509 3.35417 14.3642 2.14336 13.0116 1.29623C11.659 0.449106 10.0952 -0.000107143 8.49928 1.91687e-08ZM1.99928 8.5C1.99928 6.77609 2.6841 5.12279 3.90308 3.90381C5.12207 2.68482 6.77537 2 8.49928 2C10.2232 2 11.8765 2.68482 13.0955 3.90381C14.3145 5.12279 14.9993 6.77609 14.9993 8.5C14.9993 10.2239 14.3145 11.8772 13.0955 13.0962C11.8765 14.3152 10.2232 15 8.49928 15C6.77537 15 5.12207 14.3152 3.90308 13.0962C2.6841 11.8772 1.99928 10.2239 1.99928 8.5Z" fill="currentColor"/></svg>
+</span><button type="button" class="faq__search-clear" data-faq-search-clear hidden>
+          <span class="visually-hidden">Clear the search</span><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+</button>
+      </form>
+    </div><div class="faq__results" data-faq-results hidden>
+      <div class="faq__results-head">
+        <h2 class="faq__results-title" data-faq-results-title tabindex="-1"></h2>
+        <p class="faq__results-count" data-faq-results-count></p>
+      </div>
+      <ul class="faq__results-list" role="list" data-faq-results-list></ul>
+      <p class="faq__results-empty" data-faq-results-empty hidden>No answers found. Try another word, or write to us below.</p>
+    </div><p class="visually-hidden" role="status" data-faq-status></p><div class="faq__topics">
+        <div
+  class="faq-topic"
+  data-faq-topic
+  data-handle="order-shipping"
+  data-title="Order &amp; Shipping"
+  
+>
+  <a class="faq-topic__card" href="#order-shipping">
+    <span class="faq-topic__number" aria-hidden="true"></span>
+    <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.9375 0L17.875 4.46875V15.6406L8.9375 20.0986L0 15.6406V4.46875L8.9375 0ZM15.6514 4.89844L8.9375 1.54688L6.34863 2.83594L13.0195 6.20898L15.6514 4.89844ZM8.9375 8.25L11.4941 6.98242L4.8125 3.60938L2.22363 4.89844L8.9375 8.25ZM1.375 6.01562V14.7812L8.25 18.2188V9.45312L1.375 6.01562ZM9.625 18.2188L16.5 14.7812V6.01562L9.625 9.45312V18.2188Z" fill="currentColor"/>
+</svg>
+</span>
+    <span class="faq-topic__title">Order &amp; Shipping</span><span class="faq-topic__text">Delivery windows, tracking, packaging</span><span class="faq-topic__footer">
+      <span class="faq-topic__count">4 answers</span>
+      <span class="faq-topic__arrow" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.95039 0.394074L15.6198 7.05525C15.7413 7.18195 15.8365 7.33135 15.8999 7.49489C16.0334 7.81923 16.0334 8.18304 15.8999 8.50739C15.8365 8.67092 15.7413 8.82032 15.6198 8.94702L8.95039 15.6082C8.82602 15.7324 8.67837 15.8309 8.51587 15.8982C8.35337 15.9654 8.17921 16 8.00332 16C7.64811 16 7.30744 15.8591 7.05626 15.6082C6.80509 15.3573 6.66398 15.0171 6.66398 14.6623C6.66398 14.3075 6.80509 13.9673 7.05626 13.7164L11.4581 9.33337L1.33389 9.33337C0.980118 9.33337 0.640838 9.19301 0.390685 8.94317C0.140532 8.69333 0 8.35447 0 8.00114C0 7.64781 0.140532 7.30895 0.390685 7.0591C0.640838 6.80926 0.980118 6.6689 1.33389 6.6689L11.4581 6.6689L7.05626 2.28585C6.93124 2.162 6.83201 2.01465 6.76429 1.85231C6.69657 1.68996 6.6617 1.51583 6.6617 1.33996C6.6617 1.16409 6.69657 0.989959 6.76429 0.827614C6.83201 0.665269 6.93124 0.517923 7.05626 0.394074C7.18027 0.269207 7.3278 0.170094 7.49034 0.102458C7.65289 0.0348225 7.82724 9.53674e-07 8.00332 9.53674e-07C8.17941 9.53674e-07 8.35376 0.0348225 8.51631 0.102458C8.67885 0.170094 8.82638 0.269207 8.95039 0.394074Z" fill="currentColor"/>
+</svg>
+</span>
+    </span>
+  </a>
+
+  <section class="faq-topic__panel" id="order-shipping" aria-labelledby="FaqTopic-AYnFoQnFqVDlZNUN0Z__shipping">
+    <header class="faq-topic__head">
+      <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.9375 0L17.875 4.46875V15.6406L8.9375 20.0986L0 15.6406V4.46875L8.9375 0ZM15.6514 4.89844L8.9375 1.54688L6.34863 2.83594L13.0195 6.20898L15.6514 4.89844ZM8.9375 8.25L11.4941 6.98242L4.8125 3.60938L2.22363 4.89844L8.9375 8.25ZM1.375 6.01562V14.7812L8.25 18.2188V9.45312L1.375 6.01562ZM9.625 18.2188L16.5 14.7812V6.01562L9.625 9.45312V18.2188Z" fill="currentColor"/>
+</svg>
+</span>
+      <div>
+        <h2 class="faq-topic__heading" id="FaqTopic-AYnFoQnFqVDlZNUN0Z__shipping">Order &amp; Shipping</h2><p class="faq-topic__line">Delivery windows, tracking, packaging</p></div>
+    </header>
+
+    <div class="faq-topic__list">
+      <div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">How long does delivery take?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Complimentary express delivery arrives in 2–3 business days worldwide. Each parcel ships from the nearest atelier — Paris, New York, or Seoul — so nothing crosses more borders than it has to.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Where is my order right now?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Open your account and choose Orders: every parcel has its live tracking link there. You also receive it by email the moment your order leaves the atelier.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Do you ship internationally?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Yes, to more than 60 countries. Duties and taxes are shown at checkout, so there is nothing more to pay on delivery.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">How is my order packaged?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>In recycled card and paper only, without plastic fillers. Refills travel in their own sleeve, ready to slip into your case.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+
+</div><div class="faq-answer" id="FaqAnswer-AYnFoQnFqVDlZNUN0Z__shipping" data-faq-card>
+      <span class="faq-answer__number" data-faq-card-number aria-hidden="true"></span>
+      <p class="faq-answer__label">Order &amp; Shipping</p>
+      <h3 class="faq-answer__question" data-faq-card-question tabindex="-1"></h3>
+      <span class="faq-answer__rule" aria-hidden="true"></span>
+      <div class="faq-answer__text" data-faq-card-answer></div>
+
+      <div class="faq-answer__footer" data-faq-feedback>
+        <p class="faq-answer__ask">Did this answer help?</p>
+        <button type="button" class="button button--secondary faq-answer__yes" data-faq-yes>Yes</button><a class="button faq-answer__human" href="/pages/contact">Ask human</a></div>
+      <p class="faq-answer__thanks" data-faq-thanks role="status"></p>
+    </div>
+  </section>
+</div>
+
+
+<div
+  class="faq-topic"
+  data-faq-topic
+  data-handle="my-account"
+  data-title="My Account"
+  
+>
+  <a class="faq-topic__card" href="#my-account">
+    <span class="faq-topic__number" aria-hidden="true"></span>
+    <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 17.3333V16.1667C1 13.5883 3.08833 11.5 5.66667 11.5H10.3333C12.9117 11.5 15 13.5883 15 16.1667V17.3333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8C6.06333 8 4.5 6.43667 4.5 4.5C4.5 2.56333 6.06333 1 8 1C9.93667 1 11.5 2.56333 11.5 4.5C11.5 6.43667 9.93667 8 8 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</span>
+    <span class="faq-topic__title">My Account</span><span class="faq-topic__text">Sign in, profile, saved details</span><span class="faq-topic__footer">
+      <span class="faq-topic__count">4 answers</span>
+      <span class="faq-topic__arrow" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.95039 0.394074L15.6198 7.05525C15.7413 7.18195 15.8365 7.33135 15.8999 7.49489C16.0334 7.81923 16.0334 8.18304 15.8999 8.50739C15.8365 8.67092 15.7413 8.82032 15.6198 8.94702L8.95039 15.6082C8.82602 15.7324 8.67837 15.8309 8.51587 15.8982C8.35337 15.9654 8.17921 16 8.00332 16C7.64811 16 7.30744 15.8591 7.05626 15.6082C6.80509 15.3573 6.66398 15.0171 6.66398 14.6623C6.66398 14.3075 6.80509 13.9673 7.05626 13.7164L11.4581 9.33337L1.33389 9.33337C0.980118 9.33337 0.640838 9.19301 0.390685 8.94317C0.140532 8.69333 0 8.35447 0 8.00114C0 7.64781 0.140532 7.30895 0.390685 7.0591C0.640838 6.80926 0.980118 6.6689 1.33389 6.6689L11.4581 6.6689L7.05626 2.28585C6.93124 2.162 6.83201 2.01465 6.76429 1.85231C6.69657 1.68996 6.6617 1.51583 6.6617 1.33996C6.6617 1.16409 6.69657 0.989959 6.76429 0.827614C6.83201 0.665269 6.93124 0.517923 7.05626 0.394074C7.18027 0.269207 7.3278 0.170094 7.49034 0.102458C7.65289 0.0348225 7.82724 9.53674e-07 8.00332 9.53674e-07C8.17941 9.53674e-07 8.35376 0.0348225 8.51631 0.102458C8.67885 0.170094 8.82638 0.269207 8.95039 0.394074Z" fill="currentColor"/>
+</svg>
+</span>
+    </span>
+  </a>
+
+  <section class="faq-topic__panel" id="my-account" aria-labelledby="FaqTopic-AcFRhK0FMWC91Ui8we__account">
+    <header class="faq-topic__head">
+      <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 17.3333V16.1667C1 13.5883 3.08833 11.5 5.66667 11.5H10.3333C12.9117 11.5 15 13.5883 15 16.1667V17.3333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8C6.06333 8 4.5 6.43667 4.5 4.5C4.5 2.56333 6.06333 1 8 1C9.93667 1 11.5 2.56333 11.5 4.5C11.5 6.43667 9.93667 8 8 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</span>
+      <div>
+        <h2 class="faq-topic__heading" id="FaqTopic-AcFRhK0FMWC91Ui8we__account">My Account</h2><p class="faq-topic__line">Sign in, profile, saved details</p></div>
+    </header>
+
+    <div class="faq-topic__list">
+      <div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">How do I create an account?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Choose Login in the top navigation and switch to Create Account. You only need a name, an email and a password — we never ask for anything we do not use.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">I have forgotten my password.</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Choose Login, then Forgot your password, and enter your email. We send you a link to choose a new one; it stays valid for 24 hours.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Can I change my saved address?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Yes. In your account, open Addresses to edit, add or remove one, and choose which is your default for checkout.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">How do I close my account?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Write to us from the contact page with the email of your account. We close it within two working days and confirm once your data is deleted.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+
+</div><div class="faq-answer" id="FaqAnswer-AcFRhK0FMWC91Ui8we__account" data-faq-card>
+      <span class="faq-answer__number" data-faq-card-number aria-hidden="true"></span>
+      <p class="faq-answer__label">My Account</p>
+      <h3 class="faq-answer__question" data-faq-card-question tabindex="-1"></h3>
+      <span class="faq-answer__rule" aria-hidden="true"></span>
+      <div class="faq-answer__text" data-faq-card-answer></div>
+
+      <div class="faq-answer__footer" data-faq-feedback>
+        <p class="faq-answer__ask">Did this answer help?</p>
+        <button type="button" class="button button--secondary faq-answer__yes" data-faq-yes>Yes</button><a class="button faq-answer__human" href="/pages/contact">Ask human</a></div>
+      <p class="faq-answer__thanks" data-faq-thanks role="status"></p>
+    </div>
+  </section>
+</div>
+
+
+<div
+  class="faq-topic"
+  data-faq-topic
+  data-handle="returns-exchanges"
+  data-title="Returns &amp; Exchanges"
+  
+>
+  <a class="faq-topic__card" href="#returns-exchanges">
+    <span class="faq-topic__number" aria-hidden="true"></span>
+    <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.99219 8.18717C7.93276 6.4626 9.13619 5.87974 11.4642 5.45117C13.7922 5.88146 14.9956 6.4626 16.9362 8.18717L11.4642 10.9232L5.99219 8.18717Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+<path d="M11.4647 17.269C11.3435 17.269 11.2222 17.2561 11.103 17.2304C9.21387 16.8172 8.05501 16.2978 6.3613 14.8852C6.1161 14.6829 5.93701 14.4118 5.84701 14.1069C5.31215 12.2469 5.31901 10.0389 5.99272 8.1875L11.4647 10.9235M11.4647 17.269C11.586 17.269 11.7072 17.2561 11.8264 17.2304C13.7156 16.8172 14.8744 16.2978 16.5664 14.8852C16.8123 14.6831 16.992 14.412 17.0824 14.1069C17.6173 12.2469 17.6104 10.0389 16.9367 8.1875L11.4647 10.9235M11.4647 17.269V10.9235M11.4647 17.269V17.3058M11.4647 10.9235V10.9098" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+<path d="M0.75 11.4684C0.749079 9.0832 1.54411 6.76586 3.00912 4.88355C4.47414 3.00125 6.52537 1.66162 8.83783 1.07691C11.1503 0.492206 13.5917 0.695855 15.7754 1.65559C17.959 2.61533 19.7599 4.27628 20.8929 6.37529C21.0231 4.48615 20.9837 3.40615 20.7214 1.44672M22.1786 11.4684C22.1793 13.8487 21.3874 16.1614 19.9279 18.0417C18.4684 19.9219 16.4243 21.2626 14.1182 21.8522C11.8121 22.4418 9.3754 22.2467 7.19252 21.2977C5.00964 20.3487 3.20492 18.6998 2.06314 16.6113C1.93286 18.5004 1.97057 19.5804 2.23457 21.5399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+</svg>
+</span>
+    <span class="faq-topic__title">Returns &amp; Exchanges</span><span class="faq-topic__text">Sixty days, collected from your door</span><span class="faq-topic__footer">
+      <span class="faq-topic__count">4 answers</span>
+      <span class="faq-topic__arrow" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.95039 0.394074L15.6198 7.05525C15.7413 7.18195 15.8365 7.33135 15.8999 7.49489C16.0334 7.81923 16.0334 8.18304 15.8999 8.50739C15.8365 8.67092 15.7413 8.82032 15.6198 8.94702L8.95039 15.6082C8.82602 15.7324 8.67837 15.8309 8.51587 15.8982C8.35337 15.9654 8.17921 16 8.00332 16C7.64811 16 7.30744 15.8591 7.05626 15.6082C6.80509 15.3573 6.66398 15.0171 6.66398 14.6623C6.66398 14.3075 6.80509 13.9673 7.05626 13.7164L11.4581 9.33337L1.33389 9.33337C0.980118 9.33337 0.640838 9.19301 0.390685 8.94317C0.140532 8.69333 0 8.35447 0 8.00114C0 7.64781 0.140532 7.30895 0.390685 7.0591C0.640838 6.80926 0.980118 6.6689 1.33389 6.6689L11.4581 6.6689L7.05626 2.28585C6.93124 2.162 6.83201 2.01465 6.76429 1.85231C6.69657 1.68996 6.6617 1.51583 6.6617 1.33996C6.6617 1.16409 6.69657 0.989959 6.76429 0.827614C6.83201 0.665269 6.93124 0.517923 7.05626 0.394074C7.18027 0.269207 7.3278 0.170094 7.49034 0.102458C7.65289 0.0348225 7.82724 9.53674e-07 8.00332 9.53674e-07C8.17941 9.53674e-07 8.35376 0.0348225 8.51631 0.102458C8.67885 0.170094 8.82638 0.269207 8.95039 0.394074Z" fill="currentColor"/>
+</svg>
+</span>
+    </span>
+  </a>
+
+  <section class="faq-topic__panel" id="returns-exchanges" aria-labelledby="FaqTopic-AZGlsY1RsMDcrYS9SM__returns">
+    <header class="faq-topic__head">
+      <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.99219 8.18717C7.93276 6.4626 9.13619 5.87974 11.4642 5.45117C13.7922 5.88146 14.9956 6.4626 16.9362 8.18717L11.4642 10.9232L5.99219 8.18717Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+<path d="M11.4647 17.269C11.3435 17.269 11.2222 17.2561 11.103 17.2304C9.21387 16.8172 8.05501 16.2978 6.3613 14.8852C6.1161 14.6829 5.93701 14.4118 5.84701 14.1069C5.31215 12.2469 5.31901 10.0389 5.99272 8.1875L11.4647 10.9235M11.4647 17.269C11.586 17.269 11.7072 17.2561 11.8264 17.2304C13.7156 16.8172 14.8744 16.2978 16.5664 14.8852C16.8123 14.6831 16.992 14.412 17.0824 14.1069C17.6173 12.2469 17.6104 10.0389 16.9367 8.1875L11.4647 10.9235M11.4647 17.269V10.9235M11.4647 17.269V17.3058M11.4647 10.9235V10.9098" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+<path d="M0.75 11.4684C0.749079 9.0832 1.54411 6.76586 3.00912 4.88355C4.47414 3.00125 6.52537 1.66162 8.83783 1.07691C11.1503 0.492206 13.5917 0.695855 15.7754 1.65559C17.959 2.61533 19.7599 4.27628 20.8929 6.37529C21.0231 4.48615 20.9837 3.40615 20.7214 1.44672M22.1786 11.4684C22.1793 13.8487 21.3874 16.1614 19.9279 18.0417C18.4684 19.9219 16.4243 21.2626 14.1182 21.8522C11.8121 22.4418 9.3754 22.2467 7.19252 21.2977C5.00964 20.3487 3.20492 18.6998 2.06314 16.6113C1.93286 18.5004 1.97057 19.5804 2.23457 21.5399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+</svg>
+</span>
+      <div>
+        <h2 class="faq-topic__heading" id="FaqTopic-AZGlsY1RsMDcrYS9SM__returns">Returns &amp; Exchanges</h2><p class="faq-topic__line">Sixty days, collected from your door</p></div>
+    </header>
+
+    <div class="faq-topic__list">
+      <div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">What is your return policy?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>You have sixty days to return any unopened product, and thirty days for opened skincare that did not suit you. Returns are always free.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">How do I start a return?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Open the order in your account and choose Return items, or write to us. We book a courier to collect the parcel from your door.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Can I exchange a shade or size?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Yes. Choose Exchange instead of Return and pick the new shade or size; we send it as soon as the courier has collected the first one.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">When will I get my refund?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Within five working days after the parcel reaches us, back to the card or account you paid with.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+
+</div><div class="faq-answer" id="FaqAnswer-AZGlsY1RsMDcrYS9SM__returns" data-faq-card>
+      <span class="faq-answer__number" data-faq-card-number aria-hidden="true"></span>
+      <p class="faq-answer__label">Returns &amp; Exchanges</p>
+      <h3 class="faq-answer__question" data-faq-card-question tabindex="-1"></h3>
+      <span class="faq-answer__rule" aria-hidden="true"></span>
+      <div class="faq-answer__text" data-faq-card-answer></div>
+
+      <div class="faq-answer__footer" data-faq-feedback>
+        <p class="faq-answer__ask">Did this answer help?</p>
+        <button type="button" class="button button--secondary faq-answer__yes" data-faq-yes>Yes</button><a class="button faq-answer__human" href="/pages/contact">Ask human</a></div>
+      <p class="faq-answer__thanks" data-faq-thanks role="status"></p>
+    </div>
+  </section>
+</div>
+
+
+<div
+  class="faq-topic"
+  data-faq-topic
+  data-handle="payment-billing"
+  data-title="Payment &amp; Billing"
+  
+>
+  <a class="faq-topic__card" href="#payment-billing">
+    <span class="faq-topic__number" aria-hidden="true"></span>
+    <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="23" height="17" viewBox="0 0 23 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.4375 11.375C15.222 11.375 15.0153 11.4606 14.863 11.613C14.7106 11.7653 14.625 11.972 14.625 12.1875C14.625 12.403 14.7106 12.6097 14.863 12.762C15.0153 12.9144 15.222 13 15.4375 13H18.6875C18.903 13 19.1097 12.9144 19.262 12.762C19.4144 12.6097 19.5 12.403 19.5 12.1875C19.5 11.972 19.4144 11.7653 19.262 11.613C19.1097 11.4606 18.903 11.375 18.6875 11.375H15.4375ZM0 4.0625C0 2.98506 0.428012 1.95175 1.18988 1.18988C1.95175 0.428012 2.98506 0 4.0625 0H18.6875C19.7649 0 20.7983 0.428012 21.5601 1.18988C22.322 1.95175 22.75 2.98506 22.75 4.0625V12.1875C22.75 13.2649 22.322 14.2983 21.5601 15.0601C20.7983 15.822 19.7649 16.25 18.6875 16.25H4.0625C2.98506 16.25 1.95175 15.822 1.18988 15.0601C0.428012 14.2983 0 13.2649 0 12.1875V4.0625ZM21.125 4.875V4.0625C21.125 3.41603 20.8682 2.79605 20.4111 2.33893C19.954 1.88181 19.334 1.625 18.6875 1.625H4.0625C3.41603 1.625 2.79605 1.88181 2.33893 2.33893C1.88181 2.79605 1.625 3.41603 1.625 4.0625V4.875H21.125ZM1.625 6.5V12.1875C1.625 12.834 1.88181 13.454 2.33893 13.9111C2.79605 14.3682 3.41603 14.625 4.0625 14.625H18.6875C19.334 14.625 19.954 14.3682 20.4111 13.9111C20.8682 13.454 21.125 12.834 21.125 12.1875V6.5H1.625Z" fill="currentColor"/>
+</svg>
+</span>
+    <span class="faq-topic__title">Payment &amp; Billing</span><span class="faq-topic__text">Cards, invoices, promo codes</span><span class="faq-topic__footer">
+      <span class="faq-topic__count">4 answers</span>
+      <span class="faq-topic__arrow" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.95039 0.394074L15.6198 7.05525C15.7413 7.18195 15.8365 7.33135 15.8999 7.49489C16.0334 7.81923 16.0334 8.18304 15.8999 8.50739C15.8365 8.67092 15.7413 8.82032 15.6198 8.94702L8.95039 15.6082C8.82602 15.7324 8.67837 15.8309 8.51587 15.8982C8.35337 15.9654 8.17921 16 8.00332 16C7.64811 16 7.30744 15.8591 7.05626 15.6082C6.80509 15.3573 6.66398 15.0171 6.66398 14.6623C6.66398 14.3075 6.80509 13.9673 7.05626 13.7164L11.4581 9.33337L1.33389 9.33337C0.980118 9.33337 0.640838 9.19301 0.390685 8.94317C0.140532 8.69333 0 8.35447 0 8.00114C0 7.64781 0.140532 7.30895 0.390685 7.0591C0.640838 6.80926 0.980118 6.6689 1.33389 6.6689L11.4581 6.6689L7.05626 2.28585C6.93124 2.162 6.83201 2.01465 6.76429 1.85231C6.69657 1.68996 6.6617 1.51583 6.6617 1.33996C6.6617 1.16409 6.69657 0.989959 6.76429 0.827614C6.83201 0.665269 6.93124 0.517923 7.05626 0.394074C7.18027 0.269207 7.3278 0.170094 7.49034 0.102458C7.65289 0.0348225 7.82724 9.53674e-07 8.00332 9.53674e-07C8.17941 9.53674e-07 8.35376 0.0348225 8.51631 0.102458C8.67885 0.170094 8.82638 0.269207 8.95039 0.394074Z" fill="currentColor"/>
+</svg>
+</span>
+    </span>
+  </a>
+
+  <section class="faq-topic__panel" id="payment-billing" aria-labelledby="FaqTopic-ANzJhUkRaZEo1VWZiR__payment">
+    <header class="faq-topic__head">
+      <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="23" height="17" viewBox="0 0 23 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.4375 11.375C15.222 11.375 15.0153 11.4606 14.863 11.613C14.7106 11.7653 14.625 11.972 14.625 12.1875C14.625 12.403 14.7106 12.6097 14.863 12.762C15.0153 12.9144 15.222 13 15.4375 13H18.6875C18.903 13 19.1097 12.9144 19.262 12.762C19.4144 12.6097 19.5 12.403 19.5 12.1875C19.5 11.972 19.4144 11.7653 19.262 11.613C19.1097 11.4606 18.903 11.375 18.6875 11.375H15.4375ZM0 4.0625C0 2.98506 0.428012 1.95175 1.18988 1.18988C1.95175 0.428012 2.98506 0 4.0625 0H18.6875C19.7649 0 20.7983 0.428012 21.5601 1.18988C22.322 1.95175 22.75 2.98506 22.75 4.0625V12.1875C22.75 13.2649 22.322 14.2983 21.5601 15.0601C20.7983 15.822 19.7649 16.25 18.6875 16.25H4.0625C2.98506 16.25 1.95175 15.822 1.18988 15.0601C0.428012 14.2983 0 13.2649 0 12.1875V4.0625ZM21.125 4.875V4.0625C21.125 3.41603 20.8682 2.79605 20.4111 2.33893C19.954 1.88181 19.334 1.625 18.6875 1.625H4.0625C3.41603 1.625 2.79605 1.88181 2.33893 2.33893C1.88181 2.79605 1.625 3.41603 1.625 4.0625V4.875H21.125ZM1.625 6.5V12.1875C1.625 12.834 1.88181 13.454 2.33893 13.9111C2.79605 14.3682 3.41603 14.625 4.0625 14.625H18.6875C19.334 14.625 19.954 14.3682 20.4111 13.9111C20.8682 13.454 21.125 12.834 21.125 12.1875V6.5H1.625Z" fill="currentColor"/>
+</svg>
+</span>
+      <div>
+        <h2 class="faq-topic__heading" id="FaqTopic-ANzJhUkRaZEo1VWZiR__payment">Payment &amp; Billing</h2><p class="faq-topic__line">Cards, invoices, promo codes</p></div>
+    </header>
+
+    <div class="faq-topic__list">
+      <div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Which payment methods do you accept?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>All major cards, Shop Pay, Apple Pay, Google Pay and PayPal. The methods available in your country are shown at checkout.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Is my payment information secure?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Yes. Payments are handled by Shopify on encrypted connections, and we never see or store your full card number.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Can I get an invoice for my order?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Your order confirmation email is your receipt. For a company invoice with your tax number, write to us with the order number.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">How do I use a promo code?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Enter it in the Discount code field at checkout. One code applies per order, and the saving shows before you pay.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+
+</div><div class="faq-answer" id="FaqAnswer-ANzJhUkRaZEo1VWZiR__payment" data-faq-card>
+      <span class="faq-answer__number" data-faq-card-number aria-hidden="true"></span>
+      <p class="faq-answer__label">Payment &amp; Billing</p>
+      <h3 class="faq-answer__question" data-faq-card-question tabindex="-1"></h3>
+      <span class="faq-answer__rule" aria-hidden="true"></span>
+      <div class="faq-answer__text" data-faq-card-answer></div>
+
+      <div class="faq-answer__footer" data-faq-feedback>
+        <p class="faq-answer__ask">Did this answer help?</p>
+        <button type="button" class="button button--secondary faq-answer__yes" data-faq-yes>Yes</button><a class="button faq-answer__human" href="/pages/contact">Ask human</a></div>
+      <p class="faq-answer__thanks" data-faq-thanks role="status"></p>
+    </div>
+  </section>
+</div>
+
+
+<div
+  class="faq-topic"
+  data-faq-topic
+  data-handle="products-ingredients"
+  data-title="Products &amp; Ingredients"
+  
+>
+  <a class="faq-topic__card" href="#products-ingredients">
+    <span class="faq-topic__number" aria-hidden="true"></span>
+    <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="13" height="22" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.5 7.5H2C1.73478 7.5 1.48043 7.60536 1.29289 7.79289C1.10536 7.98043 1 8.23478 1 8.5V18C1 18 1 21 4 21H8C11 21 11 18 11 18V8.5C11 8.23478 10.8946 7.98043 10.7071 7.79289C10.5196 7.60536 10.2652 7.5 10 7.5H8.5M3.5 7.5H8.5M3.5 7.5V5M8.5 7.5V5M3.5 5H8.5M3.5 5V3.5C3.5 2 5 1 6.5 1H12C12 1 8.5 2 8.5 4V5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+</svg>
+</span>
+    <span class="faq-topic__title">Products &amp; Ingredients</span><span class="faq-topic__text">Formulas, suitability, results</span><span class="faq-topic__footer">
+      <span class="faq-topic__count">4 answers</span>
+      <span class="faq-topic__arrow" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.95039 0.394074L15.6198 7.05525C15.7413 7.18195 15.8365 7.33135 15.8999 7.49489C16.0334 7.81923 16.0334 8.18304 15.8999 8.50739C15.8365 8.67092 15.7413 8.82032 15.6198 8.94702L8.95039 15.6082C8.82602 15.7324 8.67837 15.8309 8.51587 15.8982C8.35337 15.9654 8.17921 16 8.00332 16C7.64811 16 7.30744 15.8591 7.05626 15.6082C6.80509 15.3573 6.66398 15.0171 6.66398 14.6623C6.66398 14.3075 6.80509 13.9673 7.05626 13.7164L11.4581 9.33337L1.33389 9.33337C0.980118 9.33337 0.640838 9.19301 0.390685 8.94317C0.140532 8.69333 0 8.35447 0 8.00114C0 7.64781 0.140532 7.30895 0.390685 7.0591C0.640838 6.80926 0.980118 6.6689 1.33389 6.6689L11.4581 6.6689L7.05626 2.28585C6.93124 2.162 6.83201 2.01465 6.76429 1.85231C6.69657 1.68996 6.6617 1.51583 6.6617 1.33996C6.6617 1.16409 6.69657 0.989959 6.76429 0.827614C6.83201 0.665269 6.93124 0.517923 7.05626 0.394074C7.18027 0.269207 7.3278 0.170094 7.49034 0.102458C7.65289 0.0348225 7.82724 9.53674e-07 8.00332 9.53674e-07C8.17941 9.53674e-07 8.35376 0.0348225 8.51631 0.102458C8.67885 0.170094 8.82638 0.269207 8.95039 0.394074Z" fill="currentColor"/>
+</svg>
+</span>
+    </span>
+  </a>
+
+  <section class="faq-topic__panel" id="products-ingredients" aria-labelledby="FaqTopic-ATml0Q1JuL0ZSNTI5a__products">
+    <header class="faq-topic__head">
+      <span class="faq-topic__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="13" height="22" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.5 7.5H2C1.73478 7.5 1.48043 7.60536 1.29289 7.79289C1.10536 7.98043 1 8.23478 1 8.5V18C1 18 1 21 4 21H8C11 21 11 18 11 18V8.5C11 8.23478 10.8946 7.98043 10.7071 7.79289C10.5196 7.60536 10.2652 7.5 10 7.5H8.5M3.5 7.5H8.5M3.5 7.5V5M8.5 7.5V5M3.5 5H8.5M3.5 5V3.5C3.5 2 5 1 6.5 1H12C12 1 8.5 2 8.5 4V5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+</svg>
+</span>
+      <div>
+        <h2 class="faq-topic__heading" id="FaqTopic-ATml0Q1JuL0ZSNTI5a__products">Products &amp; Ingredients</h2><p class="faq-topic__line">Formulas, suitability, results</p></div>
+    </header>
+
+    <div class="faq-topic__list">
+      <div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Are your formulas suitable for sensitive skin?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Every formula is dermatologist-tested, fragrance-optional and free of drying alcohols. The Frost and Pearl lines are built specifically for reactive skin.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Is the gold in your formulas real?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Yes. Our gold-infused formulas use pure 24-carat gold leaf, suspended in small amounts for radiance; it is safe on skin and never coloured.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">How long until I see results?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Most clients see a difference in texture within two weeks, and in tone and firmness after six to eight weeks of daily use.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+<div
+    class="faq-question"
+    data-faq-question
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+    
+  >
+    <details class="faq-question__details">
+      <summary class="faq-question__row">
+        <span class="faq-question__number" aria-hidden="true"></span>
+        <span class="faq-question__text" itemprop="name">Do you test on animals?</span>
+      </summary>
+      <div
+        class="faq-question__answer"
+        data-faq-answer
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <div itemprop="text"><p>Never. OroSkin is cruelty-free and vegan, and none of our ingredient suppliers test on animals either.</p></div>
+      </div>
+    </details>
+  </div>
+
+
+
+</div><div class="faq-answer" id="FaqAnswer-ATml0Q1JuL0ZSNTI5a__products" data-faq-card>
+      <span class="faq-answer__number" data-faq-card-number aria-hidden="true"></span>
+      <p class="faq-answer__label">Products &amp; Ingredients</p>
+      <h3 class="faq-answer__question" data-faq-card-question tabindex="-1"></h3>
+      <span class="faq-answer__rule" aria-hidden="true"></span>
+      <div class="faq-answer__text" data-faq-card-answer></div>
+
+      <div class="faq-answer__footer" data-faq-feedback>
+        <p class="faq-answer__ask">Did this answer help?</p>
+        <button type="button" class="button button--secondary faq-answer__yes" data-faq-yes>Yes</button><a class="button faq-answer__human" href="/pages/contact">Ask human</a></div>
+      <p class="faq-answer__thanks" data-faq-thanks role="status"></p>
+    </div>
+  </section>
+</div>
+
+
+
+      </div>
+<div class="faq-contact faq-contact--glass ">
+  <div class="faq-contact__card">
+    <div class="faq-contact__copy"><h2 class="faq-contact__heading">Still unanswered?</h2><p class="faq-contact__text">A real person replies within one working day — usually within the hour, Paris time.</p></div>
+
+    <div class="faq-contact__actions"><a class="button faq-contact__button" href="/pages/contact">Write message<span class="faq-contact__icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.74637 10.17L1.21877 5.92233C0.209102 4.70677 0.924924 2.85391 2.4902 2.63396L15.6994 0.772328C17.3857 0.534293 18.5904 2.36346 17.7058 3.8187L10.7794 15.2198C9.95865 16.5702 7.97427 16.4969 7.25625 15.0893L4.74637 10.17ZM4.74637 10.17L10.6469 6.28386" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</span>
+        </a><a class="button button--secondary faq-contact__second" href="/account">Track order</a></div>
+  </div>
+</div>
+
+
+
+</div>
+</faq-page>
+
+
+
+
+
+
+</section>
+    </main><!-- BEGIN sections: footer-group -->

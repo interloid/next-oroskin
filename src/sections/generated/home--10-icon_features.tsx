@@ -1,0 +1,161 @@
+// Generated from the Shopify theme's rendered HTML (reference/sections/home--10-icon_features.html). Make content dynamic, keep the markup.
+export default function Home10IconFeatures() {
+  return (
+    <div id="shopify-section-template--27949758677094__icon_features_fEU3xe" className="shopify-section">
+      <div
+        className="icon-features icon-features--plain full-width section-width--widest color-scheme-1"
+        style={
+          {
+            "--section-padding-top": "80px",
+            "--section-padding-bottom": "80px",
+            "--columns-desktop": "4",
+            "--columns-mobile": "2",
+            "--icon-feature-color": "#c8a24b",
+          } as React.CSSProperties
+        }
+      >
+        {" "}
+        <animate-on-scroll className="icon-features__inner">
+          <h2 className="icon-features__heading visually-hidden">Our promises</h2>
+          <div
+            className="icon-features__grid"
+            data-columns-phone="2"
+            data-columns-tablet="3"
+            data-columns-tablet-wide="4"
+            data-columns-desktop="4"
+          >
+            {" "}
+            <div className="icon-feature" data-animate="slide-bottom">
+              <span className="icon-feature__badge">
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  width="32"
+                  height="26"
+                  viewBox="0 0 32 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M27.25 21.25C27.25 22.2446 26.8549 23.1984 26.1517 23.9017C25.4484 24.6049 24.4946 25 23.5 25C22.5054 25 21.5516 24.6049 20.8483 23.9017C20.1451 23.1984 19.75 22.2446 19.75 21.25C19.75 20.2554 20.1451 19.3016 20.8483 18.5983C21.5516 17.8951 22.5054 17.5 23.5 17.5C24.4946 17.5 25.4484 17.8951 26.1517 18.5983C26.8549 19.3016 27.25 20.2554 27.25 21.25ZM12.25 21.25C12.25 22.2446 11.8549 23.1984 11.1517 23.9017C10.4484 24.6049 9.49456 25 8.5 25C7.50544 25 6.55161 24.6049 5.84835 23.9017C5.14509 23.1984 4.75 22.2446 4.75 21.25C4.75 20.2554 5.14509 19.3016 5.84835 18.5983C6.55161 17.8951 7.50544 17.5 8.5 17.5C9.49456 17.5 10.4484 17.8951 11.1517 18.5983C11.8549 19.3016 12.25 20.2554 12.25 21.25Z"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                  ></path>
+                  <path
+                    d="M19.75 21.25H12.25M27.25 21.25H28.3945H28.3946C28.7245 21.25 28.8895 21.25 29.0275 21.232C29.5241 21.1702 29.9859 20.9446 30.3398 20.5908C30.6938 20.2371 30.9198 19.7755 30.982 19.279C31 19.1395 31 18.9745 31 18.6446V18.6445V14.5C31 11.9141 29.9728 9.43419 28.1443 7.60571C26.3158 5.77723 23.8359 4.75 21.25 4.75M1 1H16C18.121 1 19.1815 1 19.84 1.66C20.5 2.317 20.5 3.3775 20.5 5.5V18.25M1 14.125V17.5C1 18.9025 1 19.603 1.3015 20.125C1.49897 20.467 1.78299 20.751 2.125 20.9485C2.647 21.25 3.3475 21.25 4.75 21.25M1 5.5H10M1 10H7"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    stroke="currentColor"
+                  ></path>
+                </svg>{" "}
+              </span>
+              <h3 className="icon-feature__title">
+                <a href="/policies/shipping-policy">Free shipping</a>
+              </h3>
+              <div className="icon-feature__text rte">
+                <p>Orders over $200 qualify for fast, free delivery</p>
+              </div>
+            </div>{" "}
+            <div className="icon-feature" data-animate="slide-bottom">
+              <span className="icon-feature__badge">
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  width="30"
+                  height="35"
+                  viewBox="0 0 30 35"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.25 6.04922V17.0742C1.25 28.0992 14.75 32.8242 14.75 32.8242C14.75 32.8242 28.25 28.0992 28.25 17.0742V6.04922L14.75 1.32422L1.25 6.04922Z"
+                    strokeWidth="2.5"
+                    strokeLinecap="square"
+                    stroke="currentColor"
+                  ></path>
+                  <path
+                    d="M9.00781 15.8314L13.2483 20.0734L21.7338 11.5879"
+                    strokeWidth="2.5"
+                    strokeLinecap="square"
+                    stroke="currentColor"
+                  ></path>
+                </svg>{" "}
+              </span>
+              <h3 className="icon-feature__title">
+                <a href="/pages/terms-of-service">Secure payment</a>
+              </h3>
+              <div className="icon-feature__text rte">
+                <p>Trusted payment processing with advanced security</p>
+              </div>
+            </div>{" "}
+            <div className="icon-feature" data-animate="slide-bottom">
+              <span className="icon-feature__badge">
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  width="30"
+                  height="27"
+                  viewBox="0 0 30 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.5 1.25L1.25 5.75L6.5 11"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    stroke="currentColor"
+                  ></path>
+                  <path
+                    d="M1.25 5.75H18.4955C23.6577 5.75 28.0415 9.965 28.2425 15.125C28.4555 20.5775 23.9502 25.25 18.4955 25.25H5.7485"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    stroke="currentColor"
+                  ></path>
+                </svg>{" "}
+              </span>
+              <h3 className="icon-feature__title">
+                <a href="/pages/returns-refunds">Easy 30-day returns</a>
+              </h3>
+              <div className="icon-feature__text rte">
+                <p>Try it for 30 days first, decide when you're ready.</p>
+              </div>
+            </div>{" "}
+            <div className="icon-feature" data-animate="slide-bottom">
+              <span className="icon-feature__badge">
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M23.5006 15.708C23.5006 15.189 23.5006 14.9295 23.5786 14.6985C23.8051 14.0265 24.4036 13.767 25.0036 13.494C25.6756 13.1865 26.0116 13.0335 26.3461 13.0065C26.7241 12.9765 27.1036 13.0575 27.4276 13.239C27.8566 13.479 28.1566 13.938 28.4626 14.31C29.8771 16.029 30.5851 16.8885 30.8431 17.835C31.0531 18.6 31.0531 19.401 30.8431 20.1645C30.4666 21.5475 29.2741 22.7055 28.3906 23.7795C27.9391 24.327 27.7126 24.6015 27.4276 24.762C27.098 24.9448 26.7217 25.0257 26.3461 24.9945C26.0116 24.9675 25.6756 24.8145 25.0021 24.507C24.4021 24.234 23.8051 23.9745 23.5786 23.3025C23.5006 23.0715 23.5006 22.812 23.5006 22.2945V15.708ZM8.50059 15.708C8.50059 15.054 8.48259 14.4675 7.95459 14.0085C7.76259 13.842 7.50759 13.7265 6.99909 13.494C6.32559 13.188 5.98959 13.0335 5.65509 13.0065C4.65459 12.9255 4.11609 13.6095 3.54009 14.3115C2.12409 16.029 1.41609 16.8885 1.15659 17.8365C0.947802 18.599 0.947802 19.4036 1.15659 20.166C1.53459 21.5475 2.72859 22.707 3.61059 23.7795C4.16709 24.4545 4.69959 25.071 5.65509 24.9945C5.98959 24.9675 6.32559 24.8145 6.99909 24.507C7.50909 24.276 7.76259 24.159 7.95459 23.9925C8.48259 23.5335 8.50059 22.947 8.50059 22.2945V15.708Z"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                  ></path>
+                  <path
+                    d="M28 13.75V11.5C28 5.701 22.627 1 16 1C9.373 1 4 5.701 4 11.5V13.75M28 24.25C28 31 22 31 16 31"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    stroke="currentColor"
+                  ></path>
+                </svg>{" "}
+              </span>
+              <h3 className="icon-feature__title">Trusted service </h3>
+              <div className="icon-feature__text rte">
+                <p>Our dedicated support staff is always on duty</p>
+              </div>
+            </div>{" "}
+          </div>{" "}
+        </animate-on-scroll>{" "}
+      </div>{" "}
+    </div>
+  );
+}

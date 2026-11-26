@@ -1,0 +1,1392 @@
+// Generated from the Shopify theme's rendered HTML (reference/sections/home--05-product_deck.html). Make content dynamic, keep the markup.
+export default function Home05ProductDeck() {
+  return (
+    <div id="shopify-section-template--27949758677094__product_deck_rxUqxi" className="shopify-section">
+      <product-deck
+        className="product-deck full-width section-width--widest color-scheme-1"
+        style={
+          {
+            "--color-accent": "#c8a24b",
+            "--half": "2.5",
+            "--rows-2": "3",
+            "--rows-3": "2",
+            "--card-ratio": "0.85",
+            "--card-scale": "1.0",
+            "--section-padding-top": "128px",
+            "--section-padding-bottom": "128px",
+          } as React.CSSProperties
+        }
+        data-fan=""
+        data-fan-style="auto"
+      >
+        {" "}
+        <div className="product-deck__inner">
+          {" "}
+          <div className="product-deck__header">
+            {" "}
+            <div className="product-deck__titles">
+              <p className="eyebrow eyebrow--center product-deck__eyebrow">Just landed</p>
+              <h2 className="product-deck__heading">
+                New <em>Arrivals</em>
+              </h2>
+            </div>
+            <p className="product-deck__pill">Fresh this week</p>
+          </div>{" "}
+          <div className="product-deck__stage">
+            {" "}
+            <ul className="product-deck__list" role="list">
+              <li
+                className="product-deck__card is-active"
+                style={
+                  {
+                    "--i": "0",
+                    "--o": "-2.5",
+                    "--d": "2.5",
+                    "--z": "15",
+                    "--row-2": "0",
+                    "--gx-2": "-0.5",
+                    "--row-3": "0",
+                    "--gx-3": "-1.0",
+                  } as React.CSSProperties
+                }
+                data-card=""
+              >
+                {" "}
+                <div className="product-deck__media">
+                  {" "}
+                  <div className="image image--cover">
+                    <img
+                      src="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=1024"
+                      alt=""
+                      srcSet="/cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=310 310w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=375 375w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=550 550w, /cdn/shop/files/signature-body-mist-1.png?v=1793074059&width=750 750w"
+                      width="1024"
+                      height="1024"
+                      loading="lazy"
+                      sizes="(min-width: 1200px) min(25vw, 720px), (min-width: 750px) 36vw, 54vw"
+                      fetchPriority="auto"
+                    />{" "}
+                  </div>{" "}
+                </div>
+                <span className="product-deck__badge" aria-hidden="true">
+                  New
+                </span>
+                <button
+                  className="product-deck__pick"
+                  type="button"
+                  aria-label="Show Signature Body Mist"
+                  aria-current="true"
+                  data-pick=""
+                ></button>{" "}
+                <quick-add
+                  className="quick-add quick-add--round quick-add--overlay product-deck__cart"
+                  style={
+                    {
+                      "--quick-add-size": "50px",
+                      "--quick-add-color": "#ffffff",
+                      "--quick-add-overlay": "10%",
+                    } as React.CSSProperties
+                  }
+                  data-variant-id="67834035077222"
+                  data-label-added="Signature Body Mist - 50 ml / Rose added to your cart"
+                  data-label-error="Couldn't add this to your cart. Please try again."
+                >
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    id="QuickAdd-template--27949758677094__product_deck_rxUqxi-15446395322470-round-product-deck__cart-1"
+                    acceptCharset="UTF-8"
+                    className="quick-add__form"
+                    encType="multipart/form-data"
+                  >
+                    <input type="hidden" name="form_type" value="product" />
+                    <input type="hidden" name="utf8" value="✓" />
+                    <input type="hidden" name="id" value="67834035077222" />{" "}
+                    <input type="hidden" name="quantity" value="1" />
+                    <button
+                      type="submit"
+                      className="quick-add__button"
+                      aria-label="Add Signature Body Mist - 50 ml / Rose to cart"
+                    >
+                      {" "}
+                      <span className="quick-add__line quick-add__line--1" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__line quick-add__line--2" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__cart" aria-hidden="true">
+                        {" "}
+                        <span className="quick-add__icon quick-add__icon--upright">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="19"
+                            height="19"
+                            viewBox="0 0 19 19"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79866 18.2501C8.73809 18.2501 9.49966 17.4886 9.49966 16.5491C9.49966 15.6097 8.73809 14.8481 7.79866 14.8481C6.85922 14.8481 6.09766 15.6097 6.09766 16.5491C6.09766 17.4886 6.85922 18.2501 7.79866 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M15.2098 18.2501C16.1492 18.2501 16.9108 17.4886 16.9108 16.5491C16.9108 15.6097 16.1492 14.8481 15.2098 14.8481C14.2704 14.8481 13.5088 15.6097 13.5088 16.5491C13.5088 17.4886 14.2704 18.2501 15.2098 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M3.856 3.055L5.866 9.419C6.175 10.397 6.329 10.886 6.626 11.248C6.886 11.568 7.225 11.815 7.608 11.968C8.043 12.141 8.555 12.141 9.581 12.141H13.436C14.462 12.141 14.974 12.141 15.408 11.968C15.792 11.815 16.13 11.568 16.391 11.248C16.687 10.886 16.841 10.397 17.151 9.419L17.56 8.123L17.8 7.357L18.131 6.307C18.2491 5.9325 18.2774 5.53544 18.2134 5.148C18.1495 4.76055 17.9952 4.39361 17.763 4.07691C17.5309 3.76021 17.2274 3.50266 16.8771 3.32511C16.5268 3.14757 16.1397 3.05503 15.747 3.055H3.856ZM3.856 3.055L3.845 3.018C3.80277 2.87656 3.75608 2.73649 3.705 2.598C3.50255 2.08554 3.15923 1.64082 2.71473 1.31523C2.27022 0.989631 1.74266 0.796448 1.193 0.758C1.09 0.75 0.977 0.75 0.75 0.75"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__icon quick-add__icon--tilt">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="21"
+                            height="21"
+                            viewBox="0 0 21 21"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M10.7069 17.9373C10.7069 18.8768 9.94537 19.6383 9.00593 19.6383C8.0665 19.6383 7.30493 18.8768 7.30493 17.9373C7.30493 16.9979 8.0665 16.2363 9.00593 16.2363C9.94537 16.2363 10.7069 16.9979 10.7069 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M18.119 17.9373C18.119 18.8768 17.3575 19.6383 16.418 19.6383C15.4786 19.6383 14.717 18.8768 14.717 17.9373C14.717 16.9979 15.4786 16.2363 16.418 16.2363C17.3575 16.2363 18.119 16.9979 18.119 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M4.36072 6.08072L8.00416 11.6723L8.00873 11.6793C8.5657 12.5339 8.84475 12.9621 9.22693 13.2304C9.56324 13.4689 9.95607 13.616 10.3661 13.6606C10.8315 13.7106 11.3248 13.5732 12.3132 13.298L12.3132 13.298L16.0269 12.2639L16.0269 12.2639C17.0153 11.9887 17.5085 11.8514 17.8802 11.5683C18.2091 11.3179 18.4685 10.9893 18.634 10.611C18.8211 10.1852 18.8391 9.67609 18.875 8.66196L18.8756 8.64517L18.9219 7.28695L18.9477 6.48465L18.9849 5.38434C18.9982 4.99188 18.9189 4.6018 18.7534 4.2457C18.5879 3.88961 18.3408 3.57751 18.0322 3.33469C17.7236 3.09187 17.3621 2.92517 16.9771 2.84809C16.592 2.77101 16.1942 2.78572 15.8159 2.89102L4.36072 6.08072ZM4.36072 6.08072L4.34019 6.04802C4.26157 5.92309 4.17902 5.80068 4.09266 5.68097C3.76017 5.2416 3.31014 4.90527 2.79458 4.71084C2.27903 4.51642 1.71898 4.47183 1.17915 4.58223C1.07778 4.60216 0.968925 4.63247 0.750244 4.69336"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__tick">
+                          {" "}
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m6 12.5 4 4 8-9"></path>
+                          </svg>{" "}
+                        </span>{" "}
+                      </span>{" "}
+                    </button>
+                    <input type="hidden" name="product-id" value="15446395322470" />
+                    <input type="hidden" name="section-id" value="template--27949758677094__product_deck_rxUqxi" />
+                  </form>
+                  <span className="visually-hidden" role="status" data-quick-add-status=""></span>
+                  <span
+                    className="quick-add__message"
+                    popover="manual"
+                    aria-hidden="true"
+                    data-quick-add-message=""
+                    hidden
+                  ></span>{" "}
+                </quick-add>{" "}
+                <div className="product-deck__info">
+                  <h3 className="product-deck__title">
+                    {" "}
+                    <a className="product-deck__link" href="/products/signature-body-mist">
+                      Signature Body Mist
+                    </a>{" "}
+                  </h3>
+                  <p className="product-deck__text">A light veil of scent</p>
+                  <div className="product-deck__footer">
+                    {" "}
+                    <div className="product-deck__price">
+                      {" "}
+                      <div className="price">
+                        {" "}
+                        <span className="price__current">
+                          {" "}
+                          <span className="visually-hidden">Regular price </span>From Rs. 2,700.00{" "}
+                        </span>
+                      </div>{" "}
+                    </div>
+                    <a className="button product-deck__buy" href="/products/signature-body-mist">
+                      {" "}
+                      <span className="product-deck__buy-icon" aria-hidden="true">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          width="26"
+                          height="26"
+                          viewBox="0 0 26 26"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.56086 8.15352C3.38142 8.18589 3.22219 8.28822 3.1182 8.438C3.01421 8.58778 2.97398 8.77273 3.00636 8.95217C3.03873 9.13161 3.14107 9.29083 3.29084 9.39482C3.44062 9.49881 3.62557 9.53904 3.80501 9.50667L5.30701 9.23566L8.36413 16.0194C8.62366 16.5943 9.23735 16.9097 9.85777 16.7978L18.2947 15.2755C18.9056 15.1653 19.3513 14.6657 19.4054 14.0481L19.9957 7.28394L18.579 7.53957L18.0498 13.9225L9.61294 15.4447L6.55649 8.66091C6.4306 8.38269 6.21498 8.15476 5.94417 8.01363C5.67336 7.8725 5.36302 7.82633 5.06285 7.88251L3.56086 8.15352ZM17.4483 15.4282C16.3353 15.629 15.584 16.7112 15.7848 17.8242C15.9856 18.9371 17.0678 19.6885 18.1807 19.4877C19.2937 19.2868 20.045 18.2047 19.8442 17.0917C19.6434 15.9787 18.5612 15.2274 17.4483 15.4282ZM11.3591 16.5269C10.2461 16.7277 9.49478 17.8099 9.69559 18.9228C9.89641 20.0358 10.9786 20.7871 12.0915 20.5863C13.2045 20.3855 13.9559 19.3033 13.755 18.1904C13.5542 17.0774 12.4721 16.3261 11.3591 16.5269ZM11.6032 17.88C11.9848 17.8112 12.333 18.0529 12.4019 18.4345C12.4707 18.8161 12.229 19.1643 11.8474 19.2332C11.4658 19.302 11.1176 19.0603 11.0487 18.6787C10.9799 18.2971 11.2217 17.9489 11.6032 17.88ZM17.6924 16.7814C18.074 16.7125 18.4222 16.9543 18.4911 17.3359C18.5599 17.7174 18.3182 18.0657 17.9366 18.1345C17.555 18.2034 17.2068 17.9616 17.1379 17.58C17.0691 17.1984 17.3108 16.8502 17.6924 16.7814Z"
+                            fill="currentColor"
+                          ></path>
+                          <path
+                            d="M9.46413 10.1826L13.2834 12.5419L15.9593 9.01068L13.3612 9.47945L12.88 6.82L11.58 7.06L12.0622 9.71384L9.46413 10.1826Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>{" "}
+                      </span>
+                      Buy now
+                    </a>
+                  </div>
+                </div>{" "}
+              </li>
+              <li
+                className="product-deck__card"
+                style={
+                  {
+                    "--i": "1",
+                    "--o": "-1.5",
+                    "--d": "1.5",
+                    "--z": "14",
+                    "--row-2": "0",
+                    "--gx-2": "0.5",
+                    "--row-3": "0",
+                    "--gx-3": "0.0",
+                  } as React.CSSProperties
+                }
+                data-card=""
+              >
+                {" "}
+                <div className="product-deck__media">
+                  {" "}
+                  <div className="image image--cover">
+                    <img
+                      src="/cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=1024"
+                      alt=""
+                      srcSet="/cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=310 310w, /cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=375 375w, /cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=550 550w, /cdn/shop/files/rose-eau-de-parfum-1.png?v=1793074058&width=750 750w"
+                      width="1024"
+                      height="1024"
+                      loading="lazy"
+                      sizes="(min-width: 1200px) min(25vw, 720px), (min-width: 750px) 36vw, 54vw"
+                      fetchPriority="auto"
+                    />{" "}
+                  </div>{" "}
+                </div>
+                <span className="product-deck__badge" aria-hidden="true">
+                  New
+                </span>
+                <button
+                  className="product-deck__pick"
+                  type="button"
+                  aria-label="Show Rose Eau de Parfum"
+                  data-pick=""
+                ></button>{" "}
+                <quick-add
+                  className="quick-add quick-add--round quick-add--overlay product-deck__cart"
+                  style={
+                    {
+                      "--quick-add-size": "50px",
+                      "--quick-add-color": "#ffffff",
+                      "--quick-add-overlay": "10%",
+                    } as React.CSSProperties
+                  }
+                  data-variant-id="67834034946150"
+                  data-label-added="Rose Eau de Parfum - 50 ml added to your cart"
+                  data-label-error="Couldn't add this to your cart. Please try again."
+                >
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    id="QuickAdd-template--27949758677094__product_deck_rxUqxi-15446395224166-round-product-deck__cart-2"
+                    acceptCharset="UTF-8"
+                    className="quick-add__form"
+                    encType="multipart/form-data"
+                  >
+                    <input type="hidden" name="form_type" value="product" />
+                    <input type="hidden" name="utf8" value="✓" />
+                    <input type="hidden" name="id" value="67834034946150" />{" "}
+                    <input type="hidden" name="quantity" value="1" />
+                    <button
+                      type="submit"
+                      className="quick-add__button"
+                      aria-label="Add Rose Eau de Parfum - 50 ml to cart"
+                    >
+                      {" "}
+                      <span className="quick-add__line quick-add__line--1" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__line quick-add__line--2" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__cart" aria-hidden="true">
+                        {" "}
+                        <span className="quick-add__icon quick-add__icon--upright">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="19"
+                            height="19"
+                            viewBox="0 0 19 19"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79866 18.2501C8.73809 18.2501 9.49966 17.4886 9.49966 16.5491C9.49966 15.6097 8.73809 14.8481 7.79866 14.8481C6.85922 14.8481 6.09766 15.6097 6.09766 16.5491C6.09766 17.4886 6.85922 18.2501 7.79866 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M15.2098 18.2501C16.1492 18.2501 16.9108 17.4886 16.9108 16.5491C16.9108 15.6097 16.1492 14.8481 15.2098 14.8481C14.2704 14.8481 13.5088 15.6097 13.5088 16.5491C13.5088 17.4886 14.2704 18.2501 15.2098 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M3.856 3.055L5.866 9.419C6.175 10.397 6.329 10.886 6.626 11.248C6.886 11.568 7.225 11.815 7.608 11.968C8.043 12.141 8.555 12.141 9.581 12.141H13.436C14.462 12.141 14.974 12.141 15.408 11.968C15.792 11.815 16.13 11.568 16.391 11.248C16.687 10.886 16.841 10.397 17.151 9.419L17.56 8.123L17.8 7.357L18.131 6.307C18.2491 5.9325 18.2774 5.53544 18.2134 5.148C18.1495 4.76055 17.9952 4.39361 17.763 4.07691C17.5309 3.76021 17.2274 3.50266 16.8771 3.32511C16.5268 3.14757 16.1397 3.05503 15.747 3.055H3.856ZM3.856 3.055L3.845 3.018C3.80277 2.87656 3.75608 2.73649 3.705 2.598C3.50255 2.08554 3.15923 1.64082 2.71473 1.31523C2.27022 0.989631 1.74266 0.796448 1.193 0.758C1.09 0.75 0.977 0.75 0.75 0.75"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__icon quick-add__icon--tilt">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="21"
+                            height="21"
+                            viewBox="0 0 21 21"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M10.7069 17.9373C10.7069 18.8768 9.94537 19.6383 9.00593 19.6383C8.0665 19.6383 7.30493 18.8768 7.30493 17.9373C7.30493 16.9979 8.0665 16.2363 9.00593 16.2363C9.94537 16.2363 10.7069 16.9979 10.7069 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M18.119 17.9373C18.119 18.8768 17.3575 19.6383 16.418 19.6383C15.4786 19.6383 14.717 18.8768 14.717 17.9373C14.717 16.9979 15.4786 16.2363 16.418 16.2363C17.3575 16.2363 18.119 16.9979 18.119 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M4.36072 6.08072L8.00416 11.6723L8.00873 11.6793C8.5657 12.5339 8.84475 12.9621 9.22693 13.2304C9.56324 13.4689 9.95607 13.616 10.3661 13.6606C10.8315 13.7106 11.3248 13.5732 12.3132 13.298L12.3132 13.298L16.0269 12.2639L16.0269 12.2639C17.0153 11.9887 17.5085 11.8514 17.8802 11.5683C18.2091 11.3179 18.4685 10.9893 18.634 10.611C18.8211 10.1852 18.8391 9.67609 18.875 8.66196L18.8756 8.64517L18.9219 7.28695L18.9477 6.48465L18.9849 5.38434C18.9982 4.99188 18.9189 4.6018 18.7534 4.2457C18.5879 3.88961 18.3408 3.57751 18.0322 3.33469C17.7236 3.09187 17.3621 2.92517 16.9771 2.84809C16.592 2.77101 16.1942 2.78572 15.8159 2.89102L4.36072 6.08072ZM4.36072 6.08072L4.34019 6.04802C4.26157 5.92309 4.17902 5.80068 4.09266 5.68097C3.76017 5.2416 3.31014 4.90527 2.79458 4.71084C2.27903 4.51642 1.71898 4.47183 1.17915 4.58223C1.07778 4.60216 0.968925 4.63247 0.750244 4.69336"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__tick">
+                          {" "}
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m6 12.5 4 4 8-9"></path>
+                          </svg>{" "}
+                        </span>{" "}
+                      </span>{" "}
+                    </button>
+                    <input type="hidden" name="product-id" value="15446395224166" />
+                    <input type="hidden" name="section-id" value="template--27949758677094__product_deck_rxUqxi" />
+                  </form>
+                  <span className="visually-hidden" role="status" data-quick-add-status=""></span>
+                  <span
+                    className="quick-add__message"
+                    popover="manual"
+                    aria-hidden="true"
+                    data-quick-add-message=""
+                    hidden
+                  ></span>{" "}
+                </quick-add>{" "}
+                <div className="product-deck__info">
+                  <h3 className="product-deck__title">
+                    {" "}
+                    <a className="product-deck__link" href="/products/rose-eau-de-parfum">
+                      Rose Eau de Parfum
+                    </a>{" "}
+                  </h3>
+                  <p className="product-deck__text">Long-lasting rose and musk</p>
+                  <div className="product-deck__footer">
+                    {" "}
+                    <div className="product-deck__price">
+                      {" "}
+                      <div className="price">
+                        {" "}
+                        <span className="price__current">
+                          {" "}
+                          <span className="visually-hidden">Regular price </span>From Rs. 9,000.00{" "}
+                        </span>
+                      </div>{" "}
+                    </div>
+                    <a className="button product-deck__buy" href="/products/rose-eau-de-parfum">
+                      {" "}
+                      <span className="product-deck__buy-icon" aria-hidden="true">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          width="26"
+                          height="26"
+                          viewBox="0 0 26 26"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.56086 8.15352C3.38142 8.18589 3.22219 8.28822 3.1182 8.438C3.01421 8.58778 2.97398 8.77273 3.00636 8.95217C3.03873 9.13161 3.14107 9.29083 3.29084 9.39482C3.44062 9.49881 3.62557 9.53904 3.80501 9.50667L5.30701 9.23566L8.36413 16.0194C8.62366 16.5943 9.23735 16.9097 9.85777 16.7978L18.2947 15.2755C18.9056 15.1653 19.3513 14.6657 19.4054 14.0481L19.9957 7.28394L18.579 7.53957L18.0498 13.9225L9.61294 15.4447L6.55649 8.66091C6.4306 8.38269 6.21498 8.15476 5.94417 8.01363C5.67336 7.8725 5.36302 7.82633 5.06285 7.88251L3.56086 8.15352ZM17.4483 15.4282C16.3353 15.629 15.584 16.7112 15.7848 17.8242C15.9856 18.9371 17.0678 19.6885 18.1807 19.4877C19.2937 19.2868 20.045 18.2047 19.8442 17.0917C19.6434 15.9787 18.5612 15.2274 17.4483 15.4282ZM11.3591 16.5269C10.2461 16.7277 9.49478 17.8099 9.69559 18.9228C9.89641 20.0358 10.9786 20.7871 12.0915 20.5863C13.2045 20.3855 13.9559 19.3033 13.755 18.1904C13.5542 17.0774 12.4721 16.3261 11.3591 16.5269ZM11.6032 17.88C11.9848 17.8112 12.333 18.0529 12.4019 18.4345C12.4707 18.8161 12.229 19.1643 11.8474 19.2332C11.4658 19.302 11.1176 19.0603 11.0487 18.6787C10.9799 18.2971 11.2217 17.9489 11.6032 17.88ZM17.6924 16.7814C18.074 16.7125 18.4222 16.9543 18.4911 17.3359C18.5599 17.7174 18.3182 18.0657 17.9366 18.1345C17.555 18.2034 17.2068 17.9616 17.1379 17.58C17.0691 17.1984 17.3108 16.8502 17.6924 16.7814Z"
+                            fill="currentColor"
+                          ></path>
+                          <path
+                            d="M9.46413 10.1826L13.2834 12.5419L15.9593 9.01068L13.3612 9.47945L12.88 6.82L11.58 7.06L12.0622 9.71384L9.46413 10.1826Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>{" "}
+                      </span>
+                      Buy now
+                    </a>
+                  </div>
+                </div>{" "}
+              </li>
+              <li
+                className="product-deck__card"
+                style={
+                  {
+                    "--i": "2",
+                    "--o": "-0.5",
+                    "--d": "0.5",
+                    "--z": "13",
+                    "--row-2": "1",
+                    "--gx-2": "-0.5",
+                    "--row-3": "0",
+                    "--gx-3": "1.0",
+                  } as React.CSSProperties
+                }
+                data-card=""
+              >
+                {" "}
+                <div className="product-deck__media">
+                  {" "}
+                  <div className="image image--cover">
+                    <img
+                      src="/cdn/shop/files/hydra-glow-night-cream-1.png?v=1793074058&width=1024"
+                      alt=""
+                      srcSet="/cdn/shop/files/hydra-glow-night-cream-1.png?v=1793074058&width=310 310w, /cdn/shop/files/hydra-glow-night-cream-1.png?v=1793074058&width=375 375w, /cdn/shop/files/hydra-glow-night-cream-1.png?v=1793074058&width=550 550w, /cdn/shop/files/hydra-glow-night-cream-1.png?v=1793074058&width=750 750w"
+                      width="1024"
+                      height="1024"
+                      loading="lazy"
+                      sizes="(min-width: 1200px) min(25vw, 720px), (min-width: 750px) 36vw, 54vw"
+                      fetchPriority="auto"
+                    />{" "}
+                  </div>{" "}
+                </div>
+                <span className="product-deck__badge" aria-hidden="true">
+                  New
+                </span>
+                <button
+                  className="product-deck__pick"
+                  type="button"
+                  aria-label="Show Hydra Glow Night Cream"
+                  data-pick=""
+                ></button>{" "}
+                <quick-add
+                  className="quick-add quick-add--round quick-add--overlay product-deck__cart"
+                  style={
+                    {
+                      "--quick-add-size": "50px",
+                      "--quick-add-color": "#ffffff",
+                      "--quick-add-overlay": "10%",
+                    } as React.CSSProperties
+                  }
+                  data-variant-id="67834034487398"
+                  data-label-added="Hydra Glow Night Cream added to your cart"
+                  data-label-error="Couldn't add this to your cart. Please try again."
+                >
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    id="QuickAdd-template--27949758677094__product_deck_rxUqxi-15446394765414-round-product-deck__cart-3"
+                    acceptCharset="UTF-8"
+                    className="quick-add__form"
+                    encType="multipart/form-data"
+                  >
+                    <input type="hidden" name="form_type" value="product" />
+                    <input type="hidden" name="utf8" value="✓" />
+                    <input type="hidden" name="id" value="67834034487398" />{" "}
+                    <input type="hidden" name="quantity" value="1" />
+                    <button type="submit" className="quick-add__button" aria-label="Add Hydra Glow Night Cream to cart">
+                      {" "}
+                      <span className="quick-add__line quick-add__line--1" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__line quick-add__line--2" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__cart" aria-hidden="true">
+                        {" "}
+                        <span className="quick-add__icon quick-add__icon--upright">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="19"
+                            height="19"
+                            viewBox="0 0 19 19"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79866 18.2501C8.73809 18.2501 9.49966 17.4886 9.49966 16.5491C9.49966 15.6097 8.73809 14.8481 7.79866 14.8481C6.85922 14.8481 6.09766 15.6097 6.09766 16.5491C6.09766 17.4886 6.85922 18.2501 7.79866 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M15.2098 18.2501C16.1492 18.2501 16.9108 17.4886 16.9108 16.5491C16.9108 15.6097 16.1492 14.8481 15.2098 14.8481C14.2704 14.8481 13.5088 15.6097 13.5088 16.5491C13.5088 17.4886 14.2704 18.2501 15.2098 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M3.856 3.055L5.866 9.419C6.175 10.397 6.329 10.886 6.626 11.248C6.886 11.568 7.225 11.815 7.608 11.968C8.043 12.141 8.555 12.141 9.581 12.141H13.436C14.462 12.141 14.974 12.141 15.408 11.968C15.792 11.815 16.13 11.568 16.391 11.248C16.687 10.886 16.841 10.397 17.151 9.419L17.56 8.123L17.8 7.357L18.131 6.307C18.2491 5.9325 18.2774 5.53544 18.2134 5.148C18.1495 4.76055 17.9952 4.39361 17.763 4.07691C17.5309 3.76021 17.2274 3.50266 16.8771 3.32511C16.5268 3.14757 16.1397 3.05503 15.747 3.055H3.856ZM3.856 3.055L3.845 3.018C3.80277 2.87656 3.75608 2.73649 3.705 2.598C3.50255 2.08554 3.15923 1.64082 2.71473 1.31523C2.27022 0.989631 1.74266 0.796448 1.193 0.758C1.09 0.75 0.977 0.75 0.75 0.75"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__icon quick-add__icon--tilt">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="21"
+                            height="21"
+                            viewBox="0 0 21 21"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M10.7069 17.9373C10.7069 18.8768 9.94537 19.6383 9.00593 19.6383C8.0665 19.6383 7.30493 18.8768 7.30493 17.9373C7.30493 16.9979 8.0665 16.2363 9.00593 16.2363C9.94537 16.2363 10.7069 16.9979 10.7069 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M18.119 17.9373C18.119 18.8768 17.3575 19.6383 16.418 19.6383C15.4786 19.6383 14.717 18.8768 14.717 17.9373C14.717 16.9979 15.4786 16.2363 16.418 16.2363C17.3575 16.2363 18.119 16.9979 18.119 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M4.36072 6.08072L8.00416 11.6723L8.00873 11.6793C8.5657 12.5339 8.84475 12.9621 9.22693 13.2304C9.56324 13.4689 9.95607 13.616 10.3661 13.6606C10.8315 13.7106 11.3248 13.5732 12.3132 13.298L12.3132 13.298L16.0269 12.2639L16.0269 12.2639C17.0153 11.9887 17.5085 11.8514 17.8802 11.5683C18.2091 11.3179 18.4685 10.9893 18.634 10.611C18.8211 10.1852 18.8391 9.67609 18.875 8.66196L18.8756 8.64517L18.9219 7.28695L18.9477 6.48465L18.9849 5.38434C18.9982 4.99188 18.9189 4.6018 18.7534 4.2457C18.5879 3.88961 18.3408 3.57751 18.0322 3.33469C17.7236 3.09187 17.3621 2.92517 16.9771 2.84809C16.592 2.77101 16.1942 2.78572 15.8159 2.89102L4.36072 6.08072ZM4.36072 6.08072L4.34019 6.04802C4.26157 5.92309 4.17902 5.80068 4.09266 5.68097C3.76017 5.2416 3.31014 4.90527 2.79458 4.71084C2.27903 4.51642 1.71898 4.47183 1.17915 4.58223C1.07778 4.60216 0.968925 4.63247 0.750244 4.69336"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__tick">
+                          {" "}
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m6 12.5 4 4 8-9"></path>
+                          </svg>{" "}
+                        </span>{" "}
+                      </span>{" "}
+                    </button>
+                    <input type="hidden" name="product-id" value="15446394765414" />
+                    <input type="hidden" name="section-id" value="template--27949758677094__product_deck_rxUqxi" />
+                  </form>
+                  <span className="visually-hidden" role="status" data-quick-add-status=""></span>
+                  <span
+                    className="quick-add__message"
+                    popover="manual"
+                    aria-hidden="true"
+                    data-quick-add-message=""
+                    hidden
+                  ></span>{" "}
+                </quick-add>{" "}
+                <div className="product-deck__info">
+                  <h3 className="product-deck__title">
+                    {" "}
+                    <a className="product-deck__link" href="/products/hydra-glow-night-cream">
+                      Hydra Glow Night Cream
+                    </a>{" "}
+                  </h3>
+                  <p className="product-deck__text">Overnight repair for a morning glow</p>
+                  <div className="product-deck__footer">
+                    {" "}
+                    <div className="product-deck__price">
+                      {" "}
+                      <div className="price">
+                        {" "}
+                        <span className="price__current">
+                          {" "}
+                          <span className="visually-hidden">Regular price </span>
+                          <span data-price-amount="">Rs. 6,400.00</span>
+                        </span>
+                      </div>{" "}
+                    </div>
+                    <a className="button product-deck__buy" href="/products/hydra-glow-night-cream">
+                      {" "}
+                      <span className="product-deck__buy-icon" aria-hidden="true">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          width="26"
+                          height="26"
+                          viewBox="0 0 26 26"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.56086 8.15352C3.38142 8.18589 3.22219 8.28822 3.1182 8.438C3.01421 8.58778 2.97398 8.77273 3.00636 8.95217C3.03873 9.13161 3.14107 9.29083 3.29084 9.39482C3.44062 9.49881 3.62557 9.53904 3.80501 9.50667L5.30701 9.23566L8.36413 16.0194C8.62366 16.5943 9.23735 16.9097 9.85777 16.7978L18.2947 15.2755C18.9056 15.1653 19.3513 14.6657 19.4054 14.0481L19.9957 7.28394L18.579 7.53957L18.0498 13.9225L9.61294 15.4447L6.55649 8.66091C6.4306 8.38269 6.21498 8.15476 5.94417 8.01363C5.67336 7.8725 5.36302 7.82633 5.06285 7.88251L3.56086 8.15352ZM17.4483 15.4282C16.3353 15.629 15.584 16.7112 15.7848 17.8242C15.9856 18.9371 17.0678 19.6885 18.1807 19.4877C19.2937 19.2868 20.045 18.2047 19.8442 17.0917C19.6434 15.9787 18.5612 15.2274 17.4483 15.4282ZM11.3591 16.5269C10.2461 16.7277 9.49478 17.8099 9.69559 18.9228C9.89641 20.0358 10.9786 20.7871 12.0915 20.5863C13.2045 20.3855 13.9559 19.3033 13.755 18.1904C13.5542 17.0774 12.4721 16.3261 11.3591 16.5269ZM11.6032 17.88C11.9848 17.8112 12.333 18.0529 12.4019 18.4345C12.4707 18.8161 12.229 19.1643 11.8474 19.2332C11.4658 19.302 11.1176 19.0603 11.0487 18.6787C10.9799 18.2971 11.2217 17.9489 11.6032 17.88ZM17.6924 16.7814C18.074 16.7125 18.4222 16.9543 18.4911 17.3359C18.5599 17.7174 18.3182 18.0657 17.9366 18.1345C17.555 18.2034 17.2068 17.9616 17.1379 17.58C17.0691 17.1984 17.3108 16.8502 17.6924 16.7814Z"
+                            fill="currentColor"
+                          ></path>
+                          <path
+                            d="M9.46413 10.1826L13.2834 12.5419L15.9593 9.01068L13.3612 9.47945L12.88 6.82L11.58 7.06L12.0622 9.71384L9.46413 10.1826Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>{" "}
+                      </span>
+                      Buy now
+                    </a>
+                  </div>
+                </div>{" "}
+              </li>
+              <li
+                className="product-deck__card"
+                style={
+                  {
+                    "--i": "3",
+                    "--o": "0.5",
+                    "--d": "0.5",
+                    "--z": "12",
+                    "--row-2": "1",
+                    "--gx-2": "0.5",
+                    "--row-3": "1",
+                    "--gx-3": "-1.0",
+                  } as React.CSSProperties
+                }
+                data-last-row="3"
+                data-card=""
+              >
+                {" "}
+                <div className="product-deck__media">
+                  {" "}
+                  <div className="image image--cover">
+                    <img
+                      src="/cdn/shop/files/radiance-vitamin-c-serum-1.png?v=1793074059&width=1024"
+                      alt=""
+                      srcSet="/cdn/shop/files/radiance-vitamin-c-serum-1.png?v=1793074059&width=310 310w, /cdn/shop/files/radiance-vitamin-c-serum-1.png?v=1793074059&width=375 375w, /cdn/shop/files/radiance-vitamin-c-serum-1.png?v=1793074059&width=550 550w, /cdn/shop/files/radiance-vitamin-c-serum-1.png?v=1793074059&width=750 750w"
+                      width="1024"
+                      height="1024"
+                      loading="lazy"
+                      sizes="(min-width: 1200px) min(25vw, 720px), (min-width: 750px) 36vw, 54vw"
+                      fetchPriority="auto"
+                    />{" "}
+                  </div>{" "}
+                </div>
+                <span className="product-deck__badge" aria-hidden="true">
+                  New
+                </span>
+                <button
+                  className="product-deck__pick"
+                  type="button"
+                  aria-label="Show Radiance Vitamin C Serum"
+                  data-pick=""
+                ></button>{" "}
+                <quick-add
+                  className="quick-add quick-add--round quick-add--overlay product-deck__cart"
+                  style={
+                    {
+                      "--quick-add-size": "50px",
+                      "--quick-add-color": "#ffffff",
+                      "--quick-add-overlay": "10%",
+                    } as React.CSSProperties
+                  }
+                  data-variant-id="67834034323558"
+                  data-label-added="Radiance Vitamin C Serum - 30 ml added to your cart"
+                  data-label-error="Couldn't add this to your cart. Please try again."
+                >
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    id="QuickAdd-template--27949758677094__product_deck_rxUqxi-15446394634342-round-product-deck__cart-4"
+                    acceptCharset="UTF-8"
+                    className="quick-add__form"
+                    encType="multipart/form-data"
+                  >
+                    <input type="hidden" name="form_type" value="product" />
+                    <input type="hidden" name="utf8" value="✓" />
+                    <input type="hidden" name="id" value="67834034323558" />{" "}
+                    <input type="hidden" name="quantity" value="1" />
+                    <button
+                      type="submit"
+                      className="quick-add__button"
+                      aria-label="Add Radiance Vitamin C Serum - 30 ml to cart"
+                    >
+                      {" "}
+                      <span className="quick-add__line quick-add__line--1" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__line quick-add__line--2" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__cart" aria-hidden="true">
+                        {" "}
+                        <span className="quick-add__icon quick-add__icon--upright">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="19"
+                            height="19"
+                            viewBox="0 0 19 19"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79866 18.2501C8.73809 18.2501 9.49966 17.4886 9.49966 16.5491C9.49966 15.6097 8.73809 14.8481 7.79866 14.8481C6.85922 14.8481 6.09766 15.6097 6.09766 16.5491C6.09766 17.4886 6.85922 18.2501 7.79866 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M15.2098 18.2501C16.1492 18.2501 16.9108 17.4886 16.9108 16.5491C16.9108 15.6097 16.1492 14.8481 15.2098 14.8481C14.2704 14.8481 13.5088 15.6097 13.5088 16.5491C13.5088 17.4886 14.2704 18.2501 15.2098 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M3.856 3.055L5.866 9.419C6.175 10.397 6.329 10.886 6.626 11.248C6.886 11.568 7.225 11.815 7.608 11.968C8.043 12.141 8.555 12.141 9.581 12.141H13.436C14.462 12.141 14.974 12.141 15.408 11.968C15.792 11.815 16.13 11.568 16.391 11.248C16.687 10.886 16.841 10.397 17.151 9.419L17.56 8.123L17.8 7.357L18.131 6.307C18.2491 5.9325 18.2774 5.53544 18.2134 5.148C18.1495 4.76055 17.9952 4.39361 17.763 4.07691C17.5309 3.76021 17.2274 3.50266 16.8771 3.32511C16.5268 3.14757 16.1397 3.05503 15.747 3.055H3.856ZM3.856 3.055L3.845 3.018C3.80277 2.87656 3.75608 2.73649 3.705 2.598C3.50255 2.08554 3.15923 1.64082 2.71473 1.31523C2.27022 0.989631 1.74266 0.796448 1.193 0.758C1.09 0.75 0.977 0.75 0.75 0.75"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__icon quick-add__icon--tilt">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="21"
+                            height="21"
+                            viewBox="0 0 21 21"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M10.7069 17.9373C10.7069 18.8768 9.94537 19.6383 9.00593 19.6383C8.0665 19.6383 7.30493 18.8768 7.30493 17.9373C7.30493 16.9979 8.0665 16.2363 9.00593 16.2363C9.94537 16.2363 10.7069 16.9979 10.7069 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M18.119 17.9373C18.119 18.8768 17.3575 19.6383 16.418 19.6383C15.4786 19.6383 14.717 18.8768 14.717 17.9373C14.717 16.9979 15.4786 16.2363 16.418 16.2363C17.3575 16.2363 18.119 16.9979 18.119 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M4.36072 6.08072L8.00416 11.6723L8.00873 11.6793C8.5657 12.5339 8.84475 12.9621 9.22693 13.2304C9.56324 13.4689 9.95607 13.616 10.3661 13.6606C10.8315 13.7106 11.3248 13.5732 12.3132 13.298L12.3132 13.298L16.0269 12.2639L16.0269 12.2639C17.0153 11.9887 17.5085 11.8514 17.8802 11.5683C18.2091 11.3179 18.4685 10.9893 18.634 10.611C18.8211 10.1852 18.8391 9.67609 18.875 8.66196L18.8756 8.64517L18.9219 7.28695L18.9477 6.48465L18.9849 5.38434C18.9982 4.99188 18.9189 4.6018 18.7534 4.2457C18.5879 3.88961 18.3408 3.57751 18.0322 3.33469C17.7236 3.09187 17.3621 2.92517 16.9771 2.84809C16.592 2.77101 16.1942 2.78572 15.8159 2.89102L4.36072 6.08072ZM4.36072 6.08072L4.34019 6.04802C4.26157 5.92309 4.17902 5.80068 4.09266 5.68097C3.76017 5.2416 3.31014 4.90527 2.79458 4.71084C2.27903 4.51642 1.71898 4.47183 1.17915 4.58223C1.07778 4.60216 0.968925 4.63247 0.750244 4.69336"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__tick">
+                          {" "}
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m6 12.5 4 4 8-9"></path>
+                          </svg>{" "}
+                        </span>{" "}
+                      </span>{" "}
+                    </button>
+                    <input type="hidden" name="product-id" value="15446394634342" />
+                    <input type="hidden" name="section-id" value="template--27949758677094__product_deck_rxUqxi" />
+                  </form>
+                  <span className="visually-hidden" role="status" data-quick-add-status=""></span>
+                  <span
+                    className="quick-add__message"
+                    popover="manual"
+                    aria-hidden="true"
+                    data-quick-add-message=""
+                    hidden
+                  ></span>{" "}
+                </quick-add>{" "}
+                <div className="product-deck__info">
+                  <h3 className="product-deck__title">
+                    {" "}
+                    <a className="product-deck__link" href="/products/radiance-vitamin-c-serum">
+                      Radiance Vitamin C Serum
+                    </a>{" "}
+                  </h3>
+                  <p className="product-deck__text">Brightens and evens skin tone</p>
+                  <div className="product-deck__footer">
+                    {" "}
+                    <div className="product-deck__price">
+                      {" "}
+                      <div className="price">
+                        {" "}
+                        <span className="price__current">
+                          {" "}
+                          <span className="visually-hidden">Regular price </span>From Rs. 4,500.00{" "}
+                        </span>
+                        <span className="price__unit">
+                          {" "}
+                          <span className="visually-hidden">Unit price</span>Rs. 15,000.00/100ml
+                        </span>
+                      </div>{" "}
+                    </div>
+                    <a className="button product-deck__buy" href="/products/radiance-vitamin-c-serum">
+                      {" "}
+                      <span className="product-deck__buy-icon" aria-hidden="true">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          width="26"
+                          height="26"
+                          viewBox="0 0 26 26"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.56086 8.15352C3.38142 8.18589 3.22219 8.28822 3.1182 8.438C3.01421 8.58778 2.97398 8.77273 3.00636 8.95217C3.03873 9.13161 3.14107 9.29083 3.29084 9.39482C3.44062 9.49881 3.62557 9.53904 3.80501 9.50667L5.30701 9.23566L8.36413 16.0194C8.62366 16.5943 9.23735 16.9097 9.85777 16.7978L18.2947 15.2755C18.9056 15.1653 19.3513 14.6657 19.4054 14.0481L19.9957 7.28394L18.579 7.53957L18.0498 13.9225L9.61294 15.4447L6.55649 8.66091C6.4306 8.38269 6.21498 8.15476 5.94417 8.01363C5.67336 7.8725 5.36302 7.82633 5.06285 7.88251L3.56086 8.15352ZM17.4483 15.4282C16.3353 15.629 15.584 16.7112 15.7848 17.8242C15.9856 18.9371 17.0678 19.6885 18.1807 19.4877C19.2937 19.2868 20.045 18.2047 19.8442 17.0917C19.6434 15.9787 18.5612 15.2274 17.4483 15.4282ZM11.3591 16.5269C10.2461 16.7277 9.49478 17.8099 9.69559 18.9228C9.89641 20.0358 10.9786 20.7871 12.0915 20.5863C13.2045 20.3855 13.9559 19.3033 13.755 18.1904C13.5542 17.0774 12.4721 16.3261 11.3591 16.5269ZM11.6032 17.88C11.9848 17.8112 12.333 18.0529 12.4019 18.4345C12.4707 18.8161 12.229 19.1643 11.8474 19.2332C11.4658 19.302 11.1176 19.0603 11.0487 18.6787C10.9799 18.2971 11.2217 17.9489 11.6032 17.88ZM17.6924 16.7814C18.074 16.7125 18.4222 16.9543 18.4911 17.3359C18.5599 17.7174 18.3182 18.0657 17.9366 18.1345C17.555 18.2034 17.2068 17.9616 17.1379 17.58C17.0691 17.1984 17.3108 16.8502 17.6924 16.7814Z"
+                            fill="currentColor"
+                          ></path>
+                          <path
+                            d="M9.46413 10.1826L13.2834 12.5419L15.9593 9.01068L13.3612 9.47945L12.88 6.82L11.58 7.06L12.0622 9.71384L9.46413 10.1826Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>{" "}
+                      </span>
+                      Buy now
+                    </a>
+                  </div>
+                </div>{" "}
+              </li>
+              <li
+                className="product-deck__card"
+                style={
+                  {
+                    "--i": "4",
+                    "--o": "1.5",
+                    "--d": "1.5",
+                    "--z": "11",
+                    "--row-2": "2",
+                    "--gx-2": "-0.5",
+                    "--row-3": "1",
+                    "--gx-3": "0.0",
+                  } as React.CSSProperties
+                }
+                data-last-row="2 3"
+                data-card=""
+              >
+                {" "}
+                <div className="product-deck__media">
+                  {" "}
+                  <div className="image image--cover">
+                    <img
+                      src="/cdn/shop/files/pure-matte-lipstick-1.png?v=1793074060&width=1024"
+                      alt=""
+                      srcSet="/cdn/shop/files/pure-matte-lipstick-1.png?v=1793074060&width=310 310w, /cdn/shop/files/pure-matte-lipstick-1.png?v=1793074060&width=375 375w, /cdn/shop/files/pure-matte-lipstick-1.png?v=1793074060&width=550 550w, /cdn/shop/files/pure-matte-lipstick-1.png?v=1793074060&width=750 750w"
+                      width="1024"
+                      height="1024"
+                      loading="lazy"
+                      sizes="(min-width: 1200px) min(25vw, 720px), (min-width: 750px) 36vw, 54vw"
+                      fetchPriority="auto"
+                    />{" "}
+                  </div>{" "}
+                </div>
+                <span className="product-deck__badge" aria-hidden="true">
+                  New
+                </span>
+                <button
+                  className="product-deck__pick"
+                  type="button"
+                  aria-label="Show Pure Matte Lipstick"
+                  data-pick=""
+                ></button>{" "}
+                <quick-add
+                  className="quick-add quick-add--round quick-add--overlay product-deck__cart"
+                  style={
+                    {
+                      "--quick-add-size": "50px",
+                      "--quick-add-color": "#ffffff",
+                      "--quick-add-overlay": "10%",
+                    } as React.CSSProperties
+                  }
+                  data-variant-id="67834033635430"
+                  data-label-added="Pure Matte Lipstick - Rosewood added to your cart"
+                  data-label-error="Couldn't add this to your cart. Please try again."
+                >
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    id="QuickAdd-template--27949758677094__product_deck_rxUqxi-15446394175590-round-product-deck__cart-5"
+                    acceptCharset="UTF-8"
+                    className="quick-add__form"
+                    encType="multipart/form-data"
+                  >
+                    <input type="hidden" name="form_type" value="product" />
+                    <input type="hidden" name="utf8" value="✓" />
+                    <input type="hidden" name="id" value="67834033635430" />{" "}
+                    <input type="hidden" name="quantity" value="1" />
+                    <button
+                      type="submit"
+                      className="quick-add__button"
+                      aria-label="Add Pure Matte Lipstick - Rosewood to cart"
+                    >
+                      {" "}
+                      <span className="quick-add__line quick-add__line--1" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__line quick-add__line--2" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__cart" aria-hidden="true">
+                        {" "}
+                        <span className="quick-add__icon quick-add__icon--upright">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="19"
+                            height="19"
+                            viewBox="0 0 19 19"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79866 18.2501C8.73809 18.2501 9.49966 17.4886 9.49966 16.5491C9.49966 15.6097 8.73809 14.8481 7.79866 14.8481C6.85922 14.8481 6.09766 15.6097 6.09766 16.5491C6.09766 17.4886 6.85922 18.2501 7.79866 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M15.2098 18.2501C16.1492 18.2501 16.9108 17.4886 16.9108 16.5491C16.9108 15.6097 16.1492 14.8481 15.2098 14.8481C14.2704 14.8481 13.5088 15.6097 13.5088 16.5491C13.5088 17.4886 14.2704 18.2501 15.2098 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M3.856 3.055L5.866 9.419C6.175 10.397 6.329 10.886 6.626 11.248C6.886 11.568 7.225 11.815 7.608 11.968C8.043 12.141 8.555 12.141 9.581 12.141H13.436C14.462 12.141 14.974 12.141 15.408 11.968C15.792 11.815 16.13 11.568 16.391 11.248C16.687 10.886 16.841 10.397 17.151 9.419L17.56 8.123L17.8 7.357L18.131 6.307C18.2491 5.9325 18.2774 5.53544 18.2134 5.148C18.1495 4.76055 17.9952 4.39361 17.763 4.07691C17.5309 3.76021 17.2274 3.50266 16.8771 3.32511C16.5268 3.14757 16.1397 3.05503 15.747 3.055H3.856ZM3.856 3.055L3.845 3.018C3.80277 2.87656 3.75608 2.73649 3.705 2.598C3.50255 2.08554 3.15923 1.64082 2.71473 1.31523C2.27022 0.989631 1.74266 0.796448 1.193 0.758C1.09 0.75 0.977 0.75 0.75 0.75"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__icon quick-add__icon--tilt">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="21"
+                            height="21"
+                            viewBox="0 0 21 21"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M10.7069 17.9373C10.7069 18.8768 9.94537 19.6383 9.00593 19.6383C8.0665 19.6383 7.30493 18.8768 7.30493 17.9373C7.30493 16.9979 8.0665 16.2363 9.00593 16.2363C9.94537 16.2363 10.7069 16.9979 10.7069 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M18.119 17.9373C18.119 18.8768 17.3575 19.6383 16.418 19.6383C15.4786 19.6383 14.717 18.8768 14.717 17.9373C14.717 16.9979 15.4786 16.2363 16.418 16.2363C17.3575 16.2363 18.119 16.9979 18.119 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M4.36072 6.08072L8.00416 11.6723L8.00873 11.6793C8.5657 12.5339 8.84475 12.9621 9.22693 13.2304C9.56324 13.4689 9.95607 13.616 10.3661 13.6606C10.8315 13.7106 11.3248 13.5732 12.3132 13.298L12.3132 13.298L16.0269 12.2639L16.0269 12.2639C17.0153 11.9887 17.5085 11.8514 17.8802 11.5683C18.2091 11.3179 18.4685 10.9893 18.634 10.611C18.8211 10.1852 18.8391 9.67609 18.875 8.66196L18.8756 8.64517L18.9219 7.28695L18.9477 6.48465L18.9849 5.38434C18.9982 4.99188 18.9189 4.6018 18.7534 4.2457C18.5879 3.88961 18.3408 3.57751 18.0322 3.33469C17.7236 3.09187 17.3621 2.92517 16.9771 2.84809C16.592 2.77101 16.1942 2.78572 15.8159 2.89102L4.36072 6.08072ZM4.36072 6.08072L4.34019 6.04802C4.26157 5.92309 4.17902 5.80068 4.09266 5.68097C3.76017 5.2416 3.31014 4.90527 2.79458 4.71084C2.27903 4.51642 1.71898 4.47183 1.17915 4.58223C1.07778 4.60216 0.968925 4.63247 0.750244 4.69336"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__tick">
+                          {" "}
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m6 12.5 4 4 8-9"></path>
+                          </svg>{" "}
+                        </span>{" "}
+                      </span>{" "}
+                    </button>
+                    <input type="hidden" name="product-id" value="15446394175590" />
+                    <input type="hidden" name="section-id" value="template--27949758677094__product_deck_rxUqxi" />
+                  </form>
+                  <span className="visually-hidden" role="status" data-quick-add-status=""></span>
+                  <span
+                    className="quick-add__message"
+                    popover="manual"
+                    aria-hidden="true"
+                    data-quick-add-message=""
+                    hidden
+                  ></span>{" "}
+                </quick-add>{" "}
+                <div className="product-deck__info">
+                  <h3 className="product-deck__title">
+                    {" "}
+                    <a className="product-deck__link" href="/products/pure-matte-lipstick">
+                      Pure Matte Lipstick
+                    </a>{" "}
+                  </h3>
+                  <p className="product-deck__text">Velvet matte colour in one swipe</p>
+                  <div className="product-deck__footer">
+                    {" "}
+                    <div className="product-deck__price">
+                      {" "}
+                      <div className="price">
+                        {" "}
+                        <span className="price__current">
+                          {" "}
+                          <span className="visually-hidden">Regular price </span>
+                          <span data-price-amount="">Rs. 3,000.00</span>
+                        </span>
+                      </div>{" "}
+                    </div>
+                    <a className="button product-deck__buy" href="/products/pure-matte-lipstick">
+                      {" "}
+                      <span className="product-deck__buy-icon" aria-hidden="true">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          width="26"
+                          height="26"
+                          viewBox="0 0 26 26"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.56086 8.15352C3.38142 8.18589 3.22219 8.28822 3.1182 8.438C3.01421 8.58778 2.97398 8.77273 3.00636 8.95217C3.03873 9.13161 3.14107 9.29083 3.29084 9.39482C3.44062 9.49881 3.62557 9.53904 3.80501 9.50667L5.30701 9.23566L8.36413 16.0194C8.62366 16.5943 9.23735 16.9097 9.85777 16.7978L18.2947 15.2755C18.9056 15.1653 19.3513 14.6657 19.4054 14.0481L19.9957 7.28394L18.579 7.53957L18.0498 13.9225L9.61294 15.4447L6.55649 8.66091C6.4306 8.38269 6.21498 8.15476 5.94417 8.01363C5.67336 7.8725 5.36302 7.82633 5.06285 7.88251L3.56086 8.15352ZM17.4483 15.4282C16.3353 15.629 15.584 16.7112 15.7848 17.8242C15.9856 18.9371 17.0678 19.6885 18.1807 19.4877C19.2937 19.2868 20.045 18.2047 19.8442 17.0917C19.6434 15.9787 18.5612 15.2274 17.4483 15.4282ZM11.3591 16.5269C10.2461 16.7277 9.49478 17.8099 9.69559 18.9228C9.89641 20.0358 10.9786 20.7871 12.0915 20.5863C13.2045 20.3855 13.9559 19.3033 13.755 18.1904C13.5542 17.0774 12.4721 16.3261 11.3591 16.5269ZM11.6032 17.88C11.9848 17.8112 12.333 18.0529 12.4019 18.4345C12.4707 18.8161 12.229 19.1643 11.8474 19.2332C11.4658 19.302 11.1176 19.0603 11.0487 18.6787C10.9799 18.2971 11.2217 17.9489 11.6032 17.88ZM17.6924 16.7814C18.074 16.7125 18.4222 16.9543 18.4911 17.3359C18.5599 17.7174 18.3182 18.0657 17.9366 18.1345C17.555 18.2034 17.2068 17.9616 17.1379 17.58C17.0691 17.1984 17.3108 16.8502 17.6924 16.7814Z"
+                            fill="currentColor"
+                          ></path>
+                          <path
+                            d="M9.46413 10.1826L13.2834 12.5419L15.9593 9.01068L13.3612 9.47945L12.88 6.82L11.58 7.06L12.0622 9.71384L9.46413 10.1826Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>{" "}
+                      </span>
+                      Buy now
+                    </a>
+                  </div>
+                </div>{" "}
+              </li>
+              <li
+                className="product-deck__card"
+                style={
+                  {
+                    "--i": "5",
+                    "--o": "2.5",
+                    "--d": "2.5",
+                    "--z": "10",
+                    "--row-2": "2",
+                    "--gx-2": "0.5",
+                    "--row-3": "1",
+                    "--gx-3": "1.0",
+                  } as React.CSSProperties
+                }
+                data-last-row="2 3"
+                data-card=""
+              >
+                {" "}
+                <div className="product-deck__media">
+                  {" "}
+                  <div className="image image--cover">
+                    <img
+                      src="/cdn/shop/files/skin-tint-1.png?v=1793074057&width=1024"
+                      alt=""
+                      srcSet="/cdn/shop/files/skin-tint-1.png?v=1793074057&width=310 310w, /cdn/shop/files/skin-tint-1.png?v=1793074057&width=375 375w, /cdn/shop/files/skin-tint-1.png?v=1793074057&width=550 550w, /cdn/shop/files/skin-tint-1.png?v=1793074057&width=750 750w"
+                      width="1024"
+                      height="1024"
+                      loading="lazy"
+                      sizes="(min-width: 1200px) min(25vw, 720px), (min-width: 750px) 36vw, 54vw"
+                      fetchPriority="auto"
+                    />{" "}
+                  </div>{" "}
+                </div>
+                <span className="product-deck__badge" aria-hidden="true">
+                  New
+                </span>
+                <button className="product-deck__pick" type="button" aria-label="Show Skin Tint" data-pick=""></button>{" "}
+                <quick-add
+                  className="quick-add quick-add--round quick-add--overlay product-deck__cart"
+                  style={
+                    {
+                      "--quick-add-size": "50px",
+                      "--quick-add-color": "#ffffff",
+                      "--quick-add-overlay": "10%",
+                    } as React.CSSProperties
+                  }
+                  data-variant-id="67834033209446"
+                  data-label-added="Skin Tint - Light added to your cart"
+                  data-label-error="Couldn't add this to your cart. Please try again."
+                >
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    id="QuickAdd-template--27949758677094__product_deck_rxUqxi-15446393978982-round-product-deck__cart-6"
+                    acceptCharset="UTF-8"
+                    className="quick-add__form"
+                    encType="multipart/form-data"
+                  >
+                    <input type="hidden" name="form_type" value="product" />
+                    <input type="hidden" name="utf8" value="✓" />
+                    <input type="hidden" name="id" value="67834033209446" />{" "}
+                    <input type="hidden" name="quantity" value="1" />
+                    <button type="submit" className="quick-add__button" aria-label="Add Skin Tint - Light to cart">
+                      {" "}
+                      <span className="quick-add__line quick-add__line--1" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__line quick-add__line--2" aria-hidden="true"></span>{" "}
+                      <span className="quick-add__cart" aria-hidden="true">
+                        {" "}
+                        <span className="quick-add__icon quick-add__icon--upright">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="19"
+                            height="19"
+                            viewBox="0 0 19 19"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.79866 18.2501C8.73809 18.2501 9.49966 17.4886 9.49966 16.5491C9.49966 15.6097 8.73809 14.8481 7.79866 14.8481C6.85922 14.8481 6.09766 15.6097 6.09766 16.5491C6.09766 17.4886 6.85922 18.2501 7.79866 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M15.2098 18.2501C16.1492 18.2501 16.9108 17.4886 16.9108 16.5491C16.9108 15.6097 16.1492 14.8481 15.2098 14.8481C14.2704 14.8481 13.5088 15.6097 13.5088 16.5491C13.5088 17.4886 14.2704 18.2501 15.2098 18.2501Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                            <path
+                              d="M3.856 3.055L5.866 9.419C6.175 10.397 6.329 10.886 6.626 11.248C6.886 11.568 7.225 11.815 7.608 11.968C8.043 12.141 8.555 12.141 9.581 12.141H13.436C14.462 12.141 14.974 12.141 15.408 11.968C15.792 11.815 16.13 11.568 16.391 11.248C16.687 10.886 16.841 10.397 17.151 9.419L17.56 8.123L17.8 7.357L18.131 6.307C18.2491 5.9325 18.2774 5.53544 18.2134 5.148C18.1495 4.76055 17.9952 4.39361 17.763 4.07691C17.5309 3.76021 17.2274 3.50266 16.8771 3.32511C16.5268 3.14757 16.1397 3.05503 15.747 3.055H3.856ZM3.856 3.055L3.845 3.018C3.80277 2.87656 3.75608 2.73649 3.705 2.598C3.50255 2.08554 3.15923 1.64082 2.71473 1.31523C2.27022 0.989631 1.74266 0.796448 1.193 0.758C1.09 0.75 0.977 0.75 0.75 0.75"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__icon quick-add__icon--tilt">
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            width="21"
+                            height="21"
+                            viewBox="0 0 21 21"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M10.7069 17.9373C10.7069 18.8768 9.94537 19.6383 9.00593 19.6383C8.0665 19.6383 7.30493 18.8768 7.30493 17.9373C7.30493 16.9979 8.0665 16.2363 9.00593 16.2363C9.94537 16.2363 10.7069 16.9979 10.7069 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M18.119 17.9373C18.119 18.8768 17.3575 19.6383 16.418 19.6383C15.4786 19.6383 14.717 18.8768 14.717 17.9373C14.717 16.9979 15.4786 16.2363 16.418 16.2363C17.3575 16.2363 18.119 16.9979 18.119 17.9373Z"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                            <path
+                              d="M4.36072 6.08072L8.00416 11.6723L8.00873 11.6793C8.5657 12.5339 8.84475 12.9621 9.22693 13.2304C9.56324 13.4689 9.95607 13.616 10.3661 13.6606C10.8315 13.7106 11.3248 13.5732 12.3132 13.298L12.3132 13.298L16.0269 12.2639L16.0269 12.2639C17.0153 11.9887 17.5085 11.8514 17.8802 11.5683C18.2091 11.3179 18.4685 10.9893 18.634 10.611C18.8211 10.1852 18.8391 9.67609 18.875 8.66196L18.8756 8.64517L18.9219 7.28695L18.9477 6.48465L18.9849 5.38434C18.9982 4.99188 18.9189 4.6018 18.7534 4.2457C18.5879 3.88961 18.3408 3.57751 18.0322 3.33469C17.7236 3.09187 17.3621 2.92517 16.9771 2.84809C16.592 2.77101 16.1942 2.78572 15.8159 2.89102L4.36072 6.08072ZM4.36072 6.08072L4.34019 6.04802C4.26157 5.92309 4.17902 5.80068 4.09266 5.68097C3.76017 5.2416 3.31014 4.90527 2.79458 4.71084C2.27903 4.51642 1.71898 4.47183 1.17915 4.58223C1.07778 4.60216 0.968925 4.63247 0.750244 4.69336"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              stroke="currentColor"
+                            ></path>
+                          </svg>{" "}
+                        </span>{" "}
+                        <span className="quick-add__tick">
+                          {" "}
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m6 12.5 4 4 8-9"></path>
+                          </svg>{" "}
+                        </span>{" "}
+                      </span>{" "}
+                    </button>
+                    <input type="hidden" name="product-id" value="15446393978982" />
+                    <input type="hidden" name="section-id" value="template--27949758677094__product_deck_rxUqxi" />
+                  </form>
+                  <span className="visually-hidden" role="status" data-quick-add-status=""></span>
+                  <span
+                    className="quick-add__message"
+                    popover="manual"
+                    aria-hidden="true"
+                    data-quick-add-message=""
+                    hidden
+                  ></span>{" "}
+                </quick-add>{" "}
+                <div className="product-deck__info">
+                  <h3 className="product-deck__title">
+                    {" "}
+                    <a className="product-deck__link" href="/products/skin-tint">
+                      Skin Tint
+                    </a>{" "}
+                  </h3>
+                  <p className="product-deck__text">A sheer, buildable skin tint with light-reflecting pearls</p>
+                  <div className="product-deck__footer">
+                    {" "}
+                    <div className="product-deck__price">
+                      {" "}
+                      <div className="price">
+                        {" "}
+                        <span className="price__current">
+                          {" "}
+                          <span className="visually-hidden">Regular price </span>
+                          <span data-price-amount="">Rs. 11,800.00</span>
+                        </span>
+                      </div>{" "}
+                    </div>
+                    <a className="button product-deck__buy" href="/products/skin-tint">
+                      {" "}
+                      <span className="product-deck__buy-icon" aria-hidden="true">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          width="26"
+                          height="26"
+                          viewBox="0 0 26 26"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.56086 8.15352C3.38142 8.18589 3.22219 8.28822 3.1182 8.438C3.01421 8.58778 2.97398 8.77273 3.00636 8.95217C3.03873 9.13161 3.14107 9.29083 3.29084 9.39482C3.44062 9.49881 3.62557 9.53904 3.80501 9.50667L5.30701 9.23566L8.36413 16.0194C8.62366 16.5943 9.23735 16.9097 9.85777 16.7978L18.2947 15.2755C18.9056 15.1653 19.3513 14.6657 19.4054 14.0481L19.9957 7.28394L18.579 7.53957L18.0498 13.9225L9.61294 15.4447L6.55649 8.66091C6.4306 8.38269 6.21498 8.15476 5.94417 8.01363C5.67336 7.8725 5.36302 7.82633 5.06285 7.88251L3.56086 8.15352ZM17.4483 15.4282C16.3353 15.629 15.584 16.7112 15.7848 17.8242C15.9856 18.9371 17.0678 19.6885 18.1807 19.4877C19.2937 19.2868 20.045 18.2047 19.8442 17.0917C19.6434 15.9787 18.5612 15.2274 17.4483 15.4282ZM11.3591 16.5269C10.2461 16.7277 9.49478 17.8099 9.69559 18.9228C9.89641 20.0358 10.9786 20.7871 12.0915 20.5863C13.2045 20.3855 13.9559 19.3033 13.755 18.1904C13.5542 17.0774 12.4721 16.3261 11.3591 16.5269ZM11.6032 17.88C11.9848 17.8112 12.333 18.0529 12.4019 18.4345C12.4707 18.8161 12.229 19.1643 11.8474 19.2332C11.4658 19.302 11.1176 19.0603 11.0487 18.6787C10.9799 18.2971 11.2217 17.9489 11.6032 17.88ZM17.6924 16.7814C18.074 16.7125 18.4222 16.9543 18.4911 17.3359C18.5599 17.7174 18.3182 18.0657 17.9366 18.1345C17.555 18.2034 17.2068 17.9616 17.1379 17.58C17.0691 17.1984 17.3108 16.8502 17.6924 16.7814Z"
+                            fill="currentColor"
+                          ></path>
+                          <path
+                            d="M9.46413 10.1826L13.2834 12.5419L15.9593 9.01068L13.3612 9.47945L12.88 6.82L11.58 7.06L12.0622 9.71384L9.46413 10.1826Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>{" "}
+                      </span>
+                      Buy now
+                    </a>
+                  </div>
+                </div>{" "}
+              </li>
+            </ul>{" "}
+          </div>
+          <div className="product-deck__controls">
+            {" "}
+            <a className="button explore-button " href="/collections">
+              Explore all
+              <span className="explore-button__icon" aria-hidden="true">
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  width="19"
+                  height="17"
+                  viewBox="0 0 19 17"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.74637 10.17L1.21877 5.92233C0.209102 4.70677 0.924924 2.85391 2.4902 2.63396L15.6994 0.772328C17.3857 0.534293 18.5904 2.36346 17.7058 3.8187L10.7794 15.2198C9.95865 16.5702 7.97427 16.4969 7.25625 15.0893L4.74637 10.17ZM4.74637 10.17L10.6469 6.28386"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></path>
+                </svg>{" "}
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  width="19"
+                  height="17"
+                  viewBox="0 0 19 17"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.74637 10.17L1.21877 5.92233C0.209102 4.70677 0.924924 2.85391 2.4902 2.63396L15.6994 0.772328C17.3857 0.534293 18.5904 2.36346 17.7058 3.8187L10.7794 15.2198C9.95865 16.5702 7.97427 16.4969 7.25625 15.0893L4.74637 10.17ZM4.74637 10.17L10.6469 6.28386"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></path>
+                </svg>{" "}
+              </span>{" "}
+            </a>{" "}
+          </div>
+        </div>{" "}
+      </product-deck>{" "}
+    </div>
+  );
+}

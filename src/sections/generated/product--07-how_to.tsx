@@ -1,0 +1,194 @@
+// Generated from the Shopify theme's rendered HTML (reference/sections/product--07-how_to.html). Make content dynamic, keep the markup.
+export default function Product07HowTo() {
+  return (
+    <section id="shopify-section-template--27949759168614__how_to" className="shopify-section">
+      <product-how-to
+        id="how-to-use"
+        className="product-how-to full-width section-width--widest color-scheme-2"
+        style={
+          {
+            "--section-padding-top": "64px",
+            "--section-padding-bottom": "64px",
+            "--step-duration": "5s",
+            "--step-fill": "25.0%",
+          } as React.CSSProperties
+        }
+        data-autoplay=""
+      >
+        {" "}
+        <div className="product-how-to__inner">
+          <div className="product-how-to__intro" data-tab-item="">
+            <p className="eyebrow product-how-to__eyebrow">How to use</p>
+            <h2 className="product-how-to__heading">
+              Four minutes, performed the same way, <em>every evening.</em>
+            </h2>
+          </div>
+          <div className="product-how-to__timeline" data-tab-item="">
+            {" "}
+            <ol className="product-how-to__steps" role="list">
+              <li className="product-how-to__step is-active">
+                {" "}
+                <button
+                  type="button"
+                  className="product-how-to__step-button"
+                  aria-expanded="true"
+                  aria-controls="StepText-s1"
+                  data-step="0"
+                >
+                  {" "}
+                  <span className="product-how-to__dot" aria-hidden="true"></span>{" "}
+                  <span className="product-how-to__number">01</span>{" "}
+                  <span className="product-how-to__title">Cleanse &amp; press dry </span>{" "}
+                </button>
+                <p className="product-how-to__text" id="StepText-s1">
+                  Begin on skin still faintly damp — the serum travels further on moisture.
+                </p>
+              </li>
+              <li className="product-how-to__step">
+                {" "}
+                <button
+                  type="button"
+                  className="product-how-to__step-button"
+                  aria-expanded="false"
+                  aria-controls="StepText-s2"
+                  data-step="1"
+                >
+                  {" "}
+                  <span className="product-how-to__dot" aria-hidden="true"></span>{" "}
+                  <span className="product-how-to__number">02</span>{" "}
+                  <span className="product-how-to__title">Four drops, warmed </span>{" "}
+                </button>
+                <p className="product-how-to__text" id="StepText-s2">
+                  Warm four drops between your palms for a few seconds.
+                </p>
+              </li>
+              <li className="product-how-to__step">
+                {" "}
+                <button
+                  type="button"
+                  className="product-how-to__step-button"
+                  aria-expanded="false"
+                  aria-controls="StepText-s3"
+                  data-step="2"
+                >
+                  {" "}
+                  <span className="product-how-to__dot" aria-hidden="true"></span>{" "}
+                  <span className="product-how-to__number">03</span>{" "}
+                  <span className="product-how-to__title">Press, never rub </span>{" "}
+                </button>
+                <p className="product-how-to__text" id="StepText-s3">
+                  Press your palms to the cheeks, forehead and neck, holding each for a breath.
+                </p>
+              </li>
+              <li className="product-how-to__step">
+                {" "}
+                <button
+                  type="button"
+                  className="product-how-to__step-button"
+                  aria-expanded="false"
+                  aria-controls="StepText-s4"
+                  data-step="3"
+                >
+                  {" "}
+                  <span className="product-how-to__dot" aria-hidden="true"></span>{" "}
+                  <span className="product-how-to__number">04</span>{" "}
+                  <span className="product-how-to__title">Seal &amp; rest </span>{" "}
+                </button>
+                <p className="product-how-to__text" id="StepText-s4">
+                  Finish with your moisturiser and let it settle before bed.
+                </p>
+              </li>
+            </ol>
+          </div>
+          <div className="product-how-to__media" data-tab-item="">
+            <figure className="product-how-to__slide is-active" data-slide="0">
+              <img
+                src="/cdn/shop/files/image_667.jpg?v=1793709585&width=1400"
+                alt=""
+                srcSet="/cdn/shop/files/image_667.jpg?v=1793709585&width=300 300w, /cdn/shop/files/image_667.jpg?v=1793709585&width=500 500w, /cdn/shop/files/image_667.jpg?v=1793709585&width=800 800w, /cdn/shop/files/image_667.jpg?v=1793709585&width=1100 1100w, /cdn/shop/files/image_667.jpg?v=1793709585&width=1400 1400w"
+                width="1400"
+                height="1148"
+                loading="lazy"
+                sizes="(min-width: 1200px) 37vw, 40vw"
+                className="product-how-to__image"
+              />{" "}
+              <figcaption className="product-how-to__caption">Blot with linen — never wipe.</figcaption>
+            </figure>
+            <figure className="product-how-to__slide" data-slide="1" aria-hidden="true">
+              <img
+                src="/cdn/shop/files/image_670.jpg?v=1793709598&width=1400"
+                alt=""
+                srcSet="/cdn/shop/files/image_670.jpg?v=1793709598&width=300 300w, /cdn/shop/files/image_670.jpg?v=1793709598&width=500 500w, /cdn/shop/files/image_670.jpg?v=1793709598&width=800 800w, /cdn/shop/files/image_670.jpg?v=1793709598&width=1100 1100w, /cdn/shop/files/image_670.jpg?v=1793709598&width=1400 1400w"
+                width="1400"
+                height="1148"
+                loading="lazy"
+                sizes="(min-width: 1200px) 37vw, 40vw"
+                className="product-how-to__image"
+              />{" "}
+              <figcaption className="product-how-to__caption">Body heat opens the oils.</figcaption>
+            </figure>
+            <figure className="product-how-to__slide" data-slide="2" aria-hidden="true">
+              <img
+                src="/cdn/shop/files/image_669.jpg?v=1793709615&width=1400"
+                alt=""
+                srcSet="/cdn/shop/files/image_669.jpg?v=1793709615&width=300 300w, /cdn/shop/files/image_669.jpg?v=1793709615&width=500 500w, /cdn/shop/files/image_669.jpg?v=1793709615&width=800 800w, /cdn/shop/files/image_669.jpg?v=1793709615&width=1100 1100w, /cdn/shop/files/image_669.jpg?v=1793709615&width=1400 1400w"
+                width="1400"
+                height="1148"
+                loading="lazy"
+                sizes="(min-width: 1200px) 37vw, 40vw"
+                className="product-how-to__image"
+              />{" "}
+              <figcaption className="product-how-to__caption">Pressure, not friction.</figcaption>
+            </figure>
+            <figure className="product-how-to__slide" data-slide="3" aria-hidden="true">
+              <img
+                src="/cdn/shop/files/Component_1639.jpg?v=1793709629&width=1400"
+                alt=""
+                srcSet="/cdn/shop/files/Component_1639.jpg?v=1793709629&width=300 300w, /cdn/shop/files/Component_1639.jpg?v=1793709629&width=500 500w, /cdn/shop/files/Component_1639.jpg?v=1793709629&width=800 800w, /cdn/shop/files/Component_1639.jpg?v=1793709629&width=1100 1100w, /cdn/shop/files/Component_1639.jpg?v=1793709629&width=1400 1400w"
+                width="1400"
+                height="1148"
+                loading="lazy"
+                sizes="(min-width: 1200px) 37vw, 40vw"
+                className="product-how-to__image"
+              />{" "}
+              <figcaption className="product-how-to__caption">Let the night do the rest.</figcaption>
+            </figure>
+            <p className="product-how-to__counter" aria-hidden="true">
+              {" "}
+              <span data-step-current="">01</span>/04{" "}
+            </p>{" "}
+            <div className="product-how-to__controls">
+              <button type="button" className="product-how-to__pause" aria-pressed="false" data-step-pause="">
+                {" "}
+                <span className="visually-hidden">Pause steps</span>{" "}
+                <svg
+                  className="product-how-to__pause-icon product-how-to__pause-icon--pause"
+                  aria-hidden="true"
+                  focusable="false"
+                  viewBox="0 0 16 16"
+                >
+                  <rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"></rect>
+                  <rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"></rect>
+                </svg>{" "}
+                <svg
+                  className="product-how-to__pause-icon product-how-to__pause-icon--play"
+                  aria-hidden="true"
+                  focusable="false"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.4-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7z"
+                    fill="currentColor"
+                  ></path>
+                </svg>{" "}
+              </button>
+              <span className="product-how-to__progress" aria-hidden="true">
+                <span data-step-progress=""></span>
+              </span>
+            </div>{" "}
+          </div>
+        </div>{" "}
+      </product-how-to>{" "}
+    </section>
+  );
+}

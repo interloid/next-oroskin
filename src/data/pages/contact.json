@@ -1,0 +1,136 @@
+{
+  "slug": "contact",
+  "title": "Contact",
+  "sections": [
+    {
+      "id": "main",
+      "type": "contact-form",
+      "props": {
+        "breadcrumbTitle": "Contact",
+        "eyebrow": "Get in touch",
+        "heading": "We're here, <em>always.</em>",
+        "text": "<p>Every luminary deserves a personal touch. Whether it's a question about a ritual, a concern with your order, or simply a desire to connect — we are here, human and present, for you.</p>",
+        "image": { "src": "/cdn/shop/files/image_715.png", "width": 960, "height": 960 },
+        "statValue": "97%",
+        "statLabel": "Satisfaction rate",
+        "supportTitle": "Live support available now",
+        "supportHours": "Mon–Fri 9am–9pm · Sat–Sun 10am–6pm CET",
+        "formHeading": "Send a message",
+        "topics": ["Order & shipping", "Returns", "Product query", "Press & partnerships", "Others"],
+        "showOrderNumber": true,
+        "paddingTop": 40,
+        "paddingBottom": 96
+      }
+    },
+    {
+      "id": "channels",
+      "type": "contact-channels",
+      "props": {
+        "eyebrow": "Ways to reach us",
+        "heading": "Choose your <em>channel</em>",
+        "paddingTop": 96,
+        "paddingBottom": 96,
+        "channels": [
+          {
+            "icon": "chat",
+            "label": "Fastest response",
+            "title": "Live chat",
+            "type": "none",
+            "text": "<p>Speak directly with a beauty concierge. No bots — only humans who love beauty.</p>",
+            "status": "Online now"
+          },
+          {
+            "icon": "mail",
+            "label": "Email",
+            "title": "Email us",
+            "type": "email",
+            "value": "hariprathap@interloid.com",
+            "text": "<p>We reply to every message personally within 4 hours during business days.</p>",
+            "linkLabel": "Send email"
+          },
+          {
+            "icon": "phone",
+            "label": "Phone",
+            "title": "Call us",
+            "type": "phone",
+            "value": "+44 20 7946 0958",
+            "text": "<p>Toll-free from the US, UK and EU. For orders, returns and concierge requests.</p>",
+            "linkLabel": "Call now"
+          },
+          {
+            "icon": "mobile",
+            "label": "WhatsApp",
+            "title": "Message us",
+            "type": "whatsapp",
+            "value": "+44 20 7946 0958",
+            "whatsappMessage": "Hello Oroskin",
+            "text": "<p>Prefer to message? Our concierge team is on WhatsApp for discreet, personal support.</p>",
+            "linkLabel": "Open WhatsApp"
+          }
+        ]
+      }
+    },
+    {
+      "id": "map",
+      "type": "locations-map",
+      "props": {
+        "eyebrow": "Global presence",
+        "heading": "Find us <em>worldwide</em>",
+        "filterAll": "All locations",
+        "filterTypes": ["Flagship stores", "Offices", "Pop-ups"],
+        "ratio": 2.695,
+        "ratioMobile": 1.1,
+        "focusX": 50,
+        "focusY": 32,
+        "paddingTop": 64,
+        "paddingBottom": 96,
+        "pins": [
+          { "name": "New York", "typeLabel": "Flagship", "types": ["Flagship stores"], "x": 29, "y": 36 },
+          { "name": "London", "typeLabel": "Studio", "types": ["Offices"], "x": 50, "y": 35 },
+          { "name": "Dubai", "typeLabel": "Pop-up", "types": ["Pop-ups"], "x": 61, "y": 45 },
+          { "name": "Tokyo", "typeLabel": "Office", "types": ["Offices"], "x": 81, "y": 41 }
+        ]
+      }
+    },
+    {
+      "id": "locations",
+      "type": "contact-locations",
+      "props": {
+        "socialEyebrow": "Find us online",
+        "socialHeading": "Connect on social",
+        "locationsEyebrow": "Visit our office",
+        "locationsHeading": "Our global locations",
+        "paddingTop": 64,
+        "paddingBottom": 96,
+        "social": [
+          { "network": "instagram", "name": "Instagram", "handle": "@oroskin.beauty", "followers": "1.2M followers", "link": "#" },
+          { "network": "x", "name": "Twitter/X", "handle": "@oroskin", "followers": "340k followers", "link": "#" },
+          { "network": "youtube", "name": "YouTube", "handle": "OroSkin Beauty", "followers": "215k followers", "link": "#" },
+          { "network": "facebook", "name": "Facebook", "handle": "OroSkin Beauty Co.", "followers": "896k followers", "link": "#" },
+          { "network": "linkedin", "name": "LinkedIn", "handle": "OroSkin Beauty Co.", "followers": "58k followers", "link": "https://in.linkedin.com/company/interloid-technologies" }
+        ],
+        "locations": [
+          {
+            "code": "FR",
+            "title": "Paris — Headquarters",
+            "address": "14 Rue du Faubourg Saint-Honoré\n75008 Paris, France",
+            "hours": "Mon–Fri · 9am – 7pm CET",
+            "mapLink": "https://maps.app.goo.gl/815Z2mcYXokrQRrj8"
+          },
+          {
+            "code": "US",
+            "title": "New York",
+            "address": "432 West Broadway, Suite 300\nSoHo, New York NY 10012",
+            "hours": "Mon–Fri · 9am – 6pm EST"
+          },
+          {
+            "code": "JP",
+            "title": "Tokyo",
+            "address": "2-11-3 Minami-Aoyama\nMinato-ku, Tokyo 107-0062",
+            "hours": "Mon–Fri · 10am – 7pm JST"
+          }
+        ]
+      }
+    }
+  ]
+}
