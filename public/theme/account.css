@@ -1,0 +1,2252 @@
+/* Account demo pages (Figma "account-*" screens). BEM, prefix account-. Static mock data, no real auth. */
+
+.account {
+  /* Card colours sampled from the 1920 designs (public/newpages-design): main cards are near white, highlight cards
+     (In transit, Oro Circle, membership) a soft blush, the welcome card a deeper blush with a pink border. */
+  --account-card: #fffdfd;
+  --account-card-tint: #fbf7f7;
+  --account-card-tint-edge: #f3e9e9;
+  --account-welcome: #fbf4f4;
+  --account-welcome-edge: #fbd5d5;
+  --account-row-edge: #ebebeb; /* rows inside a card (orders, subscriptions) */
+  --account-shadow: 0 0.5rem 1.5rem #7d00000a;
+  --account-edge: #f7eeee;
+  --account-line: #efe0e0;
+  --account-red: var(--color-accent, #7d0000);
+  --account-muted: #1f1f1f; /* Figma: secondary text is #1f1f1f too, not grey */
+  --account-gap: clamp(1rem, 1.6vw, 1.5rem);
+  /* Space between the page blocks (head, welcome card, tabs, cards). Figma 1920: ~55-70px. */
+  --account-stack: clamp(1.25rem, 3vw, 3.5rem);
+  /*
+    Type scale for every account page (and /track-order): each font-size in this file uses one of these. Mapped
+    onto the theme scale (head.css). Sizes checked against public/newpages-design (1920px) by measuring text widths
+    (2026-11-27): body copy there is 20px, card titles ~26px (design/figma/tokens.md: body 22 / 20 / 18 / 16).
+      label    eyebrows, tags, small uppercase links   13-14px
+      meta     dates, notes, secondary text            14-16px
+      body     paragraphs, list rows, card text        16-20px
+      lead     tabs, prices, emphasised rows           17-22px
+      title-sm card / product / tier names             22-26px
+      title-md section titles                          28-40px
+      title-lg page titles (h1)                        36-60px
+  */
+  --account-text-label: var(--font-size-small);
+  --account-text-meta: var(--font-size-caption);
+  --account-text-body: var(--font-size-body);
+  --account-text-lead: clamp(1.0625rem, 0.95rem + 0.4vw, 1.375rem);
+  --account-title-sm: var(--font-size-h3);
+  --account-title-md: var(--font-size-h2);
+  --account-title-lg: var(--font-size-h1);
+  --account-lh-body: var(--line-height-body, 1.65);
+  --account-lh-heading: var(--line-height-heading, 1.15);
+  color: #1f1f1f;
+  line-height: var(--account-lh-body, 1.6);
+  background: #fff;
+  /* Figma 1920: the page title starts ~76px under the header pill */
+  padding-block: calc(var(--header-space, 6.0625rem) + clamp(0.25rem, 0.4vw, 0.5rem)) clamp(3rem, 6vw, 6rem);
+}
+/* Figma 1920: content 1650px wide, 135px a side (= 12vw + the page margins). Scales with the screen; phones: the
+   749px rule below. */
+.account__inner {
+  inline-size: calc(min(100vw - clamp(4rem, 12vw, 15rem), 100%) - var(--page-margin, 20px) * 2);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--account-stack);
+}
+.account a {
+  text-decoration: none;
+}
+/* Resets wrapped in :where() = specificity 0, so any single class below (".account-center__title { margin: ... }")
+   still wins. ".account p { margin: 0 }" was (0,1,1) and silently cancelled 21 margins / paddings in this file. */
+:where(.account) :where(ul, ol) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+:where(.account) :where(h1, h2, h3, p, dl, dd) {
+  margin: 0;
+}
+/* One heading line height everywhere (a rule with its own line-height still wins: this is specificity 0) */
+:where(.account) :where(h1, h2, h3) {
+  line-height: var(--account-lh-heading, 1.15);
+}
+
+/* Header row */
+.account-head {
+  display: flex;
+  align-items: flex-end; /* Figma: "Sign out" sits on the subtitle line */
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.account-head__title {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: var(--account-title-lg, clamp(2.25rem, 4.2vw, 4rem));
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.account-head__text {
+  /* Figma: ~20px, ~33px under the title */
+  margin-top: clamp(0.5rem, 1.6vw, 2rem);
+  font-size: var(--account-text-body, 1rem);
+}
+/* Figma: a red text link with a log-out icon, not a button */
+.account-signout {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-block: 0.25rem;
+  color: var(--account-red);
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.account-signout svg {
+  inline-size: 1.4em;
+  block-size: 1.4em;
+}
+
+/* Welcome card */
+.account-welcome {
+  /* Figma: #fbf4f4 with a pink hairline */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.5rem 3rem;
+  padding: clamp(1rem, 2vw, 2.25rem) clamp(1rem, 2.5vw, 3rem);
+  border-radius: clamp(1rem, 1.6vw, 1.75rem);
+  background: var(--account-welcome);
+  border: 1px solid var(--account-welcome-edge);
+  box-shadow: 0 8px 24px #7d00000a;
+}
+.account-welcome__who {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  min-inline-size: 0;
+}
+.account-avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: clamp(3.5rem, 5.8vw, 6.9rem);
+  aspect-ratio: 111 / 99;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 12px #0000001a;
+  font-family: var(--font-heading--family);
+  font-size: var(--account-title-md, clamp(1.5rem, 2.2vw, 2rem));
+  color: #1f1f1f;
+}
+.account-avatar--lg {
+  inline-size: 5rem;
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
+.account-eyebrow {
+  color: var(--account-red);
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.account-welcome__name {
+  /* Figma: Satoshi ~32px */
+  font-family: var(--font-body--family);
+  font-size: clamp(1.375rem, 1.1rem + 0.75vw, 2rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+.account-welcome__tier {
+  /* Figma: ~20px */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  color: var(--account-muted);
+  font-size: var(--account-text-body, 1rem);
+}
+.account-welcome__tier svg {
+  inline-size: 0.9em;
+  block-size: 0.9em;
+  color: var(--account-red);
+}
+.account-welcome__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: var(--account-text-body, 1rem); /* Figma "Glow balance": ~20px */
+}
+.account-welcome__row strong {
+  font-weight: 500;
+}
+.account-meter {
+  margin-block: 0.6rem;
+  block-size: 0.5625rem;
+  border-radius: 99px;
+  background: #7d000026;
+  overflow: hidden;
+}
+.account-meter span {
+  display: block;
+  block-size: 100%;
+  border-radius: inherit;
+  background: var(--account-red);
+}
+.account-welcome__next {
+  font-size: var(--account-text-body, 1rem);
+  color: var(--account-muted);
+}
+
+/* Tabs */
+.account-tabs {
+  border-block-end: 1px solid var(--account-line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.account-tabs ul {
+  display: flex;
+  gap: clamp(1rem, 3.5vw, 4.25rem); /* Figma: ~68px between tabs */
+  min-inline-size: max-content;
+}
+.account-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 0.9rem;
+  border-block-end: 2px solid transparent;
+  color: #1f1f1f;
+  font-size: clamp(1.0625rem, 0.9rem + 0.5vw, 1.5rem); /* Figma: ~24px */
+  font-weight: 500;
+}
+.account-tab svg {
+  flex-shrink: 0;
+  inline-size: 0.85em;
+  block-size: 0.85em;
+}
+.account-tab.is-active {
+  color: var(--account-red);
+  border-block-end-color: var(--account-red);
+}
+.account-tab:hover {
+  color: var(--account-red);
+}
+
+/* Cards and grids */
+.account-card {
+  padding: clamp(1rem, 1.8vw, 2rem);
+  border-radius: clamp(1rem, 1.6vw, 1.75rem);
+  background: var(--account-card);
+  border: 1px solid var(--account-edge);
+  min-inline-size: 0;
+}
+.account-card--tint {
+  background: var(--account-card-tint);
+  border-color: var(--account-card-tint-edge);
+}
+.account-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-block-end: 1rem;
+}
+.account-card__title {
+  /* Figma: Satoshi ~24px ("Renewal Serum + 1", "Recent Orders") */
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: var(--account-title-sm, 1.25rem);
+  font-weight: 500;
+  line-height: 1.3;
+  margin-block-start: 0.25rem;
+}
+.account-card__text {
+  margin-block-start: 0.5rem;
+  max-inline-size: 28rem;
+  font-size: var(--account-text-body, 1rem); /* card text: Figma 1.75 line height */
+  line-height: 1.75;
+  color: var(--account-muted);
+}
+.account-card__cta {
+  margin-block-start: 1rem;
+}
+.account-grid {
+  display: grid;
+  gap: var(--account-gap);
+}
+.account-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.account-card {
+  box-shadow: var(--account-shadow);
+}
+
+/* Buttons and links */
+.account-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.account-btn--solid {
+  background: var(--account-red);
+  color: #fff;
+}
+.account-btn--solid:hover {
+  background: color-mix(in srgb, var(--account-red) 85%, #000);
+}
+.account-btn--glass,
+.account-btn--ghost {
+  background: #ffffffb3;
+  color: var(--account-red);
+  border-color: #7d000026;
+}
+.account-btn--glass:hover,
+.account-btn--ghost:hover {
+  background: #fff;
+}
+.account-link {
+  color: var(--account-red);
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.account-link--btn {
+  background: none;
+  border: 0;
+  padding: 0.25rem 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+.account-link:hover {
+  text-decoration: underline !important;
+}
+.account-btn:focus-visible,
+.account-link:focus-visible,
+.account-tab:focus-visible,
+.account-pill:focus-visible,
+.account-switch:focus-visible,
+.account-iconbtn:focus-visible,
+.account a:focus-visible {
+  outline: 2px solid var(--account-red);
+  outline-offset: 2px;
+}
+.account-back {
+  align-self: flex-start;
+  color: #1f1f1f;
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.account-tag {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #7d000014;
+  color: var(--account-red);
+  white-space: nowrap;
+}
+.account-tag--delivered {
+  background: #1d7a4a1f;
+  color: #17603a;
+}
+.account-tag--in-transit {
+  background: #c8a24b2e;
+  color: #6f5413;
+}
+.account-tag--processing {
+  background: #1f1f1f14;
+  color: #3d3d3d;
+}
+.account-tag--default {
+  margin-inline-start: 0.5rem;
+}
+.account-empty {
+  padding-block: 2rem;
+  color: var(--account-muted);
+  font-size: var(--account-text-body, 0.9375rem);
+}
+.account-status {
+  min-block-size: 1.2em;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: #17603a;
+}
+.account-status--error {
+  color: var(--account-red);
+}
+
+/* Overview mini rows */
+.account-mini {
+  display: grid;
+  gap: 0.75rem;
+}
+.account-mini__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem;
+  border-radius: 1rem;
+  background: var(--account-card);
+  border: 1px solid var(--account-row-edge);
+  color: inherit;
+}
+.account-mini__row img {
+  inline-size: 3.5rem;
+  block-size: 3.75rem;
+  object-fit: cover;
+  border-radius: 0.6rem;
+}
+.account-mini__main {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: start;
+  min-inline-size: 0;
+}
+.account-mini__title {
+  font-family: var(--font-body--family); /* Figma: Satoshi, medium */
+  font-weight: 500;
+  font-size: var(--account-text-lead, 1.125rem);
+}
+.account-mini__meta,
+.account-mini__next {
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-mini__next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--account-red);
+}
+.account-mini__next svg {
+  inline-size: 0.85em;
+  block-size: 0.85em;
+}
+.account-mini__price {
+  font-family: var(--font-body--family);
+  font-size: var(--account-text-lead, 1.125rem);
+}
+.account-viewed {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--account-gap);
+}
+.account-viewed__card {
+  display: grid;
+  gap: 0.4rem;
+  color: inherit;
+}
+.account-viewed__card img {
+  inline-size: 100%;
+  aspect-ratio: 358 / 305;
+  object-fit: cover;
+  border-radius: 1rem;
+  background: #fff;
+}
+.account-viewed__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-block-start: 0.4rem;
+}
+.account-viewed__title {
+  font-family: var(--font-heading--family);
+  font-size: var(--account-text-lead, 1.125rem);
+  min-inline-size: 0;
+}
+.account-viewed__price {
+  font-family: var(--font-heading--family);
+}
+.account-viewed__meta {
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+
+/*
+  Details page (Figma "My Account - My details", 1920): top row = a narrow Profile card (~26%) beside Saved addresses
+  + Payment methods; bottom row = Beauty profile (~45%, blush) beside Account protection. Tablets: Profile beside the
+  rest at 1 : 2, then one column below 990px.
+*/
+.account-details {
+  display: grid;
+  gap: var(--account-gap);
+}
+.account-details__top {
+  display: grid;
+  grid-template-columns: minmax(0, 26fr) minmax(0, 74fr);
+  gap: var(--account-gap);
+  align-items: start;
+}
+.account-details__bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  gap: var(--account-gap);
+  align-items: stretch;
+}
+.account-details__side {
+  display: grid;
+  gap: var(--account-gap);
+  min-inline-size: 0;
+}
+.account .account-card__head {
+  margin-block-end: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+/* Profile: a rounded-square avatar with a pencil "Change photo" link, then the form */
+.account-details__photo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block-end: clamp(1.25rem, 1.6vw, 1.75rem);
+}
+.account-details__photo .account-avatar {
+  inline-size: clamp(3.5rem, 4.2vw, 5rem);
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  border: 1px solid var(--account-edge);
+  box-shadow: 0 0.25rem 1rem #7d00000d;
+  font-size: var(--account-title-sm, 1.25rem);
+  color: var(--account-red);
+}
+.account-form {
+  display: grid;
+  gap: clamp(1rem, 1.25vw, 1.4rem);
+}
+.account-field {
+  display: grid;
+  gap: 0.5rem;
+}
+/* Field labels: small dark uppercase (Figma) */
+.account-field > span {
+  color: #1f1f1f;
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+/* Inputs: soft-filled pills, ~48px at 1920 (Figma #fdfaf9) */
+.account-field input {
+  inline-size: 100%;
+  min-block-size: clamp(2.5rem, 2.5vw, 3rem);
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--account-edge);
+  border-radius: 99px;
+  background: #fdfaf9;
+  font: inherit;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: #1f1f1f;
+}
+.account-field input:focus-visible {
+  outline: 2px solid var(--account-red);
+  outline-offset: 1px;
+}
+.account-form .account-btn {
+  justify-self: stretch;
+  min-block-size: clamp(2.75rem, 2.6vw, 3.125rem);
+  margin-block-start: 0.5rem;
+  box-shadow: 0 0.5rem 1rem #7d000033;
+}
+
+/* Text links: "+ Add new" / "Change photo" with an icon; "Set as default" / "Update" underlined */
+.account-link--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.account-link--icon svg {
+  inline-size: 1.1em;
+  block-size: 1.1em;
+}
+.account .account-link--line {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+}
+
+/* Round icon buttons (edit / delete): white circles with a soft shadow */
+.account-iconbtn {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: clamp(2rem, 1.9vw, 2.25rem);
+  block-size: clamp(2rem, 1.9vw, 2.25rem);
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  box-shadow: 0 0.125rem 0.625rem #0000001a;
+  color: #1f1f1f;
+  font-size: var(--account-text-lead, 1.125rem);
+  line-height: 1;
+  cursor: pointer;
+}
+.account-iconbtn svg {
+  inline-size: 45%;
+  block-size: 45%;
+}
+.account-iconbtn:hover {
+  color: var(--account-red);
+}
+
+/* A white pill button ("Enable") */
+.account-pill-btn {
+  padding: 0.6em 1.4em;
+  border: 0;
+  border-radius: 99px;
+  background: #fff;
+  box-shadow: 0 0.25rem 0.875rem #0000001a;
+  color: #1f1f1f;
+  font: inherit;
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.account-pill-btn:hover {
+  color: var(--account-red);
+}
+
+/* Saved addresses: two cards; pin + name + Default, tools top right, "Set as default" bottom right */
+.account-addr {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1vw, 1.25rem);
+}
+.account-addr__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(1rem, 1.25vw, 1.5rem);
+  border-radius: 1rem;
+  background: var(--account-card);
+  border: 1px solid var(--account-row-edge);
+  font-size: var(--account-text-meta, 0.8125rem);
+  line-height: 1.75;
+}
+.account-addr__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.account-addr__label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: var(--account-text-body, 0.9375rem);
+  font-weight: 500;
+}
+.account-addr__label svg {
+  inline-size: 0.9em;
+  block-size: 0.9em;
+}
+.account-addr__tools,
+.account-pay__tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.account-addr address {
+  display: grid;
+  padding-inline-start: 1.4em;
+  font-style: normal;
+  color: var(--account-muted);
+}
+.account-addr__default {
+  align-self: flex-end;
+  margin-block-start: auto;
+}
+.account .account-tag--default {
+  margin-inline-start: 0.25rem;
+  background: #7d00001a;
+  color: var(--account-red);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Payment methods: black brand badge | number + name | tools */
+.account-pay {
+  display: grid;
+  gap: clamp(0.75rem, 1vw, 1.25rem);
+}
+.account-pay__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: clamp(0.9rem, 1.25vw, 1.5rem);
+  border-radius: 1rem;
+  background: var(--account-card);
+  border: 1px solid var(--account-row-edge);
+}
+.account-pay__brand {
+  display: grid;
+  place-items: center;
+  inline-size: clamp(3rem, 3.4vw, 4rem);
+  block-size: clamp(2rem, 2.2vw, 2.625rem);
+  border-radius: 0.5rem;
+  background: #1f1f1f;
+  color: #fff;
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.account-pay__num {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: var(--account-text-body, 0.9375rem);
+  letter-spacing: 0.04em;
+}
+.account .account-pay__meta {
+  margin-block-start: 0.2rem;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+
+/* Beauty profile: 2 x 2 facts, each with a red icon */
+.account-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 1.5vw, 1.75rem) 1.5rem;
+}
+.account-facts dt {
+  color: #1f1f1f;
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.account .account-facts dd {
+  margin-block-start: 0.25rem;
+  font-size: var(--account-text-body, 1rem); /* Figma "January 15, 2027": ~20px */
+}
+.account-facts--icons > div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.75rem;
+  align-items: start;
+}
+.account-facts--icons dt,
+.account-facts--icons dd {
+  grid-column: 2;
+}
+.account-facts__icon {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  color: var(--account-red);
+}
+.account-facts__icon svg {
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
+}
+.account-facts--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-block-start: 1.25rem;
+}
+
+/* Account protection: rows split by a hairline */
+.account-sec {
+  display: grid;
+}
+.account-sec li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-block: clamp(0.9rem, 1.1vw, 1.25rem);
+}
+.account-sec li + li {
+  border-block-start: 1px solid var(--account-line);
+}
+.account-sec li:first-child {
+  padding-block-start: 0;
+}
+.account-sec__title {
+  font-weight: 500;
+  font-size: var(--account-text-body, 0.9375rem);
+}
+.account .account-sec__text {
+  margin-block-start: 0.2rem;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+
+/* Orders list */
+.account-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block-end: 1rem;
+}
+.account-pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--account-line);
+  background: #fff;
+  color: #1f1f1f;
+  font: inherit;
+  font-size: var(--account-text-meta, 0.8125rem);
+  cursor: pointer;
+}
+.account-pill__count {
+  color: var(--account-muted);
+}
+.account-pill.is-active {
+  background: var(--account-red);
+  border-color: var(--account-red);
+  color: #fff;
+}
+.account-pill.is-active .account-pill__count {
+  color: #ffffffcc;
+}
+/*
+  Order cards (Figma "My Account - Orders", 1920: 1573 x 205, 25px apart). Top row: stacked thumbnails, name
+  ("+1 More" in grey), date · items, order number, status tag, total, round ↗ button. A hairline, then the footer:
+  tracking number, delivery note, actions on the right ("View details" underlined).
+*/
+.account-orders {
+  display: grid;
+  gap: clamp(0.75rem, 1.3vw, 1.5625rem);
+  margin-block-start: clamp(1rem, 2.2vw, 3.25rem);
+}
+.account-order {
+  border-radius: clamp(0.875rem, 1vw, 1.25rem);
+  background: #fff;
+  border: 1px solid var(--account-row-edge);
+  box-shadow: 0 0.25rem 1rem #7d000008;
+}
+.account-order__top {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto auto auto;
+  align-items: center;
+  gap: 1rem clamp(1rem, 1.5vw, 1.75rem);
+  padding: clamp(0.75rem, 0.9vw, 1rem) clamp(1rem, 1.6vw, 2rem) clamp(0.75rem, 1vw, 1.25rem) clamp(0.75rem, 0.9vw, 1rem);
+}
+.account-order__thumbs {
+  display: flex;
+}
+.account-order__img {
+  inline-size: clamp(3.5rem, 4.5vw, 5.375rem);
+  aspect-ratio: 86 / 90;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  background: #fff;
+  border: 2px solid #fff;
+}
+.account-order__img + .account-order__img {
+  margin-inline-start: calc(clamp(3.5rem, 4.5vw, 5.375rem) * -0.45);
+}
+.account-order__title {
+  font-size: var(--account-text-body, 1rem);
+  font-weight: 500;
+}
+.account-order__more {
+  color: #1f1f1f80;
+  font-weight: 400;
+}
+.account-order__meta {
+  margin-block-start: 0.3rem;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-order__number {
+  font-size: var(--account-text-meta, 0.8125rem);
+  letter-spacing: 0.02em;
+}
+.account-order__total {
+  font-size: var(--account-title-sm, 1.25rem);
+  font-weight: 500;
+  text-align: end;
+  white-space: nowrap;
+}
+.account-order__go {
+  display: grid;
+  place-items: center;
+  inline-size: clamp(2rem, 1.9vw, 2.25rem);
+  block-size: clamp(2rem, 1.9vw, 2.25rem);
+  border-radius: 50%;
+  background: #7d000014;
+  color: var(--account-red);
+}
+.account-order__go svg {
+  inline-size: 50%;
+  block-size: 50%;
+}
+.account-order__go:hover {
+  background: var(--account-red);
+  color: #fff;
+}
+.account-order__foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem clamp(1rem, 2vw, 2.5rem);
+  margin-inline: clamp(0.75rem, 0.9vw, 1rem) clamp(1rem, 1.6vw, 2rem);
+  padding-block: clamp(0.75rem, 1vw, 1.125rem);
+  border-block-start: 1px solid var(--account-row-edge);
+}
+.account-order__track,
+.account-order__note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-order__track svg,
+.account-order__note svg {
+  flex: none;
+  inline-size: 1.15em;
+  block-size: 1.15em;
+}
+.account-order__note svg {
+  color: #17803d;
+}
+.account-order__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem clamp(1rem, 1.8vw, 2.25rem);
+  margin-inline-start: auto;
+}
+.account-order__actions svg {
+  inline-size: 1.2em;
+  block-size: 1.2em;
+}
+/* Figma: status colours on the order cards (Delivered red on blush, Shipped gold, Processing green) */
+.account-order .account-tag--delivered {
+  background: #7d000014;
+  color: var(--account-red);
+}
+.account-order .account-tag--processing {
+  background: #17803d14;
+  color: #17803d;
+}
+
+/* Order details / tracking */
+.account-od {
+  padding: clamp(1rem, 4vw, 4.75rem); /* Figma: ~76px inside the card at 1920 */
+}
+.account-od__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.account-od__title {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: var(--account-title-md, clamp(1.5rem, 2.2vw, 2rem));
+}
+.account-od__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  margin-block-start: 0.4rem;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-od__meta strong {
+  color: #1f1f1f;
+  font-weight: 500;
+}
+.account-od__eta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--account-red);
+}
+.account-od__eta svg {
+  inline-size: 0.9em;
+  block-size: 0.9em;
+}
+.account-od__buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+/*
+  Order progress (Figma "My Account - Track Orders", 1920): 46px circles joined by a red line, each with its own
+  icon (~18px). Done: solid red with a soft red glow, white icon. Current: white, 2px red border and a thin outer
+  ring. Upcoming: white with a soft shadow, red icon. The circle scales down to 36px on small screens.
+*/
+.account-steps {
+  --step-dot: clamp(2.25rem, 1.5rem + 1.15vw, 2.875rem);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-block: clamp(1.25rem, 1.6vw, 2rem);
+  /* Figma: the steps sit in their own bordered box (1491 x 155) */
+  padding: clamp(1rem, 1.4vw, 1.75rem) clamp(0.5rem, 1vw, 1.25rem);
+  border-radius: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--account-edge);
+}
+.account-step {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+.account-step::before {
+  content: '';
+  position: absolute;
+  inset-block-start: calc(var(--step-dot) / 2);
+  inset-inline: -50% 50%;
+  block-size: 1px;
+  background: var(--account-red);
+}
+.account-step:first-child::before {
+  display: none;
+}
+.account-step__dot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  inline-size: var(--step-dot);
+  block-size: var(--step-dot);
+  margin-block-end: 0.35rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid transparent;
+  box-shadow: 0 0.25rem 0.75rem #7d000014;
+  color: var(--account-red);
+}
+.account-step__dot svg {
+  inline-size: 40%;
+  block-size: 40%;
+}
+.account-step--done .account-step__dot {
+  background: var(--account-red);
+  border-color: var(--account-red);
+  box-shadow: 0 0 0 0.25rem #7d00001f, 0 0.25rem 0.875rem #7d000059;
+  color: #fff;
+}
+.account-step--current .account-step__dot {
+  border-color: var(--account-red);
+  box-shadow: 0 0 0 0.25rem #fff, 0 0 0 calc(0.25rem + 1px) #7d00004d;
+}
+.account-step__name {
+  font-size: var(--account-text-meta, 0.8125rem);
+  font-weight: 400;
+}
+.account-step__sub {
+  min-block-size: 1em;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-red);
+}
+.account-od__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.39fr) minmax(0, 1fr); /* Figma: 848 / 611 */
+  gap: var(--account-gap);
+  align-items: start;
+}
+.account-od__left,
+.account-od__right {
+  display: grid;
+  gap: var(--account-gap);
+  min-inline-size: 0;
+}
+.account-box {
+  padding: clamp(1rem, 1.6vw, 1.5rem);
+  border-radius: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--account-edge);
+  min-inline-size: 0;
+}
+.account-box--two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+/* Figma: box titles are Satoshi (~24px), some with a red icon in front */
+.account-box__title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-block-end: 0.9rem;
+  font-family: var(--font-body--family);
+  font-weight: 500;
+  font-size: var(--account-text-lead, 1.25rem);
+}
+.account-box__title svg {
+  flex: none;
+  inline-size: 1.1em;
+  block-size: 1.1em;
+  color: var(--account-red);
+}
+.account-box__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.account-box__head .account-link svg {
+  inline-size: 1.2em;
+  block-size: 1.2em;
+}
+/* Figma: done = red circle with a white tick, upcoming = small blush dot; a line joins them */
+.account-timeline {
+  --dot: 1.5rem;
+  display: grid;
+  gap: 1.1rem;
+}
+.account-timeline__item {
+  position: relative;
+  padding-inline-start: calc(var(--dot) + 0.875rem);
+}
+.account-timeline__item::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: calc(var(--dot) / 2 - 1px);
+  inset-block: var(--dot) -1.1rem;
+  inline-size: 2px;
+  background: var(--account-line);
+}
+.account-timeline__item:last-child::before {
+  display: none;
+}
+.account-timeline__dot {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  display: grid;
+  place-items: center;
+  inline-size: var(--dot);
+  block-size: var(--dot);
+}
+.account-timeline__dot::after {
+  content: '';
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: #e7b9b9;
+  box-shadow: 0 0 0 0.3rem #fbeeee;
+}
+.is-done > .account-timeline__dot {
+  border-radius: 50%;
+  background: var(--account-red);
+  box-shadow: 0 0.25rem 0.6rem #7d000040;
+  color: #fff;
+}
+.is-done > .account-timeline__dot::after {
+  display: none;
+}
+.account-timeline__dot svg {
+  inline-size: 60%;
+  block-size: 60%;
+}
+.is-done::before {
+  background: var(--account-red) !important;
+}
+.account-timeline__title {
+  font-weight: 500;
+  font-size: var(--account-text-body, 0.9375rem);
+}
+.account-timeline__text,
+.account-timeline__at {
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-items {
+  display: grid;
+  gap: 0.9rem;
+}
+/* Figma: each item is its own bordered row, with a › at the end */
+.account-items li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: 0.9rem 1.25rem;
+  align-items: center;
+  padding: 0.6rem clamp(0.75rem, 1.2vw, 1.5rem) 0.6rem 0.6rem;
+  border-radius: 0.875rem;
+  border: 1px solid var(--account-row-edge);
+}
+.account-items__go {
+  display: grid;
+  place-items: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  color: #1f1f1f;
+}
+.account-items__go svg {
+  inline-size: 0.8rem;
+  block-size: 0.8rem;
+}
+.account-items__go:hover {
+  color: var(--account-red);
+}
+.account-items img {
+  inline-size: 3.5rem;
+  block-size: 3.75rem;
+  object-fit: cover;
+  border-radius: 0.6rem;
+}
+.account-items__title {
+  font-family: var(--font-heading--family);
+  font-size: var(--account-text-body, 0.9375rem);
+  color: #1f1f1f;
+}
+.account-items__meta {
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-items__price {
+  font-family: var(--font-heading--family);
+}
+.account-sum {
+  display: grid;
+  gap: 0.6rem;
+  font-size: var(--account-text-body, 0.9375rem);
+}
+.account-sum > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.account-sum dt {
+  color: var(--account-muted);
+}
+.account-sum__total {
+  padding-block-start: 0.7rem;
+  border-block-start: 1px solid var(--account-line);
+  font-weight: 500; /* Figma: Satoshi, not the heading font */
+  font-size: var(--account-text-lead, 1.25rem);
+}
+.account-sum__total dt {
+  color: #1f1f1f;
+}
+/* Figma: Discount and FREE shipping in red */
+.account-sum__accent dt,
+.account-sum__accent dd,
+.account-sum .account-sum__free {
+  color: var(--account-red);
+}
+.account-od__tn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-start: 0.5rem;
+}
+.account-od__tn svg {
+  inline-size: 1.3em;
+  block-size: 1.3em;
+}
+.account-od__addr {
+  display: grid;
+  font-style: normal;
+  font-size: var(--account-text-meta, 0.8125rem);
+  line-height: 1.55;
+  color: var(--account-muted);
+}
+.account-od__label {
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-od__code {
+  margin-block: 0.3rem 0.6rem;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: var(--account-text-body, 0.9375rem);
+  overflow-wrap: anywhere;
+}
+.account-od__help {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-block-start: var(--account-gap);
+  /* Figma: a blush bar with a pink border; "Contact us" text link + "Help center" white pill */
+  padding: clamp(0.875rem, 1.1vw, 1.25rem) clamp(1rem, 1.8vw, 1.75rem);
+  border-radius: 1.25rem;
+  background: var(--account-welcome);
+  border: 1px solid var(--account-welcome-edge);
+  font-size: var(--account-text-body, 1rem);
+}
+.account-od__help > div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem clamp(1rem, 1.5vw, 1.75rem);
+  flex-wrap: wrap;
+}
+.account-od__help svg {
+  inline-size: 1.15em;
+  block-size: 1.15em;
+}
+.account-od__helpbtn {
+  display: inline-flex;
+  gap: 0.5rem;
+  color: var(--account-red);
+}
+
+/* Wishlist */
+/*
+  Wishlist (Figma "My Account - wishlist", 1920): one bordered card per item (1573 x 205, 30px apart). Image | badge
+  pill, name, gold stars, price | × top right, quick view + "Add to cart" pill bottom right.
+*/
+.account-wish {
+  display: grid;
+  gap: clamp(0.75rem, 1.5vw, 1.875rem);
+  margin-block-start: clamp(0.5rem, 1.2vw, 1.5rem);
+}
+.account-wish__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1rem, 1.3vw, 1.5rem);
+  padding: clamp(0.75rem, 1vw, 1.25rem) clamp(1rem, 1.6vw, 2rem) clamp(0.75rem, 1vw, 1.25rem) clamp(0.75rem, 1vw, 1.25rem);
+  border-radius: clamp(0.875rem, 1vw, 1.25rem);
+  background: #fff;
+  border: 1px solid var(--account-row-edge);
+  box-shadow: 0 0.25rem 1rem #7d000008;
+}
+.account-wish__img {
+  inline-size: clamp(5rem, 6.8vw, 8.125rem);
+  aspect-ratio: 130 / 165;
+  object-fit: cover;
+  border-radius: 0.6rem;
+  background: #fff;
+}
+.account-wish__main {
+  display: grid;
+  gap: 0.45rem;
+  justify-items: start;
+}
+.account-wish__badge {
+  padding: 0.2rem 0.8rem;
+  border-radius: 99px;
+  background: #7d000014;
+  color: var(--account-red);
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+}
+.account-wish__title {
+  font-size: var(--account-text-body, 1rem);
+  font-weight: 500;
+  color: #1f1f1f;
+}
+.account-wish__rating {
+  font-size: var(--account-text-label, 0.75rem);
+  color: var(--account-muted);
+}
+.account-wish__rating span {
+  color: #e8a33d;
+  font-size: 1.15em;
+  letter-spacing: 0.08em;
+}
+.account-wish__price {
+  font-size: var(--account-title-sm, 1.25rem);
+  font-weight: 500;
+}
+.account-wish__remove {
+  position: absolute;
+  inset-block-start: clamp(0.75rem, 1.1vw, 1.25rem);
+  inset-inline-end: clamp(1rem, 1.6vw, 2rem);
+  display: grid;
+  place-items: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--account-red);
+  cursor: pointer;
+}
+.account-wish__remove svg {
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+}
+.account-wish__actions {
+  align-self: end;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.2vw, 1.5rem);
+}
+.account-wish__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--account-red);
+}
+.account-wish__add svg {
+  inline-size: 1.1em;
+  block-size: 1.1em;
+}
+
+/* Refills */
+.account-member__tags,
+.account-member__links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  flex-wrap: wrap;
+}
+/* Figma: membership facts, second column at ~40% */
+.account-facts--member {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+}
+.account-member__links svg {
+  inline-size: 1.1em;
+  block-size: 1.1em;
+}
+/*
+  Subscriptions (Figma "My Account - refills", 1920: two 725 x 288 cards, ~93px apart). Image | green "Active" pill
+  + red cadence text, name (Satoshi ~24px), price and next delivery, "Manage" pill + underlined "Pause".
+*/
+.account-subs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--account-gap) clamp(1rem, 4.8vw, 5.75rem);
+  margin-block-start: clamp(0.5rem, 1.2vw, 1.5rem);
+}
+.account-sub {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1rem, 1.6vw, 1.875rem);
+  padding: clamp(0.75rem, 1vw, 1.25rem);
+  border-radius: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--account-row-edge);
+}
+.account-sub__img {
+  inline-size: clamp(7rem, 9.5vw, 11.25rem);
+  aspect-ratio: 180 / 235;
+  object-fit: cover;
+  border-radius: 0.6rem;
+}
+.account-sub__main {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  min-inline-size: 0;
+  padding-block-start: 0.25rem;
+}
+.account-sub__tags {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem 1rem;
+  flex-wrap: wrap;
+}
+.account-sub__tags .account-tag {
+  text-transform: none;
+  letter-spacing: 0;
+  padding-inline: 0.8rem;
+}
+.account-sub__cadence {
+  color: var(--account-red);
+  font-size: var(--account-text-label, 0.75rem);
+  font-weight: 500;
+}
+.account-sub__title {
+  font-family: var(--font-body--family);
+  font-weight: 500;
+  font-size: var(--account-text-lead, 1.25rem);
+}
+.account-sub__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-sub__meta svg {
+  inline-size: 1.1em;
+  block-size: 1.1em;
+}
+.account-sub__actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 1.3vw, 1.5rem);
+  margin-block-start: 0.6rem;
+}
+.account-sub__manage {
+  color: var(--account-red);
+}
+
+/* Preferences */
+/* Figma "My Account - preferences" (1920): full-width bordered rows (1569 x 106, 20px apart), switch at the far right */
+.account-prefs {
+  display: grid;
+  gap: clamp(0.625rem, 1vw, 1.25rem);
+  margin-block-start: clamp(0.5rem, 1vw, 1.25rem);
+}
+.account-pref {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: clamp(0.875rem, 1.1vw, 1.25rem) clamp(1rem, 1.6vw, 1.875rem);
+  border-radius: clamp(0.75rem, 0.8vw, 1rem);
+  background: #fff;
+  border: 1px solid var(--account-row-edge);
+}
+.account-pref__title {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: var(--account-title-sm, 1.375rem);
+}
+.account-pref__text {
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+  margin-block-start: 0.3rem;
+}
+/* Tags on the refills page are title case in Figma ("Active", "Save $24") */
+.account-member__tags .account-tag {
+  text-transform: none;
+  letter-spacing: 0;
+  padding-inline: 0.8rem;
+}
+.account-switch {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+.account-switch__label {
+  inline-size: 1.6rem;
+  text-align: end;
+  font-size: var(--account-text-label, 0.6875rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--account-muted);
+}
+.account-switch__track {
+  /* Figma: ~70 x 32 */
+  --thumb: clamp(1.125rem, 1.25vw, 1.5rem);
+  --pad: 0.1875rem;
+  --travel: calc(var(--w) - var(--thumb) - var(--pad) * 2);
+  --w: clamp(2.75rem, 3.65vw, 4.375rem);
+  position: relative;
+  inline-size: var(--w);
+  block-size: calc(var(--thumb) + var(--pad) * 2);
+  border-radius: 99px;
+  background: #1f1f1f1f;
+  box-shadow: inset 0 1px 3px #0000001a;
+  transition: background 0.2s;
+}
+.account-switch__thumb {
+  position: absolute;
+  inset-block-start: var(--pad);
+  inset-inline-start: var(--pad);
+  inline-size: var(--thumb);
+  block-size: var(--thumb);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px #0003;
+  transition: transform 0.2s;
+}
+.account-switch[aria-checked='true'] .account-switch__track {
+  background: var(--account-red);
+}
+.account-switch[aria-checked='true'] .account-switch__thumb {
+  transform: translateX(var(--travel));
+}
+.account-switch[aria-checked='true'] .account-switch__label {
+  color: var(--account-red);
+}
+[dir='rtl'] .account-switch[aria-checked='true'] .account-switch__thumb {
+  transform: translateX(calc(var(--travel) * -1));
+}
+@media (prefers-reduced-motion: reduce) {
+  .account-switch__track,
+  .account-switch__thumb,
+  .account-btn {
+    transition: none;
+  }
+}
+
+/* Rewards */
+.account-rewards {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+/* Figma account-rewards (1:17607) at 1920: text column 135-1146 (tiers 3 x 321 + 2 x 24 = 1011px), the ring
+   (338px) 70px to its right, its top level with the eyebrow */
+.account-rw-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 63.25rem) auto;
+  justify-content: start;
+  align-items: start;
+  gap: 2rem clamp(2rem, 3.65vw, 4.375rem);
+}
+.account-rw-hero__title {
+  margin-block: 0.4rem 0.75rem;
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: var(--account-title-lg, clamp(2.25rem, 4.2vw, 4rem));
+  line-height: 1.05;
+}
+.account-rw-hero__title em {
+  color: var(--account-red);
+}
+.account-rw-hero__lead {
+  max-inline-size: 41rem;
+  font-size: clamp(0.875rem, 0.94vw, 1.125rem);
+  line-height: 1.9;
+  color: var(--account-muted);
+}
+.account-tiers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.25vw, 1.5rem);
+  padding: 0;
+  list-style: none;
+}
+/* The text column's spacing (Figma: eyebrow -> title 21px, title -> lead 21px, lead -> tiers 50px). Prefixed with
+   .account: ".account p / ul { margin: 0 }" is more specific than a single class. */
+.account .account-rw-hero__title {
+  margin-block: clamp(0.5rem, 1.1vw, 1.3rem) 0;
+}
+.account .account-rw-hero__lead {
+  margin-block-start: clamp(0.5rem, 1.1vw, 1.3rem);
+}
+.account .account-tiers {
+  margin-block-start: clamp(1.5rem, 2.6vw, 3.125rem);
+}
+/* Inside a tier: name -> range 7px, range -> perk 22px */
+.account .account-tier__range {
+  margin-block-start: 0.35rem;
+}
+.account .account-tier__perk {
+  margin-block-start: clamp(0.75rem, 1.15vw, 1.375rem);
+}
+/* How it works (Figma: title 684, lead 729, cards 810; in a 381 x 325 card the number at +13, title at +90,
+   text at +138, inset 37px; text ~18px on 35px lines) */
+.account .account-rw-section__lead {
+  margin-block-start: clamp(0.25rem, 0.4vw, 0.45rem);
+}
+.account .account-how {
+  margin-block-start: clamp(1.5rem, 2.4vw, 2.875rem);
+  padding: 0;
+  list-style: none;
+}
+.account .account-how__item {
+  display: flex;
+  flex-direction: column;
+  min-block-size: clamp(14rem, 17vw, 20.3rem);
+  padding: clamp(0.75rem, 0.7vw, 0.8rem) clamp(1.25rem, 1.95vw, 2.3rem) clamp(1.25rem, 1.95vw, 2.3rem);
+}
+.account .account-how__num {
+  font-size: clamp(2.25rem, 2.5vw, 3rem);
+  line-height: 1.2;
+}
+.account .account-how__title {
+  margin-block: clamp(0.5rem, 1vw, 1.2rem);
+  font-size: clamp(1.125rem, 1.25vw, 1.5rem);
+}
+.account .account-how__text {
+  font-size: clamp(0.8125rem, 0.94vw, 1.125rem);
+  line-height: 1.9;
+}
+/* Figma: 321 x 176, text inset 36px; white with a hairline and a soft shadow; the current tier is tinted and
+   all its text is red */
+.account-tier {
+  min-block-size: clamp(8rem, 9.2vw, 11rem);
+  /* Figma's perk text (271px) is wider than 321 - 2 x 36: a smaller right inset */
+  padding: clamp(1rem, 1.9vw, 2.25rem) clamp(0.75rem, 0.75vw, 0.875rem) clamp(1rem, 1.9vw, 2.25rem) clamp(1rem, 1.9vw, 2.25rem);
+  border-radius: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--account-line);
+  box-shadow: 0 0.5rem 1.5rem #7d00000a;
+}
+.account-tier.is-active {
+  background: var(--account-card-tint);
+  box-shadow: 0 0.75rem 2rem #7d000014;
+}
+.account-tier__name {
+  font-family: var(--font-heading--family);
+  font-size: clamp(1.125rem, 1.25vw, 1.5rem);
+  line-height: 1.2;
+}
+.account-tier__range,
+.account-tier__perk {
+  font-size: clamp(0.8125rem, 0.94vw, 1.125rem);
+  line-height: 1.5;
+}
+.account-tier.is-active :is(.account-tier__name, .account-tier__range, .account-tier__perk) {
+  color: var(--account-red);
+}
+.account-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  inline-size: clamp(12rem, 17.6vw, 21.125rem);
+  aspect-ratio: 1;
+  text-align: center;
+}
+.account-ring svg {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  transform: rotate(-90deg);
+}
+.account-ring__track,
+.account-ring__fill {
+  fill: none;
+  stroke-width: 6;
+}
+.account-ring__track {
+  stroke: #7d000014;
+}
+.account-ring__fill {
+  stroke: var(--account-red);
+  stroke-linecap: round;
+}
+.account-ring__badge {
+  position: absolute;
+  /* Figma: a pink pill that hangs past the ring's top right (x 1507-1610 against the ring's 1554) */
+  inset-block-start: 5.6%;
+  inset-inline-end: -16.5%;
+  padding: 0.6em 1.4em;
+  border-radius: 99px;
+  background: #7d000024;
+  box-shadow: 0 0.5rem 1.25rem #7d00001a;
+  color: var(--account-red);
+  font-size: clamp(0.625rem, 0.73vw, 0.875rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.account-ring__label {
+  color: var(--account-red);
+  font-size: clamp(0.625rem, 0.73vw, 0.875rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.account-ring__value {
+  font-family: var(--font-heading--family);
+  font-size: clamp(3rem, 5vw, 6rem);
+  line-height: 1.1;
+}
+.account-ring__next {
+  margin-block-start: 0.3rem;
+  font-size: clamp(0.75rem, 0.94vw, 1.125rem);
+  color: var(--account-red);
+}
+.account-rw-section__title {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: var(--account-title-md, clamp(1.5rem, 2.2vw, 2rem));
+}
+.account-rw-section__lead {
+  font-size: clamp(0.875rem, 0.94vw, 1.125rem);
+  color: var(--account-muted);
+}
+.account-how {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--account-gap);
+  margin-block-start: 1.25rem;
+}
+.account-how__item {
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  background: var(--account-card);
+  border: 1px solid var(--account-edge);
+}
+.account-how__num {
+  font-family: var(--font-heading--family);
+  font-size: 2.25rem;
+  color: #7d000040;
+}
+.account-how__title {
+  margin-block: 0.4rem;
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: var(--account-title-sm, 1.25rem);
+}
+.account-how__text {
+  font-size: var(--account-text-meta, 0.8125rem);
+  line-height: 1.6;
+  color: var(--account-muted);
+}
+.account-earn {
+  inline-size: 100%;
+  margin-block-start: 0.75rem;
+  border-collapse: collapse;
+  text-align: start;
+}
+.account-earn th,
+.account-earn td {
+  padding: 1rem 0.5rem;
+  border-block-end: 1px solid var(--account-line);
+  text-align: start;
+  vertical-align: top;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-earn thead th {
+  color: var(--account-red);
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.account-earn tbody th {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: var(--account-title-sm, 1.25rem);
+  color: #1f1f1f;
+}
+.account-earn__pts {
+  font-family: var(--font-heading--family);
+  font-size: var(--account-title-sm, 1.25rem) !important;
+  color: var(--account-red) !important;
+  white-space: nowrap;
+}
+.account-redeem {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--account-gap);
+  margin-block-start: 1.25rem;
+}
+.account-redeem__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1.25rem;
+  background: var(--account-card);
+  border: 1px solid var(--account-edge);
+}
+.account-redeem__item img {
+  inline-size: 6rem;
+  block-size: 6.5rem;
+  object-fit: cover;
+  border-radius: 0.9rem;
+}
+.account-redeem__title {
+  font-family: var(--font-heading--family);
+  font-size: var(--account-text-lead, 1.125rem);
+}
+.account-redeem__pts {
+  color: var(--account-red);
+  font-size: var(--account-text-meta, 0.8125rem);
+  font-weight: 500;
+}
+.account-redeem__note {
+  margin-block: 0.2rem 0.5rem;
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-muted);
+}
+.account-redeem__num {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 1rem;
+  font-family: var(--font-heading--family);
+  font-size: 1.75rem;
+  color: #7d000030;
+}
+.account-activity {
+  margin-block-start: 0.5rem;
+}
+.account-activity li {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  padding-block: 0.9rem;
+  border-block-end: 1px solid var(--account-line);
+  font-size: var(--account-text-body, 0.9375rem);
+}
+.account-activity__date {
+  color: var(--account-muted);
+}
+.account-activity__pts {
+  font-family: var(--font-heading--family);
+  font-size: var(--account-text-lead, 1.125rem);
+  color: #17603a;
+}
+.account-activity__pts.is-neg {
+  color: var(--account-red);
+}
+
+/*
+  Rewards, lower half (Figma account-rewards 1:17607 at 1920). Prefixed with .account where a margin is set:
+  ".account p / ul { margin: 0 }" is more specific than a single class.
+  - Ways to earn: columns at x 135 / 792 / 1287 (40% / 30% / 30%), rows ~128px, body-font points.
+  - Pour your points into: 533 x 269 white cards, image 166 x 202 inset 36px, the number large at the top right,
+    a red pill button at the bottom right (a pale "Locked" pill when the balance is short).
+  - Points activity: ~87px rows, body-font points.
+*/
+.account .account-earn {
+  margin-block-start: clamp(0.75rem, 1.6vw, 1.875rem);
+  table-layout: fixed;
+}
+.account-earn thead th:nth-child(1) {
+  inline-size: 40%;
+}
+.account-earn thead th:nth-child(2) {
+  inline-size: 30%;
+}
+/* Tablet / desktop only: on phones each row is stacked (rules in the 749px block) */
+@media (min-width: 750px) {
+  .account-earn tbody :is(th, td) {
+    padding-block: clamp(1rem, 1.6vw, 1.875rem);
+  }
+}
+.account-earn tbody td {
+  font-size: clamp(0.8125rem, 0.83vw, 1rem);
+  line-height: 1.7;
+}
+.account-earn tbody th {
+  font-size: clamp(1.125rem, 1.25vw, 1.5rem);
+  line-height: 1.3;
+}
+.account-earn .account-earn__pts {
+  font-family: var(--font-body--family);
+  font-size: clamp(1rem, 1.15vw, 1.375rem) !important;
+  line-height: 1.4;
+}
+.account .account-redeem {
+  margin-block-start: clamp(1.25rem, 3vw, 3.5rem);
+  padding: 0;
+  list-style: none;
+}
+.account-redeem__item {
+  grid-template-columns: clamp(6rem, 8.65vw, 10.375rem) minmax(0, 1fr);
+  gap: clamp(1rem, 1.1vw, 1.3rem);
+  min-block-size: clamp(10rem, 14vw, 16.8rem);
+  padding: clamp(1rem, 1.9vw, 2.25rem);
+  background: #fff;
+  border-color: var(--account-line);
+  box-shadow: 0 0.75rem 2rem #7d00000f;
+}
+.account-redeem__item img {
+  inline-size: 100%;
+  block-size: 100%;
+  max-block-size: 12.625rem;
+  border-radius: 1rem;
+}
+.account-redeem__item > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* The title runs beside the big number in the top right corner: keep clear of it */
+.account-redeem__title {
+  padding-inline-end: clamp(2.25rem, 3.2vw, 3.5rem);
+}
+.account-redeem__title,
+.account-redeem__pts {
+  font-family: var(--font-body--family);
+  font-size: clamp(0.9375rem, 1.04vw, 1.25rem);
+  font-weight: 400;
+}
+.account .account-redeem__pts {
+  margin-block-start: 0.3rem;
+}
+.account .account-redeem__note {
+  margin-block: 0.3rem 1rem;
+  font-size: clamp(0.8125rem, 0.94vw, 1.125rem);
+}
+.account-redeem__num {
+  inset-block-start: 0;
+  inset-inline-end: 0.5rem;
+  font-size: clamp(2rem, 2.5vw, 3rem);
+  line-height: 1.2;
+}
+.account-redeem__item .account-link--btn,
+.account-redeem__locked {
+  align-self: flex-end;
+  margin-block-start: auto;
+  padding: 0.95em 2.6em;
+  border-radius: 99px;
+  font-size: clamp(0.6875rem, 0.73vw, 0.875rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.account-redeem__item .account-link--btn {
+  background: var(--account-red);
+  color: #fff;
+  box-shadow: 0 0.5rem 1rem #7d000033;
+}
+.account-redeem__item .account-link--btn:hover {
+  text-decoration: none !important;
+  filter: brightness(1.1);
+}
+/* Figma draws white text on the pale pill; a muted red keeps it readable (contrast) */
+.account-redeem__locked {
+  background: #7d00001f;
+  color: #7d0000b8;
+}
+.account .account-activity {
+  margin-block-start: clamp(0.5rem, 1.25vw, 1.5rem);
+  padding: 0;
+  list-style: none;
+}
+.account-activity li {
+  grid-template-columns: clamp(5rem, 9.5vw, 11.25rem) minmax(0, 1fr) auto;
+  align-items: center;
+  padding-block: clamp(0.9rem, 1.25vw, 1.5rem);
+  font-size: clamp(0.9375rem, 0.94vw, 1.125rem);
+}
+.account-activity__pts {
+  font-family: var(--font-body--family);
+  font-size: clamp(1.125rem, 1.25vw, 1.5rem);
+}
+
+/* Centered cards: sign out, public order tracking */
+.account-center {
+  display: grid;
+  place-items: center;
+  min-block-size: 50svh;
+}
+.account-center__card {
+  inline-size: min(100%, 36rem);
+  text-align: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+.account-center__title {
+  margin-block: 0.4rem 0.75rem;
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: var(--account-title-lg, clamp(2.25rem, 4.2vw, 4rem));
+  line-height: 1.1;
+}
+.account-center__title em {
+  color: var(--account-red);
+}
+.account-center__text {
+  font-size: var(--account-text-body, 0.9375rem);
+  line-height: 1.6;
+  color: var(--account-muted);
+}
+.account-center__actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-block-start: 1.5rem;
+}
+.account-track__form {
+  margin-block-start: 1.5rem;
+  text-align: start;
+  justify-items: stretch;
+}
+.account-track__form .account-btn {
+  justify-self: stretch;
+}
+
+/* Tablets and phones */
+@media (max-width: 1199px) {
+  .account-viewed {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .account-details__top {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+  .account-how {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .account-redeem {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .account-od__cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .account-order__number {
+    display: none;
+  }
+}
+@media (max-width: 989px) {
+  .account-details__top,
+  .account-details__bottom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .account-grid--2,
+  .account-subs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .account-welcome {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .account-rw-hero {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+  }
+  .account-rw-hero__lead {
+    margin-inline: auto;
+  }
+  .account-rw-hero__text {
+    justify-items: center;
+  }
+  /* The text column is centred: the tier cards still use its full width (stacked on phones) */
+  .account-rw-hero__text {
+    justify-self: stretch;
+  }
+  .account-tiers {
+    justify-self: stretch;
+    text-align: start;
+  }
+}
+@media (max-width: 749px) {
+  /* Payment row: badge | number; the tools on their own line */
+  .account-pay__item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .account-pay__tools {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+  .account__inner {
+    inline-size: calc(100% - 2rem);
+  }
+  .account-viewed {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .account-viewed__row {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .account-addr,
+  .account-facts,
+  .account-facts--2,
+  .account-box--two,
+  .account-how,
+  .account-tiers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* Phones: thumbs | name, then total + tag + ↗ on their own line; the footer stacks, actions left-aligned */
+  .account-order__top {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    row-gap: 0.6rem;
+  }
+  .account-order__main {
+    grid-column: 2 / -1;
+  }
+  .account-order .account-tag {
+    grid-column: 1;
+    justify-self: start;
+  }
+  .account-order__total {
+    grid-column: 2;
+  }
+  .account-order__foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .account-order__actions {
+    margin-inline-start: 0;
+  }
+  /* Track items: image | name + meta + price, › on the right (four columns squeezed the name to one word a line) */
+  .account-items li {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    row-gap: 0.25rem;
+  }
+  .account-items img {
+    grid-row: 1 / span 2;
+  }
+  .account-items__price {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .account-items__go {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  }
+  .account-wish__item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .account-wish__actions {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+  }
+  .account-steps {
+    margin-block: 1.25rem;
+  }
+  .account-step__name {
+    font-size: var(--account-text-label, 0.6875rem);
+  }
+  .account-step__sub {
+    display: none;
+  }
+  .account-od__buttons {
+    inline-size: 100%;
+  }
+  .account-sub {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .account-sub__img {
+    inline-size: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  .account-pref {
+    align-items: flex-start;
+  }
+  .account-activity li {
+    grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+    gap: 0.6rem;
+    font-size: var(--account-text-meta, 0.8125rem);
+  }
+  .account-earn thead {
+    position: absolute;
+    clip-path: inset(50%);
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+  }
+  .account-earn,
+  .account-earn tbody,
+  .account-earn tr,
+  .account-earn th,
+  .account-earn td {
+    display: block;
+  }
+  .account-earn tr {
+    padding-block: 0.9rem;
+    border-block-end: 1px solid var(--account-line);
+  }
+  .account-earn th,
+  .account-earn td {
+    padding: 0;
+    border: 0;
+  }
+  .account-od__help {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -256,7 +256,7 @@ export default function Contact06Footer() {
                   </li>
                   <li>
                     {" "}
-                    <a className="footer__link" href="/policies/shipping-policy">
+                    <a className="footer__link" href="/pages/shipping">
                       Shipping
                     </a>{" "}
                   </li>

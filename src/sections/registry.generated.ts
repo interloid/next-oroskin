@@ -7,6 +7,7 @@ import AboutPillars from './about-pillars';
 import AboutTeam from './about-team';
 import AboutTimeline from './about-timeline';
 import AboutValues from './about-values';
+import Account from './account';
 import AnnouncementBar from './announcement-bar';
 import ArticleComments from './article-comments';
 import ArticleHero from './article-hero';
@@ -24,6 +25,8 @@ import Collections from './collections';
 import ContactChannels from './contact-channels';
 import ContactForm from './contact-form';
 import ContactLocations from './contact-locations';
+import CookiePreferences from './cookie-preferences';
+import CtaCard from './cta-card';
 import Faq from './faq';
 import Footer from './footer';
 import Header from './header';
@@ -32,6 +35,8 @@ import IconFeatures from './icon-features';
 import ImageBanner from './image-banner';
 import LocationsMap from './locations-map';
 import Marquee from './marquee';
+import PageContent from './page-content';
+import Policy from './policy';
 import ProductClinical from './product-clinical';
 import ProductDeck from './product-deck';
 import ProductFaq from './product-faq';
@@ -45,8 +50,12 @@ import ProductRelated from './product-related';
 import ProductReviews from './product-reviews';
 import ProductTabs from './product-tabs';
 import Product from './product';
+import ReturnsHero from './returns-hero';
+import ReturnsLists from './returns-lists';
+import ReturnsSteps from './returns-steps';
 import ScrollingShowcase from './scrolling-showcase';
 import Search from './search';
+import ShippingInfo from './shipping-info';
 import Testimonials from './testimonials';
 
 export const registry: Record<string, (props: any) => any> = {
@@ -57,6 +66,7 @@ export const registry: Record<string, (props: any) => any> = {
   'about-team': AboutTeam,
   'about-timeline': AboutTimeline,
   'about-values': AboutValues,
+  'account': Account,
   'announcement-bar': AnnouncementBar,
   'article-comments': ArticleComments,
   'article-hero': ArticleHero,
@@ -74,6 +84,8 @@ export const registry: Record<string, (props: any) => any> = {
   'contact-channels': ContactChannels,
   'contact-form': ContactForm,
   'contact-locations': ContactLocations,
+  'cookie-preferences': CookiePreferences,
+  'cta-card': CtaCard,
   'faq': Faq,
   'footer': Footer,
   'header': Header,
@@ -82,6 +94,8 @@ export const registry: Record<string, (props: any) => any> = {
   'image-banner': ImageBanner,
   'locations-map': LocationsMap,
   'marquee': Marquee,
+  'page-content': PageContent,
+  'policy': Policy,
   'product-clinical': ProductClinical,
   'product-deck': ProductDeck,
   'product-faq': ProductFaq,
@@ -95,7 +109,11 @@ export const registry: Record<string, (props: any) => any> = {
   'product-reviews': ProductReviews,
   'product-tabs': ProductTabs,
   'product': Product,
+  'returns-hero': ReturnsHero,
+  'returns-lists': ReturnsLists,
+  'returns-steps': ReturnsSteps,
   'scrolling-showcase': ScrollingShowcase,
   'search': Search,
+  'shipping-info': ShippingInfo,
   'testimonials': Testimonials,
 };

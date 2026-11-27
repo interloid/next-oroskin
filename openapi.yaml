@@ -201,6 +201,10 @@ paths:
   /contact:
     post:
       summary: Contact form message (extra string fields allowed)
+      description: |
+        Backend: JSON only. The frontend's own /api/contact also takes the HTML form (contact[...] fields),
+        answers 303 with ?contact_posted=true / ?contact_error=..., and forwards JSON here when API_URL is set.
+        Extra keys keep their form names ("Phone", "Order number").
       requestBody:
         required: true
         content:
@@ -271,8 +275,10 @@ components:
   schemas:
     Error:
       type: object
-      required: [error]
-      properties: { error: { type: string } }
+      required: [error, message]
+      properties:
+        error: { type: string }
+        message: { type: string, description: Same text; shown to the visitor by the cart }
 
     Money: { type: integer, description: 'Minor units (12500 = Rs. 125.00)' }
 
@@ -417,9 +423,17 @@ components:
       required: [title, url]
       properties:
         title: { type: string }
-        url: { type: string }
+        url: { type: string, description: '"#" = no link (a heading that only opens its children)' }
         children: { type: array, items: { $ref: '#/components/schemas/MenuItem' } }
-        image: { type: [string, 'null'] }
+        image: { type: [string, 'null'], description: Mega menu card image (2nd level) }
+        imageWidth: { type: integer }
+        imageHeight: { type: integer }
+        text: { type: string, description: Mega menu card text }
+        panelTitle: { type: string, description: Mega menu panel title (top level with children) }
+        shopAll:
+          oneOf:
+            - { type: object, required: [label, url], properties: { label: { type: string }, url: { type: string } } }
+            - { type: 'null' }
 
     Site:
       type: object
@@ -431,26 +445,63 @@ components:
         logo:
           type: object
           required: [image, text, accent]
-          properties: { image: { type: [string, 'null'] }, text: { type: string }, accent: { type: string } }
+          properties:
+            image: { type: [string, 'null'] }
+            imageWidth: { type: integer }
+            imageHeight: { type: integer }
+            text: { type: string }
+            accent: { type: string }
         announcement:
           type: object
           required: [messages]
           properties:
             messages:
               type: array
-              items: { type: object, required: [text], properties: { text: { type: string }, link: { type: string } } }
+              items:
+                type: object
+                required: [text]
+                properties: { text: { type: string }, link: { type: string }, linkLabel: { type: string } }
+            mode: { type: string, enum: [single, slideshow, marquee] }
+            autoplay: { type: boolean }
+            intervalSeconds: { type: integer }
+            uppercase: { type: boolean }
         menu: { type: array, items: { $ref: '#/components/schemas/MenuItem' } }
+        search:
+          type: object
+          properties: { placeholder: { type: string }, trending: { type: array, items: { type: string } } }
         footer:
           type: object
           required: [tagline, menu, newsletter, social, wordmark]
           properties:
-            tagline: { type: string }
-            menu: { type: array, items: { $ref: '#/components/schemas/MenuItem' } }
-            newsletter: { type: object, required: [heading, text], properties: { heading: { type: string }, text: { type: string } } }
+            tagline: { type: string, description: HTML }
+            menu: { type: array, description: 'Top level = column heading, children = links', items: { $ref: '#/components/schemas/MenuItem' } }
+            newsletter:
+              type: object
+              required: [heading, text]
+              properties: { heading: { type: string }, text: { type: string }, placeholder: { type: string }, buttonLabel: { type: string } }
             social:
               type: array
-              items: { type: object, required: [network, url], properties: { network: { type: string }, url: { type: string } } }
-            wordmark: { type: string }
+              items:
+                type: object
+                required: [network, url]
+                properties:
+                  network: { type: string, enum: [facebook, whatsapp, instagram, youtube, tiktok, pinterest, x] }
+                  url: { type: string }
+            wordmark: { type: object, required: [word, accent], properties: { word: { type: string }, accent: { type: string } } }
+            copyright: { type: string }
+            payment: { type: array, items: { type: string, enum: [visa, master, american_express, paypal, diners_club, discover] } }
+            countries:
+              type: array
+              items:
+                type: object
+                required: [code, name, currency]
+                properties: { code: { type: string }, name: { type: string }, currency: { type: string }, current: { type: boolean } }
+            languages:
+              type: array
+              items:
+                type: object
+                required: [code, name]
+                properties: { code: { type: string }, name: { type: string }, current: { type: boolean } }
 
     SectionData:
       type: object

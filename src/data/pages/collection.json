@@ -58,6 +58,8 @@
         "paddingTop": 32,
         "paddingBottom": 96,
         "columnsDesktop": 4,
+        "layout": "bento",
+        "cardStyle": "tile",
         "pillImageAnimation": "collection-pills--image-scale",
         "pillImageSize": 200,
         "pills": [
@@ -117,30 +119,42 @@
             "eyebrow": "Shop sale",
             "badge": "10% offer",
             "image": {
-              "src": "/cdn/shop/collections/Skincare-banner.png",
-              "width": 800,
-              "height": 533
-            }
+              "src": "/cdn/shop/files/00e9e8547bd89e8fe0335413720e394371ae9823.png",
+              "width": 521,
+              "height": 479
+            },
+            "imageRotate": -27,
+            "imageScale": 105,
+            "imageX": 17,
+            "imageY": 0
           },
           {
             "collection": "makeup",
             "eyebrow": "Shop new",
             "badge": "The double deal",
             "image": {
-              "src": "/cdn/shop/collections/Makeup-banner.png",
-              "width": 800,
-              "height": 534
-            }
+              "src": "/cdn/shop/files/0bbcb2ce2c306fbc7cc89e355b3426586e67a99b.png",
+              "width": 1224,
+              "height": 1224
+            },
+            "imageRotate": 0,
+            "imageScale": 105,
+            "imageX": 5,
+            "imageY": 0
           },
           {
             "collection": "fragrance",
             "eyebrow": "Shop bestsellers",
             "badge": "Buy 2 get 1",
             "image": {
-              "src": "/cdn/shop/collections/Fragrance-banner.png",
-              "width": 800,
-              "height": 533
-            }
+              "src": "/cdn/shop/files/4ab8a0dd8ae216485a0e4219096620515dbf8930.png",
+              "width": 500,
+              "height": 500
+            },
+            "imageRotate": 0,
+            "imageScale": 105,
+            "imageX": 18,
+            "imageY": 0
           }
         ]
       }

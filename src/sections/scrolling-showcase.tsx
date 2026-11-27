@@ -75,7 +75,7 @@ export default function ScrollingShowcase({
   eyebrow = 'Find your glow here',
   text = 'All the [images] products you [break]need [arrow], right at [break]our shop<em>!!!</em>',
   photos = [],
-  highlightColor = '#8a6a1f',
+  highlightColor = '#c8a24b',
   animation = 'fade-up',
   scene = true,
   sceneLength = 300,

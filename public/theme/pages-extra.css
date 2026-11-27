@@ -1,0 +1,443 @@
+/* Text sizes use the theme scale (head.css): labels --font-size-label (14-18px), text --font-size-body-sm (15-18px),
+   as in the 1920 designs (public/newpages-design/shipping.png, cookies.png). */
+/* Shipping and Cookies pages (Figma "shipping" 1:17093, "cookies" 1:17171). They were never built in the theme, so
+   their rules live here. They reuse the .policy header classes from sections.css. */
+
+.shipping,
+.cookies {
+  --px: min(calc(100vw / 1920), 0.0625rem);
+}
+.shipping.section--screen-scale,
+.cookies.section--screen-scale {
+  --px: min(calc(100vw / 1920), calc(100svh / 1031));
+}
+
+/* Section label: accent, small, uppercase, with a hairline to the right */
+.pages-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: 0;
+  color: var(--color-accent);
+  font-family: var(--font-body--family);
+  font-size: var(--font-size-label);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label, 0.14em);
+  text-transform: uppercase;
+}
+.pages-label::after {
+  content: '';
+  flex: 1;
+  block-size: 1px;
+  background: var(--color-card-border);
+}
+
+.pages-note {
+  margin: max(var(--space-xl), calc(60 * var(--px))) 0 0;
+  padding: var(--space-lg) var(--space-xl);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-accent) 7%, transparent);
+  line-height: 1.7;
+}
+
+/* ---------- Shipping ---------- */
+.shipping__header {
+  align-items: start;
+}
+.shipping__stats {
+  display: flex;
+  margin: 0;
+}
+.shipping__stat {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-sm);
+  min-inline-size: max(6rem, calc(170 * var(--px)));
+  padding-inline: var(--space-md);
+  text-align: center;
+}
+.shipping__stat + .shipping__stat {
+  border-inline-start: 1px solid var(--color-card-border);
+}
+.shipping__stat-value {
+  margin: 0;
+  font-family: var(--font-heading--family);
+  font-size: max(1.75rem, calc(40 * var(--px)));
+  color: var(--color-accent);
+  line-height: 1.1;
+}
+.shipping__stat-label {
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-label, 0.14em);
+  text-transform: uppercase;
+}
+.shipping__intro {
+  max-inline-size: 52rem;
+}
+.shipping__block {
+  margin-block-start: max(var(--space-xl), calc(60 * var(--px)));
+}
+
+.shipping__hubs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.shipping__hub {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-xl);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-collection);
+}
+.shipping__hub-code {
+  position: absolute;
+  inset-block-start: calc(var(--space-sm) * -1);
+  inset-inline-end: var(--space-md);
+  font-family: var(--font-heading--family);
+  font-size: max(3rem, calc(80 * var(--px)));
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  user-select: none;
+}
+.shipping__hub-city {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-heading--family);
+  font-size: max(1.5rem, calc(32 * var(--px)));
+  font-weight: 400;
+}
+.shipping__hub-regions {
+  position: relative;
+  margin: var(--space-md) 0 var(--space-xl);
+  font-size: var(--font-size-body-sm);
+}
+.shipping__hub-cutoff {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin: 0;
+  padding-block-start: var(--space-md);
+  border-block-start: 1px solid var(--color-card-border);
+}
+.shipping__hub-cutoff span {
+  white-space: nowrap; /* "Cut-off" never breaks at the hyphen */
+  color: var(--color-accent);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-label, 0.14em);
+  text-transform: uppercase;
+}
+.shipping__hub-cutoff strong {
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.shipping__tiers {
+  margin: var(--space-md) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.shipping__tier {
+  display: grid;
+  grid-template-columns: max(2.5rem, calc(79 * var(--px))) minmax(0, 1fr) auto auto;
+  align-items: start;
+  column-gap: var(--space-xl);
+  padding-block: var(--space-lg);
+}
+.shipping__tier-no {
+  color: var(--color-accent);
+  font-size: var(--font-size-label);
+  letter-spacing: 0.1em;
+}
+.shipping__tier-title {
+  margin: 0;
+  font-family: var(--font-heading--family);
+  font-size: max(1.25rem, calc(24 * var(--px)));
+  font-weight: 400;
+}
+.shipping__tier-text {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--font-size-body-sm);
+}
+.shipping__tier-time,
+.shipping__tier-price {
+  margin: 0;
+  font-size: var(--font-size-body-sm);
+}
+.shipping__tier-time {
+  min-inline-size: 10rem;
+  text-align: end;
+}
+.shipping__tier-price {
+  min-inline-size: 7rem;
+  font-size: var(--font-size-body);
+  color: var(--color-accent);
+  text-align: end;
+}
+
+.shipping__regions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: var(--space-xl) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.shipping__region {
+  padding-inline: var(--space-lg);
+}
+.shipping__region:first-child {
+  padding-inline-start: 0;
+}
+.shipping__region + .shipping__region {
+  border-inline-start: 1px solid var(--color-card-border);
+}
+.shipping__region-zone {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-label, 0.14em);
+  text-transform: uppercase;
+}
+.shipping__region-name {
+  margin: var(--space-md) 0 var(--space-sm);
+  font-family: var(--font-heading--family);
+  font-size: max(1.25rem, calc(26 * var(--px)));
+  font-weight: 400;
+}
+.shipping__region-text {
+  margin: 0;
+  font-size: var(--font-size-body-sm);
+}
+
+@media (max-width: 1199px) {
+  .shipping__header {
+    gap: var(--space-xl);
+  }
+  .shipping__hubs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+  .shipping__hub {
+    padding: var(--space-lg);
+  }
+  .shipping__regions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--space-xl);
+  }
+  .shipping__region:nth-child(odd) {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+}
+
+/* Tablet: three hub cards are too narrow for the big code watermark (it ran over the city name at 768px):
+   one card per row, as on phones */
+@media (max-width: 989px) {
+  .shipping__hubs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 749px) {
+  .policy.shipping .policy__header.shipping__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-lg);
+  }
+  .shipping__hub-code {
+    font-size: 3rem;
+  }
+  .shipping__stats {
+    inline-size: 100%;
+    justify-content: space-between;
+  }
+  .shipping__stat {
+    min-inline-size: 0;
+    flex: 1;
+  }
+  .shipping__hubs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .shipping__tier {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    row-gap: var(--space-xs);
+  }
+  .shipping__tier-time,
+  .shipping__tier-price {
+    grid-column: 2;
+    min-inline-size: 0;
+    text-align: start;
+  }
+  .shipping__regions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .shipping__region,
+  .shipping__region + .shipping__region {
+    padding-inline: 0;
+    border-inline-start: 0;
+  }
+  .shipping__region + .shipping__region {
+    padding-block-start: var(--space-lg);
+    border-block-start: 1px solid var(--color-card-border);
+  }
+  .pages-note {
+    padding: var(--space-md) var(--space-lg);
+  }
+}
+
+/* ---------- Cookies ---------- */
+.cookies__header {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+.cookies__heading {
+  max-inline-size: 16em;
+}
+.cookies__intro {
+  max-inline-size: 857px;
+  margin: var(--space-lg) 0 0;
+  line-height: 1.7;
+}
+
+.cookie-choices {
+  max-inline-size: 60rem;
+  margin: max(var(--space-xl), calc(60 * var(--px))) auto 0;
+}
+.cookie-choices__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-collection);
+}
+.cookie-choices__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding: var(--space-xl);
+}
+.cookie-choices__item + .cookie-choices__item {
+  border-block-start: 1px solid var(--color-card-border);
+}
+.cookie-choices__title {
+  margin: 0;
+  font-family: var(--font-heading--family);
+  font-size: max(1.25rem, calc(26 * var(--px)));
+  font-weight: 400;
+}
+.cookie-choices__text {
+  max-inline-size: 40rem;
+  margin: var(--space-xs) 0 0;
+  font-size: var(--font-size-body-sm);
+  line-height: 1.6;
+}
+
+.cookie-switch {
+  position: relative;
+  flex: none;
+  display: inline-block;
+  cursor: pointer;
+}
+.cookie-switch.is-locked {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.cookie-switch__input {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+.cookie-switch__track {
+  display: block;
+  position: relative;
+  inline-size: 3.25rem;
+  block-size: 1.75rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-foreground, #1f1f1f) 30%, transparent);
+  transition: background-color 0.2s ease;
+}
+.cookie-switch__track::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 0.1875rem;
+  inset-inline-start: 0.1875rem;
+  inline-size: 1.375rem;
+  block-size: 1.375rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px #00000033;
+  transition: translate 0.2s ease;
+}
+.cookie-switch__input:checked + .cookie-switch__track {
+  background: var(--color-accent);
+}
+.cookie-switch__input:checked + .cookie-switch__track::after {
+  translate: 1.5rem 0;
+}
+[dir='rtl'] .cookie-switch__input:checked + .cookie-switch__track::after {
+  translate: -1.5rem 0;
+}
+.cookie-switch__input:focus-visible + .cookie-switch__track {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cookie-switch__track,
+  .cookie-switch__track::after {
+    transition: none;
+  }
+}
+
+.cookie-choices__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-block-start: var(--space-xl);
+}
+.cookie-choices__status {
+  min-block-size: 1.5em;
+  margin: var(--space-md) 0 0;
+  text-align: center;
+  font-size: var(--font-size-body-sm);
+}
+
+@media (max-width: 749px) {
+  .cookie-choices__item {
+    padding: var(--space-lg);
+    gap: var(--space-md);
+  }
+  .cookie-choices__actions .button {
+    inline-size: 100%;
+  }
+}
+
+/* Policy group labels ("The register", "In detail", "Your rights"): restart the item numbers at 01.
+   sections.css uses counter-reset on each label; Chrome kept counting across the sibling labels (the
+   "Your rights" items showed 09-14). counter-set changes the one counter made on .policy__body instead
+   of opening a new counter scope on every label. */
+.policy__body [data-policy-group] {
+  counter-reset: none;
+  counter-set: policy-item 0;
+}
+
+/* Small labels on Returns and the policy pages: 14px in the theme, ~16-18px in the 1920 designs
+   (public/newpages-design/returns.png "DAYS", "WITHIN 60 DAYS"; privacy policy.png "IN FORCE") */
+.returns-hero__badge-label,
+.return-step__label,
+.policy__in-force-label {
+  font-size: var(--font-size-label);
+}

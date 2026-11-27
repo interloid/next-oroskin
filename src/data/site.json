@@ -15,11 +15,29 @@
     "intervalSeconds": 5,
     "uppercase": true,
     "messages": [
-      { "text": "OroSkin • Signature collection • Estd. 2026" },
-      { "text": "Free shipping on orders over $200", "link": "/policies/shipping-policy", "linkLabel": "Shipping details" },
-      { "text": "The Glow-Up Event: up to 40% off", "link": "/collections/all", "linkLabel": "Shop the sale" },
-      { "text": "New arrivals are here", "link": "/collections/new-arrivals", "linkLabel": "See new arrivals" },
-      { "text": "Easy 30-day returns", "link": "/policies/refund-policy", "linkLabel": "Returns policy" }
+      {
+        "text": "OroSkin • Signature collection • Estd. 2026"
+      },
+      {
+        "text": "Free shipping on orders over $200",
+        "link": "/pages/shipping",
+        "linkLabel": "Shipping details"
+      },
+      {
+        "text": "The Glow-Up Event: up to 40% off",
+        "link": "/collections/all",
+        "linkLabel": "Shop the sale"
+      },
+      {
+        "text": "New arrivals are here",
+        "link": "/collections/new-arrivals",
+        "linkLabel": "See new arrivals"
+      },
+      {
+        "text": "Easy 30-day returns",
+        "link": "/pages/returns",
+        "linkLabel": "Returns policy"
+      }
     ]
   },
   "menu": [
@@ -27,7 +45,10 @@
       "title": "Shop",
       "url": "#",
       "panelTitle": "Shop by category",
-      "shopAll": { "label": "Shop all", "url": "/collections/all" },
+      "shopAll": {
+        "label": "Shop all",
+        "url": "/collections/all"
+      },
       "children": [
         {
           "title": "Makeup",
@@ -53,20 +74,42 @@
           "imageHeight": 1333,
           "text": "Signature scents and eaux crafted by master perfumers for every mood.",
           "children": [
-            { "title": "Perfume", "url": "/products/oud-noir-eau-de-parfum" },
-            { "title": "Rose perfume", "url": "/products/rose-eau-de-parfum" }
+            {
+              "title": "Perfume",
+              "url": "/products/oud-noir-eau-de-parfum"
+            },
+            {
+              "title": "Rose perfume",
+              "url": "/products/rose-eau-de-parfum"
+            }
           ]
         }
       ]
     },
-    { "title": "About Us", "url": "/pages/about-us" },
-    { "title": "Blog", "url": "/blogs/featured" },
-    { "title": "Contact", "url": "/pages/contact" },
-    { "title": "FAQ", "url": "/pages/faq" }
+    {
+      "title": "About Us",
+      "url": "/pages/about-us"
+    },
+    {
+      "title": "Blog",
+      "url": "/blogs/featured"
+    },
+    {
+      "title": "Contact",
+      "url": "/pages/contact"
+    },
+    {
+      "title": "FAQ",
+      "url": "/pages/faq"
+    }
   ],
   "search": {
     "placeholder": "Search for skincare, fragrances, makeup products…",
-    "trending": ["Rose perfume", "Cloud cleanser", "Radiance renewal serum"]
+    "trending": [
+      "Rose perfume",
+      "Cloud cleanser",
+      "Radiance renewal serum"
+    ]
   },
   "footer": {
     "tagline": "<p>Elevating your daily ritual with high-performance makeup, advanced skincare, and signature fragrances.</p>",
@@ -75,33 +118,82 @@
         "title": "Shop",
         "url": "#",
         "children": [
-          { "title": "All Products", "url": "/collections/all" },
-          { "title": "Makeup", "url": "/collections/makeup" },
-          { "title": "Fragrance", "url": "/collections/fragrance" },
-          { "title": "New Arrivals", "url": "/collections/new-arrivals" }
+          {
+            "title": "All Products",
+            "url": "/collections/all"
+          },
+          {
+            "title": "Makeup",
+            "url": "/collections/makeup"
+          },
+          {
+            "title": "Fragrance",
+            "url": "/collections/fragrance"
+          },
+          {
+            "title": "New Arrivals",
+            "url": "/collections/new-arrivals"
+          }
         ]
       },
       {
         "title": "Company",
         "url": "#",
         "children": [
-          { "title": "About", "url": "/pages/about-us" },
-          { "title": "Blog", "url": "/blogs/featured" },
-          { "title": "Contact", "url": "/pages/contact" },
-          { "title": "Oro Circle", "url": "#" }
+          {
+            "title": "About",
+            "url": "/pages/about-us"
+          },
+          {
+            "title": "Blog",
+            "url": "/blogs/featured"
+          },
+          {
+            "title": "Contact",
+            "url": "/pages/contact"
+          },
+          {
+            "title": "Oro Circle",
+            "url": "#"
+          }
         ]
       },
       {
         "title": "Support",
         "url": "#",
         "children": [
-          { "title": "FAQ", "url": "/pages/faq" },
-          { "title": "Shipping", "url": "/policies/shipping-policy" },
-          { "title": "Returns", "url": "/pages/returns-refunds" },
-          { "title": "Track Your Order", "url": "/account/orders" },
-          { "title": "My Account", "url": "/account" },
-          { "title": "Terms of service", "url": "/pages/terms-of-service" },
-          { "title": "Privacy policy", "url": "/pages/privacy-policy" }
+          {
+            "title": "FAQ",
+            "url": "/pages/faq"
+          },
+          {
+            "title": "Shipping",
+            "url": "/pages/shipping"
+          },
+          {
+            "title": "Returns",
+            "url": "/pages/returns"
+          },
+          {
+            "title": "Track Your Order",
+            "url": "/track-order"
+          },
+          {
+            "title": "My Account",
+            "url": "/account"
+          },
+          {
+            "title": "Terms of service",
+            "url": "/pages/terms-of-service"
+          },
+          {
+            "title": "Privacy policy",
+            "url": "/pages/privacy-policy"
+          },
+          {
+            "title": "Cookies",
+            "url": "/pages/cookies"
+          }
         ]
       }
     ],
@@ -112,27 +204,85 @@
       "buttonLabel": "Subscribe"
     },
     "social": [
-      { "network": "facebook", "url": "#" },
-      { "network": "whatsapp", "url": "#" },
-      { "network": "instagram", "url": "#" },
-      { "network": "youtube", "url": "#" },
-      { "network": "tiktok", "url": "#" },
-      { "network": "x", "url": "#" }
+      {
+        "network": "facebook",
+        "url": "#"
+      },
+      {
+        "network": "whatsapp",
+        "url": "#"
+      },
+      {
+        "network": "instagram",
+        "url": "#"
+      },
+      {
+        "network": "youtube",
+        "url": "#"
+      },
+      {
+        "network": "tiktok",
+        "url": "#"
+      },
+      {
+        "network": "x",
+        "url": "#"
+      }
     ],
-    "wordmark": { "word": "Oro", "accent": "Skin" },
+    "wordmark": {
+      "word": "Oro",
+      "accent": "Skin"
+    },
     "copyright": "© 2026 Oroskin. All rights reserved.",
-    "payment": ["visa", "master", "american_express", "paypal", "diners_club", "discover"],
+    "payment": [
+      "visa",
+      "master",
+      "american_express",
+      "paypal",
+      "diners_club",
+      "discover"
+    ],
     "countries": [
-      { "code": "BA", "name": "Bosnia & Herzegovina", "currency": "BAM КМ" },
-      { "code": "CA", "name": "Canada", "currency": "CAD $" },
-      { "code": "IN", "name": "India", "currency": "INR ₹", "current": true },
-      { "code": "US", "name": "United States", "currency": "USD $" }
+      {
+        "code": "BA",
+        "name": "Bosnia & Herzegovina",
+        "currency": "BAM КМ"
+      },
+      {
+        "code": "CA",
+        "name": "Canada",
+        "currency": "CAD $"
+      },
+      {
+        "code": "IN",
+        "name": "India",
+        "currency": "INR ₹",
+        "current": true
+      },
+      {
+        "code": "US",
+        "name": "United States",
+        "currency": "USD $"
+      }
     ],
     "languages": [
-      { "code": "en", "name": "English", "current": true },
-      { "code": "ta", "name": "தமிழ்" },
-      { "code": "de", "name": "Deutsch" },
-      { "code": "fr", "name": "Français" }
+      {
+        "code": "en",
+        "name": "English",
+        "current": true
+      },
+      {
+        "code": "ta",
+        "name": "தமிழ்"
+      },
+      {
+        "code": "de",
+        "name": "Deutsch"
+      },
+      {
+        "code": "fr",
+        "name": "Français"
+      }
     ]
   }
 }

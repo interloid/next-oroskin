@@ -24,7 +24,7 @@
           {
             "title": "Fragrance",
             "count": "6 formulas",
-            "image": { "src": "/cdn/shop/collections/Fragrance-banner.png", "width": 960, "height": 640 },
+            "image": { "src": "/cdn/shop/files/8ca1650e0bc1395f1a1db019baf881e298994caf_1.png", "width": 1024, "height": 1536 },
             "text": "<p>Naturals-led, 22% concentration, six-hour verified wear.</p>",
             "link": "/collections/fragrance",
             "open": true
@@ -32,14 +32,14 @@
           {
             "title": "Skincare",
             "count": "8 formulas",
-            "image": { "src": "/cdn/shop/collections/Skincare-banner.png", "width": 960, "height": 640 },
+            "image": { "src": "/cdn/shop/files/fbf5a1874a99a53e982bd2c0437624c2ca23d2df.png", "width": 1024, "height": 1024 },
             "text": "<p>Actives at their clinical dose, printed on every carton.</p>",
             "link": "/collections/skincare"
           },
           {
             "title": "Makeup",
             "count": "6 formulas",
-            "image": { "src": "/cdn/shop/collections/Makeup-banner.png", "width": 960, "height": 641 },
+            "image": { "src": "/cdn/shop/files/77cbd4a0d69039055796367be433032848194a47.png", "width": 1024, "height": 1024 },
             "text": "<p>Forty-two shades mapped by undertone, in refillable cases.</p>",
             "link": "/collections/makeup"
           }
@@ -89,8 +89,8 @@
             "statValue": "71%",
             "statLabel": "Lower carbon per refill",
             "video": {
-              "src": "/cdn/shop/videos/c/vp/af12c49806aa4c18a1fec658072e922b/af12c49806aa4c18a1fec658072e922b.SD-480p-1.5Mbps-99435703.mp4",
-              "poster": "/cdn/shop/files/preview_images/af12c49806aa4c18a1fec658072e922b.thumbnail.0000000000_1920x.jpg"
+              "src": "/cdn/shop/videos/c/vp/f16c413a083f4d268a8aa6c80adfdf42/f16c413a083f4d268a8aa6c80adfdf42.720p.mp4",
+              "poster": "/cdn/shop/files/preview_images/f16c413a083f4d268a8aa6c80adfdf42.thumbnail.0000000000_1920x.jpg"
             }
           }
         ]

@@ -6,6 +6,7 @@
  * `path` = the current pathname, for the active menu link.
  */
 import Icon from '@/components/Icon';
+import AccountLink from '@/components/AccountLink';
 import type { Cart, MenuItem, Site } from '@/lib/types';
 
 export interface HeaderProps {
@@ -358,7 +359,7 @@ export default function Header({ site, cart, transparent = false, path = null, c
                   id="SearchPopup"
                   className={`search-popup__dialog color-${colorScheme}`}
                   aria-label="Search"
-                  style={{ '--color-accent': '#8a6a1f', '--search-focus': '#7d0000' } as React.CSSProperties}
+                  style={{ '--color-accent': '#c8a24b', '--search-focus': '#7d0000' } as React.CSSProperties}
                 >
                   <div className="search-popup__panel">
                     <div className="search-popup__inner">
@@ -423,12 +424,7 @@ export default function Header({ site, cart, transparent = false, path = null, c
               <CartCount count={count} />
 
               {/* Shopify's account component (no Shopify script here: only the LOGIN pill in its slot shows) */}
-              <shopify-account className="header__account" menu="customer-account-main-menu">
-                <span slot="signed-out-avatar" className="button header__login">
-                  <Icon name="account" />
-                  <span className="header__login-text">Login</span>
-                </span>
-              </shopify-account>
+              <AccountLink />
             </div>
           </div>
         </header>

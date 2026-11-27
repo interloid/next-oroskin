@@ -1,0 +1,13 @@
+{
+  "slug": "account-details",
+  "title": "My account",
+  "sections": [
+    {
+      "id": "account",
+      "type": "account",
+      "props": {
+        "view": "details"
+      }
+    }
+  ]
+}

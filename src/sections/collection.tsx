@@ -4,7 +4,8 @@
  * Data: context.collection (CollectionPage). The query names are Shopify's (sort_by, page, filter.*),
  * so the theme's <results-view> / <filter-drawer> scripts work: they fetch `<url>&section_id=<id>`
  * and swap the parts with the same ids from the answer (the full page, same ids).
- * Only the 'full' card style with the even grid is ported (the bento layout is not).
+ * Card style 'tile' + layout 'bento' = the Figma bento grid (the plan is built below, as in the Liquid);
+ * 'full' always uses the even grid and the column switch.
  */
 import FilterDrawer, { ActiveFilters, activeFilterCount, buildUrl, queryPairs } from '@/components/FilterDrawer';
 import { CategoryPills, GridViewScript, GridViewSwitch, Pagination, SORT_OPTIONS, type Pill } from '@/components/CollectionTools';
@@ -20,6 +21,8 @@ export interface CollectionProps extends SectionCommon {
   showCount?: boolean;
   showSort?: boolean;
   showViewSwitch?: boolean;
+  layout?: 'bento' | 'grid';
+  cardStyle?: 'full' | 'tile';
   columnsDesktop?: number;
   imageRatio?: 'portrait' | 'square' | 'landscape' | 'original';
   /** Category pills (menu). count is filled from the linked collection when left out. */
@@ -38,7 +41,9 @@ export default async function Collection({
   showFilters = true,
   showCount = true,
   showSort = true,
-  showViewSwitch = true,
+  showViewSwitch: showViewSwitchProp = true,
+  layout: layoutProp = 'bento',
+  cardStyle = 'tile',
   columnsDesktop = 4,
   imageRatio = 'portrait',
   pills = [],
@@ -50,6 +55,9 @@ export default async function Collection({
 }: CollectionProps & { id: string; context?: PageContext }) {
   const collection = context?.collection;
   if (!collection) return null;
+  const isFull = cardStyle === 'full';
+  const layout = isFull ? 'grid' : layoutProp;
+  const showViewSwitch = isFull && showViewSwitchProp;
   const params = context?.searchParams ?? {};
   const url = `/collections/${collection.handle}`;
   const one = (k: string) => (Array.isArray(params[k]) ? params[k]![0] : (params[k] as string | undefined));
@@ -81,6 +89,7 @@ export default async function Collection({
   const sizesMore = '(min-width: 1600px) 17vw, (min-width: 1200px) 25vw, (min-width: 750px) 34vw, 50vw';
   const sizesDefault = `(min-width: 1600px) ${desktopVw}vw, (min-width: 1200px) 34vw, 50vw`;
 
+  const bento = layout === 'bento' ? bentoPlan(collection.products.length) : null;
   const picks =
     collection.total === 0 && !filtersActive && emptyCollection
       ? ((await api.collection(emptyCollection))?.products.slice(0, 4) ?? [])
@@ -222,17 +231,24 @@ export default async function Collection({
             ) : (
               <>
                 <div className="collection-grid-wrap">
-                  <ul className={`collection-grid collection-grid--grid collection-grid--${imageRatio} collection-grid--full`} role="list">
+                  <ul
+                    className={`collection-grid collection-grid--${layout} collection-grid--${imageRatio}${isFull ? ' collection-grid--full' : ''}`}
+                    role="list"
+                    style={bento ? ({ '--bento-rows': bento.rows } as React.CSSProperties) : undefined}
+                  >
                     {collection.products.map((product, i) => {
                       // With the column switch only the first 2 cards load at once (with the "fewer" sizes)
                       const eager = showViewSwitch ? i < 2 : i < 4;
                       return (
-                        <li className="collection-grid__item" key={product.handle}>
+                        <li className="collection-grid__item" key={product.handle} style={bento ? (bento.tiles[i] as React.CSSProperties) : undefined}>
                           <ProductCard
                             product={product}
-                            style="full"
+                            style={cardStyle}
+                            showDetails
+                            showDescription
+                            cartOptions="add_first"
                             imageRatio={imageRatio}
-                            sizes={showViewSwitch && i < 2 ? sizesFewer : sizesDefault}
+                            sizes={bento ? bento.sizes[i] : showViewSwitch && i < 2 ? sizesFewer : sizesDefault}
                             loading={eager ? 'eager' : 'lazy'}
                             priority={i === 0 && collection.page === 1}
                             headingTag="h2"
@@ -252,4 +268,38 @@ export default async function Collection({
       </div>
     </div>
   );
+}
+
+const BENTO = '1-2-1-1,3-1-1-2,4-1-1-2,1-1-2-2,2-1-2-3,3-2-3-3,1-1-4-2,2-1-5-1,1-1-6-3,2-2-6-1,4-1-6-2,2-1-7-2,3-1-7-2,4-1-8-2,1-2-9-1,3-1-9-1,1-1-10-2,2-1-10-1,3-2-10-2,2-1-11-2,3-2-12-1,1-1-12-1'.split(',');
+const TAILS = '|1-1-1-1|1-2-1-1;3-2-1-1|1-2-1-1;3-1-1-1;4-1-1-1|1-1-1-1;2-1-1-1;3-1-1-1;4-1-1-1|1-1-1-2;2-2-1-1;4-1-1-2;2-1-2-1;3-1-2-1|1-2-1-1;3-1-1-1;4-1-1-1;1-1-2-1;2-1-2-1;3-2-2-1|1-1-1-2;2-1-1-1;3-1-1-1;4-1-1-1;2-1-2-1;3-1-2-1;4-1-2-1'.split('|');
+const CYCLE = '399,220,54,221,382,399,204,70,728,309,204,399'.split(',');
+const BAND_A = CYCLE.slice(0, 5);
+const BAND_AB = CYCLE.slice(0, 9);
+
+/** The bento plan for one page (same as the Liquid): per tile its grid place + photo sizes, and the row heights. */
+function bentoPlan(count: number) {
+  const cycles = Math.floor(count / 22);
+  const rest = count % 22;
+  const bandTiles = rest >= 16 ? 16 : rest >= 8 ? 8 : 0;
+  const bandRows = bandTiles === 16 ? 9 : bandTiles === 8 ? 5 : 0;
+  const tailCount = rest - bandTiles;
+  const figma = cycles * 22 + bandTiles;
+  const tailStart = cycles * 12 + bandRows;
+  const tail = (TAILS[tailCount] ?? '').split(';');
+  let heights: string[] = [];
+  for (let i = 0; i < cycles; i++) heights = heights.concat(CYCLE);
+  if (bandTiles === 8) heights = heights.concat(BAND_A);
+  else if (bandTiles === 16) heights = heights.concat(BAND_AB);
+  if (tailCount > 0) heights.push('400');
+  if (tailCount > 4) heights.push('400');
+  const tiles: Record<string, string>[] = [];
+  const sizes: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const place = (i < figma ? BENTO[i % 22] : tail[i - figma]).split('-');
+    const offset = i < figma ? Math.floor(i / 22) * 12 : tailStart;
+    tiles.push({ '--col': `${place[0]} / span ${place[1]}`, '--row': `${Number(place[2]) + offset} / span ${place[3]}` });
+    const wide = place[1] === '2' ? '50vw' : place[1] === '4' ? '100vw' : '25vw';
+    sizes.push(`(min-width: 1200px) ${wide}, (min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw`);
+  }
+  return { tiles, sizes, rows: heights.map((h) => `calc(var(--u) * ${h})`).join(' ') };
 }

@@ -1,0 +1,13 @@
+{
+  "slug": "account-signout",
+  "title": "My account",
+  "sections": [
+    {
+      "id": "account",
+      "type": "account",
+      "props": {
+        "view": "signout"
+      }
+    }
+  ]
+}
