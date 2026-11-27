@@ -5439,8 +5439,8 @@
 
   /*
     Large, with a mouse: options, then price + BUY in one row. The cart button leaves the row and sits
-    over the bottom of the photo (its top = the photo's height, from --card-media-h x the card width,
-    less 3.75rem), shown while the card is hovered, while it has keyboard focus and while it adds
+    over the bottom of the photo (its bottom = the photo's height, from --card-media-h x the card width,
+    less 2rem, clear of the dots), shown while the card is hovered, while it has keyboard focus and while it adds
   */
   @media (hover: hover) and (pointer: fine) {
     @container product-card (min-width: 15rem) {
@@ -5468,16 +5468,20 @@
         z-index: 2;
       }
 
+      /*
+        Anchored by its bottom edge: the photo's bottom less 2rem (dots 12px up + 6px tall + a 14px gap),
+        then translated up by its own height, so a taller pill never covers the dots
+      */
       .product-card--full .product-card__quick-add {
         position: absolute;
-        inset-block-start: calc(var(--card-media-h, 1.25) * 100cqi - 3.75rem);
+        inset-block-start: calc(var(--card-media-h, 1.25) * 100cqi - 2rem);
         inset-inline: 0;
         z-index: 4;
         display: flex;
         justify-content: center;
         pointer-events: none;
         opacity: 0;
-        translate: 0 0.5rem;
+        translate: 0 calc(-100% + 0.5rem);
         transition:
           opacity var(--duration-fast) var(--ease-out),
           translate var(--duration-fast) var(--ease-out);
@@ -5487,7 +5491,7 @@
       .product-card--full .product-card__quick-add:focus-within,
       .product-card--full .product-card__quick-add:is(.is-adding, .is-added, .is-resetting, .is-error) {
         opacity: 1;
-        translate: 0 0;
+        translate: 0 -100%;
       }
 
       .product-card--full:hover .product-card__quick-add .quick-add__button,
@@ -5522,7 +5526,7 @@
 
       @media (prefers-reduced-motion: reduce) {
         .product-card--full .product-card__quick-add {
-          translate: none;
+          translate: 0 -100%;
           transition: none;
         }
       }

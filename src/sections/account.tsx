@@ -66,7 +66,7 @@ function Shell({ view, children }: { view: AccountView; children: React.ReactNod
           <p className="account-head__text">Everything you need to make your OroSkin ritual feel entirely yours.</p>
         </div>
         <a className="account-signout" href="/account/signout">
-          <Icon name="arrow" />
+          <Icon src="icons/ui-signout.svg" />
           Sign out
         </a>
       </header>
@@ -392,7 +392,6 @@ function Details() {
 function Orders() {
   const rows: OrderRow[] = orders.map((o) => {
     const ls = lineProducts(o);
-    const extra = ls.length > 1 ? ` + ${ls.length - 1} more` : '';
     return {
       id: o.id,
       number: o.number,
@@ -400,16 +399,27 @@ function Orders() {
       status: o.status,
       statusLabel: statusLabel[o.status],
       statusNote: o.statusNote,
-      title: ls[0].product.title + extra,
+      title: ls[0].product.title,
+      more: ls.length - 1,
+      items: ls.reduce((n, l) => n + l.qty, 0),
       total: money(orderTotals(o).total),
-      image: ls[0].product.images[0].src,
+      images: ls.slice(0, 2).map((l) => l.product.images[0].src),
       imageAlt: ls[0].product.title,
+      tracking: o.tracking,
     };
   });
+  // Server-rendered icons for the client list (Icon reads the SVG files on the server)
+  const icons = {
+    go: <Icon src="icons/ui-arrow-up-right.svg" />,
+    truck: <Icon name="truck" />,
+    check: <Icon src="icons/ui-check-circle.svg" />,
+    arrow: <Icon name="arrow" />,
+    close: <Icon name="close" />,
+  };
   return (
     <section className="account-card">
       <CardHead eyebrow="Purchase history" heading="My orders" />
-      <OrdersList rows={rows} />
+      <OrdersList rows={rows} icons={icons} />
     </section>
   );
 }
@@ -484,7 +494,9 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
               <ol className="account-timeline">
                 {EVENTS.map((e, i) => (
                   <li className={`account-timeline__item${i < idx ? ' is-done' : ''}`} key={e.t}>
-                    <span className="account-timeline__dot" aria-hidden="true" />
+                    <span className="account-timeline__dot" aria-hidden="true">
+                      {i < idx ? <Icon src="icons/ui-check.svg" /> : null}
+                    </span>
                     <p className="account-timeline__title">{e.t}</p>
                     {track ? <p className="account-timeline__text">{e.d}</p> : null}
                     <p className="account-timeline__at">{i < idx ? e.at : 'Pending'}</p>
@@ -508,6 +520,9 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
                       </p>
                     </div>
                     <p className="account-items__price">{money(l.product.price * l.qty)}</p>
+                    <a className="account-items__go" href={`/products/${l.handle}`} aria-label={`View ${l.product.title}`}>
+                      <Icon name="chevron-right" />
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -516,14 +531,17 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
 
           <div className="account-od__right">
             <section className="account-box">
-              <h2 className="account-box__title">Order summary</h2>
+              <h2 className="account-box__title">
+                <Icon src="icons/ui-document.svg" />
+                Order summary
+              </h2>
               <dl className="account-sum">
                 <div>
                   <dt>Subtotal</dt>
                   <dd>{money(subtotal)}</dd>
                 </div>
                 {order.discount ? (
-                  <div>
+                  <div className="account-sum__accent">
                     <dt>Discount</dt>
                     <dd>-{money(order.discount)}</dd>
                   </div>
@@ -536,7 +554,7 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
                 ) : null}
                 <div>
                   <dt>Shipping</dt>
-                  <dd>{order.shipping ? money(order.shipping) : 'Free'}</dd>
+                  <dd className={order.shipping ? undefined : 'account-sum__free'}>{order.shipping ? money(order.shipping) : 'Free'}</dd>
                 </div>
                 <div>
                   <dt>Tax</dt>
@@ -550,7 +568,10 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
             </section>
             <section className="account-box account-box--two">
               <div>
-                <h2 className="account-box__title">Shipping &amp; delivery</h2>
+                <h2 className="account-box__title">
+                  <Icon name="truck" />
+                  Shipping &amp; delivery
+                </h2>
                 <address className="account-od__addr">
                   <span>John Doe</span>
                   <span>789 Boulevard Street, Apt 3C</span>
@@ -559,18 +580,26 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
                 </address>
               </div>
               <div>
-                <h2 className="account-box__title">Payment</h2>
+                <h2 className="account-box__title">
+                  <Icon name="card" />
+                  Payment
+                </h2>
                 <p className="account-od__addr">Visa **56</p>
               </div>
             </section>
             <section className="account-box">
-              <h2 className="account-box__title">Tracking information</h2>
-              <p className="account-od__label">Tracking number</p>
+              <div className="account-box__head">
+                <h2 className="account-box__title">Tracking information</h2>
+                <a className="account-link account-link--icon account-link--line" href={track ? '/account/orders' : '/account/track'}>
+                  {track ? 'All orders' : 'Track package'} <Icon name="arrow" />
+                </a>
+              </div>
+              <p className="account-eyebrow account-od__tn">
+                <Icon name="truck" />
+                Tracking number
+              </p>
               <p className="account-od__code">{order.tracking}</p>
               <p className="account-od__label">Estimated delivery: {order.eta}</p>
-              <a className="account-link" href={track ? '/account/orders' : '/account/track'}>
-                {track ? 'All orders' : 'Track package'} <span aria-hidden="true">→</span>
-              </a>
             </section>
           </div>
         </div>
@@ -578,10 +607,12 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
         <div className="account-od__help">
           <p>Have a question about this order?</p>
           <div>
-            <a className="account-btn account-btn--glass" href="/pages/contact">
+            <a className="account-link account-link--icon" href="/pages/contact">
+              <Icon name="chat" />
               Contact us
             </a>
-            <a className="account-btn account-btn--glass" href="/pages/faq">
+            <a className="account-pill-btn account-link--icon account-od__helpbtn" href="/pages/faq">
+              <Icon src="icons/ui-help.svg" />
               Help center
             </a>
           </div>
@@ -607,7 +638,7 @@ function Wishlist() {
   return (
     <section className="account-card">
       <CardHead eyebrow="Saved items" heading="Your wishlist" />
-      <WishlistList items={items} />
+      <WishlistList items={items} icons={{ cart: <Icon name="cart" />, expand: <Icon src="icons/ui-expand.svg" />, close: <Icon name="close" /> }} />
     </section>
   );
 }
@@ -619,16 +650,18 @@ function Refills() {
       <section className="account-card account-card--tint">
         <div className="account-card__head">
           <div className="account-member__tags">
-            <span className="account-tag account-tag--delivered">Active</span>
-            <span className="account-tag account-tag--default">Save $24</span>
+            <span className="account-tag">Active</span>
+            <span className="account-tag">Save $24</span>
           </div>
           <div className="account-member__links">
-            <a className="account-link" href="/account/rewards">View rewards <span aria-hidden="true">→</span></a>
-            <SmallAction label="Cancel membership" done="Request sent (demo)" />
+            <a className="account-link account-link--icon" href="/account/rewards">
+              View rewards <Icon src="icons/ui-arrow-up-right.svg" />
+            </a>
+            <SmallAction label="Cancel membership" done="Request sent (demo)" icon={<Icon name="close" />} className="account-link account-link--btn account-link--icon" />
           </div>
         </div>
         <h2 className="account-card__title">Rose Gold annual membership</h2>
-        <dl className="account-facts account-facts--2">
+        <dl className="account-facts account-facts--2 account-facts--member">
           <div>
             <dt>Billing cycle</dt>
             <dd>Annual — $120/year</dd>
@@ -657,17 +690,24 @@ function Refills() {
               <div className="account-sub__main">
                 <p className="account-sub__tags">
                   <span className="account-tag account-tag--delivered">Active</span>
-                  <span className="account-tag account-tag--default">{s.every}, saving 10%</span>
+                  <span className="account-sub__cadence">{s.every} · saving 10%</span>
                 </p>
                 <h3 className="account-sub__title">{s.name}</h3>
-                <p className="account-sub__meta">{s.every} · {money(s.price)}</p>
+                <p className="account-sub__meta">
+                  {s.every} · {money(s.price)} per delivery
+                </p>
                 <p className="account-sub__meta">
                   <Icon name="calendar" />
                   Next delivery {s.next}
                 </p>
                 <div className="account-sub__actions">
-                  <SmallAction label="Manage" done="Opening (demo)" />
-                  <SmallAction label="Pause" done="Paused (demo)" />
+                  <SmallAction label="Manage" done="Opening (demo)" className="account-pill-btn account-sub__manage" />
+                  <SmallAction
+                    label="Pause"
+                    done="Paused (demo)"
+                    icon={<Icon src="icons/ui-pause.svg" />}
+                    className="account-link account-link--btn account-link--icon account-link--line"
+                  />
                 </div>
               </div>
             </li>
