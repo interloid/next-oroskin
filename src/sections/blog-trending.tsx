@@ -22,6 +22,7 @@ export interface BlogTrendingProps extends SectionCommon {
   textScale?: number; // %
   animation?: 'none' | 'slide-left' | 'fade-up';
   video?: {
+    src?: string; // uploaded video (mp4), plays in a <video> with controls
     youtubeId?: string;
     vimeoId?: string;
     poster?: string;
@@ -60,14 +61,17 @@ export default async function BlogTrending({
   const rowsAnimation = animation === 'none' ? 'none' : 'fade-up';
   const videoRight = video?.position === 'right';
   if (videoRight && animation === 'slide-left') animation = 'slide-right';
-  const hasVideo = !!(video?.youtubeId || video?.vimeoId);
+  const hasVideo = !!(video?.src || video?.youtubeId || video?.vimeoId);
   const hasViews = rows.some((r) => r.views);
   const showViewAll = !!(linkLabel && link);
   const title = video?.title || video?.label;
   const playLabel = title ? `Play video: ${title}` : 'Play video';
   const poster = video?.poster;
   const posterSize = imageSize(poster);
-  const iframe = video?.youtubeId
+  const attr = (v: string) => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  const iframe = video?.src
+    ? `<video src="${attr(video.src)}" controls playsinline preload="metadata"${poster ? ` poster="${attr(poster)}"` : ''} aria-label="${attr(title || playLabel)}"></video>`
+    : video?.youtubeId
     ? `<iframe src="https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&playsinline=1&rel=0" title="${(title || playLabel).replace(/"/g, '&quot;')}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`
     : video?.vimeoId
       ? `<iframe src="https://player.vimeo.com/video/${video.vimeoId}?autoplay=1&dnt=1" title="${(title || playLabel).replace(/"/g, '&quot;')}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`

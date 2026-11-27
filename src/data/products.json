@@ -323,7 +323,7 @@
         "options": [
           "Rosewood"
         ],
-        "price": 300000,
+        "price": 310000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -336,7 +336,7 @@
         "options": [
           "Classic Red"
         ],
-        "price": 300000,
+        "price": 310000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -349,7 +349,7 @@
         "options": [
           "Nude Silk"
         ],
-        "price": 300000,
+        "price": 310000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -362,7 +362,7 @@
         "options": [
           "Berry"
         ],
-        "price": 300000,
+        "price": 310000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -375,7 +375,7 @@
         "options": [
           "Coral"
         ],
-        "price": 300000,
+        "price": 310000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -388,7 +388,7 @@
         "options": [
           "Mauve"
         ],
-        "price": 300000,
+        "price": 310000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -451,7 +451,7 @@
         "height": 1024
       }
     ],
-    "price": 300000,
+    "price": 310000,
     "compareAtPrice": null,
     "available": true
   },
@@ -479,7 +479,7 @@
         "sku": "ORO-GOLDEN-HOUR--01",
         "title": "Default",
         "options": [],
-        "price": 600000,
+        "price": 610000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -506,7 +506,7 @@
         "height": 1024
       }
     ],
-    "price": 600000,
+    "price": 610000,
     "compareAtPrice": null,
     "available": true
   },
@@ -912,7 +912,7 @@
         "options": [
           "30 ml"
         ],
-        "price": 450000,
+        "price": 460000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -925,7 +925,7 @@
         "options": [
           "50 ml"
         ],
-        "price": 640000,
+        "price": 650000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -952,7 +952,7 @@
         "height": 1024
       }
     ],
-    "price": 450000,
+    "price": 460000,
     "compareAtPrice": null,
     "available": true
   },
@@ -1038,7 +1038,7 @@
         "sku": "ORO-HYDRA-GLOW-N-01",
         "title": "Default",
         "options": [],
-        "price": 640000,
+        "price": 650000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -1065,7 +1065,7 @@
         "height": 1024
       }
     ],
-    "price": 640000,
+    "price": 650000,
     "compareAtPrice": null,
     "available": true
   },
@@ -1093,7 +1093,7 @@
         "sku": "ORO-ROSE-PETAL-T-01",
         "title": "Default",
         "options": [],
-        "price": 320000,
+        "price": 330000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -1120,7 +1120,7 @@
         "height": 1024
       }
     ],
-    "price": 320000,
+    "price": 330000,
     "compareAtPrice": null,
     "available": true
   },
@@ -1688,7 +1688,7 @@
         "title": "Default",
         "options": [],
         "price": 1040000,
-        "compareAtPrice": 1320000,
+        "compareAtPrice": 1330000,
         "available": true,
         "inventory": 25,
         "image": null
@@ -1715,7 +1715,7 @@
       }
     ],
     "price": 1040000,
-    "compareAtPrice": 1320000,
+    "compareAtPrice": 1330000,
     "available": true
   },
   {
@@ -1742,7 +1742,7 @@
         "sku": "ORO-OUD-NOIR-EAU-01",
         "title": "Default",
         "options": [],
-        "price": 1270000,
+        "price": 1280000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -1769,7 +1769,7 @@
         "height": 1024
       }
     ],
-    "price": 1270000,
+    "price": 1280000,
     "compareAtPrice": null,
     "available": true
   },
@@ -1797,7 +1797,7 @@
         "sku": "ORO-MAGNOLIA-BLO-01",
         "title": "Default",
         "options": [],
-        "price": 450000,
+        "price": 460000,
         "compareAtPrice": null,
         "available": true,
         "inventory": 25,
@@ -1824,7 +1824,7 @@
         "height": 1024
       }
     ],
-    "price": 450000,
+    "price": 460000,
     "compareAtPrice": null,
     "available": true
   },
