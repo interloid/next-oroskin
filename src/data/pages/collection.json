@@ -58,6 +58,8 @@
         "paddingTop": 32,
         "paddingBottom": 96,
         "columnsDesktop": 4,
+        "layout": "bento",
+        "cardStyle": "tile",
         "pillImageAnimation": "collection-pills--image-scale",
         "pillImageSize": 200,
         "pills": [

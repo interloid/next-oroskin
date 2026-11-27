@@ -424,10 +424,10 @@ export default function Header({ site, cart, transparent = false, path = null, c
 
               {/* Shopify's account component (no Shopify script here: only the LOGIN pill in its slot shows) */}
               <shopify-account className="header__account" menu="customer-account-main-menu">
-                <span slot="signed-out-avatar" className="button header__login">
+                <a href="/account" slot="signed-out-avatar" className="button header__login">
                   <Icon name="account" />
                   <span className="header__login-text">Login</span>
-                </span>
+                </a>
               </shopify-account>
             </div>
           </div>

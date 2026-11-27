@@ -147,7 +147,7 @@
           "buttonLabel": "Write message",
           "buttonLink": "/pages/contact",
           "secondLabel": "Track order",
-          "secondLink": "/account"
+          "secondLink": "/pages/faq"
         }
       }
     }

@@ -1,0 +1,85 @@
+{
+  "slug": "returns",
+  "title": "Returns and refunds",
+  "sections": [
+    {
+      "id": "hero",
+      "type": "returns-hero",
+      "props": {
+        "showBreadcrumb": true,
+        "breadcrumbTitle": "Returns and refunds",
+        "badgeNumber": "60",
+        "badgeLabel": "Days",
+        "eyebrow": "Returns & refunds",
+        "heading": "No questions. Not <em>one.</em>",
+        "text": "<p>If a formula is not right for your skin we collect it from your door and refund in full — even if the bottle is half empty. Skin is personal; a return is not a failure.</p>",
+        "paddingTop": 24,
+        "paddingBottom": 80
+      }
+    },
+    {
+      "id": "steps",
+      "type": "returns-steps",
+      "props": {
+        "paddingTop": 40,
+        "paddingBottom": 56,
+        "steps": [
+          {
+            "title": "Open the order",
+            "text": "<p>Find it in your archive and choose Return. Tell us which pieces and, if you like, why.</p>",
+            "label": "Within 60 days"
+          },
+          {
+            "title": "We book the courier",
+            "text": "<p>A collection slot is offered for the next working day. No printer, no label, no queue.</p>",
+            "label": "Same day"
+          },
+          {
+            "title": "Hand it over",
+            "text": "<p>Reuse the original box or any box. The courier scans it at your door and that is your proof.</p>",
+            "label": "At your door"
+          },
+          {
+            "title": "Refunded in full",
+            "text": "<p>We release the refund the moment it is collected — not when it reaches us.</p>",
+            "label": "2–3 days to your bank"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lists",
+      "type": "returns-lists",
+      "props": {
+        "paddingTop": 32,
+        "paddingBottom": 48,
+        "yesTitle": "Always returnable",
+        "yesItems": [
+          "Opened and part-used formulas",
+          "A shade that turned out wrong",
+          "Gifts, refunded to the giver or as credit",
+          "Anything damaged in transit, replaced first"
+        ],
+        "noTitle": "The few exceptions",
+        "noItems": [
+          "Pieces redeemed entirely with Circle points — returned as points",
+          "Engraved or personalised commissions",
+          "Anything sent back after the sixtieth day"
+        ]
+      }
+    },
+    {
+      "id": "cta",
+      "type": "cta-card",
+      "props": {
+        "heading": "Ready to send something back?",
+        "text": "Open the order in your archive and we will book the courier — no printer, no queue.",
+        "buttonLabel": "Start a return",
+        "buttonLink": "/account",
+        "style": "tinted",
+        "paddingTop": 48,
+        "paddingBottom": 96
+      }
+    }
+  ]
+}

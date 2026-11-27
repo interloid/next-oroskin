@@ -6,6 +6,7 @@
  */
 import Icon from '@/components/Icon';
 import PaymentIcons from '@/components/PaymentIcons';
+import NewsletterStatus from '@/components/NewsletterStatus';
 import { logoTextScale } from '@/sections/header';
 import type { Site } from '@/lib/types';
 
@@ -175,6 +176,7 @@ export default function Footer({ site, path = null, colorScheme = 'scheme-1', sh
                   <button type="submit" className="button newsletter-form__button">
                     {nl?.buttonLabel ?? 'Subscribe'}
                   </button>
+                  <NewsletterStatus formId="NewsletterForm-footer" />
                 </form>
               </div>
             ) : null}

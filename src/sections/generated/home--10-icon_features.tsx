@@ -51,7 +51,7 @@ export default function Home10IconFeatures() {
                 </svg>{" "}
               </span>
               <h3 className="icon-feature__title">
-                <a href="/policies/shipping-policy">Free shipping</a>
+                <a href="/pages/shipping">Free shipping</a>
               </h3>
               <div className="icon-feature__text rte">
                 <p>Orders over $200 qualify for fast, free delivery</p>
