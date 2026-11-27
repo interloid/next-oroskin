@@ -220,11 +220,37 @@ export function TrackForm({ defaultOrder = '', defaultEmail = '', error = '' }: 
   );
 }
 
-export function SmallAction({ label, done }: { label: string; done: string }) {
+/**
+ * A demo action: shows `done` once clicked. `icon` (server-rendered SVG, e.g. <Icon name="pencil" />) goes before
+ * the label; `className` replaces the default text-link look (e.g. "account-link account-link--line").
+ */
+export function SmallAction({
+  label,
+  done,
+  icon,
+  className = 'account-link account-link--btn',
+}: {
+  label: string;
+  done: string;
+  icon?: React.ReactNode;
+  className?: string;
+}) {
   const [on, setOn] = useState(false);
   return (
-    <button type="button" className="account-link account-link--btn" onClick={() => setOn(true)} aria-live="polite">
+    <button type="button" className={className} onClick={() => setOn(true)} aria-live="polite">
+      {icon}
       {on ? done : label}
+    </button>
+  );
+}
+
+/** A round icon button (edit / delete) for the demo: the label is for screen readers and the tooltip. */
+export function IconAction({ label, done, children }: { label: string; done: string; children: React.ReactNode }) {
+  const [on, setOn] = useState(false);
+  const text = on ? done : label;
+  return (
+    <button type="button" className="account-iconbtn" aria-label={text} title={text} onClick={() => setOn(true)}>
+      {children}
     </button>
   );
 }

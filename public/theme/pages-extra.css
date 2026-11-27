@@ -1,3 +1,5 @@
+/* Text sizes use the theme scale (head.css): labels --font-size-label (14-18px), text --font-size-body-sm (15-18px),
+   as in the 1920 designs (public/newpages-design/shipping.png, cookies.png). */
 /* Shipping and Cookies pages (Figma "shipping" 1:17093, "cookies" 1:17171). They were never built in the theme, so
    their rules live here. They reuse the .policy header classes from sections.css. */
 
@@ -18,7 +20,7 @@
   margin: 0;
   color: var(--color-accent);
   font-family: var(--font-body--family);
-  font-size: var(--font-size-small, 0.8125rem);
+  font-size: var(--font-size-label);
   font-weight: 400;
   letter-spacing: var(--letter-spacing-label, 0.14em);
   text-transform: uppercase;
@@ -66,7 +68,7 @@
   line-height: 1.1;
 }
 .shipping__stat-label {
-  font-size: var(--font-size-small, 0.8125rem);
+  font-size: var(--font-size-label);
   letter-spacing: var(--letter-spacing-label, 0.14em);
   text-transform: uppercase;
 }
@@ -113,7 +115,7 @@
 .shipping__hub-regions {
   position: relative;
   margin: var(--space-md) 0 var(--space-xl);
-  font-size: var(--font-size-small, 0.875rem);
+  font-size: var(--font-size-body-sm);
 }
 .shipping__hub-cutoff {
   display: flex;
@@ -125,8 +127,9 @@
   border-block-start: 1px solid var(--color-card-border);
 }
 .shipping__hub-cutoff span {
+  white-space: nowrap; /* "Cut-off" never breaks at the hyphen */
   color: var(--color-accent);
-  font-size: var(--font-size-small, 0.8125rem);
+  font-size: var(--font-size-label);
   letter-spacing: var(--letter-spacing-label, 0.14em);
   text-transform: uppercase;
 }
@@ -149,7 +152,7 @@
 }
 .shipping__tier-no {
   color: var(--color-accent);
-  font-size: var(--font-size-small, 0.875rem);
+  font-size: var(--font-size-label);
   letter-spacing: 0.1em;
 }
 .shipping__tier-title {
@@ -160,12 +163,12 @@
 }
 .shipping__tier-text {
   margin: var(--space-xs) 0 0;
-  font-size: var(--font-size-small, 0.875rem);
+  font-size: var(--font-size-body-sm);
 }
 .shipping__tier-time,
 .shipping__tier-price {
   margin: 0;
-  font-size: var(--font-size-small, 0.875rem);
+  font-size: var(--font-size-body-sm);
 }
 .shipping__tier-time {
   min-inline-size: 10rem;
@@ -173,6 +176,7 @@
 }
 .shipping__tier-price {
   min-inline-size: 7rem;
+  font-size: var(--font-size-body);
   color: var(--color-accent);
   text-align: end;
 }
@@ -196,7 +200,7 @@
 .shipping__region-zone {
   margin: 0;
   color: var(--color-accent);
-  font-size: var(--font-size-small, 0.8125rem);
+  font-size: var(--font-size-label);
   letter-spacing: var(--letter-spacing-label, 0.14em);
   text-transform: uppercase;
 }
@@ -208,7 +212,7 @@
 }
 .shipping__region-text {
   margin: 0;
-  font-size: var(--font-size-small, 0.875rem);
+  font-size: var(--font-size-body-sm);
 }
 
 @media (max-width: 1199px) {
@@ -229,6 +233,14 @@
   .shipping__region:nth-child(odd) {
     padding-inline-start: 0;
     border-inline-start: 0;
+  }
+}
+
+/* Tablet: three hub cards are too narrow for the big code watermark (it ran over the city name at 768px):
+   one card per row, as on phones */
+@media (max-width: 989px) {
+  .shipping__hubs {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -325,7 +337,7 @@
 .cookie-choices__text {
   max-inline-size: 40rem;
   margin: var(--space-xs) 0 0;
-  font-size: var(--font-size-small, 0.9375rem);
+  font-size: var(--font-size-body-sm);
   line-height: 1.6;
 }
 
@@ -400,7 +412,7 @@
   min-block-size: 1.5em;
   margin: var(--space-md) 0 0;
   text-align: center;
-  font-size: var(--font-size-small, 0.875rem);
+  font-size: var(--font-size-body-sm);
 }
 
 @media (max-width: 749px) {
@@ -420,4 +432,12 @@
 .policy__body [data-policy-group] {
   counter-reset: none;
   counter-set: policy-item 0;
+}
+
+/* Small labels on Returns and the policy pages: 14px in the theme, ~16-18px in the 1920 designs
+   (public/newpages-design/returns.png "DAYS", "WITHIN 60 DAYS"; privacy policy.png "IN FORCE") */
+.returns-hero__badge-label,
+.return-step__label,
+.policy__in-force-label {
+  font-size: var(--font-size-label);
 }

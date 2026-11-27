@@ -136,8 +136,8 @@ export const wishlist = [
 export const recentlyViewed = ['kabuki-makeup-brush', 'skin-tint', 'rose-petal-toner', 'pure-matte-lipstick'];
 
 export const addresses = [
-  { id: 'home', label: 'Home', isDefault: true, lines: ['Alexandra Rose', '24 Willow Lane, Apt 3C', 'New York, NY 10012, United States'] },
-  { id: 'office', label: 'Office', isDefault: false, lines: ['Alexandra Rose', '24 Willow Lane, Apt 3C', 'New York, NY 10012, United States'] },
+  { id: 'home', label: 'Home', isDefault: true, lines: ['Alexandra Rose', '24 Willow Lane, New York', 'NY 10013, United States'] },
+  { id: 'office', label: 'Office', isDefault: false, lines: ['Alexandra Rose', '24 Willow Lane, New York', 'NY 10013, United States'] },
 ];
 export const cards = [
   { id: 'visa', brand: 'VISA', last: '2026', name: 'Alexandra Rose', expires: '09 / 29', isDefault: true },

@@ -23,7 +23,7 @@ import {
   wishlist,
   type Order,
 } from '@/lib/account-data';
-import { DetailsForm, OrdersList, PrefToggles, SmallAction, TrackForm, WishlistList, type OrderRow } from '@/sections/_account-client';
+import { DetailsForm, IconAction, OrdersList, PrefToggles, SmallAction, TrackForm, WishlistList, type OrderRow } from '@/sections/_account-client';
 
 export type AccountView =
   | 'overview'
@@ -43,12 +43,13 @@ export interface AccountProps {
 }
 
 const TABS: { view: AccountView; href: string; label: string; icon: string }[] = [
-  { view: 'overview', href: '/account', label: 'Overview', icon: 'sparkle' },
-  { view: 'details', href: '/account/details', label: 'My details', icon: 'account' },
-  { view: 'orders', href: '/account/orders', label: 'Orders', icon: 'box' },
-  { view: 'wishlist', href: '/account/wishlist', label: 'Wishlist', icon: 'heart' },
-  { view: 'refills', href: '/account/refills', label: 'Refills', icon: 'return' },
-  { view: 'preferences', href: '/account/preferences', label: 'Preferences', icon: 'shield-check' },
+  // Figma icons: public/icons/account-*.svg
+  { view: 'overview', href: '/account', label: 'Overview', icon: 'icons/account-overview.svg' },
+  { view: 'details', href: '/account/details', label: 'My details', icon: 'icons/account-details.svg' },
+  { view: 'orders', href: '/account/orders', label: 'Orders', icon: 'icons/account-orders.svg' },
+  { view: 'wishlist', href: '/account/wishlist', label: 'Wishlist', icon: 'icons/account-wishlist.svg' },
+  { view: 'refills', href: '/account/refills', label: 'Refills', icon: 'icons/account-refills.svg' },
+  { view: 'preferences', href: '/account/preferences', label: 'Preferences', icon: 'icons/account-preferences.svg' },
 ];
 
 const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? '';
@@ -103,7 +104,7 @@ function Shell({ view, children }: { view: AccountView; children: React.ReactNod
           {TABS.map((t) => (
             <li key={t.view}>
               <a className={`account-tab${t.view === view ? ' is-active' : ''}`} href={t.href} aria-current={t.view === view ? 'page' : undefined}>
-                <Icon name={t.icon} />
+                <Icon src={t.icon} />
                 {t.label}
               </a>
             </li>
@@ -229,108 +230,160 @@ function Overview() {
 }
 
 /* ------------------------------ Details ------------------------------ */
+/*
+  My details (Figma "My Account - My details", 1920): a narrow Profile card beside Saved addresses + Payment
+  methods, then Beauty profile (blush) beside Account protection. Round icon buttons edit / delete; "Set as default"
+  and "Update" are underlined text links; "Enable" is a white pill.
+*/
+const BEAUTY = [
+  { icon: 'drop', label: 'Skin type', value: 'Combination, dehydrated' },
+  { icon: 'bottle', label: 'Fragrance family', value: 'Woody floral, 22% extrait' },
+  { icon: 'sparkles', label: 'Undertone', value: 'Olive — shade 04.5' },
+  { icon: 'shield', label: 'Sensitivities', value: 'Fragrance-free eye area' },
+];
+
+function AddNew() {
+  return (
+    <SmallAction
+      label="Add new"
+      done="Added (demo)"
+      icon={<Icon name="plus" />}
+      className="account-link account-link--btn account-link--icon"
+    />
+  );
+}
+
 function Details() {
   return (
     <div className="account-details">
-      <section className="account-card">
-        <CardHead eyebrow="Personal" heading="My details" />
-        <div className="account-details__photo">
-          <span className="account-avatar account-avatar--lg" aria-hidden="true">
-            {customer.initials}
-          </span>
-          <SmallAction label="Change photo" done="Photo updated (demo)" />
-        </div>
-        <DetailsForm name={customer.name} phone={customer.phone} email={customer.email} birthday={customer.birthday} />
-      </section>
+      <div className="account-details__top">
+        <section className="account-card account-details__profile">
+          <CardHead eyebrow="Profile" heading="My details" />
+          <div className="account-details__photo">
+            <span className="account-avatar" aria-hidden="true">
+              {customer.initials}
+            </span>
+            <SmallAction
+              label="Change photo"
+              done="Photo updated (demo)"
+              icon={<Icon name="pencil" />}
+              className="account-link account-link--btn account-link--icon"
+            />
+          </div>
+          <DetailsForm name={customer.name} phone={customer.phone} email={customer.email} birthday={customer.birthday} />
+        </section>
 
-      <div className="account-details__side">
-        <section className="account-card">
-          <CardHead eyebrow="Delivery" heading="Saved addresses" action={<SmallAction label="+ Add new" done="Added (demo)" />} />
-          <ul className="account-addr">
-            {addresses.map((a) => (
-              <li className="account-addr__item" key={a.id}>
-                <p className="account-addr__label">
-                  <Icon name="mobile" />
-                  {a.label}
-                  {a.isDefault ? <span className="account-tag account-tag--default">Default</span> : null}
-                </p>
-                <address>
-                  {a.lines.map((l) => (
-                    <span key={l}>{l}</span>
-                  ))}
-                </address>
-                <div className="account-addr__actions">
-                  <SmallAction label="Edit" done="Editing (demo)" />
-                  {a.isDefault ? null : <SmallAction label="Set as default" done="Default set" />}
-                </div>
-              </li>
+        <div className="account-details__side">
+          <section className="account-card">
+            <CardHead eyebrow="Delivery" heading="Saved addresses" action={<AddNew />} />
+            <ul className="account-addr">
+              {addresses.map((a) => (
+                <li className="account-addr__item" key={a.id}>
+                  <div className="account-addr__head">
+                    <p className="account-addr__label">
+                      <Icon src="icons/track-out-for-delivery.svg" />
+                      {a.label}
+                      {a.isDefault ? <span className="account-tag account-tag--default">Default</span> : null}
+                    </p>
+                    <div className="account-addr__tools">
+                      <IconAction label={`Edit ${a.label} address`} done="Editing (demo)">
+                        <Icon name="pencil" />
+                      </IconAction>
+                      {a.isDefault ? null : (
+                        <IconAction label={`Delete ${a.label} address`} done="Deleted (demo)">
+                          <Icon name="trash" />
+                        </IconAction>
+                      )}
+                    </div>
+                  </div>
+                  <address>
+                    {a.lines.map((l) => (
+                      <span key={l}>{l}</span>
+                    ))}
+                  </address>
+                  {a.isDefault ? null : (
+                    <SmallAction
+                      label="Set as default"
+                      done="Default set"
+                      className="account-link account-link--btn account-link--line account-addr__default"
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="account-card">
+            <CardHead eyebrow="Billing" heading="Payment methods" action={<AddNew />} />
+            <ul className="account-pay">
+              {cards.map((c) => (
+                <li className="account-pay__item" key={c.id}>
+                  <span className="account-pay__brand">{c.brand}</span>
+                  <div className="account-pay__main">
+                    <p className="account-pay__num">
+                      4485 •••• •••• {c.last}
+                      {c.isDefault ? <span className="account-tag account-tag--default">Default</span> : null}
+                    </p>
+                    <p className="account-pay__meta">
+                      {c.name} · Expires {c.expires}
+                    </p>
+                  </div>
+                  <div className="account-pay__tools">
+                    {c.isDefault ? null : (
+                      <SmallAction label="Set as default" done="Default set" className="account-link account-link--btn account-link--line" />
+                    )}
+                    <IconAction label={`Edit ${c.brand} card`} done="Editing (demo)">
+                      <Icon name="pencil" />
+                    </IconAction>
+                    {c.isDefault ? null : (
+                      <IconAction label={`Delete ${c.brand} card`} done="Deleted (demo)">
+                        <Icon name="trash" />
+                      </IconAction>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </div>
+
+      <div className="account-details__bottom">
+        <section className="account-card account-card--tint">
+          <CardHead eyebrow="Analysis" heading="Beauty profile" />
+          <dl className="account-facts account-facts--icons">
+            {BEAUTY.map((b) => (
+              <div key={b.label}>
+                <span className="account-facts__icon" aria-hidden="true">
+                  <Icon name={b.icon} />
+                </span>
+                <dt>{b.label}</dt>
+                <dd>{b.value}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
         </section>
 
         <section className="account-card">
-          <CardHead eyebrow="Billing" heading="Payment methods" action={<SmallAction label="+ Add new" done="Added (demo)" />} />
-          <ul className="account-pay">
-            {cards.map((c) => (
-              <li className="account-pay__item" key={c.id}>
-                <span className="account-pay__brand">{c.brand}</span>
-                <div className="account-pay__main">
-                  <p className="account-pay__num">
-                    4485 •••• •••• {c.last}
-                    {c.isDefault ? <span className="account-tag account-tag--default">Default</span> : null}
-                  </p>
-                  <p className="account-pay__meta">
-                    {c.name} · expires {c.expires}
-                  </p>
-                </div>
-                <SmallAction label="Edit" done="Editing (demo)" />
-              </li>
-            ))}
+          <CardHead eyebrow="Security" heading="Account protection" />
+          <ul className="account-sec">
+            <li>
+              <div>
+                <p className="account-sec__title">Password</p>
+                <p className="account-sec__text">Last updated 3 months ago</p>
+              </div>
+              <SmallAction label="Update" done="Check your email (demo)" className="account-link account-link--btn account-link--line" />
+            </li>
+            <li>
+              <div>
+                <p className="account-sec__title">Two-step verification</p>
+                <p className="account-sec__text">Add another layer of security</p>
+              </div>
+              <SmallAction label="Enable" done="Enabled (demo)" className="account-pill-btn" />
+            </li>
           </ul>
         </section>
       </div>
-
-      <section className="account-card">
-        <CardHead eyebrow="Another" heading="Beauty profile" />
-        <dl className="account-facts">
-          <div>
-            <dt>Skin type</dt>
-            <dd>Combination, dehydrated</dd>
-          </div>
-          <div>
-            <dt>Preferred family</dt>
-            <dd>Woody floral, 22% extract</dd>
-          </div>
-          <div>
-            <dt>Undertone</dt>
-            <dd>Olive, shade 04.5</dd>
-          </div>
-          <div>
-            <dt>Sensitivities</dt>
-            <dd>Fragrance-free eye care</dd>
-          </div>
-        </dl>
-      </section>
-
-      <section className="account-card">
-        <CardHead eyebrow="Security" heading="Account protection" />
-        <ul className="account-sec">
-          <li>
-            <div>
-              <p className="account-sec__title">Password</p>
-              <p className="account-sec__text">Last updated 3 months ago</p>
-            </div>
-            <SmallAction label="Update" done="Check your email (demo)" />
-          </li>
-          <li>
-            <div>
-              <p className="account-sec__title">Two-step verification</p>
-              <p className="account-sec__text">Add another layer of security</p>
-            </div>
-            <SmallAction label="Enable" done="Enabled (demo)" />
-          </li>
-        </ul>
-      </section>
     </div>
   );
 }
@@ -363,6 +416,8 @@ function Orders() {
 
 /* ----------------------- Order details / tracking ----------------------- */
 const STEPS = ['Placed', 'Prepared', 'Shipped', 'Out for delivery', 'Delivered'];
+// Figma: each progress step shows its own icon (public/icons)
+const STEP_ICONS = ['account-orders', 'track-prepared', 'track-shipped', 'track-out-for-delivery', 'track-delivered'];
 const EVENTS = [
   { t: 'Order confirmed', d: 'Your order has been received and is being prepared.', at: 'July 10, 2026 · 10:30 AM' },
   { t: 'Order packed', d: 'Your order has been packed and is ready to ship.', at: 'July 10, 2026 · 1:30 PM' },
@@ -413,7 +468,7 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
             return (
               <li className={`account-step account-step--${state}`} key={s} aria-current={state === 'current' ? 'step' : undefined}>
                 <span className="account-step__dot" aria-hidden="true">
-                  {state === 'done' ? '✓' : i + 1}
+                  <Icon src={`icons/${STEP_ICONS[i]}.svg`} />
                 </span>
                 <span className="account-step__name">{s}</span>
                 <span className="account-step__sub">{track ? trackSub[i] : ''}</span>
@@ -764,7 +819,7 @@ function SignOut() {
         </h1>
         <p className="account-center__text">You will be signed out of your OroSkin account on this device. Your bag and wishlist stay saved.</p>
         <div className="account-center__actions">
-          <a className="account-btn account-btn--solid" href="/">
+          <a className="account-btn account-btn--solid" href="/api/account/logout">
             Sign out
           </a>
           <a className="account-btn account-btn--glass" href="/account">

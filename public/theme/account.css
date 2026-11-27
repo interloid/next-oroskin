@@ -1,19 +1,50 @@
 /* Account demo pages (Figma "account-*" screens). BEM, prefix account-. Static mock data, no real auth. */
 
 .account {
-  --account-card: #fbf7f7;
-  --account-card-tint: #faf4f4;
-  --account-edge: #f6ecec;
+  /* Card colours sampled from the 1920 designs (public/newpages-design): main cards are near white, highlight cards
+     (In transit, Oro Circle, membership) a soft blush, the welcome card a deeper blush with a pink border. */
+  --account-card: #fffdfd;
+  --account-card-tint: #fbf7f7;
+  --account-card-tint-edge: #f3e9e9;
+  --account-welcome: #fbf4f4;
+  --account-welcome-edge: #fbd5d5;
+  --account-row-edge: #ebebeb; /* rows inside a card (orders, subscriptions) */
+  --account-shadow: 0 0.5rem 1.5rem #7d00000a;
+  --account-edge: #f7eeee;
   --account-line: #efe0e0;
   --account-red: var(--color-accent, #7d0000);
-  --account-muted: color-mix(in srgb, #1f1f1f 65%, #fff);
+  --account-muted: #1f1f1f; /* Figma: secondary text is #1f1f1f too, not grey */
   --account-gap: clamp(1rem, 1.6vw, 1.5rem);
+  /*
+    Type scale for every account page (and /track-order): each font-size in this file uses one of these. Mapped
+    onto the theme scale (head.css), which matches the account designs (public/newpages-design, 1920px):
+      label    eyebrows, tags, small uppercase links   13-14px   (design "WELCOME BACK" ~14px; was 10-11px)
+      meta     dates, notes, secondary text            14-16px
+      body     paragraphs, list rows, card text        15-18px
+      lead     tabs, prices, emphasised rows           16-20px
+      title-sm card / product / tier names             18-22px
+      title-md section titles                          28-40px
+      title-lg page titles (h1)                        36-60px   (design "My account" ~64px)
+  */
+  --account-text-label: var(--font-size-small);
+  --account-text-meta: var(--font-size-caption);
+  --account-text-body: var(--font-size-body-sm);
+  --account-text-lead: var(--font-size-body);
+  --account-title-sm: clamp(1.125rem, 1.05rem + 0.3vw, 1.375rem);
+  --account-title-md: var(--font-size-h2);
+  --account-title-lg: var(--font-size-h1);
+  --account-lh-body: var(--line-height-body, 1.65);
+  --account-lh-heading: var(--line-height-heading, 1.15);
   color: #1f1f1f;
+  line-height: var(--account-lh-body, 1.6);
   background: #fff;
   padding-block: calc(var(--header-space, 6.0625rem) + clamp(1rem, 2.5vw, 2.5rem)) clamp(3rem, 6vw, 6rem);
 }
+/* The theme's "widest" section width (critical.css .section-width--widest): the screen minus ~4% a side, then the
+   page margins, as on Shipping / Policy / Returns. (Was capped at 1650px, so account pages looked narrow on big
+   screens and wider than the other pages below ~1600px.) Phones: the 749px rule below. */
 .account__inner {
-  inline-size: min(103.125rem, 100% - clamp(2rem, 7vw, 8.4rem));
+  inline-size: calc(min(100vw - clamp(4rem, 8vw, 10rem), 100%) - var(--page-margin, 20px) * 2);
   margin-inline: auto;
   display: flex;
   flex-direction: column;
@@ -22,19 +53,19 @@
 .account a {
   text-decoration: none;
 }
-.account ul,
-.account ol {
+/* Resets wrapped in :where() = specificity 0, so any single class below (".account-center__title { margin: ... }")
+   still wins. ".account p { margin: 0 }" was (0,1,1) and silently cancelled 21 margins / paddings in this file. */
+:where(.account) :where(ul, ol) {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.account h1,
-.account h2,
-.account h3,
-.account p,
-.account dl,
-.account dd {
+:where(.account) :where(h1, h2, h3, p, dl, dd) {
   margin: 0;
+}
+/* One heading line height everywhere (a rule with its own line-height still wins: this is specificity 0) */
+:where(.account) :where(h1, h2, h3) {
+  line-height: var(--account-lh-heading, 1.15);
 }
 
 /* Header row */
@@ -48,13 +79,14 @@
 .account-head__title {
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: clamp(2.25rem, 4.2vw, 4rem);
+  font-size: var(--account-title-lg, clamp(2.25rem, 4.2vw, 4rem));
   line-height: 1.1;
   letter-spacing: -0.01em;
 }
 .account-head__text {
+  /* Figma: ~20px */
   margin-top: 0.5rem;
-  font-size: clamp(0.8125rem, 1.1vw, 1rem);
+  font-size: var(--account-text-body, 1rem);
 }
 .account-signout {
   display: inline-flex;
@@ -66,26 +98,27 @@
   background: #fff;
   box-shadow: 0 2px 10px #0000001a;
   color: #1f1f1f;
-  font-size: 0.6875rem;
+  font-size: var(--account-text-label, 0.6875rem);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 .account-signout svg {
-  inline-size: 1rem;
-  block-size: 1rem;
+  inline-size: 0.9em;
+  block-size: 0.9em;
 }
 
 /* Welcome card */
 .account-welcome {
+  /* Figma: #fbf4f4 with a pink hairline */
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
   gap: 1.5rem 3rem;
   padding: clamp(1rem, 2vw, 2.25rem) clamp(1rem, 2.5vw, 3rem);
   border-radius: clamp(1rem, 1.6vw, 1.75rem);
-  background: var(--account-card-tint);
-  border: 1px solid var(--account-edge);
+  background: var(--account-welcome);
+  border: 1px solid var(--account-welcome-edge);
   box-shadow: 0 8px 24px #7d00000a;
 }
 .account-welcome__who {
@@ -104,7 +137,7 @@
   background: #fff;
   box-shadow: 0 2px 12px #0000001a;
   font-family: var(--font-heading--family);
-  font-size: clamp(1.25rem, 2vw, 2.1rem);
+  font-size: var(--account-title-md, clamp(1.5rem, 2.2vw, 2rem));
   color: #1f1f1f;
 }
 .account-avatar--lg {
@@ -114,27 +147,30 @@
 }
 .account-eyebrow {
   color: var(--account-red);
-  font-size: 0.625rem;
+  font-size: var(--account-text-label, 0.6875rem);
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .account-welcome__name {
-  font-family: var(--font-heading--family);
-  font-size: clamp(1.25rem, 2vw, 2rem);
+  /* Figma: Satoshi ~30px */
+  font-family: var(--font-body--family);
+  font-size: clamp(1.25rem, 1.05rem + 0.55vw, 1.625rem);
+  font-weight: 500;
   line-height: 1.2;
 }
 .account-welcome__tier {
+  /* Figma: ~20px */
   display: flex;
   align-items: center;
   gap: 0.4rem;
   margin-top: 0.4rem;
   color: var(--account-muted);
-  font-size: 0.75rem;
+  font-size: var(--account-text-body, 1rem);
 }
 .account-welcome__tier svg {
-  inline-size: 1rem;
-  block-size: 1rem;
+  inline-size: 0.9em;
+  block-size: 0.9em;
   color: var(--account-red);
 }
 .account-welcome__row {
@@ -142,7 +178,7 @@
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
-  font-size: 0.8125rem;
+  font-size: var(--account-text-meta, 0.8125rem);
 }
 .account-welcome__row strong {
   font-weight: 500;
@@ -161,7 +197,7 @@
   background: var(--account-red);
 }
 .account-welcome__next {
-  font-size: 0.75rem;
+  font-size: var(--account-text-body, 1rem);
   color: var(--account-muted);
 }
 
@@ -183,11 +219,13 @@
   padding-block: 0.9rem;
   border-block-end: 2px solid transparent;
   color: #1f1f1f;
-  font-size: 0.875rem;
+  font-size: var(--account-text-lead, 1.125rem);
+  font-weight: 500;
 }
 .account-tab svg {
-  inline-size: 1rem;
-  block-size: 1rem;
+  flex-shrink: 0;
+  inline-size: 0.85em;
+  block-size: 0.85em;
 }
 .account-tab.is-active {
   color: var(--account-red);
@@ -207,6 +245,7 @@
 }
 .account-card--tint {
   background: var(--account-card-tint);
+  border-color: var(--account-card-tint-edge);
 }
 .account-card__head {
   display: flex;
@@ -216,17 +255,19 @@
   margin-block-end: 1rem;
 }
 .account-card__title {
-  font-family: var(--font-heading--family);
+  /* Figma: Satoshi ~24px ("Renewal Serum + 1", "Recent Orders") */
+  font-family: var(--font-body--family);
   font-weight: 400;
-  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
-  line-height: 1.25;
+  font-size: var(--account-title-sm, 1.25rem);
+  font-weight: 500;
+  line-height: 1.3;
   margin-block-start: 0.25rem;
 }
 .account-card__text {
   margin-block-start: 0.5rem;
   max-inline-size: 28rem;
-  font-size: 0.8125rem;
-  line-height: 1.6;
+  font-size: var(--account-text-body, 1rem); /* card text: Figma 1.75 line height */
+  line-height: 1.75;
   color: var(--account-muted);
 }
 .account-card__cta {
@@ -239,8 +280,8 @@
 .account-grid--2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.account-grid--soft .account-card {
-  box-shadow: 0 8px 24px #7d00000a;
+.account-card {
+  box-shadow: var(--account-shadow);
 }
 
 /* Buttons and links */
@@ -253,7 +294,7 @@
   border-radius: 999px;
   border: 1px solid transparent;
   font: inherit;
-  font-size: 0.6875rem;
+  font-size: var(--account-text-label, 0.6875rem);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -280,7 +321,7 @@
 }
 .account-link {
   color: var(--account-red);
-  font-size: 0.6875rem;
+  font-size: var(--account-text-label, 0.6875rem);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -309,7 +350,7 @@
 .account-back {
   align-self: flex-start;
   color: #1f1f1f;
-  font-size: 0.6875rem;
+  font-size: var(--account-text-label, 0.6875rem);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -318,7 +359,7 @@
   display: inline-block;
   padding: 0.15rem 0.55rem;
   border-radius: 999px;
-  font-size: 0.625rem;
+  font-size: var(--account-text-label, 0.6875rem);
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -344,11 +385,11 @@
 .account-empty {
   padding-block: 2rem;
   color: var(--account-muted);
-  font-size: 0.875rem;
+  font-size: var(--account-text-body, 0.9375rem);
 }
 .account-status {
   min-block-size: 1.2em;
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: #17603a;
 }
 .account-status--error {
@@ -367,8 +408,8 @@
   gap: 1rem;
   padding: 0.6rem;
   border-radius: 1rem;
-  background: #fff;
-  border: 1px solid var(--account-edge);
+  background: var(--account-card);
+  border: 1px solid var(--account-row-edge);
   color: inherit;
 }
 .account-mini__row img {
@@ -384,12 +425,13 @@
   min-inline-size: 0;
 }
 .account-mini__title {
-  font-family: var(--font-heading--family);
-  font-size: 1.0625rem;
+  font-family: var(--font-body--family); /* Figma: Satoshi, medium */
+  font-weight: 500;
+  font-size: var(--account-text-lead, 1.125rem);
 }
 .account-mini__meta,
 .account-mini__next {
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-mini__next {
@@ -399,12 +441,12 @@
   color: var(--account-red);
 }
 .account-mini__next svg {
-  inline-size: 0.9rem;
-  block-size: 0.9rem;
+  inline-size: 0.85em;
+  block-size: 0.85em;
 }
 .account-mini__price {
-  font-family: var(--font-heading--family);
-  font-size: 1.125rem;
+  font-family: var(--font-body--family);
+  font-size: var(--account-text-lead, 1.125rem);
 }
 .account-viewed {
   display: grid;
@@ -431,61 +473,89 @@
 }
 .account-viewed__title {
   font-family: var(--font-heading--family);
-  font-size: 1.0625rem;
+  font-size: var(--account-text-lead, 1.125rem);
   min-inline-size: 0;
 }
 .account-viewed__price {
   font-family: var(--font-heading--family);
 }
 .account-viewed__meta {
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 
-/* Details page */
+/*
+  Details page (Figma "My Account - My details", 1920): top row = a narrow Profile card (~26%) beside Saved addresses
+  + Payment methods; bottom row = Beauty profile (~45%, blush) beside Account protection. Tablets: Profile beside the
+  rest at 1 : 2, then one column below 990px.
+*/
 .account-details {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--account-gap);
+}
+.account-details__top {
+  display: grid;
+  grid-template-columns: minmax(0, 26fr) minmax(0, 74fr);
   gap: var(--account-gap);
   align-items: start;
 }
-.account-details > .account-card:nth-child(n + 3) {
-  grid-column: auto;
+.account-details__bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  gap: var(--account-gap);
+  align-items: stretch;
 }
 .account-details__side {
   display: grid;
   gap: var(--account-gap);
   min-inline-size: 0;
 }
+.account .account-card__head {
+  margin-block-end: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+/* Profile: a rounded-square avatar with a pencil "Change photo" link, then the form */
 .account-details__photo {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-block-end: 1.25rem;
+  margin-block-end: clamp(1.25rem, 1.6vw, 1.75rem);
+}
+.account-details__photo .account-avatar {
+  inline-size: clamp(3.5rem, 4.2vw, 5rem);
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  border: 1px solid var(--account-edge);
+  box-shadow: 0 0.25rem 1rem #7d00000d;
+  font-size: var(--account-title-sm, 1.25rem);
+  color: var(--account-red);
 }
 .account-form {
   display: grid;
-  gap: 0.9rem;
+  gap: clamp(1rem, 1.25vw, 1.4rem);
 }
 .account-field {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.5rem;
 }
+/* Field labels: small dark uppercase (Figma) */
 .account-field > span {
-  color: var(--account-red);
-  font-size: 0.625rem;
+  color: #1f1f1f;
+  font-size: var(--account-text-label, 0.6875rem);
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+/* Inputs: soft-filled pills, ~48px at 1920 (Figma #fdfaf9) */
 .account-field input {
   inline-size: 100%;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid var(--account-line);
-  border-radius: 0.75rem;
-  background: #fff;
+  min-block-size: clamp(2.5rem, 2.5vw, 3rem);
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--account-edge);
+  border-radius: 99px;
+  background: #fdfaf9;
   font: inherit;
-  font-size: 0.875rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: #1f1f1f;
 }
 .account-field input:focus-visible {
@@ -493,118 +563,241 @@
   outline-offset: 1px;
 }
 .account-form .account-btn {
-  justify-self: start;
-  padding-inline: 2rem;
-  min-block-size: 2.75rem;
+  justify-self: stretch;
+  min-block-size: clamp(2.75rem, 2.6vw, 3.125rem);
+  margin-block-start: 0.5rem;
+  box-shadow: 0 0.5rem 1rem #7d000033;
 }
+
+/* Text links: "+ Add new" / "Change photo" with an icon; "Set as default" / "Update" underlined */
+.account-link--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.account-link--icon svg {
+  inline-size: 1.1em;
+  block-size: 1.1em;
+}
+.account .account-link--line {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+}
+
+/* Round icon buttons (edit / delete): white circles with a soft shadow */
+.account-iconbtn {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: clamp(2rem, 1.9vw, 2.25rem);
+  block-size: clamp(2rem, 1.9vw, 2.25rem);
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  box-shadow: 0 0.125rem 0.625rem #0000001a;
+  color: #1f1f1f;
+  font-size: var(--account-text-lead, 1.125rem);
+  line-height: 1;
+  cursor: pointer;
+}
+.account-iconbtn svg {
+  inline-size: 45%;
+  block-size: 45%;
+}
+.account-iconbtn:hover {
+  color: var(--account-red);
+}
+
+/* A white pill button ("Enable") */
+.account-pill-btn {
+  padding: 0.6em 1.4em;
+  border: 0;
+  border-radius: 99px;
+  background: #fff;
+  box-shadow: 0 0.25rem 0.875rem #0000001a;
+  color: #1f1f1f;
+  font: inherit;
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.account-pill-btn:hover {
+  color: var(--account-red);
+}
+
+/* Saved addresses: two cards; pin + name + Default, tools top right, "Set as default" bottom right */
 .account-addr {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: clamp(0.75rem, 1vw, 1.25rem);
 }
 .account-addr__item {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(1rem, 1.25vw, 1.5rem);
   border-radius: 1rem;
-  background: #fff;
-  border: 1px solid var(--account-edge);
-  font-size: 0.8125rem;
-  line-height: 1.55;
+  background: var(--account-card);
+  border: 1px solid var(--account-row-edge);
+  font-size: var(--account-text-meta, 0.8125rem);
+  line-height: 1.75;
+}
+.account-addr__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 .account-addr__label {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  margin-block-end: 0.4rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: var(--account-text-body, 0.9375rem);
   font-weight: 500;
 }
 .account-addr__label svg {
-  inline-size: 1rem;
-  block-size: 1rem;
+  inline-size: 0.9em;
+  block-size: 0.9em;
+}
+.account-addr__tools,
+.account-pay__tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 .account-addr address {
   display: grid;
+  padding-inline-start: 1.4em;
   font-style: normal;
   color: var(--account-muted);
 }
-.account-addr__actions {
-  display: flex;
-  gap: 1rem;
-  margin-block-start: 0.6rem;
+.account-addr__default {
+  align-self: flex-end;
+  margin-block-start: auto;
 }
+.account .account-tag--default {
+  margin-inline-start: 0.25rem;
+  background: #7d00001a;
+  color: var(--account-red);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Payment methods: black brand badge | number + name | tools */
 .account-pay {
   display: grid;
-  gap: 0.75rem;
+  gap: clamp(0.75rem, 1vw, 1.25rem);
 }
 .account-pay__item {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 1rem;
-  padding: 0.9rem 1rem;
+  padding: clamp(0.9rem, 1.25vw, 1.5rem);
   border-radius: 1rem;
-  background: #fff;
-  border: 1px solid var(--account-edge);
+  background: var(--account-card);
+  border: 1px solid var(--account-row-edge);
 }
 .account-pay__brand {
   display: grid;
   place-items: center;
-  inline-size: 3rem;
-  block-size: 2rem;
-  border-radius: 0.4rem;
+  inline-size: clamp(3rem, 3.4vw, 4rem);
+  block-size: clamp(2rem, 2.2vw, 2.625rem);
+  border-radius: 0.5rem;
   background: #1f1f1f;
   color: #fff;
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: var(--account-text-label, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
 }
 .account-pay__num {
-  font-weight: 500;
-  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: var(--account-text-body, 0.9375rem);
+  letter-spacing: 0.04em;
 }
-.account-pay__meta {
-  font-size: 0.75rem;
+.account .account-pay__meta {
+  margin-block-start: 0.2rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
+
+/* Beauty profile: 2 x 2 facts, each with a red icon */
 .account-facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem 1.5rem;
+  gap: clamp(1rem, 1.5vw, 1.75rem) 1.5rem;
 }
 .account-facts dt {
-  color: var(--account-red);
-  font-size: 0.625rem;
+  color: #1f1f1f;
+  font-size: var(--account-text-label, 0.6875rem);
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-.account-facts dd {
-  margin-block-start: 0.2rem;
-  font-size: 0.9375rem;
+.account .account-facts dd {
+  margin-block-start: 0.25rem;
+  font-size: var(--account-text-meta, 0.8125rem);
+}
+.account-facts--icons > div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.75rem;
+  align-items: start;
+}
+.account-facts--icons dt,
+.account-facts--icons dd {
+  grid-column: 2;
+}
+.account-facts__icon {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  color: var(--account-red);
+}
+.account-facts__icon svg {
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
 }
 .account-facts--2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-block-start: 1.25rem;
 }
+
+/* Account protection: rows split by a hairline */
 .account-sec {
   display: grid;
-  gap: 0.75rem;
 }
 .account-sec li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: 0.9rem 1rem;
-  border-radius: 1rem;
-  background: #fff;
-  border: 1px solid var(--account-edge);
+  padding-block: clamp(0.9rem, 1.1vw, 1.25rem);
+}
+.account-sec li + li {
+  border-block-start: 1px solid var(--account-line);
+}
+.account-sec li:first-child {
+  padding-block-start: 0;
 }
 .account-sec__title {
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: var(--account-text-body, 0.9375rem);
 }
-.account-sec__text {
-  font-size: 0.75rem;
+.account .account-sec__text {
+  margin-block-start: 0.2rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 
@@ -622,7 +815,7 @@
   background: #fff;
   color: #1f1f1f;
   font: inherit;
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   cursor: pointer;
 }
 .account-pill__count {
@@ -656,16 +849,16 @@
 }
 .account-order__title {
   font-family: var(--font-heading--family);
-  font-size: 1.125rem;
+  font-size: var(--account-text-lead, 1.125rem);
 }
 .account-order__meta,
 .account-order__note {
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-order__total {
   font-family: var(--font-heading--family);
-  font-size: 1.25rem;
+  font-size: var(--account-title-sm, 1.25rem);
   text-align: end;
 }
 
@@ -682,14 +875,14 @@
 .account-od__title {
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  font-size: var(--account-title-md, clamp(1.5rem, 2.2vw, 2rem));
 }
 .account-od__meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 1.5rem;
   margin-block-start: 0.4rem;
-  font-size: 0.8125rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-od__meta strong {
@@ -703,15 +896,21 @@
   color: var(--account-red);
 }
 .account-od__eta svg {
-  inline-size: 1.1rem;
-  block-size: 1.1rem;
+  inline-size: 0.9em;
+  block-size: 0.9em;
 }
 .account-od__buttons {
   display: flex;
   gap: 0.5rem;
   align-items: flex-start;
 }
+/*
+  Order progress (Figma "My Account - Track Orders", 1920): 46px circles joined by a red line, each with its own
+  icon (~18px). Done: solid red with a soft red glow, white icon. Current: white, 2px red border and a thin outer
+  ring. Upcoming: white with a soft shadow, red icon. The circle scales down to 36px on small screens.
+*/
 .account-steps {
+  --step-dot: clamp(2.25rem, 1.5rem + 1.15vw, 2.875rem);
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   margin-block: 2rem;
@@ -720,55 +919,56 @@
   position: relative;
   display: grid;
   justify-items: center;
-  gap: 0.25rem;
+  gap: 0.35rem;
   text-align: center;
 }
 .account-step::before {
   content: '';
   position: absolute;
-  inset-block-start: 1rem;
+  inset-block-start: calc(var(--step-dot) / 2);
   inset-inline: -50% 50%;
-  block-size: 2px;
-  background: var(--account-line);
+  block-size: 1px;
+  background: var(--account-red);
 }
 .account-step:first-child::before {
   display: none;
-}
-.account-step--done::before,
-.account-step--current::before {
-  background: var(--account-red);
 }
 .account-step__dot {
   position: relative;
   z-index: 1;
   display: grid;
   place-items: center;
-  inline-size: 2rem;
-  block-size: 2rem;
+  inline-size: var(--step-dot);
+  block-size: var(--step-dot);
+  margin-block-end: 0.35rem;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid var(--account-line);
-  font-size: 0.75rem;
-  color: var(--account-muted);
+  border: 2px solid transparent;
+  box-shadow: 0 0.25rem 0.75rem #7d000014;
+  color: var(--account-red);
+}
+.account-step__dot svg {
+  inline-size: 40%;
+  block-size: 40%;
 }
 .account-step--done .account-step__dot {
   background: var(--account-red);
   border-color: var(--account-red);
+  box-shadow: 0 0 0 0.25rem #7d00001f, 0 0.25rem 0.875rem #7d000059;
   color: #fff;
 }
 .account-step--current .account-step__dot {
   border-color: var(--account-red);
-  color: var(--account-red);
-  box-shadow: 0 0 0 4px #7d000018;
+  box-shadow: 0 0 0 0.25rem #fff, 0 0 0 calc(0.25rem + 1px) #7d00004d;
 }
 .account-step__name {
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: var(--account-text-meta, 0.8125rem);
+  font-weight: 400;
 }
 .account-step__sub {
   min-block-size: 1em;
-  font-size: 0.6875rem;
-  color: var(--account-muted);
+  font-size: var(--account-text-meta, 0.8125rem);
+  color: var(--account-red);
 }
 .account-od__cols {
   display: grid;
@@ -798,7 +998,7 @@
   margin-block-end: 0.9rem;
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: var(--account-title-sm, 1.25rem);
 }
 .account-timeline {
   display: grid;
@@ -838,11 +1038,11 @@
 }
 .account-timeline__title {
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: var(--account-text-body, 0.9375rem);
 }
 .account-timeline__text,
 .account-timeline__at {
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-items {
@@ -863,11 +1063,11 @@
 }
 .account-items__title {
   font-family: var(--font-heading--family);
-  font-size: 1rem;
+  font-size: var(--account-text-body, 0.9375rem);
   color: #1f1f1f;
 }
 .account-items__meta {
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-items__price {
@@ -876,7 +1076,7 @@
 .account-sum {
   display: grid;
   gap: 0.6rem;
-  font-size: 0.875rem;
+  font-size: var(--account-text-body, 0.9375rem);
 }
 .account-sum > div {
   display: flex;
@@ -890,7 +1090,7 @@
   padding-block-start: 0.7rem;
   border-block-start: 1px solid var(--account-line);
   font-family: var(--font-heading--family);
-  font-size: 1.25rem;
+  font-size: var(--account-title-sm, 1.25rem);
 }
 .account-sum__total dt {
   color: #1f1f1f;
@@ -898,18 +1098,18 @@
 .account-od__addr {
   display: grid;
   font-style: normal;
-  font-size: 0.8125rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   line-height: 1.55;
   color: var(--account-muted);
 }
 .account-od__label {
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-od__code {
   margin-block: 0.3rem 0.6rem;
   font-family: ui-monospace, Menlo, Consolas, monospace;
-  font-size: 1rem;
+  font-size: var(--account-text-body, 0.9375rem);
   overflow-wrap: anywhere;
 }
 .account-od__help {
@@ -924,7 +1124,7 @@
   background: var(--account-card-tint);
   border: 1px solid var(--account-edge);
   font-family: var(--font-heading--family);
-  font-size: 1.125rem;
+  font-size: var(--account-text-lead, 1.125rem);
 }
 .account-od__help > div {
   display: flex;
@@ -957,45 +1157,32 @@
   justify-items: start;
 }
 .account-wish__badge {
-  font-size: 0.625rem;
+  font-size: var(--account-text-label, 0.6875rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--account-red);
 }
 .account-wish__title {
   font-family: var(--font-heading--family);
-  font-size: 1.25rem;
+  font-size: var(--account-title-sm, 1.25rem);
   color: #1f1f1f;
 }
 .account-wish__rating {
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-wish__rating span {
-  color: #8a6a1f;
+  color: #c8a24b;
   letter-spacing: 0.1em;
 }
 .account-wish__price {
   font-family: var(--font-heading--family);
-  font-size: 1.125rem;
+  font-size: var(--account-text-lead, 1.125rem);
 }
 .account-wish__actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-.account-iconbtn {
-  display: grid;
-  place-items: center;
-  inline-size: 2rem;
-  block-size: 2rem;
-  border-radius: 50%;
-  border: 1px solid var(--account-line);
-  background: #fff;
-  color: #1f1f1f;
-  font-size: 1.1rem;
-  line-height: 1;
-  cursor: pointer;
 }
 
 /* Refills */
@@ -1017,8 +1204,8 @@
   gap: 1.25rem;
   padding: 1rem;
   border-radius: 1.25rem;
-  background: #fff;
-  border: 1px solid var(--account-edge);
+  background: var(--account-card);
+  border: 1px solid var(--account-row-edge);
 }
 .account-sub__img {
   inline-size: 8.75rem;
@@ -1043,18 +1230,18 @@
 .account-sub__title {
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: var(--account-title-sm, 1.25rem);
 }
 .account-sub__meta {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.8125rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-sub__meta svg {
-  inline-size: 1rem;
-  block-size: 1rem;
+  inline-size: 0.9em;
+  block-size: 0.9em;
 }
 .account-sub__actions {
   display: flex;
@@ -1078,10 +1265,10 @@
 .account-pref__title {
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: var(--account-title-sm, 1.25rem);
 }
 .account-pref__text {
-  font-size: 0.8125rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
   margin-block-start: 0.15rem;
 }
@@ -1099,7 +1286,7 @@
 .account-switch__label {
   inline-size: 1.6rem;
   text-align: end;
-  font-size: 0.625rem;
+  font-size: var(--account-text-label, 0.6875rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--account-muted);
@@ -1162,7 +1349,7 @@
   margin-block: 0.4rem 0.75rem;
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: var(--account-title-lg, clamp(2.25rem, 4.2vw, 4rem));
   line-height: 1.05;
 }
 .account-rw-hero__title em {
@@ -1316,7 +1503,7 @@
 .account-rw-section__title {
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-size: var(--account-title-md, clamp(1.5rem, 2.2vw, 2rem));
 }
 .account-rw-section__lead {
   font-size: clamp(0.875rem, 0.94vw, 1.125rem);
@@ -1343,10 +1530,10 @@
   margin-block: 0.4rem;
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: var(--account-title-sm, 1.25rem);
 }
 .account-how__text {
-  font-size: 0.8125rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   line-height: 1.6;
   color: var(--account-muted);
 }
@@ -1362,12 +1549,12 @@
   border-block-end: 1px solid var(--account-line);
   text-align: start;
   vertical-align: top;
-  font-size: 0.8125rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-earn thead th {
   color: var(--account-red);
-  font-size: 0.625rem;
+  font-size: var(--account-text-label, 0.6875rem);
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1375,12 +1562,12 @@
 .account-earn tbody th {
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: var(--account-title-sm, 1.25rem);
   color: #1f1f1f;
 }
 .account-earn__pts {
   font-family: var(--font-heading--family);
-  font-size: 1.25rem !important;
+  font-size: var(--account-title-sm, 1.25rem) !important;
   color: var(--account-red) !important;
   white-space: nowrap;
 }
@@ -1408,16 +1595,16 @@
 }
 .account-redeem__title {
   font-family: var(--font-heading--family);
-  font-size: 1.125rem;
+  font-size: var(--account-text-lead, 1.125rem);
 }
 .account-redeem__pts {
   color: var(--account-red);
-  font-size: 0.8125rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   font-weight: 500;
 }
 .account-redeem__note {
   margin-block: 0.2rem 0.5rem;
-  font-size: 0.75rem;
+  font-size: var(--account-text-meta, 0.8125rem);
   color: var(--account-muted);
 }
 .account-redeem__num {
@@ -1437,14 +1624,14 @@
   gap: 1rem;
   padding-block: 0.9rem;
   border-block-end: 1px solid var(--account-line);
-  font-size: 0.9375rem;
+  font-size: var(--account-text-body, 0.9375rem);
 }
 .account-activity__date {
   color: var(--account-muted);
 }
 .account-activity__pts {
   font-family: var(--font-heading--family);
-  font-size: 1.125rem;
+  font-size: var(--account-text-lead, 1.125rem);
   color: #17603a;
 }
 .account-activity__pts.is-neg {
@@ -1512,6 +1699,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+/* The title runs beside the big number in the top right corner: keep clear of it */
+.account-redeem__title {
+  padding-inline-end: clamp(2.25rem, 3.2vw, 3.5rem);
 }
 .account-redeem__title,
 .account-redeem__pts {
@@ -1588,14 +1779,14 @@
   margin-block: 0.4rem 0.75rem;
   font-family: var(--font-heading--family);
   font-weight: 400;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: var(--account-title-lg, clamp(2.25rem, 4.2vw, 4rem));
   line-height: 1.1;
 }
 .account-center__title em {
   color: var(--account-red);
 }
 .account-center__text {
-  font-size: 0.875rem;
+  font-size: var(--account-text-body, 0.9375rem);
   line-height: 1.6;
   color: var(--account-muted);
 }
@@ -1620,8 +1811,8 @@
   .account-viewed {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .account-details {
-    grid-template-columns: minmax(0, 1fr);
+  .account-details__top {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   }
   .account-how {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1640,6 +1831,10 @@
   }
 }
 @media (max-width: 989px) {
+  .account-details__top,
+  .account-details__bottom {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .account-grid--2,
   .account-subs {
     grid-template-columns: minmax(0, 1fr);
@@ -1668,6 +1863,14 @@
   }
 }
 @media (max-width: 749px) {
+  /* Payment row: badge | number; the tools on their own line */
+  .account-pay__item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .account-pay__tools {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
   .account__inner {
     inline-size: calc(100% - 2rem);
   }
@@ -1687,20 +1890,37 @@
   .account-tiers {
     grid-template-columns: minmax(0, 1fr);
   }
+  /* Phones: image | text column. Name + meta, total, status tag, link: one per line
+     (two items in one grid cell overlap when the line is short, e.g. "Processing" beside a long total at 360px).
+     (A third column for the total squeezed the name to one word per line once the text grew.) */
   .account-order {
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+  }
+  .account-order__img {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    align-self: start;
+  }
+  .account-order__main {
+    grid-column: 2;
+    grid-row: 1;
   }
   .account-order__total {
-    grid-column: 3;
-    grid-row: 1;
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
   }
   .account-order .account-tag {
     grid-column: 2;
+    grid-row: 3;
     justify-self: start;
   }
   .account-order .account-link {
-    grid-column: 3;
-    justify-self: end;
+    grid-column: 2;
+    grid-row: 4;
+    justify-self: start;
   }
   .account-wish__item {
     grid-template-columns: auto minmax(0, 1fr);
@@ -1713,7 +1933,7 @@
     margin-block: 1.25rem;
   }
   .account-step__name {
-    font-size: 0.625rem;
+    font-size: var(--account-text-label, 0.6875rem);
   }
   .account-step__sub {
     display: none;
@@ -1734,7 +1954,7 @@
   .account-activity li {
     grid-template-columns: 3.5rem minmax(0, 1fr) auto;
     gap: 0.6rem;
-    font-size: 0.8125rem;
+    font-size: var(--account-text-meta, 0.8125rem);
   }
   .account-earn thead {
     position: absolute;

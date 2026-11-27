@@ -4857,7 +4857,7 @@
     font-weight: var(--font-weight-medium);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    pointer-events: none; /* clicks fall through to the stretched link */
+    text-decoration: none;
   }
 
   .product-card__more svg {
@@ -23054,14 +23054,15 @@
     font-variant-numeric: oldstyle-nums;
     line-height: 1;
     /*
-      Exact centring: the full width of the circle, centred; text-box trims the empty space the font
-      keeps above and below the letters (old-style "97" is short, so it looked low in its line box).
-      Browsers without text-box just keep the normal line box.
+      Full width of the circle, centred. With line-height 1, Canela Text draws "97%" low in its
+      1em line box: the glyphs run from 0.30em to 1.26em (old-style "7" descends 0.28em), so the 7
+      ran into the label below. Moving the glyphs up 0.27em puts them inside the box
+      (0.03em to 0.99em); translate leaves the layout, and so the label, where it is.
     */
     display: block;
     inline-size: 100%;
     text-align: center;
-    text-box: trim-both cap alphabetic;
+    translate: 0 -0.27em;
   }
 
   /* Whole words only: "SATISFACTION" is long, so the label may use most of the circle's width */

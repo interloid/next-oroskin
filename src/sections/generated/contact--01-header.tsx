@@ -762,7 +762,7 @@ export default function Contact01Header() {
                   id="SearchPopup"
                   className="search-popup__dialog color-scheme-1"
                   aria-label="Search"
-                  style={{ "--color-accent": "#8a6a1f", "--search-focus": "#7d0000" } as React.CSSProperties}
+                  style={{ "--color-accent": "#c8a24b", "--search-focus": "#7d0000" } as React.CSSProperties}
                 >
                   {" "}
                   <div className="search-popup__panel">

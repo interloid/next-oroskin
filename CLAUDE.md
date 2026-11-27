@@ -45,6 +45,12 @@ Never edit those folders from this project.
   `public/theme/account.css` (account pages). Theme JS web components: `public/theme.js`.
 - Fonts (`public/theme/fonts.css`): headings Canela Text (`public/fonts/canela-text-trial/`), body Satoshi,
   the home hero swash lines Mussica Swash (`public/fonts/mussica/`). Trial licences: internal demo only.
+- Account / tracking icons (Figma): `public/icons/*.svg` (currentColor), used as `<Icon src="icons/account-orders.svg" />`.
+- Account type scale: `--account-text-*` / `--account-title-*` at the top of `public/theme/account.css`, mapped onto
+  the theme scale (`--font-size-small` … `--font-size-h1`). Use those, not raw rem values. Gold is `#C8A24B`.
+- Latest page designs (1920px PNGs): `public/newpages-design/`.
+- Demo login: the header LOGIN pill → `GET /api/account/login` (sets cookie `oro_session`, opens `/account`); signed in,
+  the header shows a round account icon (`src/components/AccountLink.tsx`). Sign out → `GET /api/account/logout`.
 - Money is in minor units, formatted by `src/lib/format.ts` (`Rs. 9,000.00`).
 
 ## Pages

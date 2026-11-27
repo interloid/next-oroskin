@@ -431,10 +431,12 @@ export default function ProductCard({
                 ) : (
                   <QuickAdd product={product} size={44} iconColor="#7d0000" options={cartOptions} sectionId={sectionId} idSuffix={quickAddSuffix} />
                 )}
-                <span className="product-card__more" aria-hidden="true">
+                {/* A real link: .product-card__actions sits above the stretched title link (z-index 2),
+                    so clicks here never reach it. Out of the tab order: the title link is the focus stop. */}
+                <a className="product-card__more" href={url} tabIndex={-1} aria-hidden="true">
                   <span className="product-card__more-label">View details</span>
                   <Icon name="arrow" />
-                </span>
+                </a>
               </div>
             </div>
           </div>
