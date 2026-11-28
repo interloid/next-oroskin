@@ -50,6 +50,7 @@ Everything is in the backend's database, seeded from `../oro-skin-api/prisma/see
 | Blog articles | `articles.json` | `GET /articles...` |
 | Discount codes | `discounts.json` | applied through the cart |
 | Cart, orders | (created by visitors) | `/cart/:id...`, `/orders` |
+| Accounts (sign-up, sign-in, passwords) | `users` are created by sign-up; the seed adds the admin and the demo customer | `/auth/...` |
 | The demo customer's account | `customers.json`, `customer_*.json`, `orders.json`, `reward_tiers.json` | `/customers/:id/...`, `/orders/:id` |
 | Images | `public/images/`, `public/cdn/` in this repo | absolute CDN URLs in production |
 
@@ -65,6 +66,15 @@ come from the site settings, and `money()` in `src/lib/format.ts` applies them.
 | Rendered on every request, catalogue data cached | Collection (sort, filters), blog listing, search |
 | Rendered on every request, never cached | Cart, checkout, account, track order |
 | In the browser | Cart count and sign-in state on the generated pages, cookie choices, account forms |
+
+## Sign-in
+
+Accounts live in the backend. The storefront's server keeps the visitor's tokens (a JWT access token and a
+refresh token) in HttpOnly cookies, so scripts in the page never see them, and refreshes the access token in
+`src/proxy.ts`. Pages: `/account/login`, `/account/register`, `/account/forgot-password`,
+`/account/reset-password`, `/account/change-password`. For a demo, sign in as `alexandra.rose@example.com`
+with the backend's `DEMO_CUSTOMER_PASSWORD`. In development, reset emails arrive in the backend's local mailbox
+(http://localhost:8025).
 
 To show a content change at once, the backend (or you) can call:
 

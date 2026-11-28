@@ -133,10 +133,25 @@ Never edit those folders from this project.
 - Account type scale: `--account-text-*` / `--account-title-*` at the top of `public/theme/account.css`, mapped onto
   the theme scale (`--font-size-small` … `--font-size-h1`). Use those, not raw rem values. Gold is `#C8A24B`.
 - Latest page designs (1920px PNGs): `public/newpages-design/`.
-- Demo login: the header LOGIN pill → `GET /api/account/login`: it asks the backend for the demo customer
-  (`GET /customers/demo`), keeps the id in the httpOnly cookie `oro_session`, sets the readable flag cookie
-  `oro_signed_in=1` and opens `/account`. Sign out → `GET /api/account/logout`. Account pages opened without a
-  session go to the login first. Account data: `src/lib/account.ts` (`loadAccountData`, never cached).
+- Sign-in is real and lives in the backend (`/auth/*`): JWT access tokens (15 minutes) and rotating refresh
+  tokens (30 days). The storefront's server keeps them in HttpOnly cookies on this site, so no script ever
+  sees a token: `oro_access`, `oro_refresh`, plus the readable flag `oro_signed_in=1` (`src/lib/session.ts`).
+  - `src/lib/auth.ts`: the backend calls, `currentUser()` (once per render) and the Zod form schemas.
+  - `src/lib/backend.ts` adds `Authorization: Bearer <oro_access>` to every per-visitor call (`backendFetch`),
+    never to cached reads.
+  - `src/proxy.ts` gets a new token pair when the access cookie has run out and the refresh cookie is there,
+    and clears the cookies when the backend refuses the refresh token.
+  - Pages: `/account/login`, `/account/register`, `/account/forgot-password`, `/account/reset-password?token=`,
+    `/account/change-password` (views of the `account` section; their copy is page JSON in the backend).
+    The forms are plain HTML posts to `src/app/api/account/*` (they work without JavaScript, check the Origin,
+    and answer with a redirect: `?error=` back to the form, or on to the next page).
+  - Account pages need a signed-in customer; otherwise they go to `/account/login?next=...`. Cookies that no
+    longer work are cleared through `/api/account/logout?next=...` (a page render cannot clear cookies).
+  - The admin account has no customer profile and is refused on the storefront: it is for the admin portal.
+  - Demo: `alexandra.rose@example.com` with the backend's `DEMO_CUSTOMER_PASSWORD`. Reset emails in
+    development land in the backend's local mailbox, http://localhost:8025.
+  - Track order needs the order number AND the email it was placed with; the thank-you page proves itself
+    with the cart id. Account data: `src/lib/account.ts` (`loadAccountData`, never cached).
 - Money is in minor units (cents). The currency format and locale are not in the code: `src/lib/format.ts`
   takes `moneyFormat`, `locale` and `currency` from the backend's site settings (`loadSiteFormat(site)`, called
   by `PageRenderer` / `SiteChrome` before anything is drawn). `money()`, `currencySymbol()`, `longDate()`.
@@ -152,8 +167,9 @@ account (`/account/*`, the demo customer's data from the backend), `/track-order
 ## Known gaps
 
 - Copy written without Figma text: privacy items 02–08, terms clause 03 + CTA, cookies category texts.
-- No real sign-in: the LOGIN pill signs in the backend's demo customer, and the account forms (edit details,
-  addresses, preferences, redeem) only show a "demo" message; the backend has no write endpoints for them.
+- The account forms (edit details, addresses, preferences, redeem) only show a "demo" message: the backend has
+  no write endpoints for them yet. Sign-in, sign-up and passwords are real.
+- No email verification at sign-up, no two-step verification (the card on the details page is a placeholder).
 - Order tracking has no events in the backend: the timeline shows the steps with the order and delivery dates.
 - Fixed interface texts (button labels, headings inside sections, the checkout field labels) are still in the
   TSX files. Content, prices, currency, menus and customer data are not: they come from the backend.
