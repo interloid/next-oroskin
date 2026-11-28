@@ -3,6 +3,7 @@
  * §10–15, §18); without it the local mock (src/lib/db.ts) answers. Same shapes either way.
  * Used by the Shopify AJAX cart shims (src/app/(store)/cart/*.js, src/cart/*) and the demo checkout.
  */
+import { backendFetch } from './backend';
 import { db, findVariant } from './db';
 import type { Cart, CartLine } from './types';
 
@@ -19,9 +20,8 @@ export class CartStoreError extends Error {
 }
 
 async function call<T>(method: string, pathname: string, body?: unknown): Promise<T> {
-  const res = await fetch(API + pathname, {
+  const res = await backendFetch(pathname, {
     method,
-    cache: 'no-store',
     headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
     body: body === undefined ? undefined : JSON.stringify(body),
   });

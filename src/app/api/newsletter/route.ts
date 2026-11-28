@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { backendFetch } from '@/lib/backend';
 import { badRequest, isEmail, json, readBody } from '../_lib/http';
 
 export const dynamic = 'force-dynamic';
@@ -23,7 +24,7 @@ export async function POST(req: Request) {
     }
     let ok = isEmail(email);
     if (ok && process.env.API_URL) {
-      const res = await fetch(`${process.env.API_URL}/newsletter`, {
+      const res = await backendFetch('/newsletter', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ email }),

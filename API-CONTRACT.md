@@ -20,8 +20,21 @@ same JSON shapes, and the frontend switches to your server by setting one env va
 | **Handles** | URL slugs, lowercase, `a-z0-9-` (`/products/<handle>`, `/collections/<handle>`, `/articles/<handle>`). Unique per type. |
 | **Ids** | Products, variants, collections, articles: numbers. Cart id and order id: strings. |
 | **Caching** | The frontend calls with `cache: 'no-store'` (always fresh). Feel free to cache on your side; `Cache-Control` is ignored for now. |
-| **Auth** | None for the demo (public storefront data). Cart ids are unguessable tokens (see Cart). |
+| **Auth** | No visitor sign-in for the demo (public storefront data). Cart ids are unguessable tokens (see Cart). The backend may ask for a shared key: see "Request headers" below. |
 | **CORS** | Not needed: the frontend calls the API **server to server** (Next.js server components and route handlers). Enable CORS for the storefront origin only if browser JavaScript is later pointed at the API directly. |
+
+### Request headers
+
+The storefront adds three headers to every call. All are optional for the backend.
+
+| Header | Value | Use |
+| --- | --- | --- |
+| `x-api-key` | The shared key from the storefront's `API_KEY` variable. Left out when that is not set. | The backend may refuse calls without the right key (`401`). |
+| `x-client-ip` | The visitor's IP address (IPv4 or IPv6). Left out when unknown. | Per-visitor rate limits. Trust it only together with a valid `x-api-key`, because anyone can send it. |
+| `x-request-id` | An id for the visitor's request (letters, digits, `_`, `.`, `-`, at most 128 characters). | Put it in your log lines and send it back as `X-Request-Id`, so both logs can be matched. |
+
+The storefront gives up on a call after 8 seconds (`API_TIMEOUT_MS`). It tries a `GET` once more when no answer
+arrives (network error or timeout), and never retries a write.
 
 ### Errors
 
@@ -35,8 +48,10 @@ Every error is JSON with the human-readable text in `error` **and** `message` (t
 | Status | When |
 | --- | --- |
 | `400` | Bad input: body not JSON, a required field missing, wrong type, invalid email, invalid cart id. |
+| `401` | The `x-api-key` header is missing or wrong (only when the backend has a key set). |
 | `404` | A single resource that does not exist: `GET /pages/:slug`, `/products/:handle`, `/collections/:handle`, `/articles/:handle`, a cart line key that is not in the cart, an unknown variant id on add. **The frontend turns a 404 into its "not found" page, so only send 404 for these.** |
 | `422` | Business rule: the variant is sold out, or the quantity is above the stock. Body: `{ "error": "Only 25 of Skin Tint in stock", "message": "Only 25 of Skin Tint in stock", "available": 22 }` (`available` = how many more can be added). |
+| `429` | Too many requests from this visitor. Send a `Retry-After` header (seconds). |
 | `201` | `POST /orders` success. Every other success is `200`. |
 | `5xx` | Your bugs. The frontend shows an error page. |
 
