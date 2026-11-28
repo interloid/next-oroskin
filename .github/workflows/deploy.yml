@@ -86,6 +86,7 @@ jobs:
       (github.ref_name == 'main' || github.ref_type == 'tag') &&
       (needs.verify-release.result == 'success' || needs.verify-release.result == 'skipped')
     uses: ./.github/workflows/ci.yml
+    secrets: inherit # API_KEY, for the build in ci.yml
 
   deploy:
     needs: [verify-release, checks]

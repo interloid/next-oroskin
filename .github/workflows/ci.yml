@@ -6,7 +6,12 @@
 #   3. Lint          reported but not blocking yet: src/sections/generated/ has
 #                    ~880 no-html-link-for-pages errors. Remove continue-on-error
 #                    once they are fixed or that folder is ignored.
-#   4. Build         next build, with the mock data (API_URL empty)
+#   4. Build         next build. The storefront has no data of its own: the build
+#                    reads the backend to generate the static pages, so it
+#                    needs the repository variable API_URL (a backend the
+#                    runner can reach) and, when that backend asks for a key,
+#                    the secret API_KEY. Without API_URL the build is skipped
+#                    with a warning; types and lint still run.
 name: CI
 
 on:
@@ -49,6 +54,13 @@ jobs:
         run: npm run lint
 
       - name: Build
+        if: vars.API_URL != ''
         env:
           NEXT_TELEMETRY_DISABLED: "1"
+          API_URL: ${{ vars.API_URL }}
+          API_KEY: ${{ secrets.API_KEY }}
         run: npm run build
+
+      - name: Build skipped
+        if: vars.API_URL == ''
+        run: echo "::warning::Build skipped. Set the repository variable API_URL (and the secret API_KEY) to a reachable backend. See docs/deployment.md."
