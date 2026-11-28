@@ -1,0 +1,54 @@
+# Checks for every pull request and feature-branch push, and the first job of
+# every deploy (deploy.yml calls this workflow before it touches Vercel).
+#
+#   1. Route types   next typegen, so tsc sees the same types `next build` makes
+#   2. Type check    tsc --noEmit
+#   3. Lint          reported but not blocking yet: src/sections/generated/ has
+#                    ~880 no-html-link-for-pages errors. Remove continue-on-error
+#                    once they are fixed or that folder is ignored.
+#   4. Build         next build, with the mock data (API_URL empty)
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main] # main runs these checks through deploy.yml
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  # Cancel superseded PR / branch runs; never a main or tag run, which a deploy
+  # is waiting on (when called, github.ref is the caller's ref).
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' && github.ref_type != 'tag' }}
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Route types
+        run: npx next typegen
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Lint
+        continue-on-error: true
+        run: npm run lint
+
+      - name: Build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: npm run build
