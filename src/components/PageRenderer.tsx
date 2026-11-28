@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import SiteChrome from '@/components/SiteChrome';
 import { api } from '@/lib/api';
@@ -13,6 +14,18 @@ export interface PageContext {
   searchParams?: Record<string, string | string[] | undefined>;
   /** 0-based position of the section on the page: section 0 loads its images eagerly. */
   index?: number;
+}
+
+/**
+ * <title> and description of a store page, for a route's generateMetadata: the page's `seo` from the
+ * backend, else `title` (the route passes the product / article / collection title for those pages).
+ * The root layout adds " | <store name>". An unknown page gets the store's defaults.
+ */
+export async function pageMetadata(slug: string, title?: string, description?: string): Promise<Metadata> {
+  const page = await api.page(slug);
+  const text = description ?? page?.seo?.description;
+  // No description of its own: leave the key out, so the store's description (root layout) is used.
+  return { title: title ?? page?.seo?.title ?? page?.title, ...(text ? { description: text } : {}) };
 }
 
 /**

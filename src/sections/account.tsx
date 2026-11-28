@@ -27,6 +27,10 @@ export type AccountView =
 
 export interface AccountProps {
   view: AccountView;
+  /** My details page: the beauty profile card (`icon` = an icon name of src/components/Icon.tsx) */
+  beautyProfile?: { icon: string; label: string; value: string }[];
+  /** Rewards page: the line under the heading */
+  lead?: string;
   /** Rewards page: "How it works" steps */
   steps?: { title: string; text: string }[];
   /** Rewards page: ways to earn points */
@@ -245,12 +249,6 @@ function Overview() {
   methods, then Beauty profile (blush) beside Account protection. Round icon buttons edit / delete; "Set as default"
   and "Update" are underlined text links; "Enable" is a white pill.
 */
-const BEAUTY = [
-  { icon: 'drop', label: 'Skin type', value: 'Combination, dehydrated' },
-  { icon: 'bottle', label: 'Fragrance family', value: 'Woody floral, 22% extrait' },
-  { icon: 'sparkles', label: 'Undertone', value: 'Olive — shade 04.5' },
-  { icon: 'shield', label: 'Sensitivities', value: 'Fragrance-free eye area' },
-];
 
 function AddNew() {
   return (
@@ -263,7 +261,7 @@ function AddNew() {
   );
 }
 
-function Details() {
+function Details({ beautyProfile = [] }: Pick<AccountProps, 'beautyProfile'>) {
   const { customer, addresses, cards } = data();
   return (
     <div className="account-details">
@@ -363,7 +361,7 @@ function Details() {
         <section className="account-card account-card--tint">
           <CardHead eyebrow="Analysis" heading="Beauty profile" />
           <dl className="account-facts account-facts--icons">
-            {BEAUTY.map((b) => (
+            {beautyProfile.map((b) => (
               <div key={b.label}>
                 <span className="account-facts__icon" aria-hidden="true">
                   <Icon name={b.icon} />
@@ -744,7 +742,7 @@ function Preferences() {
 }
 
 /* ------------------------------ Rewards ------------------------------ */
-function Rewards({ steps = [], earn = [], redeem = [] }: Pick<AccountProps, 'steps' | 'earn' | 'redeem'>) {
+function Rewards({ lead, steps = [], earn = [], redeem = [] }: Pick<AccountProps, 'lead' | 'steps' | 'earn' | 'redeem'>) {
   const { customer, rewards } = data();
   // The ring fills towards the top tier; the line under the balance names the next tier above the current one.
   const top = rewards.tiers[rewards.tiers.length - 1];
@@ -764,9 +762,7 @@ function Rewards({ steps = [], earn = [], redeem = [] }: Pick<AccountProps, 'ste
           <h1 className="account-rw-hero__title">
             {customer.tier}, <em>returned.</em>
           </h1>
-          <p className="account-rw-hero__lead">
-            Five points for every dollar. Points become travel sizes, full sizes, and doors that stay closed to everyone else.
-          </p>
+          {lead ? <p className="account-rw-hero__lead">{lead}</p> : null}
           <ul className="account-tiers">
             {rewards.tiers.map((t) => (
               <li className={`account-tier${t.active ? ' is-active' : ''}`} key={t.name}>
@@ -920,6 +916,8 @@ const CUSTOMER_VIEWS: AccountView[] = ['overview', 'details', 'orders', 'order-d
 export default async function Account({
   id,
   view,
+  beautyProfile,
+  lead,
   steps,
   earn,
   redeem,
@@ -947,7 +945,7 @@ export default async function Account({
       break;
     case 'details':
       shellView = 'details';
-      body = <Details />;
+      body = <Details beautyProfile={beautyProfile} />;
       break;
     case 'orders':
       shellView = 'orders';
@@ -980,7 +978,7 @@ export default async function Account({
       break;
     }
     case 'rewards':
-      body = <Rewards steps={steps} earn={earn} redeem={redeem} />;
+      body = <Rewards lead={lead} steps={steps} earn={earn} redeem={redeem} />;
       break;
     case 'signout':
       body = <SignOut />;

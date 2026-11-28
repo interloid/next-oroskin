@@ -1,4 +1,4 @@
-import PageRenderer from '@/components/PageRenderer';
+import PageRenderer, { pageMetadata } from '@/components/PageRenderer';
 import { api } from '@/lib/api';
 import type { MenuItem } from '@/lib/types';
 
@@ -14,6 +14,10 @@ export async function generateStaticParams() {
   const urls = (items: MenuItem[]): string[] => items.flatMap((i) => [i.url, ...urls(i.children ?? [])]);
   const handles = [...urls(site.menu), ...urls(site.footer.menu)].map((u) => /^\/pages\/([a-z0-9-]+)$/.exec(u)?.[1]);
   return [...new Set(handles.filter((h): h is string => !!h))].map((handle) => ({ handle }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }) {
+  return pageMetadata((await params).handle);
 }
 
 export default async function ContentPage({ params }: { params: Promise<{ handle: string }> }) {

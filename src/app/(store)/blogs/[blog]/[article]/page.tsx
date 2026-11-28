@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import PageRenderer from '@/components/PageRenderer';
+import PageRenderer, { pageMetadata } from '@/components/PageRenderer';
 import { api } from '@/lib/api';
 
 /**
@@ -10,6 +10,11 @@ export async function generateStaticParams() {
   const [site, articles] = await Promise.all([api.site(), api.articles()]);
   const blog = site.menu.map((m) => /^\/blogs\/([^/]+)$/.exec(m.url)?.[1]).find(Boolean) ?? 'featured';
   return articles.map((a) => ({ blog, article: a.handle }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ article: string }> }) {
+  const article = await api.article((await params).article);
+  return pageMetadata('article', article?.title, article?.excerpt || undefined);
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ blog: string; article: string }> }) {

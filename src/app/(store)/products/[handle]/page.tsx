@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import PageRenderer from '@/components/PageRenderer';
+import PageRenderer, { pageMetadata } from '@/components/PageRenderer';
 import { api } from '@/lib/api';
 
 /**
@@ -10,6 +10,11 @@ import { api } from '@/lib/api';
  */
 export async function generateStaticParams() {
   return (await api.products()).map((p) => ({ handle: p.handle }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }) {
+  const product = await api.product((await params).handle);
+  return pageMetadata('product', product?.title, product?.subtitle || undefined);
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {

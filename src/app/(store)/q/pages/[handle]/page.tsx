@@ -1,6 +1,10 @@
-import PageRenderer from '@/components/PageRenderer';
+import PageRenderer, { pageMetadata } from '@/components/PageRenderer';
 
 type Search = Record<string, string | string[] | undefined>;
+
+export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }) {
+  return pageMetadata((await params).handle);
+}
 
 /**
  * /pages/<handle>?contact_posted=true (or any other query): the same page as src/app/(store)/pages/[handle],

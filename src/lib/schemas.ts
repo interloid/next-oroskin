@@ -174,6 +174,10 @@ export const menuItemSchema: z.ZodType<MenuItem> = z.looseObject({
 /** Menus, announcement bar, footer, brand and money settings: one call for the whole site chrome. */
 export const siteSchema = z.looseObject({
   name: z.string(),
+  /** One line about the store, for the page description */
+  description: z.string().optional(),
+  /** Browser tab icon: a URL or a path on this domain */
+  favicon: z.string().optional(),
   /** ISO 4217 code of every price the backend sends: "USD" */
   currency: z.string(),
   /** How an amount is shown: "${{amount}}" */

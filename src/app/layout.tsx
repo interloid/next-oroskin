@@ -1,12 +1,17 @@
 import type { Metadata } from 'next';
 import ThemeScripts from '@/components/ThemeScripts';
+import { api } from '@/lib/api';
 import './globals.css';
 
-export const metadata: Metadata = {
-  title: 'Oroskin',
-  description: 'Luxury skincare, fragrance and makeup.',
-  icons: { icon: '/cdn/shop/files/logo-mark-flame.png' },
-};
+/** The store's name, description and icon come from the backend's site settings (a cached read). */
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await api.site();
+  return {
+    title: { default: site.name, template: `%s | ${site.name}` },
+    description: site.description,
+    icons: site.favicon ? { icon: site.favicon } : undefined,
+  };
+}
 
 // Same start-up script as the theme's layout: no-js → js, and switch animations off if the script fails.
 // Plus: `signed-in` on <html> when the oro_signed_in cookie is there, so pages that are generated ahead of

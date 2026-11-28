@@ -1,8 +1,14 @@
 import { notFound } from 'next/navigation';
-import PageRenderer from '@/components/PageRenderer';
+import PageRenderer, { pageMetadata } from '@/components/PageRenderer';
 import { api } from '@/lib/api';
 
 type Search = Record<string, string | string[] | undefined>;
+
+export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }) {
+  const { handle } = await params;
+  const collection = (await api.collections()).find((c) => c.handle === handle);
+  return pageMetadata('collection', collection?.title, collection?.description || undefined);
+}
 
 /** A collection: rendered per request (sort, filters and page are in the URL); each answer behind it is cached. */
 export default async function CollectionRoute({ params, searchParams }: { params: Promise<{ handle: string }>; searchParams: Promise<Search> }) {
