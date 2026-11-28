@@ -1,12 +1,26 @@
+/* Wrapped in a cascade layer so Tailwind utilities (a later layer) win over it, whatever the specificity. */
+@layer legacy {
 /* Figma fonts. Satoshi (body) = Fontshare, free for commercial use.
-   Canela Text (headings) is a paid font from Commercial Type: drop the licensed files in /public/fonts/canela/
-   and they are used automatically; until then the headings fall back to Newsreader (closest free match). */
+   Canela (headings, trial licence: demo only) and Mussica Swash (the hero swash line) from the Figma. */
 @font-face { font-family: Satoshi; src: url("/fonts/satoshi/Satoshi-Variable.woff2") format("woff2"); font-weight: 300 900; font-style: normal; font-display: swap; }
 @font-face { font-family: Satoshi; src: url("/fonts/satoshi/Satoshi-VariableItalic.woff2") format("woff2"); font-weight: 300 900; font-style: italic; font-display: swap; }
-@font-face { font-family: "Canela Text"; src: url("/fonts/canela/CanelaText-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "Canela Text"; src: url("/fonts/canela/CanelaText-RegularItalic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Canela Text"; src: url("/fonts/canela-text-trial/CanelaText-Light-Trial.otf") format("opentype"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Canela Text"; src: url("/fonts/canela-text-trial/CanelaText-LightItalic-Trial.otf") format("opentype"); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: "Canela Text"; src: url("/fonts/canela-text-trial/CanelaText-Regular-Trial.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Canela Text"; src: url("/fonts/canela-text-trial/CanelaText-RegularItalic-Trial.otf") format("opentype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Canela Text"; src: url("/fonts/canela-text-trial/CanelaText-Medium-Trial.otf") format("opentype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Canela Text"; src: url("/fonts/canela-text-trial/CanelaText-MediumItalic-Trial.otf") format("opentype"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Canela Text"; src: url("/fonts/canela-text-trial/CanelaText-Bold-Trial.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Canela Text"; src: url("/fonts/canela-text-trial/CanelaText-BoldItalic-Trial.otf") format("opentype"); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Mussica Swash"; src: url("/fonts/mussica/MussicaSwash.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
 :root {
   --font-body--family: Satoshi, "Plus Jakarta Sans", sans-serif;
   --font-heading--family: "Canela Text", Newsreader, serif;
   --font-logo--family: "Cormorant Garamond", Cormorant, serif;
+}
+
+/* Figma: the hero lines "It is time to" / "Unveil your" are Mussica Swash (not italic) */
+.hero .heading--accent-font { font-family: "Mussica Swash", var(--font-accent--family); font-style: normal; }
+.hero .heading--accent-font em, .hero .heading--accent-font i { font-style: normal; }
+
 }

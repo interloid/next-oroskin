@@ -54,7 +54,7 @@ export default function Faq00AnnouncementBar() {
               <span className="announcement-bar__text">
                 {" "}
                 Free shipping on orders over $200{" "}
-                <a href="/policies/shipping-policy" className="announcement-bar__link announcement-bar__link-label">
+                <a href="/pages/shipping" className="announcement-bar__link announcement-bar__link-label">
                   Shipping details
                 </a>
               </span>{" "}

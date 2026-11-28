@@ -406,7 +406,7 @@ export default function Product02Main() {
                     }}
                   />
                   <p className="product-price__note">
-                    <a href="/policies/shipping-policy">Shipping</a> calculated at checkout.{" "}
+                    <a href="/pages/shipping">Shipping</a> calculated at checkout.{" "}
                   </p>
                 </product-price>{" "}
                 <product-stock className="product-stock">

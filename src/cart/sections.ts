@@ -3,15 +3,19 @@
  * Fetches our own page (same cookies, so the same cart) and cuts out each
  * <div id="shopify-section-<id>" class="shopify-section">…</div>. Sections must use that wrapper id
  * (the theme JS reads `.shopify-section` ids the same way). Server only.
+ * The visitor's address and request id are passed on, so backend calls made while rendering that page
+ * still count against the visitor and share the request id (src/lib/backend.ts).
  */
 import type { NextRequest } from 'next/server';
 
 export async function fetchPage(req: NextRequest, pathAndQuery: string) {
   const url = new URL(pathAndQuery, req.nextUrl.origin);
-  const res = await fetch(url, {
-    cache: 'no-store',
-    headers: { cookie: req.headers.get('cookie') ?? '', accept: 'text/html', 'x-section-render': '1' },
-  });
+  const headers: Record<string, string> = { cookie: req.headers.get('cookie') ?? '', accept: 'text/html', 'x-section-render': '1' };
+  for (const name of ['x-forwarded-for', 'x-real-ip', 'x-request-id']) {
+    const value = req.headers.get(name);
+    if (value) headers[name] = value;
+  }
+  const res = await fetch(url, { cache: 'no-store', headers });
   return res.text();
 }
 

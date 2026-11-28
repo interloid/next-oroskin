@@ -3,6 +3,7 @@
  * to the NestJS backend; without it the local mock (src/lib/db.ts) answers. Same shapes either way.
  */
 import { cookies } from 'next/headers';
+import { backendFetch, requestIdOf } from './backend';
 import { db, type CollectionQuery } from './db';
 import type { Article, Cart, Collection, CollectionPage, PageContent, Product, Site } from './types';
 
@@ -10,9 +11,9 @@ const API = process.env.API_URL;
 
 async function get<T>(pathname: string, local: () => T): Promise<T> {
   if (!API) return local();
-  const res = await fetch(API + pathname, { cache: 'no-store' });
+  const res = await backendFetch(pathname);
   if (res.status === 404) return null as T;
-  if (!res.ok) throw new Error(`API ${pathname}: ${res.status}`);
+  if (!res.ok) throw new Error(`API ${pathname}: ${res.status} (request id ${requestIdOf(res)})`);
   return res.json() as Promise<T>;
 }
 

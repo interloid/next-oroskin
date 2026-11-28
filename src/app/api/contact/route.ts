@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { backendFetch } from '@/lib/backend';
 import { badRequest, isEmail, isText, json, readBody } from '../_lib/http';
 
 export const dynamic = 'force-dynamic';
@@ -51,7 +52,7 @@ async function formPost(req: Request) {
       const m = /^contact\[(.+)\]$/.exec(k);
       if (m && !['email', 'body', 'Name', 'First name', 'Last name'].includes(m[1])) extra[m[1]] = String(v);
     }
-    const res = await fetch(`${process.env.API_URL}/contact`, {
+    const res = await backendFetch('/contact', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ ...extra, name: name || email, email, message }),

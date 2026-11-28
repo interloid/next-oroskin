@@ -1,0 +1,13 @@
+{
+  "slug": "account-wishlist",
+  "title": "My account",
+  "sections": [
+    {
+      "id": "account",
+      "type": "account",
+      "props": {
+        "view": "wishlist"
+      }
+    }
+  ]
+}

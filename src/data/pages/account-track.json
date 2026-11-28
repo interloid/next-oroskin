@@ -1,0 +1,13 @@
+{
+  "slug": "account-track",
+  "title": "My account",
+  "sections": [
+    {
+      "id": "account",
+      "type": "account",
+      "props": {
+        "view": "track"
+      }
+    }
+  ]
+}

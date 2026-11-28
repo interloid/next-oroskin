@@ -99,5 +99,21 @@
       "signature-body-mist",
       "glow-ritual-gift-set"
     ]
+  },
+  {
+    "id": 6,
+    "handle": "editors-picks",
+    "title": "Editor's picks",
+    "description": "The formulas our editors reach for every day.",
+    "image": "/images/collection-fragrance.webp",
+    "productHandles": [
+      "rose-eau-de-parfum",
+      "glow-face-mist",
+      "hydra-glow-night-cream",
+      "kabuki-makeup-brush",
+      "golden-hour-eyeshadow-palette",
+      "pure-matte-lipstick",
+      "skin-tint"
+    ]
   }
 ]

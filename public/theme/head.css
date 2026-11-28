@@ -1,3 +1,8 @@
+/* Layer order for the whole app (also first in src/app/globals.css): Tailwind's variables, then the theme CSS, then utilities. */
+@layer theme, legacy, base, components, utilities;
+
+/* Wrapped in a cascade layer so Tailwind utilities (a later layer) win over it, whatever the specificity. */
+@layer legacy {
 
   
   @font-face {
@@ -358,3 +363,5 @@
       background-color: var(--color-background);
       color: var(--color-text);
     }
+
+}

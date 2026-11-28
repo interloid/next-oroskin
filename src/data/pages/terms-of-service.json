@@ -1,0 +1,25 @@
+{
+  "slug": "terms-of-service",
+  "title": "Terms of service",
+  "sections": [
+    {
+      "id": "policy",
+      "type": "policy",
+      "props": {
+        "layout": "contents",
+        "breadcrumbTitle": "Terms & Conditions",
+        "eyebrow": "Terms of use",
+        "heading": "The agreement, <em>in plain words.</em>",
+        "intro": "<p>Nine clauses. Written to be read once and understood — not to be survived. In force from 1 August 2026.</p>",
+        "body": "<h2>Who you are dealing with</h2><p>OroSkin Maison SAS, registered in Grasse, France, operates this store and every atelier named on it. When these terms say “we”, that is the company; “you” is whoever places the order.</p><h2>Placing an order</h2><p>Your order is an offer to buy. It becomes a contract only when we send the confirmation letter — which is also the moment your card is actually charged. If a piece sells out between the two, nothing is taken and we tell you the same day.</p><h2>Prices and duties</h2><p>Prices include VAT and, for the forty countries we ship to, import duties. The price you see at checkout is the final sum; no courier will ask you for more at the door.</p><h2>Changing your mind</h2><p>Sixty days from delivery, for any reason or none. This sits above your statutory fourteen-day right of withdrawal and never replaces it. Full terms live on the <a href=\"/pages/returns\">Returns page</a>.</p><h2>What we promise about the formulas</h2><p>Every claim printed on a carton is one we can evidence. We do not promise that a formula will suit every skin — which is precisely why the return window is long and unconditional.</p><h2>Oro Circle points</h2><p>Points have no cash value, cannot be transferred between accounts, and never expire while the account is active. Points spent on a returned order come back as points, not currency.</p><h2>Your account</h2><p>Keep your password to yourself; you are responsible for what happens under your sign-in. Tell us at once if you suspect otherwise and we will freeze the account while it is sorted.</p><h2>Where our liability ends</h2><p>We are responsible for foreseeable loss caused by our breaking these terms. We do not exclude liability for death, personal injury or fraud — nor would we try to.</p><h2>Changes to these terms</h2><p>We may revise these terms; the version in force when you order is the version that binds that order. Material changes are announced in the monthly letter before they take effect.</p><p>Governed by the laws of France. Disputes are heard in Grasse, though we would rather you simply wrote to us first — <a href=\"mailto:care@oroskin.com\">care@oroskin.com</a>.</p>",
+        "showCta": true,
+        "ctaHeading": "Questions about any clause?",
+        "ctaText": "<p>Write to us first — a person answers within one working day.</p>",
+        "ctaLabel": "Write message",
+        "ctaLink": "/pages/contact",
+        "paddingTop": 24,
+        "paddingBottom": 96
+      }
+    }
+  ]
+}

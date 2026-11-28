@@ -1,0 +1,98 @@
+{
+  "slug": "shipping",
+  "title": "Shipping",
+  "sections": [
+    {
+      "id": "main",
+      "type": "shipping-info",
+      "props": {
+        "breadcrumbTitle": "Shipping",
+        "eyebrow": "Shipping",
+        "heading": "The Delivery <em>Status</em>",
+        "intro": "<p>Every parcel leaves from the atelier nearest you, so nothing crosses more borders than it has to. Duties and import care are settled at checkout — never at your door.</p>",
+        "stats": [
+          {
+            "value": "2-3",
+            "label": "Days, express"
+          },
+          {
+            "value": "40",
+            "label": "Countries"
+          },
+          {
+            "value": "$0",
+            "label": "Over $150"
+          }
+        ],
+        "hubsLabel": "Dispatched from",
+        "hubs": [
+          {
+            "city": "Paris",
+            "code": "PAR",
+            "regions": "Europe, UK, Middle East & Africa",
+            "cutoff": "15:00 CET"
+          },
+          {
+            "city": "New York",
+            "code": "NYO",
+            "regions": "North & South America",
+            "cutoff": "14:00 EST"
+          },
+          {
+            "city": "Seoul",
+            "code": "SEL",
+            "regions": "Asia-Pacific & Oceania",
+            "cutoff": "16:00 KST"
+          }
+        ],
+        "tiersLabel": "Service tiers",
+        "tiers": [
+          {
+            "title": "White-Glove Express",
+            "text": "Signature gold-leaf packaging, tracked door to door.",
+            "time": "2–3 working days",
+            "price": "Free over $150"
+          },
+          {
+            "title": "Standard Atelier",
+            "text": "The same parcel, an unhurried route.",
+            "time": "4–7 working days",
+            "price": "$12"
+          },
+          {
+            "title": "Same-Day Concierge",
+            "text": "Hand-delivered before 9pm by our own courier.",
+            "time": "Today, if ordered by 2pm",
+            "price": "$28"
+          }
+        ],
+        "regionsLabel": "By region",
+        "regions": [
+          {
+            "zone": "Zone I",
+            "name": "France & Benelux",
+            "text": "1–2 working days from Paris"
+          },
+          {
+            "zone": "Zone II",
+            "name": "Europe & UK",
+            "text": "2–3 working days, duties included"
+          },
+          {
+            "zone": "Zone III",
+            "name": "Americas",
+            "text": "2–4 working days from New York"
+          },
+          {
+            "zone": "Zone IV",
+            "name": "Asia-Pacific",
+            "text": "2–4 working days from Seoul"
+          }
+        ],
+        "note": "Orders placed after the atelier cut-off enter the next working day’s dispatch. We do not ship on local public holidays — your tracking page always shows the true dispatch date.",
+        "paddingTop": 24,
+        "paddingBottom": 96
+      }
+    }
+  ]
+}

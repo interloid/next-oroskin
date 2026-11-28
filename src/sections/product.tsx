@@ -341,7 +341,7 @@ export default async function ProductSection({
               : null}
             {part.showTaxNote !== false ? (
               <p className="product-price__note">
-                <a href="/policies/shipping-policy">Shipping</a> calculated at checkout.
+                <a href="/pages/shipping">Shipping</a> calculated at checkout.
               </p>
             ) : null}
           </product-price>
