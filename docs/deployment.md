@@ -29,9 +29,13 @@ Vercel's own Git deploys are switched off for `main` and production in `vercel.j
    Production is served at **https://oro-skin.vercel.app**, the project's production domain in Vercel, which
    `vercel deploy --prod` updates on its own. Don't set `APP_DOMAIN_ALIAS` on `production`.
 
-5. **App variables** (`API_URL`, ...) go in the Vercel project → Settings → Environment Variables, per
-   environment (Preview / Production). `vercel pull` loads them into the build. Leave `API_URL` empty to use
-   the built-in mock data.
+5. **App variables** (`API_URL`, `API_KEY`, ...; the list is in `.env.example`) go in the Vercel project →
+   Settings → Environment Variables, per environment (Preview / Production). `vercel pull` loads them into
+   the build. **`API_URL` is required**: the storefront has no data of its own, so the build and every page
+   need a backend (`../oro-skin-api`) that Vercel and the GitHub runner can reach over the internet. Without
+   it the deploy fails. `API_KEY` must match that backend's `SERVICE_API_KEY`.
+6. **CI build.** `ci.yml` builds only when the repository **variable** `API_URL` is set (and reads the
+   **secret** `API_KEY`); otherwise it skips the build with a warning and still runs the type check and lint.
 
 ## Releasing
 

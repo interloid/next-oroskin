@@ -1,5 +1,12 @@
 # Oroskin storefront API contract
 
+> **Status (2026-11-28): this is the first version of the contract, kept for reference.** The backend now
+> exists (`../oro-skin-api`) and its Swagger (`/docs`, `openapi.generated.json`) is the source of truth.
+> Not in this file: the customer account endpoints (`/customers/...`, `GET /orders/:id`), discount amounts on
+> the cart (`percent`, `amount`, `discountTotal`, `total`), `DELETE /cart/:id/discounts/:code`,
+> `PUT /cart/:id/attributes`, and `locale` / `country` in the site settings. The mock described below has been
+> removed from this repo; money examples in rupees are from the old demo data (the seed data is in dollars).
+
 For the NestJS team. The Next.js storefront (`oroskin-next`) reads **all** its data from this REST API.
 A working mock of every endpoint lives in this repo (`src/app/api/**`, logic in `src/lib/db.ts`): run
 `npm run dev` and call `http://localhost:3000/api/...` to see real responses. Build the same paths and the

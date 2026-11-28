@@ -11,7 +11,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { headers } from 'next/headers';
 import Icon from '@/components/Icon';
-import site from '@/data/site.json';
+import { api } from '@/lib/api';
+import { env } from '@/lib/env';
 import type { Article } from '@/lib/types';
 
 export const BLOG_URL = '/blogs/featured';
@@ -88,8 +89,14 @@ export function imageSize(src: string | null | undefined) {
   return size;
 }
 
-/** Absolute URL on this site (share links need one), from the request's host. */
+/**
+ * Absolute URL on this site (share links need one): SITE_URL when it is set, else the request's host.
+ * Reading the request makes the page render per request, so set SITE_URL to let articles be generated
+ * ahead of time.
+ */
 export async function absoluteUrl(pathname: string) {
+  const { SITE_URL } = env();
+  if (SITE_URL) return `${SITE_URL}${pathname}`;
   const h = await headers();
   const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'localhost';
   const proto = h.get('x-forwarded-proto') ?? (host.startsWith('localhost') || host.startsWith('127.') ? 'http' : 'https');
@@ -130,9 +137,7 @@ export function AuthorAvatar({ name, className }: { name: string; className: str
   );
 }
 
-const instagram = site.footer?.social?.find((s: { network: string }) => s.network === 'instagram')?.url;
-
-export function ShareLinks({
+export async function ShareLinks({
   url,
   title,
   style = 'round',
@@ -143,6 +148,8 @@ export function ShareLinks({
   style?: 'round' | 'pill';
   id?: string;
 }) {
+  // The brand's Instagram profile, from the site settings
+  const instagram = (await api.site()).footer.social.find((s) => s.network === 'instagram')?.url;
   const u = encodeURIComponent(url);
   // Liquid's url_encode writes spaces as "+"
   const enc = (s: string) => encodeURIComponent(s).replace(/%20/g, '+');

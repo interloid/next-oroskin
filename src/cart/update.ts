@@ -14,7 +14,7 @@ export async function applyUpdate(id: string, body: Record<string, unknown>) {
     for (const [key, q] of Object.entries(updates as Record<string, unknown>)) await setQuantity(id, key, Number(q));
   }
   if (typeof body.note === 'string') await setNote(id, body.note);
-  if (body.attributes && typeof body.attributes === 'object') setAttributes(id, body.attributes as Record<string, unknown>);
+  if (body.attributes && typeof body.attributes === 'object') await setAttributes(id, body.attributes as Record<string, unknown>);
   if (typeof body.discount === 'string') await setDiscounts(id, body.discount);
 }
 

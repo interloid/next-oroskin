@@ -39,7 +39,7 @@ export type InfoPart =
       type: 'buy-buttons';
       layout?: 'stacked' | 'inline';
       addToCartStyle?: 'solid' | 'outline';
-      showPriceDifference?: boolean; // "(+Rs. 13.00)" on the pills
+      showPriceDifference?: boolean; // "(+$13.00)" on the pills
       showBuyNow?: boolean; // the "Buy it now" button (goes to /checkout?variant=)
       unavailableStyle?: 'dim' | 'cross';
     }
@@ -97,15 +97,6 @@ const DEFAULT_CARDS: InfoCard[] = [
   {
     gap: 40,
     parts: [
-      {
-        type: 'offers',
-        offers: [
-          { bank: 'Axis Bank', offer: '10% instant discount', detail: 'Up to $60 • Credit cards', code: 'AXIS10' },
-          { bank: 'ICICI Bank', offer: 'Flat $40 instant discount', detail: 'On orders above $300', code: 'ICICI40' },
-          { bank: 'SBI Card', offer: '3% off + 10% back', detail: 'Instant gift vouchers', code: 'SBI10' },
-          { bank: 'HDFC Bank', offer: 'Flat $50 discount', detail: 'Using promo code HDFC6', code: 'HDFC6' },
-        ],
-      },
       { type: 'pickup', deliveryNote: 'Delivery in 2–3 business days' },
       {
         type: 'features',

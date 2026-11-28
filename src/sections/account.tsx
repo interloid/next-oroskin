@@ -1,28 +1,17 @@
 /**
- * Account demo pages (Figma "account-*" screens). One section, one `view` per page; static mock data, no real auth.
- * Styles: public/theme/account.css (BEM, prefix account-).
+ * Account pages (Figma "account-*" screens). One section, one `view` per page.
+ * The customer's data comes from the backend (src/lib/account.ts) for the signed-in demo customer; a visitor
+ * who is not signed in is sent to the demo login. The rewards programme texts are this section's props (page
+ * content). Styles: public/theme/account.css (BEM, prefix account-).
  */
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import type { PageContext } from '@/components/PageRenderer';
 import Icon from '@/components/Icon';
-import { db } from '@/lib/db';
-import { money } from '@/lib/format';
-import {
-  addresses,
-  cards,
-  customer,
-  findOrder,
-  lineProducts,
-  orders,
-  orderTotals,
-  preferenceList,
-  recentlyViewed,
-  rewards,
-  statusLabel,
-  subscriptions,
-  wishlist,
-  type Order,
-} from '@/lib/account-data';
+import { accountBox, loadAccountData, loadOrderView, statusLabel, type AccountData, type OrderView as Order } from '@/lib/account';
+import { money, siteFormat } from '@/lib/format';
+import { cookies } from 'next/headers';
+import { currentUser } from '@/lib/auth';
+import { SIGNED_IN_COOKIE } from '@/lib/session';
 import { DetailsForm, IconAction, OrdersList, PrefToggles, SmallAction, TrackForm, WishlistList, type OrderRow } from '@/sections/_account-client';
 
 export type AccountView =
@@ -36,10 +25,40 @@ export type AccountView =
   | 'refills'
   | 'preferences'
   | 'signout'
-  | 'track-order';
+  | 'track-order'
+  | 'login'
+  | 'register'
+  | 'forgot-password'
+  | 'reset-password'
+  | 'change-password';
 
 export interface AccountProps {
   view: AccountView;
+  /** My details page: the beauty profile card (`icon` = an icon name of src/components/Icon.tsx) */
+  beautyProfile?: { icon: string; label: string; value: string }[];
+  /** Rewards page: the line under the heading */
+  lead?: string;
+  /** Rewards page: "How it works" steps */
+  steps?: { title: string; text: string }[];
+  /** Rewards page: ways to earn points */
+  earn?: { action: string; points: string; note: string }[];
+  /** Rewards page: what points can be traded for (`handle` = the product whose image is shown) */
+  redeem?: { handle: string; title: string; points: number; note: string }[];
+  /** Refills page: the membership card (title, small tags, label / value facts) */
+  membership?: { title: string; tags?: string[]; facts?: { label: string; value: string }[] };
+  /** Track order page: an order number shown as an example */
+  exampleOrder?: string;
+  /** Sign-in, sign-up and password pages: the card's small label, heading (`<em>` allowed) and intro text */
+  eyebrow?: string;
+  heading?: string;
+  text?: string;
+}
+
+/** The signed-in customer's data for this page render (put there by <Account> before any view is drawn) */
+function data(): AccountData {
+  const box = accountBox().data;
+  if (!box) throw new Error('Account data is not loaded');
+  return box;
 }
 
 const TABS: { view: AccountView; href: string; label: string; icon: string }[] = [
@@ -53,10 +72,20 @@ const TABS: { view: AccountView; href: string; label: string; icon: string }[] =
 ];
 
 const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? '';
-const img = (handle: string) => db.product(handle)?.images[0]?.src ?? '';
-const title = (handle: string) => db.product(handle)?.title ?? handle;
+
+/**
+ * Success notes shown after a redirect (`?notice=<code>`). Only these fixed texts can appear: the text itself
+ * is never taken from the URL, so a crafted link cannot put its own "system message" on the page.
+ */
+const NOTICES: Record<string, string> = {
+  'password-reset': 'Your password is changed. Sign in with the new one.',
+  'password-changed': 'Your password is changed. Other devices have been signed out.',
+};
+const noticeOf = (v: string | string[] | undefined) => NOTICES[first(v)] ?? '';
+const img = (handle: string) => data().products.get(handle)?.images[0]?.src ?? '';
 
 function Shell({ view, children }: { view: AccountView; children: React.ReactNode }) {
+  const { customer } = data();
   const pct = Math.round((customer.points / (customer.points + customer.pointsToNext)) * 100);
   return (
     <>
@@ -88,13 +117,13 @@ function Shell({ view, children }: { view: AccountView; children: React.ReactNod
         <div className="account-welcome__points">
           <p className="account-welcome__row">
             <span>Glow balance</span>
-            <strong>{customer.points.toLocaleString('en-US')} pts</strong>
+            <strong>{customer.points.toLocaleString(siteFormat().locale)} pts</strong>
           </p>
           <div className="account-meter" role="img" aria-label={`${pct}% of the way to ${customer.nextTier}`}>
             <span style={{ inlineSize: `${pct}%` }} />
           </div>
           <p className="account-welcome__next">
-            {customer.pointsToNext.toLocaleString('en-US')} points to {customer.nextTier}
+            {customer.pointsToNext.toLocaleString(siteFormat().locale)} points to {customer.nextTier}
           </p>
         </div>
       </section>
@@ -131,23 +160,28 @@ function CardHead({ eyebrow, heading, action }: { eyebrow: string; heading: stri
 
 /* ----------------------------- Overview ----------------------------- */
 function Overview() {
-  const transit = orders.find((o) => o.status === 'in-transit')!;
-  const tp = lineProducts(transit)[0];
+  const { customer, orders, subscriptions, recentlyViewed, products } = data();
+  const transit = orders.find((o) => o.status === 'in-transit');
+  const tp = transit?.lines[0];
   return (
     <>
       <div className="account-grid account-grid--2 account-grid--soft">
-        <section className="account-card account-card--tint">
-          <p className="account-eyebrow">In transit</p>
-          <h2 className="account-card__title">{tp.product.title}</h2>
-          <p className="account-card__text">Left the New York atelier this morning. Arriving Tuesday, before 9pm.</p>
-          <a className="account-btn account-btn--glass account-card__cta" href="/account/track">
-            Track the parcel
-          </a>
-        </section>
+        {transit && tp ? (
+          <section className="account-card account-card--tint">
+            <p className="account-eyebrow">In transit</p>
+            <h2 className="account-card__title">{tp.product.title}</h2>
+            <p className="account-card__text">{transit.eta ? `On its way to you. ${transit.statusNote}.` : 'On its way to you.'}</p>
+            <a className="account-btn account-btn--glass account-card__cta" href="/account/track">
+              Track the parcel
+            </a>
+          </section>
+        ) : null}
         <section className="account-card account-card--tint">
           <p className="account-eyebrow">Oro Circle</p>
-          <h2 className="account-card__title">1250 points to Champagne</h2>
-          <p className="account-card__text">Champagne opens full-size redemptions and the first pour of every new ferment.</p>
+          <h2 className="account-card__title">
+            {customer.nextTier ? `${customer.pointsToNext.toLocaleString(siteFormat().locale)} points to ${customer.nextTier}` : `${customer.points.toLocaleString(siteFormat().locale)} points`}
+          </h2>
+          <p className="account-card__text">Points become travel sizes, full sizes and early access. See what your balance opens.</p>
           <a className="account-btn account-btn--glass account-card__cta" href="/account/rewards">
             Open rewards
           </a>
@@ -159,7 +193,8 @@ function Overview() {
           <CardHead eyebrow="Your journey" heading="Recent orders" action={<a className="account-btn account-btn--glass" href="/account/orders">See all</a>} />
           <ul className="account-mini">
             {orders.slice(0, 2).map((o) => {
-              const l = lineProducts(o)[0];
+              const l = o.lines[0];
+              if (!l) return null;
               return (
                 <li key={o.id}>
                   <a className="account-mini__row" href={`/account/orders/${o.id}`}>
@@ -172,7 +207,7 @@ function Overview() {
                       </span>
                       <span className={`account-tag account-tag--${o.status}`}>{statusLabel[o.status]}</span>
                     </span>
-                    <span className="account-mini__price">{money(orderTotals(o).total)}</span>
+                    <span className="account-mini__price">{money(o.total)}</span>
                   </a>
                 </li>
               );
@@ -207,13 +242,13 @@ function Overview() {
         <CardHead eyebrow="Recently viewed" heading="Caught your eye" />
         <ul className="account-viewed">
           {recentlyViewed.map((h) => {
-            const p = db.product(h);
+            const p = products.get(h);
             if (!p) return null;
             return (
               <li key={h}>
                 <a className="account-viewed__card" href={`/products/${h}`}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.images[0].src} alt="" width={358} height={305} loading="lazy" />
+                  <img src={p.images[0]?.src ?? ''} alt="" width={358} height={305} loading="lazy" />
                   <span className="account-viewed__row">
                     <span className="account-viewed__title">{p.title}</span>
                     <span className="account-viewed__price">{money(p.price)}</span>
@@ -235,12 +270,6 @@ function Overview() {
   methods, then Beauty profile (blush) beside Account protection. Round icon buttons edit / delete; "Set as default"
   and "Update" are underlined text links; "Enable" is a white pill.
 */
-const BEAUTY = [
-  { icon: 'drop', label: 'Skin type', value: 'Combination, dehydrated' },
-  { icon: 'bottle', label: 'Fragrance family', value: 'Woody floral, 22% extrait' },
-  { icon: 'sparkles', label: 'Undertone', value: 'Olive — shade 04.5' },
-  { icon: 'shield', label: 'Sensitivities', value: 'Fragrance-free eye area' },
-];
 
 function AddNew() {
   return (
@@ -253,7 +282,8 @@ function AddNew() {
   );
 }
 
-function Details() {
+function Details({ beautyProfile = [], notice = '' }: Pick<AccountProps, 'beautyProfile'> & { notice?: string }) {
+  const { customer, addresses, cards } = data();
   return (
     <div className="account-details">
       <div className="account-details__top">
@@ -352,7 +382,7 @@ function Details() {
         <section className="account-card account-card--tint">
           <CardHead eyebrow="Analysis" heading="Beauty profile" />
           <dl className="account-facts account-facts--icons">
-            {BEAUTY.map((b) => (
+            {beautyProfile.map((b) => (
               <div key={b.label}>
                 <span className="account-facts__icon" aria-hidden="true">
                   <Icon name={b.icon} />
@@ -370,9 +400,11 @@ function Details() {
             <li>
               <div>
                 <p className="account-sec__title">Password</p>
-                <p className="account-sec__text">Last updated 3 months ago</p>
+                <p className="account-sec__text">{notice || 'Changing it signs your other devices out'}</p>
               </div>
-              <SmallAction label="Update" done="Check your email (demo)" className="account-link account-link--btn account-link--line" />
+              <a className="account-link account-link--btn account-link--line" href="/account/change-password">
+                Update
+              </a>
             </li>
             <li>
               <div>
@@ -390,8 +422,11 @@ function Details() {
 
 /* ------------------------------ Orders ------------------------------ */
 function Orders() {
-  const rows: OrderRow[] = orders.map((o) => {
-    const ls = lineProducts(o);
+  const { orders } = data();
+  const rows: OrderRow[] = orders
+    .filter((o) => o.lines.length > 0)
+    .map((o) => {
+    const ls = o.lines;
     return {
       id: o.id,
       number: o.number,
@@ -402,7 +437,7 @@ function Orders() {
       title: ls[0].product.title,
       more: ls.length - 1,
       items: ls.reduce((n, l) => n + l.qty, 0),
-      total: money(orderTotals(o).total),
+      total: money(o.total),
       images: ls.slice(0, 2).map((l) => l.product.images[0].src),
       imageAlt: ls[0].product.title,
       tracking: o.tracking,
@@ -428,19 +463,22 @@ function Orders() {
 const STEPS = ['Placed', 'Prepared', 'Shipped', 'Out for delivery', 'Delivered'];
 // Figma: each progress step shows its own icon (public/icons)
 const STEP_ICONS = ['account-orders', 'track-prepared', 'track-shipped', 'track-out-for-delivery', 'track-delivered'];
+// The backend has no tracking events yet: the timeline shows the steps, with the two dates an order does
+// have (when it was placed, when it was delivered).
 const EVENTS = [
-  { t: 'Order confirmed', d: 'Your order has been received and is being prepared.', at: 'July 10, 2026 · 10:30 AM' },
-  { t: 'Order packed', d: 'Your order has been packed and is ready to ship.', at: 'July 10, 2026 · 1:30 PM' },
-  { t: 'Shipped', d: 'The parcel left the New York atelier with the carrier.', at: 'July 11, 2026 · 9:10 AM' },
-  { t: 'Nearby', d: 'The courier is in your area. Delivery is expected today.', at: 'July 15, 2026 · 8:00 AM' },
-  { t: 'Delivered', d: 'The parcel was handed over at the door.', at: 'July 15, 2026 · 1:30 PM' },
+  { t: 'Order confirmed', d: 'Your order has been received and is being prepared.' },
+  { t: 'Order packed', d: 'Your order has been packed and is ready to ship.' },
+  { t: 'Shipped', d: 'The parcel left our atelier with the carrier.' },
+  { t: 'Nearby', d: 'The courier is in your area. Delivery is expected today.' },
+  { t: 'Delivered', d: 'The parcel was handed over at the door.' },
 ];
 
 function OrderDetail({ order, track, back }: { order: Order; track: boolean; back: { href: string; label: string } }) {
   const idx = order.status === 'delivered' ? 5 : order.status === 'in-transit' ? 2 : 1; // steps done before the current one
-  const lines = lineProducts(order);
-  const { subtotal, total } = orderTotals(order);
-  const trackSub = ['Confirmed', 'In progress', 'In transit', 'ETA 2 hrs', order.eta];
+  const lines = order.lines;
+  const { subtotal, total } = order;
+  const trackSub = ['Confirmed', 'In progress', 'In transit', 'On its way', order.eta];
+  const eventAt = (i: number) => (i === 0 ? order.date : i === EVENTS.length - 1 ? order.eta : 'Done');
   return (
     <>
       <a className="account-back" href={back.href}>
@@ -456,7 +494,7 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
               </span>
               <span className="account-od__eta">
                 <Icon name="truck" />
-                {order.status === 'delivered' ? 'Delivered' : 'Estimated delivery'}: {order.eta}
+                {order.status === 'delivered' ? 'Delivered' : 'Estimated delivery'}: {order.eta || 'To be confirmed'}
               </span>
             </p>
           </div>
@@ -499,7 +537,7 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
                     </span>
                     <p className="account-timeline__title">{e.t}</p>
                     {track ? <p className="account-timeline__text">{e.d}</p> : null}
-                    <p className="account-timeline__at">{i < idx ? e.at : 'Pending'}</p>
+                    <p className="account-timeline__at">{i < idx ? eventAt(i) : 'Pending'}</p>
                   </li>
                 ))}
               </ol>
@@ -598,8 +636,8 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
                 <Icon name="truck" />
                 Tracking number
               </p>
-              <p className="account-od__code">{order.tracking}</p>
-              <p className="account-od__label">Estimated delivery: {order.eta}</p>
+              <p className="account-od__code">{order.tracking || 'Not shipped yet'}</p>
+              <p className="account-od__label">Estimated delivery: {order.eta || 'To be confirmed'}</p>
             </section>
           </div>
         </div>
@@ -624,8 +662,9 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
 
 /* ----------------------------- Wishlist ----------------------------- */
 function Wishlist() {
+  const { wishlist, products } = data();
   const items = wishlist
-    .map((w) => ({ w, p: db.product(w.handle) }))
+    .map((w) => ({ w, p: products.get(w.handle) }))
     .filter((x) => x.p)
     .map(({ w, p }) => ({
       handle: w.handle,
@@ -633,7 +672,7 @@ function Wishlist() {
       title: p!.title,
       price: money(p!.price),
       rating: p!.rating.value.toFixed(1),
-      image: p!.images[0].src,
+      image: p!.images[0]?.src ?? '',
     }));
   return (
     <section className="account-card">
@@ -644,14 +683,19 @@ function Wishlist() {
 }
 
 /* ------------------------------ Refills ------------------------------ */
-function Refills() {
+function Refills({ membership }: { membership?: AccountProps['membership'] }) {
+  const { subscriptions } = data();
   return (
     <>
+      {membership ? (
       <section className="account-card account-card--tint">
         <div className="account-card__head">
           <div className="account-member__tags">
-            <span className="account-tag">Active</span>
-            <span className="account-tag">Save $24</span>
+            {(membership.tags ?? []).map((tag) => (
+              <span className="account-tag" key={tag}>
+                {tag}
+              </span>
+            ))}
           </div>
           <div className="account-member__links">
             <a className="account-link account-link--icon" href="/account/rewards">
@@ -660,28 +704,19 @@ function Refills() {
             <SmallAction label="Cancel membership" done="Request sent (demo)" icon={<Icon name="close" />} className="account-link account-link--btn account-link--icon" />
           </div>
         </div>
-        <h2 className="account-card__title">Rose Gold annual membership</h2>
+        <h2 className="account-card__title">{membership.title}</h2>
         <dl className="account-facts account-facts--2 account-facts--member">
-          <div>
-            <dt>Billing cycle</dt>
-            <dd>Annual — $120/year</dd>
-          </div>
-          <div>
-            <dt>Next billing</dt>
-            <dd>January 15, 2027</dd>
-          </div>
-          <div>
-            <dt>Points balance</dt>
-            <dd>9,156 pts</dd>
-          </div>
-          <div>
-            <dt>Payment method</dt>
-            <dd>Visa ending in 4242</dd>
-          </div>
+          {(membership.facts ?? []).map((fact) => (
+            <div key={fact.label}>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))}
         </dl>
       </section>
+      ) : null}
       <section className="account-card">
-        <CardHead eyebrow="On rotation" heading="Your subscriptions" action={<span className="account-tag account-tag--default">2 active</span>} />
+        <CardHead eyebrow="On rotation" heading="Your subscriptions" action={<span className="account-tag account-tag--default">{subscriptions.length} active</span>} />
         <ul className="account-subs">
           {subscriptions.map((s) => (
             <li className="account-sub" key={s.name}>
@@ -720,6 +755,7 @@ function Refills() {
 
 /* ---------------------------- Preferences ---------------------------- */
 function Preferences() {
+  const { preferenceList } = data();
   return (
     <section className="account-card">
       <CardHead eyebrow="Make it yours" heading="Preferences" />
@@ -729,8 +765,14 @@ function Preferences() {
 }
 
 /* ------------------------------ Rewards ------------------------------ */
-function Rewards() {
-  const pct = Math.round((customer.points / 3400) * 100);
+function Rewards({ lead, steps = [], earn = [], redeem = [] }: Pick<AccountProps, 'lead' | 'steps' | 'earn' | 'redeem'>) {
+  const { customer, rewards } = data();
+  // The ring fills towards the top tier; the line under the balance names the next tier above the current one.
+  const top = rewards.tiers[rewards.tiers.length - 1];
+  const next = rewards.tiers.find((t) => t.minPoints > customer.points);
+  const goal = top?.minPoints || customer.points || 1;
+  const pct = Math.min(100, Math.round((customer.points / goal) * 100));
+  const toNext = next ? `${(next.minPoints - customer.points).toLocaleString(siteFormat().locale)} to ${next.name}` : 'Top tier reached';
   const circ = 2 * Math.PI * 88;
   return (
     <div className="account-rewards">
@@ -741,11 +783,9 @@ function Rewards() {
         <div className="account-rw-hero__text">
           <p className="account-eyebrow">Oro Circle</p>
           <h1 className="account-rw-hero__title">
-            Gold, <em>returned.</em>
+            {customer.tier}, <em>returned.</em>
           </h1>
-          <p className="account-rw-hero__lead">
-            Five points for every dollar. Points become travel sizes, full sizes, and doors that stay closed to everyone else.
-          </p>
+          {lead ? <p className="account-rw-hero__lead">{lead}</p> : null}
           <ul className="account-tiers">
             {rewards.tiers.map((t) => (
               <li className={`account-tier${t.active ? ' is-active' : ''}`} key={t.name}>
@@ -756,15 +796,15 @@ function Rewards() {
             ))}
           </ul>
         </div>
-        <div className="account-ring" role="img" aria-label={`Balance ${customer.points} points, 2150 to Champagne`}>
+        <div className="account-ring" role="img" aria-label={`Balance ${customer.points} points, ${toNext}`}>
           <svg viewBox="0 0 200 200" aria-hidden="true">
             <circle cx="100" cy="100" r="88" className="account-ring__track" />
             <circle cx="100" cy="100" r="88" className="account-ring__fill" strokeDasharray={`${(circ * pct) / 100} ${circ}`} />
           </svg>
-          <span className="account-ring__badge">Gold</span>
+          <span className="account-ring__badge">{customer.tier}</span>
           <span className="account-ring__label">Balance</span>
           <span className="account-ring__value">{customer.points}</span>
-          <span className="account-ring__next">2150 to Champagne</span>
+          <span className="account-ring__next">{toNext}</span>
         </div>
       </header>
 
@@ -772,7 +812,7 @@ function Rewards() {
         <h2 className="account-rw-section__title">How it works</h2>
         <p className="account-rw-section__lead">Membership is complimentary. Points post the day a parcel ships.</p>
         <ol className="account-how">
-          {rewards.steps.map((s, i) => (
+          {steps.map((s, i) => (
             <li className="account-how__item" key={s.title}>
               <span className="account-how__num">{String(i + 1).padStart(2, '0')}</span>
               <h3 className="account-how__title">{s.title}</h3>
@@ -793,7 +833,7 @@ function Rewards() {
             </tr>
           </thead>
           <tbody>
-            {rewards.earn.map((e) => (
+            {earn.map((e) => (
               <tr key={e.action}>
                 <th scope="row" data-label="Action">{e.action}</th>
                 <td data-label="Points" className="account-earn__pts">{e.points}</td>
@@ -807,7 +847,7 @@ function Rewards() {
       <section className="account-rw-section">
         <h2 className="account-rw-section__title">Pour your points into</h2>
         <ul className="account-redeem">
-          {rewards.redeem.map((r, i) => {
+          {redeem.map((r, i) => {
             const can = customer.points >= r.points;
             return (
               <li className="account-redeem__item" key={i}>
@@ -871,11 +911,162 @@ function SignOut() {
   );
 }
 
+/* ------------------- Sign in, sign up and passwords ------------------- */
+/*
+  Plain HTML forms that post to /api/account/* (src/app/api/account): they work without JavaScript, and a
+  password never passes through client code. A problem comes back as ?error=<text>, a success note as ?notice=.
+*/
+type AuthView = 'login' | 'register' | 'forgot-password' | 'reset-password' | 'change-password';
+
+interface AuthField {
+  name: string;
+  label: string;
+  type?: string;
+  auto: string;
+  /** Shown again after a failed post (never for passwords) */
+  keep?: boolean;
+  minLength?: number;
+}
+const PASSWORD_HINT = 8;
+const AUTH_FORMS: Record<AuthView, { action: string; submit: string; fields: AuthField[] }> = {
+  login: {
+    action: '/api/account/login',
+    submit: 'Sign in',
+    fields: [
+      { name: 'email', label: 'Email address', type: 'email', auto: 'email', keep: true },
+      { name: 'password', label: 'Password', type: 'password', auto: 'current-password' },
+    ],
+  },
+  register: {
+    action: '/api/account/register',
+    submit: 'Create account',
+    fields: [
+      { name: 'first_name', label: 'First name', auto: 'given-name', keep: true },
+      { name: 'last_name', label: 'Last name', auto: 'family-name', keep: true },
+      { name: 'email', label: 'Email address', type: 'email', auto: 'email', keep: true },
+      { name: 'password', label: `Password (at least ${PASSWORD_HINT} characters)`, type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+      { name: 'confirm', label: 'Password again', type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+    ],
+  },
+  'forgot-password': {
+    action: '/api/account/forgot-password',
+    submit: 'Email me a reset link',
+    fields: [{ name: 'email', label: 'Email address', type: 'email', auto: 'email', keep: true }],
+  },
+  'reset-password': {
+    action: '/api/account/reset-password',
+    submit: 'Set new password',
+    fields: [
+      { name: 'password', label: `New password (at least ${PASSWORD_HINT} characters)`, type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+      { name: 'confirm', label: 'New password again', type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+    ],
+  },
+  'change-password': {
+    action: '/api/account/change-password',
+    submit: 'Change password',
+    fields: [
+      { name: 'current_password', label: 'Current password', type: 'password', auto: 'current-password' },
+      { name: 'new_password', label: `New password (at least ${PASSWORD_HINT} characters)`, type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+      { name: 'confirm', label: 'New password again', type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+    ],
+  },
+};
+
+function AuthCard({
+  view,
+  search,
+  eyebrow,
+  heading,
+  text,
+}: {
+  view: AuthView;
+  search: Record<string, string | string[] | undefined>;
+  eyebrow?: string;
+  heading?: string;
+  text?: string;
+}) {
+  const form = AUTH_FORMS[view];
+  const error = first(search.error);
+  const notice = noticeOf(search.notice);
+  const sent = view === 'forgot-password' && first(search.sent) === '1';
+  const token = first(search.token);
+  const next = first(search.next);
+  return (
+    <div className="account-center">
+      <section className="account-card account-center__card">
+        {eyebrow ? <p className="account-eyebrow">{eyebrow}</p> : null}
+        {/* The heading is page content from the backend and may hold <em> */}
+        {heading ? <h1 className="account-center__title" dangerouslySetInnerHTML={{ __html: heading }} /> : null}
+        {text ? <p className="account-center__text">{text}</p> : null}
+        {notice ? (
+          <p className="account-status" role="status">
+            {notice}
+          </p>
+        ) : null}
+        {sent ? (
+          <p className="account-status" role="status">
+            If that address has an account, a reset link is on its way. It works once, for a limited time. Check your inbox and your spam folder.
+          </p>
+        ) : view === 'reset-password' && !token ? (
+          <p className="account-status account-status--error" role="alert">
+            This reset link is not complete. Ask for a new one.
+          </p>
+        ) : (
+          <form className="account-form account-track__form" action={form.action} method="post">
+            {view === 'login' && next ? <input type="hidden" name="next" value={next} /> : null}
+            {view === 'reset-password' ? <input type="hidden" name="token" value={token} /> : null}
+            {form.fields.map((f) => (
+              <label className="account-field" key={f.name}>
+                <span>{f.label}</span>
+                <input
+                  name={f.name}
+                  type={f.type ?? 'text'}
+                  required
+                  minLength={f.minLength}
+                  autoComplete={f.auto}
+                  defaultValue={f.keep ? first(search[f.name]) : undefined}
+                />
+              </label>
+            ))}
+            <button type="submit" className="account-btn account-btn--solid">
+              {form.submit}
+            </button>
+            <p className="account-status account-status--error" role="alert">
+              {error}
+            </p>
+          </form>
+        )}
+        <div className="account-center__actions">
+          {view === 'login' ? (
+            <>
+              <a className="account-link account-link--line" href="/account/forgot-password">
+                Forgot your password?
+              </a>
+              <a className="account-link account-link--line" href="/account/register">
+                Create an account
+              </a>
+            </>
+          ) : view === 'change-password' ? (
+            <a className="account-link account-link--line" href="/account/details">
+              Back to my details
+            </a>
+          ) : (
+            <a className="account-link account-link--line" href="/account/login">
+              {view === 'register' ? 'I already have an account' : 'Back to sign in'}
+            </a>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 /* ----------------------- Public order tracking ----------------------- */
-function PublicTrack({ search }: { search: Record<string, string | string[] | undefined> }) {
+async function PublicTrack({ search, exampleOrder }: { search: Record<string, string | string[] | undefined>; exampleOrder?: string }) {
   const q = first(search.order);
   const email = first(search.email);
-  const order = q ? findOrder(q) : undefined;
+  // The order opens only with the email it was placed with (the backend checks it).
+  const order = q && email ? await loadOrderView(q, email) : null;
   if (order) {
     return <OrderDetail order={order} track back={{ href: '/track-order', label: 'Track another order' }} />;
   }
@@ -886,15 +1077,65 @@ function PublicTrack({ search }: { search: Record<string, string | string[] | un
         <h1 className="account-center__title">
           Where is my <em>parcel?</em>
         </h1>
-        <p className="account-center__text">Enter the order number from your confirmation email. Try ORO-2026-0731.</p>
-        <TrackForm defaultOrder={q} defaultEmail={email} error={q ? 'We could not find that order. Check the number and try again.' : ''} />
+        <p className="account-center__text">Enter the order number from your confirmation email and the email address you ordered with.{exampleOrder ? ` Try ${exampleOrder}.` : ''}</p>
+        <TrackForm defaultOrder={q} defaultEmail={email} placeholder={exampleOrder} error={q ? 'We could not find that order. Check the number and the email address and try again.' : ''} />
       </section>
     </div>
   );
 }
 
-export default function Account({ id, view, context }: AccountProps & { id: string; context?: PageContext }) {
+/** Views that need a signed-in customer, and the path of each (to come back to after signing in) */
+const CUSTOMER_VIEWS: Partial<Record<AccountView, string>> = {
+  overview: '/account',
+  details: '/account/details',
+  orders: '/account/orders',
+  'order-details': '/account/orders',
+  track: '/account/track',
+  wishlist: '/account/wishlist',
+  rewards: '/account/rewards',
+  refills: '/account/refills',
+  preferences: '/account/preferences',
+  'change-password': '/account/change-password',
+};
+/** Views for visitors who are not signed in: a signed-in customer is sent to their account instead */
+const GUEST_VIEWS: AccountView[] = ['login', 'register'];
+
+export default async function Account({
+  id,
+  view,
+  beautyProfile,
+  lead,
+  steps,
+  earn,
+  redeem,
+  membership,
+  exampleOrder,
+  eyebrow,
+  heading,
+  text,
+  context,
+}: AccountProps & { id: string; context?: PageContext }) {
   const search = context?.searchParams ?? {};
+
+  const comeBackTo = CUSTOMER_VIEWS[view];
+  if (comeBackTo) {
+    const user = await currentUser();
+    const login = `/account/login?next=${encodeURIComponent(comeBackTo)}`;
+    if (!user || user.customerId === null) {
+      // Cookies that no longer work (the session ended, or it is the admin's): a page render cannot clear
+      // them, so the sign-out route does, then the sign-in page opens.
+      const stale = !!user || (await cookies()).has(SIGNED_IN_COOKIE);
+      redirect(stale ? `/api/account/logout?next=${encodeURIComponent(login)}` : login);
+    }
+    if (view !== 'change-password') {
+      const loaded = await loadAccountData(String(user.customerId), (redeem ?? []).map((r) => r.handle));
+      if (!loaded) redirect(`/api/account/logout?next=${encodeURIComponent(login)}`);
+      accountBox().data = loaded;
+    }
+  } else if (GUEST_VIEWS.includes(view) && (await currentUser())?.customerId != null) {
+    redirect('/account');
+  }
+
   let body: React.ReactNode;
   let shellView: AccountView | null = null;
   switch (view) {
@@ -904,7 +1145,7 @@ export default function Account({ id, view, context }: AccountProps & { id: stri
       break;
     case 'details':
       shellView = 'details';
-      body = <Details />;
+      body = <Details beautyProfile={beautyProfile} notice={noticeOf(search.notice)} />;
       break;
     case 'orders':
       shellView = 'orders';
@@ -916,29 +1157,41 @@ export default function Account({ id, view, context }: AccountProps & { id: stri
       break;
     case 'refills':
       shellView = 'refills';
-      body = <Refills />;
+      body = <Refills membership={membership} />;
       break;
     case 'preferences':
       shellView = 'preferences';
       body = <Preferences />;
       break;
     case 'order-details': {
-      const order = findOrder(first(search.id));
+      // Only the customer's own orders open here
+      const wanted = first(search.id).replace(/^#/, '').trim().toLowerCase();
+      const order = data().orders.find((o) => o.id.toLowerCase() === wanted);
       if (!order) notFound();
       body = <OrderDetail order={order} track={false} back={{ href: '/account/orders', label: 'Back to orders' }} />;
       break;
     }
-    case 'track':
-      body = <OrderDetail order={orders.find((o) => o.status === 'in-transit')!} track back={{ href: '/account/orders', label: 'Back to orders' }} />;
+    case 'track': {
+      const order = data().orders.find((o) => o.status === 'in-transit') ?? data().orders[0];
+      if (!order) redirect('/account/orders');
+      body = <OrderDetail order={order} track back={{ href: '/account/orders', label: 'Back to orders' }} />;
       break;
+    }
     case 'rewards':
-      body = <Rewards />;
+      body = <Rewards lead={lead} steps={steps} earn={earn} redeem={redeem} />;
       break;
     case 'signout':
       body = <SignOut />;
       break;
     case 'track-order':
-      body = <PublicTrack search={search} />;
+      body = <PublicTrack search={search} exampleOrder={exampleOrder} />;
+      break;
+    case 'login':
+    case 'register':
+    case 'forgot-password':
+    case 'reset-password':
+    case 'change-password':
+      body = <AuthCard view={view} search={search} eyebrow={eyebrow} heading={heading} text={text} />;
       break;
   }
   return (

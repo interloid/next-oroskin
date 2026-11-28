@@ -1,48 +1,90 @@
 # Oroskin storefront (Next.js)
 
 A port of the Oroskin Shopify theme to Next.js 16 (App Router, React 19, TypeScript). Every page is drawn
-from **JSON**: a page is an ordered list of sections, and products, collections, articles and the cart come
-from a REST API. A mock of that API is built in, so the site runs with no backend.
+from **JSON**: a page is an ordered list of sections, and the site settings, pages, products, collections,
+articles, the cart and the customer account all come from the NestJS backend in `../oro-skin-api`.
+This repo holds no data of its own: the backend must be running.
 
 ## Run
 
 ```bash
+# 1. the backend (see ../oro-skin-api/README.md)
+cd ../oro-skin-api && npm install && npm run db:up && npm run db:deploy && npm run db:seed && npm run start:dev
+
+# 2. the storefront
+cp .env.example .env.local   # API_URL=http://localhost:4000/api
 npm install
-npm run dev          # http://localhost:3000
-npm run build && npm start
+npm run dev -- -p 3100       # http://localhost:3100
+npm run build && npm start   # the build reads the backend to generate the static pages
 npm run lint
-npx tsc --noEmit -p .
+npx tsc --noEmit
 ```
 
 ## Environment
 
-Copy `.env.example` to `.env.local`.
+Copy `.env.example` to `.env.local`. The variables are checked when the server starts (`src/lib/env.ts`); a
+wrong value stops the start with a message. None of them is sent to the browser.
 
 | Variable | Meaning |
 | --- | --- |
-| `API_URL` | Base URL of the real backend, e.g. `http://localhost:4000/api`. **Empty = the built-in mock.** |
+| `API_URL` | **Required.** Base URL of the backend, e.g. `http://localhost:4000/api` |
+| `API_KEY` | Shared key sent as `x-api-key`. Empty = not sent |
+| `API_TIMEOUT_MS` | How long to wait for one backend call. Default 8000 |
+| `CACHE_SECONDS` | How long content and catalogue answers are reused. Default 300; 0 = never |
+| `SITE_URL` | Public address of the storefront (absolute links in share buttons). Set it to let articles be generated ahead of time |
+| `REVALIDATE_SECRET` | Secret for `POST /api/revalidate`. Empty = that route is off |
 
-Switching backends needs only this variable: `src/lib/api.ts` calls `API_URL + <path>` when it is set, and the
-local mock (`src/lib/db.ts`) when it is not. The mock is also served over HTTP at `/api/*`
-(`src/app/api/**`), so the backend team can compare their responses with it.
-
-The API is documented in **[API-CONTRACT.md](./API-CONTRACT.md)** (for the NestJS team) and
-**[openapi.yaml](./openapi.yaml)**.
+The API is described by the backend's Swagger (`http://localhost:4000/docs`). `API-CONTRACT.md` and
+`openapi.yaml` in this repo are the first version of the contract and no longer complete.
 
 ## Where content lives
 
-| What | File (mock) | API |
-| --- | --- | --- |
-| Brand, menus, announcement bar, footer | `src/data/site.json` | `GET /api/site` |
-| Pages (sections + their props) | `src/data/pages/<slug>.json` | `GET /api/pages/<slug>` |
-| Products | `src/data/products.json` | `GET /api/products...` |
-| Collections | `src/data/collections.json` | `GET /api/collections...` |
-| Blog articles | `src/data/articles.json` | `GET /api/articles...` |
-| Cart | in memory (lost on restart) | `/api/cart/:id...` |
-| Images | `public/images/`, `public/cdn/` | absolute CDN URLs in production |
+Everything is in the backend's database, seeded from `../oro-skin-api/prisma/seed-data/us/` (US, dollars).
 
-Contract types: `src/lib/types.ts`. Money is always in **minor units** (`12500` = Rs. 125.00), formatted by
-`money()` in `src/lib/format.ts`.
+| What | Seed file | API |
+| --- | --- | --- |
+| Brand, menus, announcement bar, footer, currency, locale | `site.json` | `GET /site` |
+| Pages (sections + their props) | `pages/<slug>.json` | `GET /pages/<slug>` |
+| Products | `products.json` | `GET /products...` |
+| Collections | `collections.json` | `GET /collections...` |
+| Blog articles | `articles.json` | `GET /articles...` |
+| Discount codes | `discounts.json` | applied through the cart |
+| Cart, orders | (created by visitors) | `/cart/:id...`, `/orders` |
+| Accounts (sign-up, sign-in, passwords) | `users` are created by sign-up; the seed adds the admin and the demo customer | `/auth/...` |
+| The demo customer's account | `customers.json`, `customer_*.json`, `orders.json`, `reward_tiers.json` | `/customers/:id/...`, `/orders/:id` |
+| Images | `public/images/`, `public/cdn/` in this repo | absolute CDN URLs in production |
+
+Every answer is checked with Zod (`src/lib/schemas.ts`); the types in `src/lib/types.ts` are derived from
+those schemas. Money is always in **minor units** (`12500` = $125.00). The currency format and the locale
+come from the site settings, and `money()` in `src/lib/format.ts` applies them.
+
+## Rendering and caching
+
+| How | Pages |
+| --- | --- |
+| Generated ahead of time, refreshed every `CACHE_SECONDS` or on demand | Home, collections list, content pages, products, articles (with `SITE_URL`) |
+| Rendered on every request, catalogue data cached | Collection (sort, filters), blog listing, search |
+| Rendered on every request, never cached | Cart, checkout, account, track order |
+| In the browser | Cart count and sign-in state on the generated pages, cookie choices, account forms |
+
+## Sign-in
+
+Accounts live in the backend. The storefront's server keeps the visitor's tokens (a JWT access token and a
+refresh token) in HttpOnly cookies, so scripts in the page never see them, and refreshes the access token in
+`src/proxy.ts`. Pages: `/account/login`, `/account/register`, `/account/forgot-password`,
+`/account/reset-password`, `/account/change-password`. For a demo, sign in as `alexandra.rose@example.com`
+with the backend's `DEMO_CUSTOMER_PASSWORD`. In development, reset emails arrive in the backend's local mailbox
+(http://localhost:8025).
+
+To show a content change at once, the backend (or you) can call:
+
+```bash
+curl -X POST http://localhost:3100/api/revalidate -H "x-revalidate-secret: $REVALIDATE_SECRET" \
+  -H "content-type: application/json" -d '{ "tags": ["products", "page:home"] }'
+```
+
+Tags: `site`, `pages`, `products`, `collections`, `articles`, or one item (`page:<slug>`, `product:<handle>`,
+`collection:<handle>`, `article:<handle>`).
 
 Page slugs per route: `/` → `home`, `/products/:handle` → `product`, `/collections/:handle` → `collection`,
 `/collections` → `collections`, `/cart` → `cart`, `/search` → `search`, `/blogs/:blog` → `blog`,
@@ -50,7 +92,8 @@ Page slugs per route: `/` → `home`, `/products/:handle` → `product`, `/colle
 
 ## Change the design by JSON
 
-Open a page file, e.g. `src/data/pages/home.json`:
+Open a page file in the backend's seed data, e.g. `../oro-skin-api/prisma/seed-data/us/pages/home.json`
+(then `npm run db:seed` there):
 
 ```json
 {
@@ -92,7 +135,6 @@ changed without a deploy.
 | Script | What it does |
 | --- | --- |
 | `node scripts/build-registry.mjs` | Rebuilds `src/sections/registry.generated.ts`. **Run after adding a section file.** |
-| `node scripts/build-data.mjs` | Builds the mock data `src/data/*.json` from the theme's demo catalogue. |
 | `node scripts/extract-theme.mjs` | Copies every `{% stylesheet %}` / `{% javascript %}` from the Shopify theme into `public/theme*`. |
 | `node scripts/split-html.mjs` | Splits rendered Shopify pages into one HTML file per section (`reference/`). |
 | `node scripts/html-to-jsx.mjs` | Converts `reference/sections/*.html` into JSX (`src/sections/generated/`). |

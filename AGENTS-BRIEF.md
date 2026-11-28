@@ -23,11 +23,13 @@ It is a port of the Oroskin Shopify theme at `d:\shopify-oroskin\custom-built-ne
 4. Commerce data: `import { api } from '@/lib/api'` (`api.products(handles)`, `api.product(h)`, `api.collection(h)`,
    `api.articles()`, `api.recommendations(h)`, `api.cart()`), or `context` (`PageContext` in `src/components/PageRenderer.tsx`:
    `product`, `collection`, `article`, `searchParams`, `index`). Types: `src/lib/types.ts`. Money: `money()` from `@/lib/format`
-   (minor units: 900000 → "Rs. 9,000.00"). Products: `src/data/products.json` (images at `/images/<file>.webp`).
+   (minor units: 12500 → "$125.00"; the currency format comes from the backend's site settings). Products: the backend's
+   seed data `../oro-skin-api/prisma/seed-data/us/products.json` (images at `/images/<file>.webp`).
 5. Images: files referenced as `/cdn/shop/files/...` already exist in `public/` (query strings are ignored). Use one `src`
    (no Shopify `&width=` srcsets needed; a plain `srcSet` of the same file is fine to drop). Keep width/height/alt/sizes.
    `loading="eager"` + `fetchPriority="high"` only when `context.index === 0`, else `loading="lazy"`.
-6. Put the section's demo content into the page JSON `src/data/pages/<slug>.json`: the entry for your section already exists
+6. Put the section's demo content into the page JSON in the backend, `../oro-skin-api/prisma/seed-data/us/pages/<slug>.json`
+   (then `npm run db:seed` there): the entry for your section already exists
    with `"props": {}`; replace only YOUR entry's props (other agents edit other entries of the same file at the same time:
    re-read the file right before each edit, change only your entry).
 7. Run `node scripts/build-registry.mjs` after adding a section file.

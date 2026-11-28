@@ -57,3 +57,13 @@
   --radius-card: var(--radius-md); /* rounded-card: 25px info boxes */
   --shadow-raised: var(--shadow-collection); /* shadow-raised: card lift */
 }
+
+/*
+  Header account control on pages that are generated ahead of time: both the LOGIN pill and the account icon
+  are in the HTML (src/components/AccountLink.tsx) and the `signed-in` class on <html> (start-up script in
+  src/app/layout.tsx) picks one. Not in a layer, so it wins over the theme's display rules.
+*/
+html:not(.signed-in) [data-when='signed-in'],
+html.signed-in [data-when='signed-out'] {
+  display: none !important;
+}

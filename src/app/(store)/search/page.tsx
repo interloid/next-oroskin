@@ -1,5 +1,10 @@
-import PageRenderer from '@/components/PageRenderer';
+import PageRenderer, { pageMetadata } from '@/components/PageRenderer';
 
-export default async function SearchPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  return <PageRenderer slug="search" context={{ searchParams: await searchParams }} />;
+type Search = Record<string, string | string[] | undefined>;
+
+export const generateMetadata = () => pageMetadata('search');
+
+/** Search results: rendered per request (the query is in the URL); the product data behind it is cached. */
+export default async function SearchPage({ searchParams }: { searchParams: Promise<Search> }) {
+  return <PageRenderer slug="search" path="/search" visitor context={{ searchParams: await searchParams }} />;
 }

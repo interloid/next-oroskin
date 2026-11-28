@@ -283,7 +283,18 @@ export function DetailsForm({ name, phone, email, birthday }: { name: string; ph
   );
 }
 
-export function TrackForm({ defaultOrder = '', defaultEmail = '', error = '' }: { defaultOrder?: string; defaultEmail?: string; error?: string }) {
+export function TrackForm({
+  defaultOrder = '',
+  defaultEmail = '',
+  placeholder = '',
+  error = '',
+}: {
+  defaultOrder?: string;
+  defaultEmail?: string;
+  /** An example order number, from the page content */
+  placeholder?: string;
+  error?: string;
+}) {
   const router = useRouter();
   return (
     <form
@@ -297,7 +308,7 @@ export function TrackForm({ defaultOrder = '', defaultEmail = '', error = '' }: 
     >
       <label className="account-field">
         <span>Order number</span>
-        <input name="order" required defaultValue={defaultOrder} placeholder="ORO-2026-0731" autoComplete="off" />
+        <input name="order" required defaultValue={defaultOrder} placeholder={placeholder || undefined} autoComplete="off" />
       </label>
       <label className="account-field">
         <span>Email address</span>

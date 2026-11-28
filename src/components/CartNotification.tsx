@@ -4,7 +4,7 @@
  * Server component.
  */
 import Icon from '@/components/Icon';
-import site from '@/data/site.json';
+import { siteFormat } from '@/lib/format';
 
 export default function CartNotification() {
   return (
@@ -13,7 +13,7 @@ export default function CartNotification() {
       popover="manual"
       role="region"
       aria-label="Added to your bag"
-      data-money-format={site.moneyFormat}
+      data-money-format={siteFormat().moneyFormat}
       data-label-in-bag="In your bag: [count]"
       data-label-bag-one="Bag: 1 item"
       data-label-bag-other="Bag: 999999 items"

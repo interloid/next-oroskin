@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
  * - JSON  { name, email, message, phone?, topic?, orderNumber?, subject? } → { ok: true }   (the backend contract)
  * - HTML form post (the theme's contact forms: contact[email], contact[body], contact[First name] ...)
  *   → 303 back to the page with ?contact_posted=true, or ?contact_error=<reason>, like Shopify's /contact.
- * Mock: nothing is sent. With API_URL set, the form is forwarded to the backend as JSON.
+ * Both are forwarded to the backend's POST /contact as JSON.
  */
 export async function POST(req: Request) {
   const type = req.headers.get('content-type') ?? '';
@@ -23,7 +23,12 @@ export async function POST(req: Request) {
   if (!isText(body.message)) return badRequest('message is required (at most 5000 characters)');
   for (const [k, v] of Object.entries(body))
     if (v != null && typeof v !== 'string') return badRequest(`${k} must be a string`);
-  return json({ ok: true });
+  const res = await backendFetch('/contact', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  return json(await res.json().catch(() => ({})), res.status);
 }
 
 async function formPost(req: Request) {
@@ -46,7 +51,7 @@ async function formPost(req: Request) {
   if (!isEmail(email)) error = 'email';
   else if (!message) error = 'body';
 
-  if (!error && process.env.API_URL) {
+  if (!error) {
     const extra: Record<string, string> = {};
     for (const [k, v] of form.entries()) {
       const m = /^contact\[(.+)\]$/.exec(k);
