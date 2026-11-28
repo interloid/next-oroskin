@@ -1,4 +1,4 @@
-/** Shared helpers for the mock REST API (same error format as the NestJS backend: `{ error, message }`). */
+/** Shared helpers for the browser-facing API routes (same error format as the NestJS backend: `{ error, message }`). */
 import { NextResponse } from 'next/server';
 
 export const json = <T>(data: T, status = 200) => NextResponse.json(data, { status });

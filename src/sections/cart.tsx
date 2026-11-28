@@ -29,13 +29,13 @@ export interface CartProps extends SectionCommon {
   continueLink?: string;
   showNote?: boolean;
   showCoupons?: boolean;
-  /** Free shipping from this order total, in minor units (20000 = Rs. 200). 0 = no bar */
+  /** Free shipping from this order total, in minor units (20000 = $200). 0 = no bar */
   freeShippingThreshold?: number;
   /** "Links and highlights" colour override (hex) */
   highlightColor?: string;
 }
 
-/** Liquid money_without_trailing_zeros: "Rs. 200" instead of "Rs. 200.00" */
+/** Liquid money_without_trailing_zeros: "$200" instead of "$200.00" */
 const moneyShort = (amount: number) => money(amount).replace(/\.00(?!\d)/, '');
 
 const handleize = (s: string) =>

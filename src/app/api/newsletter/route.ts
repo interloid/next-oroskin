@@ -6,9 +6,9 @@ export const dynamic = 'force-dynamic';
 
 /**
  * POST /api/newsletter
- * - JSON { email } → { ok: true }   (the backend contract; mock: nothing is stored)
+ * - JSON { email } → { ok: true }   (forwarded to the backend)
  * - HTML form post (the footer form: contact[email]) → 303 back to the page with ?customer_posted=true
- *   or ?customer_error=email (Shopify's names). With API_URL set the email is forwarded to the backend.
+ *   or ?customer_error=email (Shopify's names). The email is forwarded to the backend.
  */
 export async function POST(req: Request) {
   const type = req.headers.get('content-type') ?? '';
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
       if (r.origin === origin) back = new URL(r.pathname + r.search, origin);
     }
     let ok = isEmail(email);
-    if (ok && process.env.API_URL) {
+    if (ok) {
       const res = await backendFetch('/newsletter', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -39,5 +39,10 @@ export async function POST(req: Request) {
   }
   const body = await readBody(req);
   if (!isEmail(body?.email)) return badRequest('email is missing or not a valid email address');
-  return json({ ok: true });
+  const res = await backendFetch('/newsletter', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ email: body.email }),
+  });
+  return json(await res.json().catch(() => ({})), res.status);
 }
