@@ -17,6 +17,7 @@
 import { Fragment } from 'react';
 import Icon from '@/components/Icon';
 import Price, { priceHtml, savePercent } from '@/components/Price';
+import { money } from '@/lib/format';
 import QuickAdd, { addName } from '@/components/QuickAdd';
 import type { Image, Product, Variant } from '@/lib/types';
 
@@ -90,7 +91,7 @@ function Placeholder({ style, mediaClass, Tag }: { style: string; mediaClass: st
             <Tag className="product-card__title">Product title</Tag>
           </div>
           <div className="price">
-            <span className="price__current">Rs. 21.00</span>
+            <span className="price__current">{money(2100)}</span>
           </div>
         </div>
       </div>

@@ -4,11 +4,13 @@ import { api } from '@/lib/api';
 
 type Search = Record<string, string | string[] | undefined>;
 
+/** A collection: rendered per request (sort, filters and page are in the URL); each answer behind it is cached. */
 export default async function CollectionRoute({ params, searchParams }: { params: Promise<{ handle: string }>; searchParams: Promise<Search> }) {
   const sp = await searchParams;
+  const { handle } = await params;
   const one = (k: string) => (Array.isArray(sp[k]) ? sp[k]![0] : (sp[k] as string | undefined));
   const many = (k: string) => (sp[k] == null ? undefined : ([] as string[]).concat(sp[k] as string | string[]));
-  const collection = await api.collection((await params).handle, {
+  const collection = await api.collection(handle, {
     sort: one('sort_by'),
     page: Number(one('page') ?? 1),
     type: many('filter.p.product_type'),
@@ -17,5 +19,5 @@ export default async function CollectionRoute({ params, searchParams }: { params
     maxPrice: one('filter.v.price.lte') ? Number(one('filter.v.price.lte')) * 100 : undefined,
   });
   if (!collection) notFound();
-  return <PageRenderer slug="collection" context={{ collection, searchParams: sp }} />;
+  return <PageRenderer slug="collection" path={`/collections/${handle}`} visitor context={{ collection, searchParams: sp }} />;
 }

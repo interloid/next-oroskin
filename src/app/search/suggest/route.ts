@@ -2,10 +2,11 @@
  * GET /search/suggest?q=…&section_id=predictive-search&resources[type]=…&resources[limit]=6
  * The header search popup's live results (theme JS <search-popup>). Same HTML as the theme's
  * sections/predictive-search.liquid, wrapped in <div id="shopify-section-predictive-search">.
- * Searches products, collections and articles from the API (or the mock).
+ * Searches products, collections and articles through the backend.
  */
 import { api } from '@/lib/api';
 import { priceHtml } from '@/components/Price';
+import { loadSiteFormat } from '@/lib/format';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,6 +21,7 @@ export async function GET(req: Request) {
   const limit = Math.min(10, Number(url.searchParams.get('resources[limit]') ?? 6) || 6);
   const term = q.toLowerCase();
 
+  loadSiteFormat(await api.site());
   const [products, collections, articles] = await Promise.all([
     types.includes('product') && q ? api.search(q) : Promise.resolve([]),
     types.includes('collection') && q ? api.collections() : Promise.resolve([]),

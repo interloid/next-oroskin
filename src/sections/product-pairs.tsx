@@ -10,9 +10,8 @@
 import Icon from '@/components/Icon';
 import type { PageContext } from '@/components/PageRenderer';
 import { api } from '@/lib/api';
-import { money } from '@/lib/format';
+import { money, siteFormat } from '@/lib/format';
 import type { Product, Variant } from '@/lib/types';
-import site from '@/data/site.json';
 import { sectionStyle, type SectionCommon } from '@/sections/shared';
 
 export interface ProductPairsProps extends SectionCommon {
@@ -172,7 +171,7 @@ export default async function ProductPairs({
         className={`product-pairs full-width section-width--${width} color-${common.colorScheme ?? 'scheme-2'}`}
         style={sectionStyle({ paddingTop: 64, paddingBottom: 64, ...common })}
         data-limit={limit}
-        data-money-format={site.moneyFormat}
+        data-money-format={siteFormat().moneyFormat}
         data-label-add="Add all to cart"
         data-label-added="Added"
         data-label-status="The bundle was added to your cart"

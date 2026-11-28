@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
+import SiteChrome from '@/components/SiteChrome';
 import { api } from '@/lib/api';
+import { loadSiteFormat } from '@/lib/format';
 import type { Article, CollectionPage, Product } from '@/lib/types';
 import { registry } from '@/sections/registry.generated';
 
@@ -13,12 +15,31 @@ export interface PageContext {
   index?: number;
 }
 
-/** Renders a page's sections from its JSON (src/data/pages/<slug>.json or GET /api/pages/<slug>). */
-export default async function PageRenderer({ slug, context = {} }: { slug: string; context?: PageContext }) {
-  const page = await api.page(slug);
+/**
+ * Renders one store page: the site chrome (announcement bar, header, footer) around the page's sections,
+ * which come from its JSON in the backend (GET /pages/<slug>).
+ * - `path`: the page's own URL path (the header marks the active menu link from it).
+ * - `visitor`: true for pages that are rendered per request (cart, checkout, account, search, filtered
+ *   lists); leave it out for pages that are generated ahead of time. See src/components/SiteChrome.tsx.
+ */
+export default async function PageRenderer({
+  slug,
+  path,
+  visitor = false,
+  context = {},
+}: {
+  slug: string;
+  path: string;
+  visitor?: boolean;
+  context?: PageContext;
+}) {
+  // Both are cached reads, asked together. The site's money and locale settings must be in place before
+  // any section formats a price (src/lib/format.ts).
+  const [page, site] = await Promise.all([api.page(slug), api.site()]);
+  loadSiteFormat(site);
   if (!page) notFound();
   return (
-    <>
+    <SiteChrome path={path} visitor={visitor}>
       {page.sections.map((s, index) => {
         const Section = registry[s.type];
         if (!Section) {
@@ -30,6 +51,6 @@ export default async function PageRenderer({ slug, context = {} }: { slug: strin
         }
         return <Section key={s.id} id={s.id} {...s.props} context={{ ...context, index }} />;
       })}
-    </>
+    </SiteChrome>
   );
 }

@@ -1,28 +1,15 @@
 /**
- * Account demo pages (Figma "account-*" screens). One section, one `view` per page; static mock data, no real auth.
- * Styles: public/theme/account.css (BEM, prefix account-).
+ * Account pages (Figma "account-*" screens). One section, one `view` per page.
+ * The customer's data comes from the backend (src/lib/account.ts) for the signed-in demo customer; a visitor
+ * who is not signed in is sent to the demo login. The rewards programme texts are this section's props (page
+ * content). Styles: public/theme/account.css (BEM, prefix account-).
  */
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import type { PageContext } from '@/components/PageRenderer';
 import Icon from '@/components/Icon';
-import { db } from '@/lib/db';
-import { money } from '@/lib/format';
-import {
-  addresses,
-  cards,
-  customer,
-  findOrder,
-  lineProducts,
-  orders,
-  orderTotals,
-  preferenceList,
-  recentlyViewed,
-  rewards,
-  statusLabel,
-  subscriptions,
-  wishlist,
-  type Order,
-} from '@/lib/account-data';
+import { accountBox, loadAccountData, loadOrderView, statusLabel, type AccountData, type OrderView as Order } from '@/lib/account';
+import { money, siteFormat } from '@/lib/format';
+import { customerId } from '@/lib/session';
 import { DetailsForm, IconAction, OrdersList, PrefToggles, SmallAction, TrackForm, WishlistList, type OrderRow } from '@/sections/_account-client';
 
 export type AccountView =
@@ -40,6 +27,23 @@ export type AccountView =
 
 export interface AccountProps {
   view: AccountView;
+  /** Rewards page: "How it works" steps */
+  steps?: { title: string; text: string }[];
+  /** Rewards page: ways to earn points */
+  earn?: { action: string; points: string; note: string }[];
+  /** Rewards page: what points can be traded for (`handle` = the product whose image is shown) */
+  redeem?: { handle: string; title: string; points: number; note: string }[];
+  /** Refills page: the membership card (title, small tags, label / value facts) */
+  membership?: { title: string; tags?: string[]; facts?: { label: string; value: string }[] };
+  /** Track order page: an order number shown as an example */
+  exampleOrder?: string;
+}
+
+/** The signed-in customer's data for this page render (put there by <Account> before any view is drawn) */
+function data(): AccountData {
+  const box = accountBox().data;
+  if (!box) throw new Error('Account data is not loaded');
+  return box;
 }
 
 const TABS: { view: AccountView; href: string; label: string; icon: string }[] = [
@@ -53,10 +57,10 @@ const TABS: { view: AccountView; href: string; label: string; icon: string }[] =
 ];
 
 const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? '';
-const img = (handle: string) => db.product(handle)?.images[0]?.src ?? '';
-const title = (handle: string) => db.product(handle)?.title ?? handle;
+const img = (handle: string) => data().products.get(handle)?.images[0]?.src ?? '';
 
 function Shell({ view, children }: { view: AccountView; children: React.ReactNode }) {
+  const { customer } = data();
   const pct = Math.round((customer.points / (customer.points + customer.pointsToNext)) * 100);
   return (
     <>
@@ -88,13 +92,13 @@ function Shell({ view, children }: { view: AccountView; children: React.ReactNod
         <div className="account-welcome__points">
           <p className="account-welcome__row">
             <span>Glow balance</span>
-            <strong>{customer.points.toLocaleString('en-US')} pts</strong>
+            <strong>{customer.points.toLocaleString(siteFormat().locale)} pts</strong>
           </p>
           <div className="account-meter" role="img" aria-label={`${pct}% of the way to ${customer.nextTier}`}>
             <span style={{ inlineSize: `${pct}%` }} />
           </div>
           <p className="account-welcome__next">
-            {customer.pointsToNext.toLocaleString('en-US')} points to {customer.nextTier}
+            {customer.pointsToNext.toLocaleString(siteFormat().locale)} points to {customer.nextTier}
           </p>
         </div>
       </section>
@@ -131,23 +135,28 @@ function CardHead({ eyebrow, heading, action }: { eyebrow: string; heading: stri
 
 /* ----------------------------- Overview ----------------------------- */
 function Overview() {
-  const transit = orders.find((o) => o.status === 'in-transit')!;
-  const tp = lineProducts(transit)[0];
+  const { customer, orders, subscriptions, recentlyViewed, products } = data();
+  const transit = orders.find((o) => o.status === 'in-transit');
+  const tp = transit?.lines[0];
   return (
     <>
       <div className="account-grid account-grid--2 account-grid--soft">
-        <section className="account-card account-card--tint">
-          <p className="account-eyebrow">In transit</p>
-          <h2 className="account-card__title">{tp.product.title}</h2>
-          <p className="account-card__text">Left the New York atelier this morning. Arriving Tuesday, before 9pm.</p>
-          <a className="account-btn account-btn--glass account-card__cta" href="/account/track">
-            Track the parcel
-          </a>
-        </section>
+        {transit && tp ? (
+          <section className="account-card account-card--tint">
+            <p className="account-eyebrow">In transit</p>
+            <h2 className="account-card__title">{tp.product.title}</h2>
+            <p className="account-card__text">{transit.eta ? `On its way to you. ${transit.statusNote}.` : 'On its way to you.'}</p>
+            <a className="account-btn account-btn--glass account-card__cta" href="/account/track">
+              Track the parcel
+            </a>
+          </section>
+        ) : null}
         <section className="account-card account-card--tint">
           <p className="account-eyebrow">Oro Circle</p>
-          <h2 className="account-card__title">1250 points to Champagne</h2>
-          <p className="account-card__text">Champagne opens full-size redemptions and the first pour of every new ferment.</p>
+          <h2 className="account-card__title">
+            {customer.nextTier ? `${customer.pointsToNext.toLocaleString(siteFormat().locale)} points to ${customer.nextTier}` : `${customer.points.toLocaleString(siteFormat().locale)} points`}
+          </h2>
+          <p className="account-card__text">Points become travel sizes, full sizes and early access. See what your balance opens.</p>
           <a className="account-btn account-btn--glass account-card__cta" href="/account/rewards">
             Open rewards
           </a>
@@ -159,7 +168,8 @@ function Overview() {
           <CardHead eyebrow="Your journey" heading="Recent orders" action={<a className="account-btn account-btn--glass" href="/account/orders">See all</a>} />
           <ul className="account-mini">
             {orders.slice(0, 2).map((o) => {
-              const l = lineProducts(o)[0];
+              const l = o.lines[0];
+              if (!l) return null;
               return (
                 <li key={o.id}>
                   <a className="account-mini__row" href={`/account/orders/${o.id}`}>
@@ -172,7 +182,7 @@ function Overview() {
                       </span>
                       <span className={`account-tag account-tag--${o.status}`}>{statusLabel[o.status]}</span>
                     </span>
-                    <span className="account-mini__price">{money(orderTotals(o).total)}</span>
+                    <span className="account-mini__price">{money(o.total)}</span>
                   </a>
                 </li>
               );
@@ -207,13 +217,13 @@ function Overview() {
         <CardHead eyebrow="Recently viewed" heading="Caught your eye" />
         <ul className="account-viewed">
           {recentlyViewed.map((h) => {
-            const p = db.product(h);
+            const p = products.get(h);
             if (!p) return null;
             return (
               <li key={h}>
                 <a className="account-viewed__card" href={`/products/${h}`}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.images[0].src} alt="" width={358} height={305} loading="lazy" />
+                  <img src={p.images[0]?.src ?? ''} alt="" width={358} height={305} loading="lazy" />
                   <span className="account-viewed__row">
                     <span className="account-viewed__title">{p.title}</span>
                     <span className="account-viewed__price">{money(p.price)}</span>
@@ -254,6 +264,7 @@ function AddNew() {
 }
 
 function Details() {
+  const { customer, addresses, cards } = data();
   return (
     <div className="account-details">
       <div className="account-details__top">
@@ -390,8 +401,11 @@ function Details() {
 
 /* ------------------------------ Orders ------------------------------ */
 function Orders() {
-  const rows: OrderRow[] = orders.map((o) => {
-    const ls = lineProducts(o);
+  const { orders } = data();
+  const rows: OrderRow[] = orders
+    .filter((o) => o.lines.length > 0)
+    .map((o) => {
+    const ls = o.lines;
     return {
       id: o.id,
       number: o.number,
@@ -402,7 +416,7 @@ function Orders() {
       title: ls[0].product.title,
       more: ls.length - 1,
       items: ls.reduce((n, l) => n + l.qty, 0),
-      total: money(orderTotals(o).total),
+      total: money(o.total),
       images: ls.slice(0, 2).map((l) => l.product.images[0].src),
       imageAlt: ls[0].product.title,
       tracking: o.tracking,
@@ -428,19 +442,22 @@ function Orders() {
 const STEPS = ['Placed', 'Prepared', 'Shipped', 'Out for delivery', 'Delivered'];
 // Figma: each progress step shows its own icon (public/icons)
 const STEP_ICONS = ['account-orders', 'track-prepared', 'track-shipped', 'track-out-for-delivery', 'track-delivered'];
+// The backend has no tracking events yet: the timeline shows the steps, with the two dates an order does
+// have (when it was placed, when it was delivered).
 const EVENTS = [
-  { t: 'Order confirmed', d: 'Your order has been received and is being prepared.', at: 'July 10, 2026 · 10:30 AM' },
-  { t: 'Order packed', d: 'Your order has been packed and is ready to ship.', at: 'July 10, 2026 · 1:30 PM' },
-  { t: 'Shipped', d: 'The parcel left the New York atelier with the carrier.', at: 'July 11, 2026 · 9:10 AM' },
-  { t: 'Nearby', d: 'The courier is in your area. Delivery is expected today.', at: 'July 15, 2026 · 8:00 AM' },
-  { t: 'Delivered', d: 'The parcel was handed over at the door.', at: 'July 15, 2026 · 1:30 PM' },
+  { t: 'Order confirmed', d: 'Your order has been received and is being prepared.' },
+  { t: 'Order packed', d: 'Your order has been packed and is ready to ship.' },
+  { t: 'Shipped', d: 'The parcel left our atelier with the carrier.' },
+  { t: 'Nearby', d: 'The courier is in your area. Delivery is expected today.' },
+  { t: 'Delivered', d: 'The parcel was handed over at the door.' },
 ];
 
 function OrderDetail({ order, track, back }: { order: Order; track: boolean; back: { href: string; label: string } }) {
   const idx = order.status === 'delivered' ? 5 : order.status === 'in-transit' ? 2 : 1; // steps done before the current one
-  const lines = lineProducts(order);
-  const { subtotal, total } = orderTotals(order);
-  const trackSub = ['Confirmed', 'In progress', 'In transit', 'ETA 2 hrs', order.eta];
+  const lines = order.lines;
+  const { subtotal, total } = order;
+  const trackSub = ['Confirmed', 'In progress', 'In transit', 'On its way', order.eta];
+  const eventAt = (i: number) => (i === 0 ? order.date : i === EVENTS.length - 1 ? order.eta : 'Done');
   return (
     <>
       <a className="account-back" href={back.href}>
@@ -499,7 +516,7 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
                     </span>
                     <p className="account-timeline__title">{e.t}</p>
                     {track ? <p className="account-timeline__text">{e.d}</p> : null}
-                    <p className="account-timeline__at">{i < idx ? e.at : 'Pending'}</p>
+                    <p className="account-timeline__at">{i < idx ? eventAt(i) : 'Pending'}</p>
                   </li>
                 ))}
               </ol>
@@ -624,8 +641,9 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
 
 /* ----------------------------- Wishlist ----------------------------- */
 function Wishlist() {
+  const { wishlist, products } = data();
   const items = wishlist
-    .map((w) => ({ w, p: db.product(w.handle) }))
+    .map((w) => ({ w, p: products.get(w.handle) }))
     .filter((x) => x.p)
     .map(({ w, p }) => ({
       handle: w.handle,
@@ -633,7 +651,7 @@ function Wishlist() {
       title: p!.title,
       price: money(p!.price),
       rating: p!.rating.value.toFixed(1),
-      image: p!.images[0].src,
+      image: p!.images[0]?.src ?? '',
     }));
   return (
     <section className="account-card">
@@ -644,14 +662,19 @@ function Wishlist() {
 }
 
 /* ------------------------------ Refills ------------------------------ */
-function Refills() {
+function Refills({ membership }: { membership?: AccountProps['membership'] }) {
+  const { subscriptions } = data();
   return (
     <>
+      {membership ? (
       <section className="account-card account-card--tint">
         <div className="account-card__head">
           <div className="account-member__tags">
-            <span className="account-tag">Active</span>
-            <span className="account-tag">Save $24</span>
+            {(membership.tags ?? []).map((tag) => (
+              <span className="account-tag" key={tag}>
+                {tag}
+              </span>
+            ))}
           </div>
           <div className="account-member__links">
             <a className="account-link account-link--icon" href="/account/rewards">
@@ -660,28 +683,19 @@ function Refills() {
             <SmallAction label="Cancel membership" done="Request sent (demo)" icon={<Icon name="close" />} className="account-link account-link--btn account-link--icon" />
           </div>
         </div>
-        <h2 className="account-card__title">Rose Gold annual membership</h2>
+        <h2 className="account-card__title">{membership.title}</h2>
         <dl className="account-facts account-facts--2 account-facts--member">
-          <div>
-            <dt>Billing cycle</dt>
-            <dd>Annual — $120/year</dd>
-          </div>
-          <div>
-            <dt>Next billing</dt>
-            <dd>January 15, 2027</dd>
-          </div>
-          <div>
-            <dt>Points balance</dt>
-            <dd>9,156 pts</dd>
-          </div>
-          <div>
-            <dt>Payment method</dt>
-            <dd>Visa ending in 4242</dd>
-          </div>
+          {(membership.facts ?? []).map((fact) => (
+            <div key={fact.label}>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))}
         </dl>
       </section>
+      ) : null}
       <section className="account-card">
-        <CardHead eyebrow="On rotation" heading="Your subscriptions" action={<span className="account-tag account-tag--default">2 active</span>} />
+        <CardHead eyebrow="On rotation" heading="Your subscriptions" action={<span className="account-tag account-tag--default">{subscriptions.length} active</span>} />
         <ul className="account-subs">
           {subscriptions.map((s) => (
             <li className="account-sub" key={s.name}>
@@ -720,6 +734,7 @@ function Refills() {
 
 /* ---------------------------- Preferences ---------------------------- */
 function Preferences() {
+  const { preferenceList } = data();
   return (
     <section className="account-card">
       <CardHead eyebrow="Make it yours" heading="Preferences" />
@@ -729,8 +744,14 @@ function Preferences() {
 }
 
 /* ------------------------------ Rewards ------------------------------ */
-function Rewards() {
-  const pct = Math.round((customer.points / 3400) * 100);
+function Rewards({ steps = [], earn = [], redeem = [] }: Pick<AccountProps, 'steps' | 'earn' | 'redeem'>) {
+  const { customer, rewards } = data();
+  // The ring fills towards the top tier; the line under the balance names the next tier above the current one.
+  const top = rewards.tiers[rewards.tiers.length - 1];
+  const next = rewards.tiers.find((t) => t.minPoints > customer.points);
+  const goal = top?.minPoints || customer.points || 1;
+  const pct = Math.min(100, Math.round((customer.points / goal) * 100));
+  const toNext = next ? `${(next.minPoints - customer.points).toLocaleString(siteFormat().locale)} to ${next.name}` : 'Top tier reached';
   const circ = 2 * Math.PI * 88;
   return (
     <div className="account-rewards">
@@ -741,7 +762,7 @@ function Rewards() {
         <div className="account-rw-hero__text">
           <p className="account-eyebrow">Oro Circle</p>
           <h1 className="account-rw-hero__title">
-            Gold, <em>returned.</em>
+            {customer.tier}, <em>returned.</em>
           </h1>
           <p className="account-rw-hero__lead">
             Five points for every dollar. Points become travel sizes, full sizes, and doors that stay closed to everyone else.
@@ -756,15 +777,15 @@ function Rewards() {
             ))}
           </ul>
         </div>
-        <div className="account-ring" role="img" aria-label={`Balance ${customer.points} points, 2150 to Champagne`}>
+        <div className="account-ring" role="img" aria-label={`Balance ${customer.points} points, ${toNext}`}>
           <svg viewBox="0 0 200 200" aria-hidden="true">
             <circle cx="100" cy="100" r="88" className="account-ring__track" />
             <circle cx="100" cy="100" r="88" className="account-ring__fill" strokeDasharray={`${(circ * pct) / 100} ${circ}`} />
           </svg>
-          <span className="account-ring__badge">Gold</span>
+          <span className="account-ring__badge">{customer.tier}</span>
           <span className="account-ring__label">Balance</span>
           <span className="account-ring__value">{customer.points}</span>
-          <span className="account-ring__next">2150 to Champagne</span>
+          <span className="account-ring__next">{toNext}</span>
         </div>
       </header>
 
@@ -772,7 +793,7 @@ function Rewards() {
         <h2 className="account-rw-section__title">How it works</h2>
         <p className="account-rw-section__lead">Membership is complimentary. Points post the day a parcel ships.</p>
         <ol className="account-how">
-          {rewards.steps.map((s, i) => (
+          {steps.map((s, i) => (
             <li className="account-how__item" key={s.title}>
               <span className="account-how__num">{String(i + 1).padStart(2, '0')}</span>
               <h3 className="account-how__title">{s.title}</h3>
@@ -793,7 +814,7 @@ function Rewards() {
             </tr>
           </thead>
           <tbody>
-            {rewards.earn.map((e) => (
+            {earn.map((e) => (
               <tr key={e.action}>
                 <th scope="row" data-label="Action">{e.action}</th>
                 <td data-label="Points" className="account-earn__pts">{e.points}</td>
@@ -807,7 +828,7 @@ function Rewards() {
       <section className="account-rw-section">
         <h2 className="account-rw-section__title">Pour your points into</h2>
         <ul className="account-redeem">
-          {rewards.redeem.map((r, i) => {
+          {redeem.map((r, i) => {
             const can = customer.points >= r.points;
             return (
               <li className="account-redeem__item" key={i}>
@@ -872,10 +893,10 @@ function SignOut() {
 }
 
 /* ----------------------- Public order tracking ----------------------- */
-function PublicTrack({ search }: { search: Record<string, string | string[] | undefined> }) {
+async function PublicTrack({ search, exampleOrder }: { search: Record<string, string | string[] | undefined>; exampleOrder?: string }) {
   const q = first(search.order);
   const email = first(search.email);
-  const order = q ? findOrder(q) : undefined;
+  const order = q ? await loadOrderView(q) : null;
   if (order) {
     return <OrderDetail order={order} track back={{ href: '/track-order', label: 'Track another order' }} />;
   }
@@ -886,15 +907,37 @@ function PublicTrack({ search }: { search: Record<string, string | string[] | un
         <h1 className="account-center__title">
           Where is my <em>parcel?</em>
         </h1>
-        <p className="account-center__text">Enter the order number from your confirmation email. Try ORO-2026-0731.</p>
-        <TrackForm defaultOrder={q} defaultEmail={email} error={q ? 'We could not find that order. Check the number and try again.' : ''} />
+        <p className="account-center__text">Enter the order number from your confirmation email.{exampleOrder ? ` Try ${exampleOrder}.` : ''}</p>
+        <TrackForm defaultOrder={q} defaultEmail={email} placeholder={exampleOrder} error={q ? 'We could not find that order. Check the number and try again.' : ''} />
       </section>
     </div>
   );
 }
 
-export default function Account({ id, view, context }: AccountProps & { id: string; context?: PageContext }) {
+/** Views that show the signed-in customer's data (the others work for any visitor) */
+const CUSTOMER_VIEWS: AccountView[] = ['overview', 'details', 'orders', 'order-details', 'track', 'wishlist', 'rewards', 'refills', 'preferences'];
+
+export default async function Account({
+  id,
+  view,
+  steps,
+  earn,
+  redeem,
+  membership,
+  exampleOrder,
+  context,
+}: AccountProps & { id: string; context?: PageContext }) {
   const search = context?.searchParams ?? {};
+
+  if (CUSTOMER_VIEWS.includes(view)) {
+    // No real sign-in yet: a visitor without a session is signed in as the demo customer.
+    const customer = await customerId();
+    if (!customer) redirect('/api/account/login');
+    const loaded = await loadAccountData(customer, (redeem ?? []).map((r) => r.handle));
+    if (!loaded) redirect('/api/account/login');
+    accountBox().data = loaded;
+  }
+
   let body: React.ReactNode;
   let shellView: AccountView | null = null;
   switch (view) {
@@ -916,29 +959,34 @@ export default function Account({ id, view, context }: AccountProps & { id: stri
       break;
     case 'refills':
       shellView = 'refills';
-      body = <Refills />;
+      body = <Refills membership={membership} />;
       break;
     case 'preferences':
       shellView = 'preferences';
       body = <Preferences />;
       break;
     case 'order-details': {
-      const order = findOrder(first(search.id));
+      // Only the customer's own orders open here
+      const wanted = first(search.id).replace(/^#/, '').trim().toLowerCase();
+      const order = data().orders.find((o) => o.id.toLowerCase() === wanted);
       if (!order) notFound();
       body = <OrderDetail order={order} track={false} back={{ href: '/account/orders', label: 'Back to orders' }} />;
       break;
     }
-    case 'track':
-      body = <OrderDetail order={orders.find((o) => o.status === 'in-transit')!} track back={{ href: '/account/orders', label: 'Back to orders' }} />;
+    case 'track': {
+      const order = data().orders.find((o) => o.status === 'in-transit') ?? data().orders[0];
+      if (!order) redirect('/account/orders');
+      body = <OrderDetail order={order} track back={{ href: '/account/orders', label: 'Back to orders' }} />;
       break;
+    }
     case 'rewards':
-      body = <Rewards />;
+      body = <Rewards steps={steps} earn={earn} redeem={redeem} />;
       break;
     case 'signout':
       body = <SignOut />;
       break;
     case 'track-order':
-      body = <PublicTrack search={search} />;
+      body = <PublicTrack search={search} exampleOrder={exampleOrder} />;
       break;
   }
   return (

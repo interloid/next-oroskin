@@ -1,13 +1,11 @@
 /**
- * Cart writes in one place. With API_URL set, every call goes to the backend REST API (API-CONTRACT.md
- * §10–15, §18); without it the local mock (src/lib/db.ts) answers. Same shapes either way.
+ * Cart writes in one place: every call goes to the backend REST API and every answer is checked with Zod.
  * Used by the Shopify AJAX cart shims (src/app/(store)/cart/*.js, src/cart/*) and the demo checkout.
  */
+import type { z } from 'zod';
 import { backendFetch } from './backend';
-import { db, findVariant } from './db';
-import type { Cart, CartLine } from './types';
-
-const API = process.env.API_URL;
+import { apiErrorSchema, cartAddSchema, cartSchema, orderSchema } from './schemas';
+import type { Cart, CartLine, Order } from './types';
 
 /** A refused cart change: `description` is shown to the visitor, `status` is the HTTP status */
 export class CartStoreError extends Error {
@@ -19,78 +17,65 @@ export class CartStoreError extends Error {
   }
 }
 
-async function call<T>(method: string, pathname: string, body?: unknown): Promise<T> {
+async function call<S extends z.ZodType>(method: string, pathname: string, schema: S, body?: unknown): Promise<z.infer<S>> {
   const res = await backendFetch(pathname, {
     method,
     headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
-  const data = await res.json().catch(() => ({}));
+  const data: unknown = await res.json().catch(() => ({}));
   if (!res.ok) {
-    const m = (data as { message?: unknown; description?: unknown }).description ?? (data as { message?: unknown }).message;
-    throw new CartStoreError(Array.isArray(m) ? m.join(', ') : String(m || `Cart error (${res.status})`), res.status);
+    const error = apiErrorSchema.safeParse(data);
+    const m = error.success ? (error.data.message ?? error.data.error) : undefined;
+    throw new CartStoreError(Array.isArray(m) ? m.join(', ') : m || `Cart error (${res.status})`, res.status);
   }
-  return data as T;
+  const result = schema.safeParse(data);
+  if (!result.success) {
+    console.error(`[backend] ${method} ${pathname}: the answer does not match the contract`, result.error.issues.slice(0, 5));
+    throw new CartStoreError('The cart could not be updated. Please try again.', 502);
+  }
+  return result.data;
 }
 
 const enc = encodeURIComponent;
-
-/** Local mock: the stock rules the backend applies (404 unknown variant, 422 sold out / above stock) */
-function checkStock(id: string, variantId: number, quantity: number, existing = true) {
-  const found = findVariant(variantId);
-  if (!found) throw new CartStoreError('Cannot find variant', 404);
-  if (!found.variant.available) throw new CartStoreError(`${found.product.title} is sold out.`);
-  const inCart = existing ? (db.cart(id).lines.find((l) => l.variantId === variantId)?.quantity ?? 0) : 0;
-  if (found.variant.inventory && inCart + quantity > found.variant.inventory) {
-    throw new CartStoreError(`You can only add ${found.variant.inventory} ${found.product.title} to the cart.`);
-  }
-}
 
 export interface OrderInput {
   customer: { email: string; firstName?: string; lastName?: string; phone?: string };
   shippingAddress: Record<string, string>;
 }
-export interface Order {
-  id: string;
-  cartId: string;
-  itemCount: number;
-  subtotal: number;
-  customer: { email: string };
-}
 
 export const cartStore = {
-  get: (id: string): Promise<Cart> => (API ? call<Cart>('GET', `/cart/${enc(id)}`) : Promise.resolve(db.cart(id))),
+  get: (id: string): Promise<Cart> => call('GET', `/cart/${enc(id)}`, cartSchema),
 
-  async add(id: string, variantId: number, quantity = 1): Promise<{ cart: Cart; line: CartLine }> {
-    if (API) return call('POST', `/cart/${enc(id)}/items`, { variantId, quantity });
-    checkStock(id, variantId, quantity);
-    return db.addToCart(id, variantId, quantity);
-  },
+  add: (id: string, variantId: number, quantity = 1): Promise<{ cart: Cart; line: CartLine }> =>
+    call('POST', `/cart/${enc(id)}/items`, cartAddSchema, { variantId, quantity }),
 
   /** key = a line key or a variant id; quantity 0 removes the line */
-  async setQuantity(id: string, key: string, quantity: number): Promise<Cart> {
-    if (API) return call('PATCH', `/cart/${enc(id)}/items/${enc(key)}`, { quantity });
-    const line = db.cart(id).lines.find((l) => l.key === key || String(l.variantId) === key);
-    if (!line) throw new CartStoreError('Cannot find the line item', 404);
-    if (quantity > line.quantity) checkStock(id, line.variantId, quantity, false);
-    return db.updateLine(id, line.key, quantity);
-  },
+  setQuantity: (id: string, key: string, quantity: number): Promise<Cart> =>
+    call('PATCH', `/cart/${enc(id)}/items/${enc(key)}`, cartSchema, { quantity }),
 
-  setNote: (id: string, note: string): Promise<Cart> =>
-    API ? call('PUT', `/cart/${enc(id)}/note`, { note }) : Promise.resolve(db.setNote(id, note)),
+  setNote: (id: string, note: string): Promise<Cart> => call('PUT', `/cart/${enc(id)}/note`, cartSchema, { note }),
 
-  addDiscount: (id: string, code: string): Promise<Cart> =>
-    API ? call('POST', `/cart/${enc(id)}/discounts`, { code }) : Promise.resolve(db.applyDiscount(id, code)),
+  addDiscount: (id: string, code: string): Promise<Cart> => call('POST', `/cart/${enc(id)}/discounts`, cartSchema, { code }),
 
-  clear: (id: string): Promise<Cart> => (API ? call('DELETE', `/cart/${enc(id)}`) : Promise.resolve(db.clearCart(id))),
+  removeDiscount: (id: string, code: string): Promise<Cart> => call('DELETE', `/cart/${enc(id)}/discounts/${enc(code)}`, cartSchema),
 
-  /** Mock checkout: creates the order and empties the cart */
-  async placeOrder(id: string, input: OrderInput): Promise<Order> {
-    if (API) return call('POST', '/orders', { cartId: id, ...input });
-    const cart = db.cart(id);
-    if (!cart.lines.length) throw new CartStoreError('The cart is empty', 400);
-    const order = { id: `ORO-${String(Date.now()).slice(-4)}`, cartId: id, itemCount: cart.itemCount, subtotal: cart.subtotal, customer: { email: input.customer.email } };
-    db.clearCart(id);
-    return order;
+  /** Replaces every attribute (name → text). The caller merges: see setAttributes in src/cart/shopify.ts */
+  setAttributes: (id: string, attributes: Record<string, string>): Promise<Cart> =>
+    call('PUT', `/cart/${enc(id)}/attributes`, cartSchema, { attributes }),
+
+  clear: (id: string): Promise<Cart> => call('DELETE', `/cart/${enc(id)}`, cartSchema),
+
+  /** Demo checkout: the backend creates the order and empties the cart */
+  placeOrder: (id: string, input: OrderInput): Promise<Order> => call('POST', '/orders', orderSchema, { cartId: id, ...input }),
+
+  /** One order by its public id ("ORO-1001"); null when there is none */
+  async order(orderId: string): Promise<Order | null> {
+    try {
+      return await call('GET', `/orders/${enc(orderId)}`, orderSchema);
+    } catch (error) {
+      if (error instanceof CartStoreError && error.status === 404) return null;
+      throw error;
+    }
   },
 };

@@ -6,6 +6,7 @@
  * by id from the answer (our route returns the whole page, which has the same ids).
  */
 import Icon from '@/components/Icon';
+import { currencySymbol, money } from '@/lib/format';
 import type { Filter } from '@/lib/types';
 
 type Params = Record<string, string | string[] | undefined>;
@@ -111,7 +112,7 @@ function FilterGroup({ filter, sectionId, params }: { filter: Filter; sectionId:
                 <div className="filter-price__boxes">
                   <label className="filter-price__box">
                     <span className="visually-hidden">Minimum price</span>
-                    <span aria-hidden="true">Rs.</span>
+                    <span aria-hidden="true">{currencySymbol()}</span>
                     <input
                       type="number"
                       name="filter.v.price.gte"
@@ -129,7 +130,7 @@ function FilterGroup({ filter, sectionId, params }: { filter: Filter; sectionId:
                   </span>
                   <label className="filter-price__box">
                     <span className="visually-hidden">Maximum price</span>
-                    <span aria-hidden="true">Rs.</span>
+                    <span aria-hidden="true">{currencySymbol()}</span>
                     <input
                       type="number"
                       name="filter.v.price.lte"
@@ -294,7 +295,7 @@ export function ActiveFilters({ filters, params, baseUrl, clearUrl }: { filters:
   for (const f of filters) {
     if (f.type === 'price_range') {
       if (price.min != null || price.max != null) {
-        const fmt = (m: number) => `Rs. ${(m / 100).toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+        const fmt = (m: number) => money(m);
         pills.push({
           label: `${fmt(price.min ?? 0)} – ${fmt(price.max ?? f.max ?? 0)}`,
           href: buildUrl(baseUrl, pairs.filter(([k]) => !k.startsWith('filter.v.price'))),

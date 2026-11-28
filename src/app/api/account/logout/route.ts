@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { SESSION_COOKIE } from '@/lib/session';
+import { SESSION_COOKIE, SIGNED_IN_COOKIE } from '@/lib/session';
 
 export const dynamic = 'force-dynamic';
 
@@ -7,5 +7,6 @@ export const dynamic = 'force-dynamic';
 export async function GET(req: Request) {
   const res = NextResponse.redirect(new URL('/', req.url), 303);
   res.cookies.delete(SESSION_COOKIE);
+  res.cookies.delete(SIGNED_IN_COOKIE);
   return res;
 }

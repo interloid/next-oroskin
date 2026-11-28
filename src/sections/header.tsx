@@ -14,6 +14,8 @@ export interface HeaderProps {
   cart?: Cart | null;
   transparent?: boolean;
   path?: string | null;
+  /** True on pages rendered per request: the account control is decided on the server (AccountLink) */
+  visitor?: boolean;
   colorScheme?: string; // bar + drawer, default scheme-1
   megaMenuScheme?: string; // default scheme-2
 }
@@ -172,7 +174,7 @@ function MegaPanel({ link, scheme, path }: { link: MenuItem; scheme?: string; pa
   );
 }
 
-export default function Header({ site, cart, transparent = false, path = null, colorScheme = 'scheme-1', megaMenuScheme = 'scheme-2' }: HeaderProps) {
+export default function Header({ site, cart, transparent = false, path = null, visitor = false, colorScheme = 'scheme-1', megaMenuScheme = 'scheme-2' }: HeaderProps) {
   const menu = site.menu ?? [];
   const count = cart?.itemCount ?? 0;
   const logoText = `${site.logo.text}${site.logo.accent}`;
@@ -424,7 +426,7 @@ export default function Header({ site, cart, transparent = false, path = null, c
               <CartCount count={count} />
 
               {/* Shopify's account component (no Shopify script here: only the LOGIN pill in its slot shows) */}
-              <AccountLink />
+              <AccountLink visitor={visitor} />
             </div>
           </div>
         </header>

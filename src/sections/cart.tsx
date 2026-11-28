@@ -162,7 +162,7 @@ export default async function CartSection({
   highlightColor,
   ...common
 }: CartProps & { id: string; context?: PageContext }) {
-  const cart = toShopifyCart(await api.cart());
+  const cart = await toShopifyCart(await api.cart());
   const empty = cart.item_count === 0;
   const total = money(cart.total_price);
 

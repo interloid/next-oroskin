@@ -1,34 +1,15 @@
 /**
- * Shopify AJAX cart API shim: turns our Cart (src/lib/types.ts) into the JSON Shopify's /cart.js answers,
- * and holds the cart state src/lib/db.ts doesn't have yet (cart attributes, Shopify's "discount" field that
- * replaces ALL codes, the last placed demo order). Used by the /cart/*.js route handlers, the cart section
- * and the demo checkout. Server only.
+ * Shopify AJAX cart API shim: turns the backend's Cart (src/lib/types.ts) into the JSON Shopify's /cart.js
+ * answers, which is what the theme JS expects. Used by the /cart/*.js route handlers, the cart section and
+ * the demo checkout. Server only.
+ * Nothing about the cart is kept in the storefront: lines, note, attributes, discount codes and their
+ * amounts all live in the backend (src/lib/cart-store.ts).
  */
+import { api } from '@/lib/api';
 import { cartStore, CartStoreError } from '@/lib/cart-store';
-import products from '@/data/products.json';
-import site from '@/data/site.json';
 import type { Cart, CartLine, Product } from '@/lib/types';
 
 export const CART_COOKIE = 'oro_cart';
-const P = products as Product[];
-
-/** Percent off the whole order per code (the contract has no discount amounts yet; mock: GLOW10) */
-const CODES: Record<string, number> = { GLOW10: 10 };
-
-interface Extras {
-  attributes: Record<string, string>;
-  /** Shopify's code list after a "discount" update; undefined = the store's own cart.discountCodes */
-  codes?: string[];
-  lastOrder?: { number: string; email: string; total: number; itemCount: number };
-}
-const store = globalThis as { __oroCartExtras?: Map<string, Extras> };
-const extrasMap: Map<string, Extras> = (store.__oroCartExtras ??= new Map());
-
-export function extras(id: string): Extras {
-  let e = extrasMap.get(id);
-  if (!e) extrasMap.set(id, (e = { attributes: {} }));
-  return e;
-}
 
 export { CartStoreError as CartError } from '@/lib/cart-store';
 
@@ -53,54 +34,58 @@ export async function addItems(id: string, items: { id: number; quantity: number
 
 /** key = a line key or a variant id (as a string). 0 removes the line. */
 export async function setQuantity(id: string, key: string, quantity: number) {
-  return cartStore.setQuantity(id, key, Math.max(0, Math.floor(Number(quantity) || 0)));
+  if (!key) throw new CartStoreError('Cannot find the line item', 404);
+  if (!Number.isFinite(quantity)) throw new CartStoreError('Quantity must be a number', 400);
+  return cartStore.setQuantity(id, key, Math.max(0, Math.floor(quantity)));
 }
 
 export const setNote = (id: string, note: string) => cartStore.setNote(id, note);
 
 /**
- * Shopify's "discount" field: a comma list that REPLACES every code. New codes go to the store (the
- * backend has no "remove code" endpoint), and the list itself is kept here, so a removed code disappears.
+ * Shopify's "discount" field: a comma list that REPLACES every code. Codes that are new are added in the
+ * backend and codes that are no longer in the list are removed there.
  */
 export async function setDiscounts(id: string, list: string) {
-  const codes = [...new Map(list.split(',').map((c) => c.trim()).filter(Boolean).map((c) => [c.toUpperCase(), c])).values()];
-  const known = (await cartStore.get(id)).discountCodes.map((d) => d.code.toUpperCase());
-  for (const code of codes) if (!known.includes(code.toUpperCase())) await cartStore.addDiscount(id, code);
-  extras(id).codes = codes;
+  const wanted = new Map(
+    list
+      .split(',')
+      .map((c) => c.trim())
+      .filter(Boolean)
+      .map((c) => [c.toUpperCase(), c]),
+  );
+  const known = (await cartStore.get(id)).discountCodes.map((d) => d.code);
+  for (const code of known) if (!wanted.has(code.toUpperCase())) await cartStore.removeDiscount(id, code);
+  const kept = new Set(known.map((c) => c.toUpperCase()));
+  for (const [upper, code] of wanted) if (!kept.has(upper)) await cartStore.addDiscount(id, code);
 }
 
-export function setAttributes(id: string, attributes: Record<string, unknown>) {
-  const a = extras(id).attributes;
+/** Shopify's "attributes" field: the given names are set, an empty value removes the name, others stay. */
+export async function setAttributes(id: string, attributes: Record<string, unknown>) {
+  const next = { ...(await cartStore.get(id)).attributes };
   for (const [k, v] of Object.entries(attributes ?? {})) {
-    if (v === '' || v == null) delete a[k];
-    else a[k] = String(v);
+    if (v === '' || v == null) delete next[k];
+    else next[k] = String(v);
   }
+  return cartStore.setAttributes(id, next);
 }
 
-export async function clearCart(id: string) {
-  await cartStore.clear(id);
-  const e = extras(id);
-  e.attributes = {};
-  e.codes = undefined;
-}
+/** Empties the cart: lines, note, attributes and discount codes */
+export const clearCart = (id: string) => cartStore.clear(id);
 
 // ---------------------------------------------------------------- Shopify JSON
 
-export function findVariant(variantId: number) {
-  for (const product of P) {
-    const variant = product.variants.find((v) => v.id === variantId);
-    if (variant) return { product, variant };
-  }
-  return null;
+export type ShopifyLine = ReturnType<typeof toShopifyLine>;
+export type ShopifyCart = Awaited<ReturnType<typeof toShopifyCart>>;
+
+/** The products of the cart's lines, by handle (a cached catalogue read) */
+async function productsOf(lines: CartLine[]): Promise<Map<string, Product>> {
+  const handles = [...new Set(lines.map((l) => l.productHandle))];
+  const products = handles.length ? await api.products(handles) : [];
+  return new Map(products.map((p) => [p.handle, p]));
 }
 
-export type ShopifyLine = ReturnType<typeof toShopifyLine>;
-export type ShopifyCart = ReturnType<typeof toShopifyCart>;
-
-export function toShopifyLine(line: CartLine) {
-  const found = findVariant(line.variantId);
-  const product = found?.product;
-  const variant = found?.variant;
+export function toShopifyLine(line: CartLine, product?: Product) {
+  const variant = product?.variants.find((v) => v.id === line.variantId);
   const onlyDefault = !product?.options.length;
   const image = line.image ?? variant?.image ?? product?.images[0]?.src ?? null;
   const optionsWithValues = (product?.options ?? []).map((o, i) => ({ name: o.name, value: variant?.options[i] ?? '' }));
@@ -145,50 +130,44 @@ export function toShopifyLine(line: CartLine) {
   };
 }
 
-export function toShopifyCart(cart: Cart) {
-  const e = extras(cart.id);
-  const items = cart.lines.map(toShopifyLine);
+/** One added line in Shopify's format (the answer of /cart/add.js) */
+export async function shopifyLines(lines: CartLine[]) {
+  const products = await productsOf(lines);
+  return lines.map((l) => toShopifyLine(l, products.get(l.productHandle)));
+}
+
+export async function toShopifyCart(cart: Cart) {
+  const items = await shopifyLines(cart.lines);
   const subtotal = cart.subtotal;
-  const codes = e.codes ?? cart.discountCodes.map((d) => d.code);
-  const known = new Map(cart.discountCodes.map((d) => [d.code.toUpperCase(), d.applicable]));
-  const discountCodes = codes.map((code) => ({
-    code,
-    applicable: (known.get(code.toUpperCase()) ?? Boolean(CODES[code.toUpperCase()])) && items.length > 0,
-  }));
-  const applications = discountCodes
-    .filter((d) => d.applicable && CODES[d.code.toUpperCase()])
-    .map((d) => {
-      const percent = CODES[d.code.toUpperCase()];
-      return {
-        type: 'discount_code',
-        key: d.code,
-        title: d.code,
-        description: '',
-        value: `${percent}.0`,
-        created_by_user: false,
-        value_type: 'percentage',
-        allocation_method: 'across',
-        target_selection: 'all',
-        target_type: 'line_item',
-        total_allocated_amount: Math.round((subtotal * percent) / 100),
-      };
-    });
-  const discount = Math.min(
-    subtotal,
-    applications.reduce((n, a) => n + a.total_allocated_amount, 0),
-  );
+  const discountCodes = cart.discountCodes.map((d) => ({ code: d.code, applicable: d.applicable && items.length > 0 }));
+  const applications = cart.discountCodes
+    .filter((d) => d.applicable && d.amount > 0)
+    .map((d) => ({
+      type: 'discount_code',
+      key: d.code,
+      title: d.code,
+      description: '',
+      value: d.percent != null ? d.percent.toFixed(1) : (d.amount / 100).toFixed(2),
+      created_by_user: false,
+      value_type: d.percent != null ? 'percentage' : 'fixed_amount',
+      allocation_method: 'across',
+      target_selection: 'all',
+      target_type: 'line_item',
+      total_allocated_amount: d.amount,
+    }));
+  const discount = Math.min(subtotal, cart.discountTotal);
   return {
     token: cart.id,
     note: cart.note ?? '',
-    attributes: { ...e.attributes },
+    attributes: { ...cart.attributes },
     original_total_price: subtotal,
-    total_price: subtotal - discount,
+    total_price: cart.total ?? subtotal - discount,
     total_discount: discount,
     total_weight: 0,
     item_count: cart.itemCount,
     items,
     requires_shipping: items.length > 0,
-    currency: cart.currency || site.currency,
+    currency: cart.currency,
     items_subtotal_price: subtotal,
     cart_level_discount_applications: applications,
     discount_codes: discountCodes,

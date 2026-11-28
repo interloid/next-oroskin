@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 };
 
 // Same start-up script as the theme's layout: no-js → js, and switch animations off if the script fails.
-const boot = `document.documentElement.classList.replace('no-js','js');setTimeout(function(){if(!window.customElements||!customElements.get('animate-on-scroll')){document.documentElement.classList.remove('animations-on')}},3000);`;
+// Plus: `signed-in` on <html> when the oro_signed_in cookie is there, so pages that are generated ahead of
+// time show the account icon instead of LOGIN from the first paint (src/components/AccountLink.tsx).
+const boot = `document.documentElement.classList.replace('no-js','js');if(/(?:^|; )oro_signed_in=1/.test(document.cookie)){document.documentElement.classList.add('signed-in')}setTimeout(function(){if(!window.customElements||!customElements.get('animate-on-scroll')){document.documentElement.classList.remove('animations-on')}},3000);`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
