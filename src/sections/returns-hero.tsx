@@ -34,7 +34,7 @@ export default function ReturnsHero({
             {badgeNumber ? (
               <div className="returns-hero__badge">
                 <span className="returns-hero__badge-number">{badgeNumber}</span>
-                {badgeLabel ? <span className="returns-hero__badge-label">{badgeLabel}</span> : null}
+                {badgeLabel ? <span className="returns-hero__badge-label text-label">{badgeLabel}</span> : null}
               </div>
             ) : null}
             <div className="returns-hero__copy">

@@ -1,5 +1,10 @@
-/* Tailwind without its preflight reset: the theme's critical.css is the base layer. */
-@layer theme, base, components, utilities;
+/*
+  Tailwind without its preflight reset: the theme's critical.css is the base layer.
+  The theme CSS (public/theme/*.css) sits in the `legacy` layer, after Tailwind's variables and before the
+  utilities, so a utility class always beats a theme rule. The same order is declared first in head.css:
+  whichever file the browser reads first fixes it.
+*/
+@layer theme, legacy, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
 
@@ -18,4 +23,37 @@
   --shadow-nav: 0 4px 15px 0 #bababa40;
   --shadow-card: 0 0 10px 0 #0000000d;
   --radius-pill: 50px;
+
+  /* The theme's breakpoints (max-width 749 / 989 / 1199px): max-tablet:, max-laptop:, max-desktop: */
+  --breakpoint-tablet: 46.875rem; /* 750px */
+  --breakpoint-laptop: 61.875rem; /* 990px */
+  --breakpoint-desktop: 75rem; /* 1200px */
+}
+
+/*
+  The theme's own variables (head.css) as utilities. `inline` makes each utility read the variable on the
+  element itself, so colour schemes (which redefine --color-accent etc. per section) and the clamp() type
+  scale keep working. Names differ from the theme's where the same name would point at itself.
+*/
+@theme inline {
+  --color-brand: var(--color-accent); /* text-brand, bg-brand */
+  --color-line-card: var(--color-card-border); /* border-line-card */
+  --color-raised: var(--color-surface-raised); /* bg-raised */
+
+  --spacing-xs: var(--space-xs); /* 8px:  p-xs, gap-xs, mt-xs ... */
+  --spacing-sm: var(--space-sm); /* 12px */
+  --spacing-md: var(--space-md); /* 16px */
+  --spacing-lg: var(--space-lg); /* 24px */
+  --spacing-xl: var(--space-xl); /* 32px */
+
+  --text-label: var(--font-size-label); /* 14 → 18px, uppercase labels */
+  --text-body-sm: var(--font-size-body-sm);
+  --text-body: var(--font-size-body);
+  --tracking-label: var(--letter-spacing-label);
+
+  --font-display: var(--font-heading--family); /* font-display: Canela headings */
+  --font-text: var(--font-body--family); /* font-text: Satoshi body */
+
+  --radius-card: var(--radius-md); /* rounded-card: 25px info boxes */
+  --shadow-raised: var(--shadow-collection); /* shadow-raised: card lift */
 }

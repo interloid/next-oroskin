@@ -40,9 +40,20 @@ Never edit those folders from this project.
 - Menus, header, footer: `src/data/site.json`. Products / collections / articles: `src/data/*.json` via
   `src/lib/db.ts` (mock); with `API_URL` set, `src/lib/api.ts` calls the NestJS backend instead.
   Contract for the backend team: `API-CONTRACT.md` + `openapi.yaml`.
-- CSS: the theme CSS is loaded unchanged from `public/theme/*.css` (`sections.css`, `critical.css`, ...);
-  new page CSS lives in `public/theme/pages-extra.css` (policy / shipping / cookies) and
-  `public/theme/account.css` (account pages). Theme JS web components: `public/theme.js`.
+- CSS: the theme CSS is loaded from `public/theme/*.css` (`sections.css`, `critical.css`, ...), each file wrapped
+  in `@layer legacy { }`. Layer order (`src/app/globals.css` and top of `head.css`):
+  `theme, legacy, base, components, utilities`, so a Tailwind utility always beats a theme rule.
+  Design CSS this project wrote is moving to Tailwind (branch `feat/tailwind-design`): shipping / cookies / policy
+  labels are done (old `pages-extra.css` deleted); `public/theme/account.css` (account pages) is next.
+  Tailwind tokens map to the theme variables in `globals.css` (`@theme inline`): `text-brand`, `bg-raised`,
+  `border-line-card`, `p-xl` / `gap-md` (theme `--space-*`), `text-label` / `text-body-sm`, `tracking-label`,
+  `font-display` / `font-text`, `rounded-card`, `shadow-raised`; breakpoints `max-tablet:` (<750),
+  `max-laptop:` (<990), `max-desktop:` (<1200). Theme JS web components: `public/theme.js`.
+  Converting: delete the old rule in the same change; grep `public/theme.js` for a class before dropping it;
+  a theme `!important` (6 in account.css, 6 in sections.css) beats even a `!` utility (important layers reverse),
+  so remove the `!important` rule rather than fighting it. When two utilities differ only by a variant
+  (`rtl:x` vs `x`), the winner depends on Tailwind's output order: prefer logical properties (`start-*`, `ps-*`).
+  After `git stash` / branch switches, if new utilities are missing, delete `.next` and restart (Turbopack cache).
 - Fonts (`public/theme/fonts.css`): headings Canela Text (`public/fonts/canela-text-trial/`), body Satoshi,
   the home hero swash lines Mussica Swash (`public/fonts/mussica/`). Trial licences: internal demo only.
 - Account / tracking icons (Figma): `public/icons/*.svg` (currentColor), used as `<Icon src="icons/account-orders.svg" />`.

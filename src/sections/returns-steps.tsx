@@ -29,7 +29,7 @@ export default function ReturnsSteps({ id, heading, steps = [], ...common }: Ret
                   <div className="return-step__body">
                     {s.title ? <h3 className="return-step__title">{s.title}</h3> : null}
                     {s.text ? <div className="return-step__text" dangerouslySetInnerHTML={{ __html: s.text }} /> : null}
-                    {s.label ? <p className="return-step__label">{s.label}</p> : null}
+                    {s.label ? <p className="return-step__label text-label">{s.label}</p> : null}
                   </div>
                 </div>
               ))}

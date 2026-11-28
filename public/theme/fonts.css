@@ -1,3 +1,5 @@
+/* Wrapped in a cascade layer so Tailwind utilities (a later layer) win over it, whatever the specificity. */
+@layer legacy {
 /* Figma fonts. Satoshi (body) = Fontshare, free for commercial use.
    Canela (headings, trial licence: demo only) and Mussica Swash (the hero swash line) from the Figma. */
 @font-face { font-family: Satoshi; src: url("/fonts/satoshi/Satoshi-Variable.woff2") format("woff2"); font-weight: 300 900; font-style: normal; font-display: swap; }
@@ -20,3 +22,5 @@
 /* Figma: the hero lines "It is time to" / "Unveil your" are Mussica Swash (not italic) */
 .hero .heading--accent-font { font-family: "Mussica Swash", var(--font-accent--family); font-style: normal; }
 .hero .heading--accent-font em, .hero .heading--accent-font i { font-style: normal; }
+
+}
