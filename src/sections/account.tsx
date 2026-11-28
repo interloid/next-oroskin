@@ -9,7 +9,9 @@ import type { PageContext } from '@/components/PageRenderer';
 import Icon from '@/components/Icon';
 import { accountBox, loadAccountData, loadOrderView, statusLabel, type AccountData, type OrderView as Order } from '@/lib/account';
 import { money, siteFormat } from '@/lib/format';
-import { customerId } from '@/lib/session';
+import { cookies } from 'next/headers';
+import { currentUser } from '@/lib/auth';
+import { SIGNED_IN_COOKIE } from '@/lib/session';
 import { DetailsForm, IconAction, OrdersList, PrefToggles, SmallAction, TrackForm, WishlistList, type OrderRow } from '@/sections/_account-client';
 
 export type AccountView =
@@ -23,7 +25,12 @@ export type AccountView =
   | 'refills'
   | 'preferences'
   | 'signout'
-  | 'track-order';
+  | 'track-order'
+  | 'login'
+  | 'register'
+  | 'forgot-password'
+  | 'reset-password'
+  | 'change-password';
 
 export interface AccountProps {
   view: AccountView;
@@ -41,6 +48,10 @@ export interface AccountProps {
   membership?: { title: string; tags?: string[]; facts?: { label: string; value: string }[] };
   /** Track order page: an order number shown as an example */
   exampleOrder?: string;
+  /** Sign-in, sign-up and password pages: the card's small label, heading (`<em>` allowed) and intro text */
+  eyebrow?: string;
+  heading?: string;
+  text?: string;
 }
 
 /** The signed-in customer's data for this page render (put there by <Account> before any view is drawn) */
@@ -261,7 +272,7 @@ function AddNew() {
   );
 }
 
-function Details({ beautyProfile = [] }: Pick<AccountProps, 'beautyProfile'>) {
+function Details({ beautyProfile = [], notice = '' }: Pick<AccountProps, 'beautyProfile'> & { notice?: string }) {
   const { customer, addresses, cards } = data();
   return (
     <div className="account-details">
@@ -379,9 +390,11 @@ function Details({ beautyProfile = [] }: Pick<AccountProps, 'beautyProfile'>) {
             <li>
               <div>
                 <p className="account-sec__title">Password</p>
-                <p className="account-sec__text">Last updated 3 months ago</p>
+                <p className="account-sec__text">{notice || 'Changing it signs your other devices out'}</p>
               </div>
-              <SmallAction label="Update" done="Check your email (demo)" className="account-link account-link--btn account-link--line" />
+              <a className="account-link account-link--btn account-link--line" href="/account/change-password">
+                Update
+              </a>
             </li>
             <li>
               <div>
@@ -888,11 +901,162 @@ function SignOut() {
   );
 }
 
+/* ------------------- Sign in, sign up and passwords ------------------- */
+/*
+  Plain HTML forms that post to /api/account/* (src/app/api/account): they work without JavaScript, and a
+  password never passes through client code. A problem comes back as ?error=<text>, a success note as ?notice=.
+*/
+type AuthView = 'login' | 'register' | 'forgot-password' | 'reset-password' | 'change-password';
+
+interface AuthField {
+  name: string;
+  label: string;
+  type?: string;
+  auto: string;
+  /** Shown again after a failed post (never for passwords) */
+  keep?: boolean;
+  minLength?: number;
+}
+const PASSWORD_HINT = 8;
+const AUTH_FORMS: Record<AuthView, { action: string; submit: string; fields: AuthField[] }> = {
+  login: {
+    action: '/api/account/login',
+    submit: 'Sign in',
+    fields: [
+      { name: 'email', label: 'Email address', type: 'email', auto: 'email', keep: true },
+      { name: 'password', label: 'Password', type: 'password', auto: 'current-password' },
+    ],
+  },
+  register: {
+    action: '/api/account/register',
+    submit: 'Create account',
+    fields: [
+      { name: 'first_name', label: 'First name', auto: 'given-name', keep: true },
+      { name: 'last_name', label: 'Last name', auto: 'family-name', keep: true },
+      { name: 'email', label: 'Email address', type: 'email', auto: 'email', keep: true },
+      { name: 'password', label: `Password (at least ${PASSWORD_HINT} characters)`, type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+      { name: 'confirm', label: 'Password again', type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+    ],
+  },
+  'forgot-password': {
+    action: '/api/account/forgot-password',
+    submit: 'Email me a reset link',
+    fields: [{ name: 'email', label: 'Email address', type: 'email', auto: 'email', keep: true }],
+  },
+  'reset-password': {
+    action: '/api/account/reset-password',
+    submit: 'Set new password',
+    fields: [
+      { name: 'password', label: `New password (at least ${PASSWORD_HINT} characters)`, type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+      { name: 'confirm', label: 'New password again', type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+    ],
+  },
+  'change-password': {
+    action: '/api/account/change-password',
+    submit: 'Change password',
+    fields: [
+      { name: 'current_password', label: 'Current password', type: 'password', auto: 'current-password' },
+      { name: 'new_password', label: `New password (at least ${PASSWORD_HINT} characters)`, type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+      { name: 'confirm', label: 'New password again', type: 'password', auto: 'new-password', minLength: PASSWORD_HINT },
+    ],
+  },
+};
+
+function AuthCard({
+  view,
+  search,
+  eyebrow,
+  heading,
+  text,
+}: {
+  view: AuthView;
+  search: Record<string, string | string[] | undefined>;
+  eyebrow?: string;
+  heading?: string;
+  text?: string;
+}) {
+  const form = AUTH_FORMS[view];
+  const error = first(search.error);
+  const notice = first(search.notice);
+  const sent = view === 'forgot-password' && first(search.sent) === '1';
+  const token = first(search.token);
+  const next = first(search.next);
+  return (
+    <div className="account-center">
+      <section className="account-card account-center__card">
+        {eyebrow ? <p className="account-eyebrow">{eyebrow}</p> : null}
+        {/* The heading is page content from the backend and may hold <em> */}
+        {heading ? <h1 className="account-center__title" dangerouslySetInnerHTML={{ __html: heading }} /> : null}
+        {text ? <p className="account-center__text">{text}</p> : null}
+        {notice ? (
+          <p className="account-status" role="status">
+            {notice}
+          </p>
+        ) : null}
+        {sent ? (
+          <p className="account-status" role="status">
+            If that address has an account, a reset link is on its way. It works once, for a limited time. Check your inbox and your spam folder.
+          </p>
+        ) : view === 'reset-password' && !token ? (
+          <p className="account-status account-status--error" role="alert">
+            This reset link is not complete. Ask for a new one.
+          </p>
+        ) : (
+          <form className="account-form account-track__form" action={form.action} method="post">
+            {view === 'login' && next ? <input type="hidden" name="next" value={next} /> : null}
+            {view === 'reset-password' ? <input type="hidden" name="token" value={token} /> : null}
+            {form.fields.map((f) => (
+              <label className="account-field" key={f.name}>
+                <span>{f.label}</span>
+                <input
+                  name={f.name}
+                  type={f.type ?? 'text'}
+                  required
+                  minLength={f.minLength}
+                  autoComplete={f.auto}
+                  defaultValue={f.keep ? first(search[f.name]) : undefined}
+                />
+              </label>
+            ))}
+            <button type="submit" className="account-btn account-btn--solid">
+              {form.submit}
+            </button>
+            <p className="account-status account-status--error" role="alert">
+              {error}
+            </p>
+          </form>
+        )}
+        <div className="account-center__actions">
+          {view === 'login' ? (
+            <>
+              <a className="account-link account-link--line" href="/account/forgot-password">
+                Forgot your password?
+              </a>
+              <a className="account-link account-link--line" href="/account/register">
+                Create an account
+              </a>
+            </>
+          ) : view === 'change-password' ? (
+            <a className="account-link account-link--line" href="/account/details">
+              Back to my details
+            </a>
+          ) : (
+            <a className="account-link account-link--line" href="/account/login">
+              {view === 'register' ? 'I already have an account' : 'Back to sign in'}
+            </a>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 /* ----------------------- Public order tracking ----------------------- */
 async function PublicTrack({ search, exampleOrder }: { search: Record<string, string | string[] | undefined>; exampleOrder?: string }) {
   const q = first(search.order);
   const email = first(search.email);
-  const order = q ? await loadOrderView(q) : null;
+  // The order opens only with the email it was placed with (the backend checks it).
+  const order = q && email ? await loadOrderView(q, email) : null;
   if (order) {
     return <OrderDetail order={order} track back={{ href: '/track-order', label: 'Track another order' }} />;
   }
@@ -903,15 +1067,28 @@ async function PublicTrack({ search, exampleOrder }: { search: Record<string, st
         <h1 className="account-center__title">
           Where is my <em>parcel?</em>
         </h1>
-        <p className="account-center__text">Enter the order number from your confirmation email.{exampleOrder ? ` Try ${exampleOrder}.` : ''}</p>
-        <TrackForm defaultOrder={q} defaultEmail={email} placeholder={exampleOrder} error={q ? 'We could not find that order. Check the number and try again.' : ''} />
+        <p className="account-center__text">Enter the order number from your confirmation email and the email address you ordered with.{exampleOrder ? ` Try ${exampleOrder}.` : ''}</p>
+        <TrackForm defaultOrder={q} defaultEmail={email} placeholder={exampleOrder} error={q ? 'We could not find that order. Check the number and the email address and try again.' : ''} />
       </section>
     </div>
   );
 }
 
-/** Views that show the signed-in customer's data (the others work for any visitor) */
-const CUSTOMER_VIEWS: AccountView[] = ['overview', 'details', 'orders', 'order-details', 'track', 'wishlist', 'rewards', 'refills', 'preferences'];
+/** Views that need a signed-in customer, and the path of each (to come back to after signing in) */
+const CUSTOMER_VIEWS: Partial<Record<AccountView, string>> = {
+  overview: '/account',
+  details: '/account/details',
+  orders: '/account/orders',
+  'order-details': '/account/orders',
+  track: '/account/track',
+  wishlist: '/account/wishlist',
+  rewards: '/account/rewards',
+  refills: '/account/refills',
+  preferences: '/account/preferences',
+  'change-password': '/account/change-password',
+};
+/** Views for visitors who are not signed in: a signed-in customer is sent to their account instead */
+const GUEST_VIEWS: AccountView[] = ['login', 'register'];
 
 export default async function Account({
   id,
@@ -923,17 +1100,30 @@ export default async function Account({
   redeem,
   membership,
   exampleOrder,
+  eyebrow,
+  heading,
+  text,
   context,
 }: AccountProps & { id: string; context?: PageContext }) {
   const search = context?.searchParams ?? {};
 
-  if (CUSTOMER_VIEWS.includes(view)) {
-    // No real sign-in yet: a visitor without a session is signed in as the demo customer.
-    const customer = await customerId();
-    if (!customer) redirect('/api/account/login');
-    const loaded = await loadAccountData(customer, (redeem ?? []).map((r) => r.handle));
-    if (!loaded) redirect('/api/account/login');
-    accountBox().data = loaded;
+  const comeBackTo = CUSTOMER_VIEWS[view];
+  if (comeBackTo) {
+    const user = await currentUser();
+    const login = `/account/login?next=${encodeURIComponent(comeBackTo)}`;
+    if (!user || user.customerId === null) {
+      // Cookies that no longer work (the session ended, or it is the admin's): a page render cannot clear
+      // them, so the sign-out route does, then the sign-in page opens.
+      const stale = !!user || (await cookies()).has(SIGNED_IN_COOKIE);
+      redirect(stale ? `/api/account/logout?next=${encodeURIComponent(login)}` : login);
+    }
+    if (view !== 'change-password') {
+      const loaded = await loadAccountData(String(user.customerId), (redeem ?? []).map((r) => r.handle));
+      if (!loaded) redirect(`/api/account/logout?next=${encodeURIComponent(login)}`);
+      accountBox().data = loaded;
+    }
+  } else if (GUEST_VIEWS.includes(view) && (await currentUser())?.customerId != null) {
+    redirect('/account');
   }
 
   let body: React.ReactNode;
@@ -945,7 +1135,7 @@ export default async function Account({
       break;
     case 'details':
       shellView = 'details';
-      body = <Details beautyProfile={beautyProfile} />;
+      body = <Details beautyProfile={beautyProfile} notice={first(search.notice)} />;
       break;
     case 'orders':
       shellView = 'orders';
@@ -985,6 +1175,13 @@ export default async function Account({
       break;
     case 'track-order':
       body = <PublicTrack search={search} exampleOrder={exampleOrder} />;
+      break;
+    case 'login':
+    case 'register':
+    case 'forgot-password':
+    case 'reset-password':
+    case 'change-password':
+      body = <AuthCard view={view} search={search} eyebrow={eyebrow} heading={heading} text={text} />;
       break;
   }
   return (

@@ -13,8 +13,7 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
   const wanted = (await searchParams).order;
   const orderId = Array.isArray(wanted) ? wanted[0] : wanted;
   loadSiteFormat(await api.site());
-  const found = orderId ? await cartStore.order(orderId) : null;
-  const order = found && found.cartId === (await cartIdFrom()) ? found : null;
+  const order = orderId ? await cartStore.order(orderId, await cartIdFrom()) : null;
   return (
     <SiteChrome path="/checkout/thank-you" visitor>
       <div className="shopify-section">

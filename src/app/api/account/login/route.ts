@@ -1,18 +1,38 @@
-import { NextResponse } from 'next/server';
-import { account } from '@/lib/account';
-import { SESSION_COOKIE, SESSION_MAX_AGE, SIGNED_IN_COOKIE } from '@/lib/session';
+import { auth, signInForm } from '@/lib/auth';
+import { safeNext, setSessionCookies } from '@/lib/session';
+import { firstIssue, forbidden, formFields, messageOf, sameOrigin, to } from '../_lib/form';
 
 export const dynamic = 'force-dynamic';
 
 /**
- * GET /api/account/login: demo sign-in (the header LOGIN pill). There are no passwords: the backend names
- * its demo customer, that customer's id goes into the session cookie, then /account opens.
+ * POST /api/account/login (the sign-in form: email, password, next).
+ * The backend checks the password and answers the tokens; they go into HttpOnly cookies and the visitor
+ * is sent on to `next` (a path on this site) or /account. A problem goes back to the form with the reason.
  */
-export async function GET(req: Request) {
-  const customer = await account.demoCustomer();
-  const res = NextResponse.redirect(new URL('/account', req.url), 303);
-  const base = { path: '/', sameSite: 'lax' as const, maxAge: SESSION_MAX_AGE };
-  res.cookies.set(SESSION_COOKIE, String(customer.id), { ...base, httpOnly: true });
-  res.cookies.set(SIGNED_IN_COOKIE, '1', base);
-  return res;
+export async function POST(req: Request) {
+  if (!sameOrigin(req)) return forbidden();
+  const fields = await formFields(req);
+  const next = safeNext(fields.next);
+  const back = (error: string) => to(req, '/account/login', { error, email: fields.email, next: fields.next });
+
+  const form = signInForm.safeParse(fields);
+  if (!form.success) return back(firstIssue(form.error));
+  try {
+    const session = await auth.signIn(form.data);
+    // The admin has no customer profile: the storefront's account pages are not for that account.
+    if (session.user.customerId === null) {
+      await auth.signOut(session.refreshToken ?? undefined);
+      return back('This account is for the admin portal. Sign in there.');
+    }
+    const res = to(req, next);
+    setSessionCookies(res.cookies, session);
+    return res;
+  } catch (error) {
+    return back(messageOf(error));
+  }
+}
+
+/** Old links to the demo sign-in end up on the sign-in page. */
+export function GET(req: Request) {
+  return to(req, '/account/login');
 }

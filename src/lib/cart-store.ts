@@ -69,10 +69,10 @@ export const cartStore = {
   /** Demo checkout: the backend creates the order and empties the cart */
   placeOrder: (id: string, input: OrderInput): Promise<Order> => call('POST', '/orders', orderSchema, { cartId: id, ...input }),
 
-  /** One order by its public id ("ORO-1001"); null when there is none */
-  async order(orderId: string): Promise<Order | null> {
+  /** The order made from this cart, by its public id ("ORO-1001"): the backend shows it only to that cart. Null when there is none */
+  async order(orderId: string, cartId: string): Promise<Order | null> {
     try {
-      return await call('GET', `/orders/${enc(orderId)}`, orderSchema);
+      return await call('GET', `/orders/${enc(orderId)}?cartId=${enc(cartId)}`, orderSchema);
     } catch (error) {
       if (error instanceof CartStoreError && error.status === 404) return null;
       throw error;

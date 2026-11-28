@@ -125,14 +125,16 @@ async function getOrNull<S extends z.ZodType>(pathname: string, schema: S): Prom
 const enc = encodeURIComponent;
 
 export const account = {
-  /** The customer the demo login signs in as */
-  demoCustomer: () => get('/customers/demo', customerSchema),
   customer: (id: string) => getOrNull(`/customers/${enc(id)}`, customerSchema),
   addresses: (id: string) => get(`/customers/${enc(id)}/addresses`, addressSchema.array()),
   paymentMethods: (id: string) => get(`/customers/${enc(id)}/payment-methods`, paymentMethodSchema.array()),
   orders: (id: string) => get(`/customers/${enc(id)}/orders`, orderDetailSchema.array()),
-  /** Any order by its public id ("ORO-2026-0742", letter case and a leading # ignored); null when there is none */
-  order: (orderId: string) => getOrNull(`/orders/${enc(orderId.trim())}`, orderDetailSchema),
+  /**
+   * One order by its public id ("ORO-2026-0742", letter case and a leading # ignored). The backend only
+   * shows it to its owner (the session), or with the email it was placed with. Null when there is none.
+   */
+  order: (orderId: string, email?: string) =>
+    getOrNull(`/orders/${enc(orderId.trim())}${email ? `?email=${enc(email.trim())}` : ''}`, orderDetailSchema),
   subscriptions: (id: string) => get(`/customers/${enc(id)}/subscriptions`, subscriptionSchema.array()),
   wishlist: (id: string) => get(`/customers/${enc(id)}/wishlist`, wishlistItemSchema.array()),
   recentlyViewed: (id: string) => get(`/customers/${enc(id)}/recently-viewed`, z.array(z.string())),
@@ -301,8 +303,8 @@ export async function productMap(handles: string[]): Promise<Map<string, Product
 }
 
 /** One order for the order pages (order details, track order): any order by its public id. */
-export async function loadOrderView(orderId: string): Promise<OrderView | null> {
-  const order = await account.order(orderId);
+export async function loadOrderView(orderId: string, email?: string): Promise<OrderView | null> {
+  const order = await account.order(orderId, email);
   if (!order) return null;
   return toOrderView(order, await productMap(order.lines.map((l) => l.productHandle)));
 }

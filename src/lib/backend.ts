@@ -7,6 +7,7 @@
  *                   The backend only trusts it together with a valid key (per-visitor rate limits).
  * - `x-request-id`  the incoming request's id (src/proxy.ts sets one per page view), else a new one,
  *                   so storefront and backend log lines can be matched
+ * - `authorization` `Bearer <access token>` when the visitor is signed in (the `oro_access` cookie)
  * Reading the incoming headers makes the page that calls it render on every request.
  *
  * backendRead(): for content that is the same for everybody (site, pages, products, collections,
@@ -25,6 +26,7 @@ import { headers } from 'next/headers';
 import { unstable_rethrow } from 'next/navigation';
 import { env } from './env';
 import { REQUEST_ID_HEADER, requestIdFrom } from './request-id';
+import { ACCESS_COOKIE } from './session';
 
 type HeaderSource = Pick<Headers, 'get'>;
 
@@ -35,10 +37,22 @@ export function clientIp(incoming: HeaderSource | null): string | null {
   return isIP(ip) ? ip : null;
 }
 
+/** One cookie of a Cookie header */
+export function cookieValue(header: string | null | undefined, name: string): string | undefined {
+  for (const part of (header ?? '').split(';')) {
+    const at = part.indexOf('=');
+    if (at > 0 && part.slice(0, at).trim() === name) return part.slice(at + 1).trim() || undefined;
+  }
+  return undefined;
+}
+
 /** Pure part: incoming request headers (or null) + env → the headers added to a backend call */
 export function backendHeaders(incoming: HeaderSource | null, vars: { API_KEY?: string } = env()) {
   const out: Record<string, string> = { [REQUEST_ID_HEADER]: requestIdFrom(incoming?.get(REQUEST_ID_HEADER)) };
   if (vars.API_KEY) out['x-api-key'] = vars.API_KEY;
+  // The signed-in visitor's access token (the HttpOnly cookie set by src/lib/session.ts), as a bearer token
+  const token = cookieValue(incoming?.get('cookie'), ACCESS_COOKIE);
+  if (token) out.authorization = `Bearer ${token}`;
   const ip = clientIp(incoming);
   if (ip) out['x-client-ip'] = ip;
   return out;

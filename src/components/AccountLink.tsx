@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import Icon from '@/components/Icon';
-import { SESSION_COOKIE } from '@/lib/session';
+import { SIGNED_IN_COOKIE } from '@/lib/session';
 
 function SignedIn({ when }: { when?: boolean }) {
   return (
@@ -13,7 +13,7 @@ function SignedIn({ when }: { when?: boolean }) {
 function SignedOut({ when }: { when?: boolean }) {
   return (
     <shopify-account className="header__account" menu="customer-account-main-menu" data-when={when ? 'signed-out' : undefined}>
-      <a href="/api/account/login" slot="signed-out-avatar" className="button header__login">
+      <a href="/account/login" slot="signed-out-avatar" className="button header__login">
         <Icon name="account" />
         <span className="header__login-text">Login</span>
       </a>
@@ -23,7 +23,7 @@ function SignedOut({ when }: { when?: boolean }) {
 
 /**
  * Header account control (server component).
- * - Signed out: the LOGIN pill (in Shopify's account component slot); it signs in (demo) and opens /account.
+ * - Signed out: the LOGIN pill (in Shopify's account component slot), a link to the sign-in page.
  * - Signed in: a round account icon like the search / cart buttons (Figma account screens), linking to /account.
  *
  * `visitor` true (pages rendered per request): the session cookie is read here and one of the two is rendered.
@@ -40,5 +40,6 @@ export default async function AccountLink({ visitor = false }: { visitor?: boole
       </>
     );
   }
-  return (await cookies()).has(SESSION_COOKIE) ? <SignedIn /> : <SignedOut />;
+  // The flag cookie lives as long as the session (the access token itself is short-lived and refreshed).
+  return (await cookies()).has(SIGNED_IN_COOKIE) ? <SignedIn /> : <SignedOut />;
 }
