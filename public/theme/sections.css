@@ -1,3 +1,5 @@
+/* Wrapped in a cascade layer so Tailwind utilities (a later layer) win over it, whatever the specificity. */
+@layer legacy {
 
 /* snippets/active-filters.liquid */
 
@@ -36574,3 +36576,5 @@
       font-size: 1.125rem;
     }
   }
+
+}

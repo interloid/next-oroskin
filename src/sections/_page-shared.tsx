@@ -21,6 +21,17 @@ export function Breadcrumb({ current, className }: { current: string; className?
   );
 }
 
+/**
+ * Tailwind: the design pixel `--px` of the 1920 frames (shipping, cookies). 1px at 1920 wide and above, scaled
+ * down with the viewport; with "fit the screen" on, also with the viewport height (the 1031px frame).
+ * Sizes are then written as max(<phone floor>, calc(<design px> * var(--px))).
+ */
+export const PAGE_PX =
+  '[--px:min(calc(100vw/1920),0.0625rem)] [&.section--screen-scale]:[--px:min(calc(100vw/1920),calc(100svh/1031))]';
+
+/** Tailwind: the gap above each block of the shipping / cookies pages (60 design px, at least --space-xl). */
+export const PAGE_BLOCK_GAP = 'mt-[max(var(--space-xl),calc(60*var(--px)))]';
+
 /** Section root classes + the shared padding / text-boost variables (theme: the root div of each section). */
 export function rootProps(
   cls: string,

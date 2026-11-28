@@ -1,3 +1,5 @@
+/* Wrapped in a cascade layer so Tailwind utilities (a later layer) win over it, whatever the specificity. */
+@layer legacy {
 /* Account demo pages (Figma "account-*" screens). BEM, prefix account-. Static mock data, no real auth. */
 
 .account {
@@ -2249,4 +2251,6 @@
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
 }

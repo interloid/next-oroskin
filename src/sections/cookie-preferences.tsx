@@ -4,7 +4,7 @@
  */
 import CookieChoices, { type CookieCategory } from '@/components/CookieChoices';
 import type { PageContext } from '@/components/PageRenderer';
-import { Breadcrumb, rootProps, type PageScreenOptions } from '@/sections/_page-shared';
+import { Breadcrumb, PAGE_PX, rootProps, type PageScreenOptions } from '@/sections/_page-shared';
 import type { SectionCommon } from '@/sections/shared';
 
 export interface CookiePreferencesProps extends SectionCommon, PageScreenOptions {
@@ -30,18 +30,16 @@ export default function CookiePreferences({
   saveLabel,
   ...common
 }: CookiePreferencesProps & { id: string; context?: PageContext }) {
-  const { className, style } = rootProps('policy cookies', common, { top: 24, bottom: 96 });
+  const { className, style } = rootProps(`policy ${PAGE_PX}`, common, { top: 24, bottom: 96 });
   return (
     <div id={`shopify-section-${id}`} className="shopify-section">
       <div className={className} style={style}>
         <div className="policy__inner">
           <Breadcrumb current={breadcrumbTitle} className="policy__breadcrumb" />
-          <header className="cookies__header">
-            {eyebrow ? (
-              <p className="eyebrow eyebrow--center cookies__eyebrow">{eyebrow}</p>
-            ) : null}
-            <h1 className="policy__heading cookies__heading" dangerouslySetInnerHTML={{ __html: heading || breadcrumbTitle }} />
-            {intro ? <p className="cookies__intro">{intro}</p> : null}
+          <header className="grid justify-items-center text-center">
+            {eyebrow ? <p className="eyebrow eyebrow--center">{eyebrow}</p> : null}
+            <h1 className="policy__heading max-w-[16em]" dangerouslySetInnerHTML={{ __html: heading || breadcrumbTitle }} />
+            {intro ? <p className="m-0 mt-lg max-w-[857px] leading-[1.7]">{intro}</p> : null}
           </header>
           <CookieChoices categories={categories} acceptLabel={acceptLabel} essentialLabel={essentialLabel} saveLabel={saveLabel} />
         </div>

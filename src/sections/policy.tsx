@@ -51,7 +51,9 @@ export default function Policy({
   const title = breadcrumbTitle || eyebrow || 'Policy';
   const Heading = ((context?.index ?? 0) === 0 ? 'h1' : 'h2') as 'h1' | 'h2';
   // H4-H6 in the policy are group labels, not headings (no skipped levels): same as the Liquid.
-  const html = body.replace(/<h[456]/g, '<div data-policy-group').replace(/<\/h[456]>/g, '</div>');
+  // Each label restarts the item numbers at 01: counter-set changes the one counter made on .policy__body
+  // (sections.css's counter-reset opened a new scope per label, and Chrome kept counting: 09-14).
+  const html = body.replace(/<h[456]/g, '<div data-policy-group class="[counter-reset:none] [counter-set:policy-item_0]"').replace(/<\/h[456]>/g, '</div>');
   const { className, style } = rootProps(`policy policy--${layout}`, common, { top: 24, bottom: 96 });
   return (
     <div id={`shopify-section-${id}`} className="shopify-section">
@@ -65,7 +67,7 @@ export default function Policy({
             </div>
             {inForceDate ? (
               <div className="policy__in-force">
-                {inForceLabel ? <p className="policy__in-force-label">{inForceLabel}</p> : null}
+                {inForceLabel ? <p className="policy__in-force-label text-label">{inForceLabel}</p> : null}
                 <p className="policy__in-force-date">{inForceDate}</p>
                 {inForceMeta ? <p className="policy__in-force-meta">{inForceMeta}</p> : null}
               </div>

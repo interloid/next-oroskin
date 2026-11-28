@@ -80,9 +80,20 @@ Never edit those folders from this project.
   `POST /cart` → `/cart/submit` and `?sections=` → `/section-render`.
 - Tailwind has no preflight reset: the theme's `critical.css` is the base layer, and the design tokens are in
   `src/app/globals.css`. Stylesheets are linked by hand in `src/app/layout.tsx`. The React Compiler is on.
-- CSS: the theme CSS is loaded unchanged from `public/theme/*.css` (`sections.css`, `critical.css`, ...);
-  new page CSS lives in `public/theme/pages-extra.css` (policy / shipping / cookies) and
-  `public/theme/account.css` (account pages).
+- CSS: the theme CSS is loaded from `public/theme/*.css` (`sections.css`, `critical.css`, ...), each file wrapped
+  in `@layer legacy { }`. Layer order (`src/app/globals.css` and top of `head.css`):
+  `theme, legacy, base, components, utilities`, so a Tailwind utility always beats a theme rule.
+  Design CSS this project wrote is moving to Tailwind: shipping / cookies / policy labels are done (old
+  `pages-extra.css` deleted); `public/theme/account.css` (account pages) is next.
+  Tailwind tokens map to the theme variables in `globals.css` (`@theme inline`): `text-brand`, `bg-raised`,
+  `border-line-card`, `p-xl` / `gap-md` (theme `--space-*`), `text-label` / `text-body-sm`, `tracking-label`,
+  `font-display` / `font-text`, `rounded-card`, `shadow-raised`; breakpoints `max-tablet:` (<750),
+  `max-laptop:` (<990), `max-desktop:` (<1200).
+  Converting: delete the old rule in the same change; grep `public/theme.js` for a class before dropping it;
+  a theme `!important` (6 in account.css, 6 in sections.css) beats even a `!` utility (important layers reverse),
+  so remove the `!important` rule rather than fighting it. When two utilities differ only by a variant
+  (`rtl:x` vs `x`), the winner depends on Tailwind's output order: prefer logical properties (`start-*`, `ps-*`).
+  After `git stash` / branch switches, if new utilities are missing, delete `.next` and restart (Turbopack cache).
 - Fonts (`public/theme/fonts.css`): headings Canela Text (`public/fonts/canela-text-trial/`), body Satoshi,
   the home hero swash lines Mussica Swash (`public/fonts/mussica/`). Trial licences: internal demo only.
 - Icons are inlined from disk by `src/components/Icon.tsx`: `<Icon name="truck" />` reads the theme's

@@ -24,7 +24,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="stylesheet" href="/theme/fonts.css" />
         <link rel="stylesheet" href="/theme/critical.css" />
         <link rel="stylesheet" href="/theme/sections.css" />
-        <link rel="stylesheet" href="/theme/pages-extra.css" />
         <link rel="stylesheet" href="/theme/account.css" />
       </head>
       <body suppressHydrationWarning>
