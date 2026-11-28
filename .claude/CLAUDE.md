@@ -96,6 +96,9 @@ Never edit those folders from this project.
     `src/components/VisitorSync.tsx` asks the theme's `<cart-count>` to read `/cart.js`, and the start-up script
     in `src/app/layout.tsx` adds `signed-in` to `<html>` from the `oro_signed_in` cookie (CSS in `globals.css`).
   - TanStack Query is not used: the theme JS does the client fetching through the Shopify shims.
+- Page `<title>` and description: each route exports `generateMetadata` using `pageMetadata(slug, title?)` from
+  `PageRenderer.tsx` (the page's `seo` / `title`, or the product / collection / article title). The store name,
+  default description and icon come from the site settings in `src/app/layout.tsx`.
 - Theme JS: `public/theme.js` (the theme's web components) loads **after** React hydrates
   (`src/components/ThemeScripts.tsx`). So section markup must keep the theme's exact class names, custom element
   tags, `data-*` attributes and ids, and links are plain `<a href>` with Shopify-style URLs, not `next/link`.
