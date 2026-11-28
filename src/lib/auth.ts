@@ -54,6 +54,7 @@ async function post<S extends z.ZodType>(pathname: string, body: unknown, schema
   if (!res.ok) {
     const error = apiErrorSchema.safeParse(data);
     const m = error.success ? (error.data.message ?? error.data.error) : undefined;
+    if (res.status === 429) throw new AuthError('Too many attempts. Please wait a minute and try again.', 429);
     // A 4xx text is written for the visitor; anything else is not theirs to see.
     throw new AuthError(res.status < 500 && m ? (Array.isArray(m) ? m[0] : m) : GENERIC, res.status);
   }

@@ -72,6 +72,16 @@ const TABS: { view: AccountView; href: string; label: string; icon: string }[] =
 ];
 
 const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? '';
+
+/**
+ * Success notes shown after a redirect (`?notice=<code>`). Only these fixed texts can appear: the text itself
+ * is never taken from the URL, so a crafted link cannot put its own "system message" on the page.
+ */
+const NOTICES: Record<string, string> = {
+  'password-reset': 'Your password is changed. Sign in with the new one.',
+  'password-changed': 'Your password is changed. Other devices have been signed out.',
+};
+const noticeOf = (v: string | string[] | undefined) => NOTICES[first(v)] ?? '';
 const img = (handle: string) => data().products.get(handle)?.images[0]?.src ?? '';
 
 function Shell({ view, children }: { view: AccountView; children: React.ReactNode }) {
@@ -484,7 +494,7 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
               </span>
               <span className="account-od__eta">
                 <Icon name="truck" />
-                {order.status === 'delivered' ? 'Delivered' : 'Estimated delivery'}: {order.eta}
+                {order.status === 'delivered' ? 'Delivered' : 'Estimated delivery'}: {order.eta || 'To be confirmed'}
               </span>
             </p>
           </div>
@@ -626,8 +636,8 @@ function OrderDetail({ order, track, back }: { order: Order; track: boolean; bac
                 <Icon name="truck" />
                 Tracking number
               </p>
-              <p className="account-od__code">{order.tracking}</p>
-              <p className="account-od__label">Estimated delivery: {order.eta}</p>
+              <p className="account-od__code">{order.tracking || 'Not shipped yet'}</p>
+              <p className="account-od__label">Estimated delivery: {order.eta || 'To be confirmed'}</p>
             </section>
           </div>
         </div>
@@ -977,7 +987,7 @@ function AuthCard({
 }) {
   const form = AUTH_FORMS[view];
   const error = first(search.error);
-  const notice = first(search.notice);
+  const notice = noticeOf(search.notice);
   const sent = view === 'forgot-password' && first(search.sent) === '1';
   const token = first(search.token);
   const next = first(search.next);
@@ -1135,7 +1145,7 @@ export default async function Account({
       break;
     case 'details':
       shellView = 'details';
-      body = <Details beautyProfile={beautyProfile} notice={first(search.notice)} />;
+      body = <Details beautyProfile={beautyProfile} notice={noticeOf(search.notice)} />;
       break;
     case 'orders':
       shellView = 'orders';

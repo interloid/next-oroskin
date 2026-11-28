@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   } catch (error) {
     return back(messageOf(error));
   }
-  const res = to(req, '/account/login', { notice: 'Your password is changed. Sign in with the new one.' });
+  const res = to(req, '/account/login', { notice: 'password-reset' });
   clearSessionCookies(res.cookies);
   return res;
 }

@@ -23,5 +23,5 @@ export async function POST(req: Request) {
   } catch (error) {
     return back(messageOf(error));
   }
-  return to(req, '/account/details', { notice: 'Your password is changed. Other devices have been signed out.' });
+  return to(req, '/account/details', { notice: 'password-changed' });
 }
